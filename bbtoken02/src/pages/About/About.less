@@ -1,0 +1,58 @@
+@import url(../../assets/css/less/public/base.less);
+.about {
+    .about-img {
+        max-height: 300px;
+    }
+    &-p {
+        font-size: 24px;
+        margin-top: 60px;
+    }
+
+}
+
+.contactUs {
+    .contact-right {
+        width: 640px;
+        min-height: 560px;
+        padding: 0 70px;
+        background: @color-f8;
+        .tit {
+            font-size: 24px;
+        }
+    }
+    .contact-left {
+        width: 414px;
+        height: 560px;
+    }
+    .ant-form-item-required {
+        opacity: .5;
+    }
+}
+
+.notice {
+    &-list {
+    	width:100%;
+    }
+    &-item {
+        padding: 25px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom:1px solid @gray;
+        .link {
+        	flex:1;
+        	color:@black-1;
+        	cursor: pointer;
+        	font-size:18px;
+        	overflow-x: hidden;
+        	text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+        span{
+             opacity: .5;
+        }
+    }
+    &-item:hover{
+        background:@color-f8;
+    }
+}

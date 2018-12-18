@@ -1,0 +1,200 @@
+.header{
+    background-color: #B90500;
+}
+.header span img {
+    width: 0.34rem;
+    height: 0.34rem;
+    margin-right: 0.2rem;
+}
+.content{
+    padding-top: 0.89rem;
+}
+.content .contentTop {
+    height: 1.4rem;
+    border-bottom: 1px solid #DFDFDF;
+}
+.contentTop .summaryImg {
+    width: 0.8rem;
+    height: 0.8rem;
+    padding: 0.3rem;
+}
+.contentTop .summaryImg img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.contentTop .inform {
+    padding-top: 0.41rem;
+    font-size: 0;
+}
+.contentTop .inform p {
+    color: #333333;
+    font-size: 0.32rem;
+}
+.contentTop .inform i {
+    color: #999999;
+    font-size: 0.22rem;
+}
+.contentTop .tabColumns {
+    height: 1.4rem;
+    margin: 0;
+}
+.tabColumns {
+    height: 1.20rem;
+    overflow: hidden;
+    margin-left: 1.40rem;
+    text-align: center;
+}
+.contentTop .tabColumns span {
+    margin-top: 0.64rem;
+}
+.tabColumns span {
+    float: left;
+    display: inline-block;
+    width: 0.02rem;
+    height: 0.33rem;
+    background-color: #DFDFDF;
+    margin-top: 0.47rem;
+}
+.contentTop .tabColumns .tabColumn {
+    width: 0.98rem;
+    height: 1.4rem;
+    padding-top: 0.4rem;
+    box-sizing: border-box;
+}
+.contentTop .tabColumn p:first-child {
+    padding: 0;
+}
+.tabColumn p:last-child {
+    font-size: 0.22rem;
+    color: #999999;
+    margin-bottom: 0.30rem;
+}
+.contener {
+    background-color: #fff;
+    padding: 0.3rem;
+}
+.contener .forword {
+    margin-bottom: 0.8rem;
+}
+.contener i {
+    color: #FFA200;
+}
+.contener span {
+    font-size: 0.36rem;
+}
+.contener p {
+    font-size: 0.30rem;
+    color: #333333;
+    margin-bottom: 0.3rem;
+    text-indent: 2em;
+}
+.contener .forwordImg {
+    text-align: center;
+}
+.contener img {
+    width: 100%;
+    margin-bottom: 0.3rem;
+}
+.comment {
+    height: 0.6rem;
+    line-height: 0.6rem;
+    background-color: #EFEFF4;
+    font-size: 0.24rem;
+    padding-left: 0.19rem;
+}
+.comment span, .comment span {
+    font-size: 0.24rem;
+    color: #666666;
+}
+.commentContener {
+    background-color: #fff;
+    margin-bottom: 1.4rem;
+}
+.commentContener .rightTop {
+    padding-top: 0.4rem;
+    overflow: hidden;
+}
+.commentContener .rightTop .rightInfor {
+    width:80%;
+}
+.table-view-cell {
+    position: relative;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+}
+.commentContener .rightImg {
+    width: 0.81rem;
+    height: 0.81rem;
+    padding-left: 0.19rem;
+    padding-right: 0.21rem;
+}
+.commentContener .rightImg img {
+    width: 100%;
+}
+.commentContener .rightTop .rightInforTop span {
+    font-size: 0.30rem;
+}
+.commentContener .rightTop .rightInforBot span {
+    font-size: 0.24rem;
+    color: #999999;
+}
+.commentContener .details {
+    font-size: 0.28rem;
+    padding: 0.19rem 0 0.21rem 0;
+}
+.after:after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 1.2rem;
+    height: 1px;
+    content: '';
+    background-color: #DFDFDF;
+}
+.goodsFix {
+    width: 100%;
+    padding: .14rem .24rem .24rem .23rem;
+    height: 1rem;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    border-top:1px solid #DFDFDF;
+    box-sizing: border-box;
+    display: flex;
+}
+.goodsFix img {
+    width: .65rem;
+    height: .65rem;
+    border-radius: .08rem;
+}
+.goodsFix p {
+    flex: 1;
+    padding-left: .42rem;
+    color: #2E5299;
+    font-size: .3rem;
+    line-height: .7rem;
+    position: relative;
+}
+.goodsFix a {
+    flex: 0 0 1.81rem;
+    height: .65rem;
+    background: #B90500;
+    border-radius: .32rem;
+    color: #fff;
+    font-size: .3rem;
+    line-height: .65rem;
+    text-align: center;
+}
+
+.video {
+    margin: .2rem auto!important;
+}
+.prism-info-display {
+    padding: 0!important;
+}
+.videoPlay{
+    z-index: 1002;
+    position: fixed!important;
+    top: 0;
+}

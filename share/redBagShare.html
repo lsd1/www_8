@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>邀请好友立即加入</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script>
+            (function () {
+                document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+            })();
+		</script>
+		<link rel="stylesheet" href="./css/mui.min.css" />
+		<link rel="stylesheet" href="./css/regBagShare.css"/>
+
+	</head>
+	<body>
+		<div class="invitation">
+			<div style="background:#333333;" class="mui-bar mui-bar-nav">
+			   <h1 class="mui-title" style="color:white;font-family: '微软雅黑';">脉果儿红包</h1>
+			</div>
+			<div class="mui-content" id="invi_content">
+				<div class="top">
+					<div class="logoW g-fl">
+						<img src="./images/name_share_logo@2x.png"/>
+					</div>
+					<div class="mage g-fl">
+						<div>脉果儿</div>
+						<div>邀请好友加入领更多红包</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<img src="./images/envelopes_invitation_illustration@2x.png"/>
+				</div>
+				<div class="foter">
+					<button id="joinUs">立即加入</button>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/common.js?v=20181018"></script>
+<script >
+    $(function(){
+        var Request = getRequest();
+        var uid = Request['uid'];
+        //加入我们
+        $('#joinUs').click(function () {
+            wakeUpAppOrRegister('maiguoer://home.maiguoer.com?uid=' + uid, 2000, uid);
+        });
+    });
+</script>

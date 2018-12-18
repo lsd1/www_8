@@ -1,0 +1,373 @@
+html,body,select,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,li,dd,form,table,img,button,div{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: #666;
+}
+ul,li{
+    list-style: none;
+}
+input {
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+}
+select{
+    appearance:none;
+    outline: none;
+    border: none;
+}
+button{
+    outline: none;
+}
+i{
+    font-style: normal;
+}
+img{
+    vertical-align: top;
+}
+.clearfix1 {
+    display: block;
+    content: ".";
+    height: 0;
+    line-height: 0;
+    clear: both;
+}
+.clearfix1 {
+    zoom: 1;
+}
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+@media screen and (max-width: 321px) {
+    body {
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 321px) and (max-width: 400px) {
+    body {
+        font-size: 17px;
+    }
+}
+@media screen and (min-width: 400px) {
+    body {
+        font-size: 19px;
+    }
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #F4F4F4;
+}
+/*移动端点击时的出现默认背景*/
+li,div,p,div,span,button{
+    background-color:transparent;
+    -webkit-tap-highlight-color:rgba(255,255,255,0)
+}
+/*顶部*/
+.header{
+    width: 100%;
+    height: 0.89rem;
+    line-height: 0.89rem;
+    padding-right: 0.27rem;
+    padding-left: 0.19rem;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 1001;
+    top:0;
+}
+.header img{
+    width: 0.24rem;
+    height: 0.38rem;
+    padding-top: 0.26rem;
+}
+.header i {
+    color: #ffffff;
+    font-size: 0.30rem;
+    padding-left: 0.09rem;
+}
+h1{
+    height: 0.89rem;
+    line-height: 0.89rem;
+    position: absolute;
+    right: 1.5rem;
+    left: 1.5rem;
+    display: inline-block;
+    margin: 0;
+    font-size: 0.36rem;
+    font-weight: 500;
+    text-align: center;
+    color: #ffffff;
+}
+.header span a{
+    color: #ffffff;
+    font-size: 0.30rem;
+    padding-left: 0.09rem;
+}
+
+.header span a img{
+    width: 0.4rem;
+    height: 0.4rem;
+}
+/*tab栏切换*/
+.record {
+    width: 100%;
+    height: 0.81rem;
+    line-height: 0.81rem;
+    background-color: #ffffff;
+    padding: 0 1.67rem;
+    box-sizing: border-box;
+    font-size: 0;
+}
+.record span{
+    display: inline-block;
+    height: 0.79rem;
+    line-height: 0.78rem;
+    font-size: 0.28rem;
+    text-align: center;
+    color: #010101;
+}
+.container{
+    padding-top: 0.89rem;
+}
+/*遮罩层*/
+.shelt,.mask{
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.4);
+    z-index: 10;
+}
+/*弹出框*/
+.popUp {
+    width: 5.81rem;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    position: fixed;
+    left: 0.84rem;
+    bottom: 4.8rem;
+    font-size: 0;
+    z-index: 99;
+    display: none;
+}
+.popUpTop {
+    padding: 0.35rem 0.31rem 0;
+    border-bottom: 1px solid #DFDFDF;
+    padding-bottom: 0.38rem;
+    box-sizing: border-box;
+}
+.popUpTop h6 {
+    font-size: 0.30rem;
+    text-align: center;
+    padding-bottom: 0.3rem;
+}
+.popUpTop p {
+    font-size: 0.26rem;
+    text-indent: 2em;
+}
+.popUp button {
+    width: 50%;
+    height: 0.8rem;
+    border: none;
+    font-size: 0.32rem;
+    color: #0263FF;
+    margin: 0;
+    background-color: #fff;
+}
+.popUp .cancel {
+    border-right: 1px solid #DFDFDF;
+    border-bottom-left-radius: 0.25rem;
+}
+.popUp .confirm, .popUp .verConfirm,.popUp .groConfirm,.popUp .orderConfirm{
+    border-right: 1px solid #DFDFDF;
+    border-bottom-right-radius: 0.25rem;
+}
+/*退款原因*/
+.reasons {
+    font-size: 0.28rem;
+    padding: 0.31rem 0 0.31rem 0.25rem;
+    background-color: #fff;
+    border-bottom: 1px solid #DFDFDF;
+}
+.reasons i {
+    font-size: 0.28rem;
+    color: #FFA200;
+}
+/*按钮*/
+button{
+    background-color: #fff;
+}
+
+/*颜色*/
+.success{
+    color: #FF0000;
+}
+.fail{
+    color: #FFA200;
+}
+
+.hintreason,.hintmoney,.networkFail, .refundAmount, .maxMoney{
+    display: none;
+    height: 1.04rem;
+    padding: 0.30rem;
+    color: #ffffff;
+    font-size: 0.30rem;
+    box-sizing: border-box;
+    border-radius: 0.08rem;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 999;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -0.52rem;
+    margin-left: -1.35rem;
+    max-width: 90%;
+}
+/* 页面正在加载刷新的 .loading 效果 */
+.loading{
+    width: 100%;
+    height:100%;
+    text-align: center;
+    padding-top:50%;
+    background: #ffffff;
+    position: absolute;
+    display: none;
+}
+.loading img{
+    width: 3.2rem;
+    height: 3.2rem;
+}
+/* 下拉加载数据的 加载动效 */
+.bottomLoading{
+    padding: .2rem;
+    text-align: center;
+    display: none;
+}
+.bottomLoading img{
+    width: .8rem;
+    vertical-align: middle;
+}
+.bottomLoading span{
+    font-size: .2rem;
+    color: #333
+}
+/*没有搜到的样式*/
+.listNone,.noRatings,.noGoods{
+    text-align: center;
+    margin-top: 3rem;
+    color: #aaa;
+    display: none;
+}
+.noGoods p,.noRatings p,.listNone{
+    font-size: .28rem;
+    padding:.1rem 0;
+}
+.listNone img,.noRatings img,.noGoods img {
+    width: 45%;
+
+}
+a.release{
+    width: 2.1rem;
+    display: inline-block;
+    color: #fff;
+    font-size: .23rem;
+    border-radius: .08rem;
+    height: .67rem;
+    line-height: .67rem;
+}
+/*已完成提示*/
+.create_status{
+    padding: 1.5rem 0 0 0;
+    width: 3rem;
+    height: 2.5rem;
+    text-align: center;
+    margin: 3rem auto;
+    border-radius: .08rem;
+    color: #fff;
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    margin-left: -1.5rem;
+    top: 1rem;
+}
+.loding_height{
+    height: 2rem;
+}
+/*加载数据等待的loading*/
+.btn_loading{
+    background: url(../images/load.gif) no-repeat center;
+    background-size: 1.6rem 1.6rem;
+}
+.tip{
+    background: url(../images/success.png) no-repeat;
+    background-size: 1.5rem;
+}
+/*加载数据等待的loading*/
+.now_loading{
+    background: url(../images/loding.gif) no-repeat;
+    background-size: 3.2rem 3.2rem;
+}
+/*查看大图的样式*/
+.look_img_box,.look_img{
+    width: 100%;
+    height: 100% !important;
+    box-sizing: border-box;
+    border-top: .6rem solid #000;
+}
+.shelt_img{
+    display: none;
+    z-index: 1000;
+    background: #000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.swiper-slide{
+    text-align: center;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.img_index{
+    bottom: 0px !important;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    background: #000;
+    height: 1rem;
+    display: inline-block;
+    line-height: 1rem;
+}
+.look_img .swiper-slide{
+    background:#000;
+}
+.look_img .swiper-slide img{
+    max-width: 100%;
+    height:auto;
+    position: relative;
+    top: -1rem;
+}

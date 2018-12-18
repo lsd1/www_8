@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"outFile": "bin/picker/picker.js",
+		"allowJs": true
+	},
+	"files": [
+		"src/picker.js"
+	]
+}

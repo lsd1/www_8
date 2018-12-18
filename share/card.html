@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>脉果儿</title>
+	<link rel="stylesheet" href="css/public.css">
+	<link rel="stylesheet" href="css/share_her_main.css">
+	<link rel="stylesheet" type="text/css" href="css/card.css"/>
+	<link rel="stylesheet" type="text/css" href="fonts/demo.css"/>
+	<link rel="stylesheet" href="fonts/iconfont.css" />
+	<style>
+		.headfix {
+			width: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 3;
+		}
+	</style>
+</head>
+
+<body>
+	<!--顶部返回-->
+	<div class="header" style="background:#393A3F;" id="header">
+		<a href="javascript:void(0);" class="back" style="height:1rem;width:1rem;">
+			<span class="iconfont icon-guanbi"></span>
+		</a>
+		<h1 class="username" style="font-size:0.3rem;">TA的名片</h1>
+		<span class="fr">
+			<a href="javascript:void(0);">
+				<span class="iconfont icon-gengduo"></span>
+			</a>
+		</span>
+		<i></i>
+	</div>
+	<!--他的果园 -->
+	<div class="headerTop" id="headerTop">
+		<!-- <i class="userNote" style="height:0.2rem;">（ID：1234567 备注：张小晓）</i> -->
+		<div class="headerBot">
+			<div class="headerBotTop">
+				<img src="images/login_defaultavatar@2x.png" alt="" class="avatar"/> <!-- 头像 -->
+				<!-- <img src="images/he_homepage_allfollow@2x.png" alt="">
+				<img src="images/he_homepage_chat@2x.png" alt="">
+				<img src="images/he_homepage_share@2x.png" alt=""> -->
+			</div>
+			<div class="headerBotMiddle">
+				<p class="userName" style="color:white;">滴biu滴biu
+					<img src="images/icon.png" style="width:0.4rem;height:0.4rem;" class="genderImg"/>
+				</p>
+			</div>
+			<div class="headerBotbottom">
+				<div class="tabListColumns">
+					<div class="tabListColumn fl">
+						<p class="followCount">0</p>
+						<p>访客</p>
+					</div>
+					<span></span>
+					<div class="tabListColumn fl tabListColumnCenter">
+						<p class="inviteCount">0</p>
+						<p>粉丝</p>
+					</div>
+					<span></span>
+					<div class="tabListColumn fl tabListColumnCenter">
+						<p class="fansCount">0</p>
+						<p>关注</p>
+					</div>
+				</div>
+				<!-- <p>TA的果园</p> -->
+			</div>
+		</div>
+	</div>
+		<!-- 他的资料 -->
+		<ul class="tabListle-view tabListle-view-chevron">
+			<li class="tabListle-view-cell media tabListle-borBot">
+				<p class="media-object fl">T A的I D </p>
+				<div class="mediaBody">
+					<span class='ellipsis profile'></span>
+					<img class="fr" src="images/common_arrows@2x.png" alt="">
+				</div>
+			</li>
+			<li class="tabListle-view-cell media tabListle-borBot">
+				<p class="media-object fl">职业信息</p>
+				<div class="mediaBody">
+					<span class='ellipsis storeName'></span>
+					<img class="fr" src="images/common_arrows@2x.png" alt="">
+				</div>
+			</li>
+			<li class="tabListle-view-cell tabListle-borBot">
+				<p class="media-object fl">TA的商店</p>
+				<div class="mediaBody">
+					<span class='ellipsis impressionCount'></span>
+					<img class="fr" src="images/common_arrows@2x.png" alt="">
+				</div>
+			</li>
+		</ul>
+		<!-- 他的果园动态 -->
+		<div class="trendList">
+			<div class="trendListMy">
+				<a class="control-item">
+					<div class="trendListLeft">
+						<span>TA的脉果动态</span>
+					</div>
+				</a>
+			</div>
+		 	<div class="servicesList control-content" id="service">
+        	</div>
+        <p class="last-text c" style="margin-top:0.2rem;margin-bottom:0.2rem;">— 没有更多动态了 —</p>
+    </div>
+	</div>
+	<div id="lianjie">
+		<div id="dis">
+			<div class="prompt">
+				<a class="iconfont icon-guanbi" onclick="hide()"></a>
+				<div class="prompt_ti">
+					<p>提示</p>
+					<p>请先完成注册</p>
+				</div>
+				<div class="prompt_bottom">
+					<a href="#" onclick="hide()">取消</a>
+					<a href="register.html" id="joinUs" style="color:#337FFF;border-left:1px solid #E3E3E3;">去注册</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="goodsFix goodShowApp">
+		<img src="images/icon_48.png" alt="">
+		<div>
+			<p>脉果儿</p>
+			<p>专注价值社交新理念</p>
+		</div>
+		<a href="#">打开app</a>
+	</div>
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/common.js?v=20181018"></script>
+	<script>
+		(function () {
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+		})();
+	</script>
+	<script>
+
+		 function hide(){
+        	document.getElementById('dis').style.display="none";
+        } 
+		$(function () {
+
+			var Request = getRequest();
+			var uid = Request['uid'];
+			var targetUid = Request['targetUid'];
+
+			getCardInfo(uid, targetUid);
+			$('.goodShowApp').on('click',function () {
+                wakeUpAppOrRegister('maiguoer://card.maiguoer.com?uid=' + uid + '&targetUid=' + targetUid, 1000, uid);
+                setTimeout(function () {
+                    document.getElementById('dis').style.display="block";
+                },1500);
+            });
+		});
+
+
+		//获取名片信息
+		function getCardInfo(uid, targetUid) {
+			$.ajax({
+				type: 'GET',
+				url: 'v2.6/share/card_info',
+				data: {
+					uid: uid,
+					targetUid: targetUid
+				},
+				dataType: 'json',
+				beforeSend: function () {
+					loading();
+				},
+				success: function (res) {
+					if (res.code != 0 || !res.data || !res.data.memberInfo) {
+						var msg = res.msg ? res.msg : '获取数据失败!';
+						showTip(msg);
+						return false;
+					}
+
+					var memberInfo = res.data.memberInfo;
+
+
+					$('.userName').text(memberInfo.username);/* 用户名 */
+					$('.storeName').text(memberInfo.occupation);/* 职业信息 */
+					$('.avatar').attr('src', memberInfo.avatar);/* 头像 */
+					$('.profile').text("  " + memberInfo.uid);/* 用户Id */
+					if(memberInfo.gender == 0) {                /* 用户性别*/
+						$('.genderImg').attr('src', '');
+					}else {
+						if(memberInfo.gender == 1) {
+							$('.genderImg').attr('src', 'images/my_r_man_pre@2x.png');
+						}else {
+							$('.genderImg').attr('src', 'images/icon.png');
+						}
+					}
+					$('.impressionCount').text(memberInfo.storeName);/* 店铺名称 */
+					if (memberInfo.bgImage.lastIndexOf('avatar.png') != (memberInfo.bgImage.length - 10)) { /* 名片背景图*/
+						$('#headerTop').css("background", "url(" + memberInfo.bgImage + ")");
+					}
+
+					if (res.data && res.data.countInfo) {		/* 访客数量 */
+						var count = res.data.countInfo;
+						$('.followCount').text(count.followCount);
+						$('.fansCount').text(count.fansCount);
+						$('.inviteCount').text(count.inviteCount);
+						$('.flowerCount').text(count.flowerCount);
+					}
+					/* 脉果动态 */
+					var zoneList = res.data.zoneList;
+					if(zoneList == []) {
+						$('.trendList').append('<div style="text-align: center">'+
+													'<img src="images/store_homepage_activity_margin@2x.png" style="width:5rem;" alt="">'+
+												'</div>');/* 无动态 */
+					}else {
+						for(var i in zoneList) {
+                            switch(zoneList[i].curType) {
+                                case 0:/*0: 文章 */
+                                    var title = zoneList[i].title;
+                                    if(zoneList[i].zoneAttach == []) {
+
+                                    }else {
+                                        var smareImg = '';
+                                        for (var k = 0; k < zoneList[i].zoneAttach.length; k++) {
+                                            smareImg += '<img src="' + zoneList[i].zoneAttach[k] + '"/>';
+                                        }
+                                        console.log(smareImg);
+                                        var theId = '';
+                                        if (zoneList[i].zoneAttach.length == 1) {
+                                            theId = 'phoneList_1';
+                                        } else if (zoneList[i].zoneAttach.length <= 2) {
+                                            theId = 'phoneList_2';
+                                        } else if (zoneList[i].zoneAttach.length <= 3) {
+                                            theId = 'phoneList_3';
+                                        } else if (zoneList[i].zoneAttach.length <= 6) {
+                                            theId = 'phoneList_6';
+                                        } else {
+                                            theId = 'phoneList_9';
+                                        }
+                                        var listStatus = '<div class="userPhoto" id="' + theId + '">' + smareImg + '</div>';
+                                    }
+                                    break;
+                                case 1:/*1: 想法 */
+                                    var title = zoneList[i].title;
+                                    var title = zoneList[i].title;
+                                    if(zoneList[i].zoneAttach == []) {
+
+                                    }else {
+                                        var smareImg = '';
+                                        for (var k = 0; k < zoneList[i].zoneAttach.length; k++) {
+                                            smareImg += '<img src="' + zoneList[i].zoneAttach[k] + '"/>';
+                                        }
+                                        console.log(smareImg);
+                                        var theId = '';
+                                        if (zoneList[i].zoneAttach.length == 1) {
+                                            theId = 'phoneList_1';
+                                        } else if (zoneList[i].zoneAttach.length <= 2) {
+                                            theId = 'phoneList_2';
+                                        } else if (zoneList[i].zoneAttach.length <= 3) {
+                                            theId = 'phoneList_3';
+                                        } else if (zoneList[i].zoneAttach.length <= 6) {
+                                            theId = 'phoneList_6';
+                                        } else {
+                                            theId = 'phoneList_9';
+                                        }
+                                        var listStatus = '<div class="userPhoto" id="' + theId + '">' + smareImg + '</div>';
+                                    }
+                                    break;
+                                case 2:/*2: 商品 */
+                                    var title = zoneList[i].goodsInfo.name;
+                                    var listStatus = '<div class="userPhoto">'+
+														'<img src="' + zoneList[i].goodsInfo.image + '" style="width:5.5rem;height:3.5rem;"/>'+
+													'</div>';
+                                    break;
+                                case 3:/*3: 店铺 */
+                                    var title = zoneList[i].storeInfo.name;
+                                    var listStatus = '<div class="userPhoto">'+
+															'<img src="' + zoneList[i].storeInfo.image + '" style="width:5.5rem;height:3.5rem;"/>'+
+														'</div>';
+                                    break;
+                                case 4:/*4: pv商品 */
+                                    var title = zoneList[i].goodsInfo.name;
+                                    var listStatus = '<div class="userPhoto">'+
+															'<img src="' + zoneList[i].goodsInfo.image + '" style="width:5.5rem;height:3.5rem;"/>'+
+														'</div>';
+                                    break;
+                                case 5:/*5: 视频*/
+                                    var title = zoneList[i].title;
+                                    var listStatus = '<div class="userPhoto">'+
+															'<img src="' + zoneList[i].zoneVideo.coverUrl + '" style="width:5.5rem;height:3.5rem;"/>'+
+														'</div>';
+                                    break;
+                            }
+                            var theList = '<div class="service c" style="height:6rem;background:white;">'+
+                                				'<div class="service_left fl">'+
+                                					'<a class="control-item">'+
+                                						'<div class="pinkback">'+
+                                							'<span id="times">' + zoneList[i].date + '</span>'+
+                                						'</div>'+
+                                					'</a>'+
+                                					'<div class="pink_bot" style="">'+
+                                						'<p class="nowTime">' + zoneList[i].time + '</p>'+
+                                							'<p class="userAdd">' + zoneList[i].province + '&nbsp;&nbsp;' + zoneList[i].city + '</p>'+
+                                								'<div class="dian" style="	font-size:0.25rem;	display:block;left:1.4rem;top:0.01rem;color:#A4A4A4;position:absolute;">●</div>'+
+													'</div>'+
+                               					 '</div>'+
+												'<div class="service_right fr">'+
+													'<p class="user_dynamic" id="user_dynamic'+ i + '">'+
+														title +
+													'</p>'+
+                                					listStatus +
+                               					 	'<div class="xiangqing wakeUp">'+
+                                						'<a href="" class="flowers wakeUp"><img src="images/common_dynamic_flower@2x.png"/></a>'+
+														'<a href="" class="share_link wakeUp"><img src="images/common_dynamic_share@2x.png"/></a>'+
+														'<a href="" class="give_like wakeUp"><img src="images/common_dynamic_like@2x.png"/></a>'+
+														'<a href="" class="comments wakeUp"><img src="images/common_dynamic_chat@2x.png"/></a>'+
+                                						'<em class="fr wakeUp">进入详情'+
+                                							'<i>'+
+                                								'<img src="images/common_arrows@2x.png"/>'+
+                                							'</i>'+
+                                						'</em>'+
+                                					'</div>'+
+                               			 		'</div>'+
+                                			'</div>';
+							$('#'+'user_dynamic' + i).after(listStatus);
+							$('.servicesList').append(theList);
+
+						}
+					}
+					//取照片张数返回样式
+					function getListImg(eListArr) {
+                        if(eListArr == []) {
+
+                        }else {
+                            var smareImg = '';
+                            for(var k = 0; k < eListArr.length; k++) {
+                                smareImg += '<img src="'+ eListArr[k]+'"/>';
+                            }
+                            var theId = '';
+                            if(eListArr.length == 1){
+                                theId = 'phoneList_1';
+                            }else if(eListArr.length <= 2) {
+                                theId = 'phoneList_2';
+                            }else if(eListArr.length <= 3){
+                                theId = 'phoneList_3';
+                            }else if(eListArr.length <= 6){
+                                theId = 'phoneList_6';
+                            }else {
+                                theId = 'phoneList_9';
+                            }
+                            var listStatus = '<div class="userPhoto" id="'+ theId +'">'+smareImg+'</div>';
+                            return listStatus;
+                        }
+                    }
+					//唤起点击事件
+					// $('.wakeUp').on("click",function () {
+                    //     wakeUpAppOrRegister('maiguoer://card.maiguoer.com?uid=' + memberInfo.uid + '&targetUid' + memberInfo.targetUid, 1000, memberInfo.uid);
+                    // });
+					//唤起app
+					// <a href="maiguoer://card.maiguoer.com?uid=100004&targetUid=100004&businessAuthStatus=1&unionLevel=16">打开app</a>
+					var businessAuthStatus = memberInfo.businessAuthStatus ? memberInfo.businessAuthStatus : 0;
+					var unionLevel = memberInfo.unionLevel ? memberInfo.businessAuthStatus : 0;
+					var targetUid = targetUid ? targetUid : uid;
+
+					var url = "maiguoer://card.maiguoer.com?uid=" + uid + "&targetUid=" + targetUid + "&businessAuthStatus=" +
+						businessAuthStatus + "&unionLevel=" + unionLevel;
+
+					// $('body').on('click', '.content, .headerTop', function () {
+					// 	window.location.href = url;
+					// });
+
+					//单次唤起
+					// wakeUpApp(url);
+
+					/*   多次唤起
+					 var timesRun = 0;
+					 var interval = setInterval(function(){
+					     timesRun += 1;
+					     window.location.href = url;
+					     $('.content').trigger('click');
+					     if(timesRun === 10){
+					         clearInterval(interval);
+					     }
+					 }, 3000);*/
+				},
+				complete: function () {
+					closeLoading();
+				},
+				error: function (res) {
+					var msg = res.msg ? res.msg : '网络出错请重试！';
+					showTip(msg);
+				}
+			});
+		}
+	</script>
+
+</body>
+
+</html>

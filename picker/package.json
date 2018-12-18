@@ -1,0 +1,5 @@
+{
+	"name": "picker",
+	"compilerVersion": "5.1.8",
+	"typings": "typings/picker.d.ts"
+}

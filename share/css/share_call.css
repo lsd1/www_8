@@ -1,0 +1,166 @@
+body,html {
+	background-color: #FFFFFF;
+}
+*{
+	margin:0;
+	padding:0;
+	font-family: "微软雅黑";
+	
+}
+a:link{text-decoration:none; }  /* 指正常的未被访问过的链接*/
+
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+img{
+	width:100%;
+	height:100%;
+}
+.mui-bar {
+    background-color: #fff;
+}
+.mui-action-back {
+    color: #000;
+}
+.mui-bar-nav {
+	-webkit-box-shadow: 0 1px 6px #F1F1F1; 
+    box-shadow: 0 1px 6px #F1F1F1;
+}
+.mui-content {
+	background-color: #FFFFFF;
+	padding-bottom: 100px;
+}
+.mui-pull-right {
+	line-height: 44px;
+}
+
+/* 动态盒子样式 */
+.bottom {
+	width:94%;
+	text-align: center;
+	margin: auto;
+}
+/* 顶部通话收益 */
+.call_style {
+	width: 94%;
+	margin: auto;
+	display: flex;
+}
+.call_style .call_box {
+	width: 50%;
+	height: 2.1rem;
+	text-align: center;
+	line-height: 2.1rem;
+}
+.call_text {
+	font-size:0.3rem;
+	font-family:PingFang-SC-Medium;
+	font-weight:500;
+	color:rgba(51,51,51,1);
+}
+.call_text .call_num {
+	color: #DD2727;
+	font-size: .4rem;
+}
+/* 礼物部分 */
+.cover_box {
+	padding-top: .3rem;
+}
+.receive_box {
+	display: none;
+	text-align: center;
+	width: 90%;
+	margin: auto;
+	padding-bottom: .4rem;
+}
+.dividing {
+	font-size:0.3rem;
+	font-family:PingFang-SC-Medium;
+	font-weight:500;
+	color:rgba(51,51,51,1);
+	height: .5rem;
+}
+.dividing:after,.dividing:before {
+	content: '';
+	position: relative;
+	display: inline-block;
+	width:2.33rem;
+	height:0.02rem;
+	margin: .1rem;
+	/* line-height: .5rem; */
+	background:rgba(238,238,238,1);
+}
+.gift_box {
+	display: flex;
+	padding-top: .3rem;
+	flex-flow: row wrap;
+	align-content: flex-start;
+}
+.gift_box .gift_list {
+	flex: 0 0 25%;
+	padding-bottom: .2rem;
+}
+.gift_list p {
+	margin: 0;
+}
+.gift_list .gift_type {
+	font-size:0.28rem;
+	font-family:PingFang-SC-Medium;
+	font-weight:500;
+	color:rgba(51,51,51,1);
+}
+.gift_list .gift_amount {
+	font-size:0.24rem;
+	font-family:PingFang-SC-Regular;
+	font-weight:400;
+	color:rgba(153,153,153,1);
+}
+.gift_list .gift_num {
+	font-size:0.28rem;
+	font-family:PingFang-SC-Regular;
+	font-weight:400;
+	color:rgba(221,39,39,1);
+}
+.gift_list .img_box {
+	width: 80%;
+	margin: auto;
+	max-height: 1.3rem;
+	position: relative;
+}
+.img-box>:first-child {
+	width: 100%;
+	max-height: 1.3rem;
+
+	position: relative;
+}
+/* 底部按钮 */
+.footer_btn {
+	position: fixed;
+	bottom: 0;
+	width: 94%;
+	height: .88rem;
+	margin: 0 3% .4rem 3%;
+	display: flex;
+}
+.recruit_btn,.open_app {
+	flex: 50%;
+	margin: 0 1.5%;
+	font-size:0.32rem;
+	font-family:PingFang-SC-Medium;
+	font-weight:500;
+	line-height: .88rem;
+	border-radius: .1rem;
+	text-align: center;
+	color:rgba(255,255,255,1);
+}
+.recruit_btn {
+	background:rgba(221,39,39,1);
+}
+.open_app {
+	background:rgba(3,161,250,1);
+}
+
+

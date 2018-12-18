@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>1V1聊主招募</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link href="mui/css/mui.min.css" rel="stylesheet"/>
+    <link href="css/anchor_recruiment.css" rel="stylesheet"/>
+    <script>
+        // px与rem单位的换算
+        (function () {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        })();
+    </script>
+</head>
+<header class="mui-bar mui-bar-nav">
+    <div class=" mui-icon mui-icon-left-nav mui-pull-left" id="go-back"></div>
+    <h1 class="mui-title">1V1聊主招募</h1>
+    <div class="mui-pull-right share_btn">分享</div>
+</header>
+<div class="mui-content">
+    <div class="banner_box">
+        <img src="images/1V1/1v1_share_background.png" class="banner_img" alt="">
+    </div>
+    <div class="header-box">
+        <div class="header-img-box ">
+        </div>
+        <p class="name-box ">
+        </p>
+        <p class="id-box ">
+        </p>
+    </div>
+    <div class="content_box">
+        <!--<div class="flash_circle">-->
+        <!--<img src="images/1V1/chats_share_sphere2x.png" >-->
+        <!--</div>-->
+        <div class="text_area">
+            <div class="top_box">
+                <p>与众不同的交友新方式</p>
+                <p>轻松聊天还有小收益</p>
+            </div>
+            <div class="bottom_box">
+                <div class="bottom_text_box">
+                    <p>脉果儿【才艺达人】，面向全民招募1v1聊主<br>通过申请即可享受聊天收礼物特权</p>
+                    <p>来这里展示独特有趣的自己<br>一起分享生活分享美好时光</p>
+                </div>
+                <img src="images/1V1/1v1_share_illustrations.png">
+            </div>
+        </div>
+        <div class="income_box">
+            <p>你将在这里收获</p>
+            <div class="income_flex_box">
+                <div class="flex_list">
+                    <div class="star_img">
+                        <img src="images/1V1/1v1_share_recommend2x.png" class="income_img" alt="">
+                    </div>
+                    <p>才艺广场首页推荐</p>
+                </div>
+                <div class="flex_list">
+                    <div class="purse_img">
+                        <img src="images/1V1/1v1_share_profit2x.png" class="income_img" alt="">
+                    </div>
+                    <p>聊天按时长收益</p>
+                </div>
+                <div class="flex_list">
+                    <div class="gift_img">
+                        <img src="images/1V1/1v1_share_gift2x.png" class="income_img" alt="">
+                    </div>
+                    <p>聊天中获得礼物</p>
+                </div>
+            </div>
+        </div>
+        <div class="application_box">
+            <p>申请流程</p>
+            <div class="appli_list">
+                <div class="real_name appli_one_list">
+                    <div class="appli_img_box arrow_one">
+                        <img src="images/1V1/1v1_share_name2x.png" alt="">
+                    </div>
+                    <p>实名认证</p>
+                </div>
+                <div class="data_list appli_one_list">
+                    <div class="appli_img_box arrow_one">
+                        <img src="images/1V1/1v1_share_fill2x.png" alt="">
+                    </div>
+                    <p>填写资料</p>
+                </div>
+                <div class="offic_review appli_one_list">
+                    <div class="appli_img_box">
+                        <img src="images/1V1/1v1_share_examine2x.png" alt="">
+                    </div>
+                    <p>官方审核</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer_btn">
+    <div class="footer_style status_one share_btn">
+        你已绑定了经纪人，邀请更多朋友一起分享生活吧
+    </div>
+    <div class="footer_style status_zero applic_btn">
+        申请1v1聊主
+    </div>
+    <div class="footer_style status_zero put_btn">绑定经纪人(<span id="put-id">&nbsp;</span>)</div>
+</div>
+<body>
+<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/common.js?v=20181102"></script>
+<script type="text/javascript">
+    $(function () {
+        var request = getRequest();
+        var uid = request['uid'];
+        // alert(uid);
+
+        var agentUid = request['agentUid'];
+        // alert(agentUid);
+
+        $('.mui-pull-right').css('display', 'block');
+
+        //返回事件
+        $('#go-back').click(function () {
+            // alert(1);
+            window.maiguoer.goBack();
+        });
+        //点击申请
+        $('.applic_btn').click(function () {
+            window.maiguoer.applyChat();
+        });
+        //点击分享
+        $('.share_btn').click(function () {
+            window.maiguoer.shareChat();
+        });
+        reqRecruit();
+
+        //请求数据
+        function reqRecruit() {
+            $.ajax({
+                type: "GET",
+                url: "v3.0/call/recruit",
+                data: {"agentUid": agentUid},
+                dataType: 'json',
+                beforeSend: function () {
+                    loading();
+                },
+                success: function (result) {
+                    if (result.code == 0) {
+                        if (result.data.hostInfo.isPassed == 1) {
+                            if (result.data.hostInfo.hasAgent == 1) {
+                                $('.share_btn').css('display', 'block');
+                            } else {
+                                $('.put_btn').css('display', 'block');
+                            }
+                        } else {
+                            $('.applic_btn').css('display', 'block');
+                        }
+                        get(result.data.agentInfo.memberInfo);
+                    } else {
+                        mui.toast(String(result.msg));
+                    }
+                },
+                error: function (res) {
+                    var msg = res.msg ? res.msg : '网络出错请重试！';
+                    mui.toast(String(msg));
+                }
+            });
+        }
+
+        //拼接数据
+        function get(data) {
+            $('.header-img-box').css('background-image', 'url(' + data.avatar + ')');
+            $('.name-box').text('经纪人:' + data.username);
+            $('.id-box').text('ID:' + data.uid);
+            $('#put-id').text(data.username + "  " + data.uid);
+        }
+
+        //点击绑定经纪人
+        $('.footer_btn').on('tap', '.put_btn', function () {
+            var t = $('#put-id').text();
+            // alert(t);
+            mui.confirm(
+                '<span>确认绑定经纪人(' + t + ')为您的经纪人？</span>',
+                '提示',
+                ['取消', '<span class="determine" style="display: block;width: 100%;height: 100%;"> 确认 </span>'], null, 'div')
+        });
+        //绑定经纪人
+        $(document).on("tap", '.determine', function () {
+            putHost();
+        });
+
+        function putHost() {
+            $.ajax({
+                type: "POST",
+                url: "v3.0/call/host/put_host_agent",
+                data: {"targetUid": agentUid},
+                dataType: 'json',
+                beforeSend: function () {
+                    loading();
+                },
+                success: function (res) {
+                    if (res.code == 0) {
+                        mui.toast('绑定成功！');
+                        reqRecruit();
+                    } else if (res.code == 310) {
+                        mui.toast('您已经绑定过经纪人了！');
+                    } else {
+                        mui.toast(res.msg);
+                    }
+                },
+                error: function (res) {
+                    var msg = res.msg ? res.msg : '网络出错请重试！';
+                    mui.toast(msg);
+                }
+            });
+        }
+
+
+    })
+</script>
+</body>
+
+</html>

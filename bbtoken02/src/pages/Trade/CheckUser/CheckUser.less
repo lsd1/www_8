@@ -1,0 +1,149 @@
+    @import url(../../../assets/css/less/public/base.less);
+    .checkUser {
+        .user {
+            &-info {
+                height: 230px;
+                background: #1f212e url('../../../assets/images/trade-bg.jpg') top center no-repeat;
+            }
+            &-top {
+                height: 170px;
+            }
+            &-top {
+                color: @white;
+                .user-avatar {
+                    width: 80px;
+                    height: 80px;
+                    background: #4d93c5;
+                    &:after {
+                        content: '';
+                        width: 16px;
+                        height: 16px;
+                        position: absolute;
+                        background: #06c7b7;
+                        border-radius: 50%;
+                        border: 1px solid @white;
+                        right: 2px;
+                        bottom: 2px;
+                    }
+                }
+                .name {
+                    font-size: 36px;
+                }
+                .count{
+                	font-size:24px;
+                	small{
+                		font-size:14px;
+                	}
+                }
+                .user-statistics{
+                	.item{
+                		margin-left: 45px;
+                	}
+                	.item:first-child{
+                		margin-left:0;
+                	}
+                }
+            }
+            &-data {
+                margin-left: 14px;
+            }
+            &-down{
+
+            	height:60px;
+            	>span{
+            		margin-left:40px;
+            	}
+            } 
+        }
+        .title{
+        	font-size:24px;
+            margin-top:40px;
+        }
+        &-icon{
+            font-size:36px;
+        }
+        &-box{
+            box-shadow: 0 0 26px rgba(0,0,0,.26);
+            border-radius:5px;
+            margin-top: 35px;
+            .item{
+                height:99px;
+                border-top:1px solid @gray;
+                &-icon{
+                    width:10%;
+                }
+                &-price{
+                    padding-left:4.5%;
+                    width:56%;
+
+                }
+                &-mode{
+                    width:22%;
+                }
+                &-def,&-edit{
+                  height:100%;
+                  width:100%;
+                }
+            }
+
+            .item:first-child{
+                border-top:none;
+            }
+        }
+        .icon-BTC{
+            background: -webkit-linear-gradient(#edbe56, #c08207); /* 标准的语法 */;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color:#c08207;
+        }
+        .icon-USDT{
+            background: -webkit-linear-gradient(#07e2ed, #0574a5); /* 标准的语法 */;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color:#0574a5;
+        }
+         .shop-top {
+            height: 70px;
+            padding-left: 20px;
+            padding-right: 15px;
+        }
+        .shop-left {
+            width: 250px
+        }
+        .shop-midd {
+            width: 210px;
+        }
+        .shop-input {
+            width: 510px;
+            &-icon {
+                margin: 0 5px;
+                font-size: 20px;
+                color: @gray;
+            }
+        }
+        .shop-btn {
+            width: 210px;
+        }
+        .item {
+               display: flex;
+               align-items: center;
+           }
+        .btn-confirm {
+            padding: 0 26px;
+        }
+        .shop-down {
+            padding: 0 15px 0 80px;
+        }
+        
+    }
+.inputMoney {
+        width: 160px;
+        .group-input {
+            background: @white;
+            border-color: @gray;
+            padding-left: 10px;
+        }
+        .group-icon {
+            color: @gray;
+        }
+    }

@@ -1,0 +1,13 @@
+{"file":"transaction.png","frames":{
+"transac_cn":{"x":291,"y":78,"w":74,"h":83,"offX":0,"offY":0,"sourceW":74,"sourceH":83},
+"transac_en":{"x":210,"y":39,"w":79,"h":81,"offX":0,"offY":0,"sourceW":79,"sourceH":81},
+"tran_goly":{"x":144,"y":79,"w":53,"h":60,"offX":4,"offY":1,"sourceW":62,"sourceH":62},
+"tran_play":{"x":199,"y":122,"w":55,"h":54,"offX":3,"offY":4,"sourceW":62,"sourceH":62},
+"exchange_cn":{"x":367,"y":118,"w":141,"h":37,"offX":0,"offY":0,"sourceW":141,"sourceH":37},
+"exchange_en":{"x":245,"y":0,"w":228,"h":37,"offX":0,"offY":0,"sourceW":228,"sourceH":37},
+"my_tran_cn":{"x":0,"y":118,"w":141,"h":37,"offX":0,"offY":0,"sourceW":141,"sourceH":37},
+"my_tran_en":{"x":291,"y":39,"w":167,"h":37,"offX":0,"offY":0,"sourceW":167,"sourceH":37},
+"select_cn":{"x":367,"y":78,"w":141,"h":38,"offX":0,"offY":0,"sourceW":141,"sourceH":38},
+"select_en":{"x":0,"y":0,"w":243,"h":37,"offX":0,"offY":0,"sourceW":243,"sourceH":37},
+"shelf_set_cn":{"x":0,"y":79,"w":142,"h":37,"offX":0,"offY":0,"sourceW":142,"sourceH":37},
+"shelf_set_en":{"x":0,"y":39,"w":208,"h":38,"offX":0,"offY":0,"sourceW":208,"sourceH":38}}}

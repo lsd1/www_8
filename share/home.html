@@ -1,0 +1,133 @@
+      <!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>脉果儿</title>
+    <link rel="stylesheet" href="css/public.css?v=101">
+    <link rel="stylesheet" href="css/invite.css?v=101">
+    <script>
+        // px与rem单位的换算
+        (function(){
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        })();
+    </script>
+</head>
+<body>
+    <div class="header" id="header">
+        <h1>邀请您一起来玩脉果儿</h1>
+    </div>
+    <div class="signinTop">
+        <div class="top">
+            <img src="" alt="" class="avatar">
+            <p class="username">xx</p>
+            <p class="ID">ID:<i class="uid">0</i></p>
+            <ul class="attention">
+                <li>关注 <span class="follows">0</span></li>
+                <li>粉丝 <span class="fans">0</span></li>
+                <li>收入 <span class="profit">0</span></li>
+            </ul>
+        </div>
+        <div class="bot">
+            <img src="images/login_background@2x.png" alt="">
+        </div>
+    </div>
+    <h5>通过脉果儿，我认识了<span class="follows">44</span>位好友</h5>
+    <div id="masonry" class="containerFluid"></div>
+    <a href="javascript:void(0);" class="register">
+        <div class="formCont">
+            <button>注册并成为我的好友</button>
+        </div>
+    </a>
+    <div class="fixed">
+        <img class="shareback" src="images/share_arrows1@2x.png" alt="">
+        <img class="shareGo" src="images/share_arrows2@2x.png" alt="">
+        <img class="shareIcon" src="images/share_icon_50@2x.png" alt="">
+        <img class="shareCollect" src="images/share_collect@2x.png" alt="">
+        <img class="shareRefresh" src="images/share_refresh@2x.png" alt="">
+    </div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/common.js?v=20181018"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var Request = getRequest();
+        var uid = Request['uid'];
+        var info;
+        if (!uid) {
+            console.log('uid不存在');
+        }
+
+        //获取用于信息
+        $.ajax({
+            type:'GET',
+            url: 'v2.0/share/invite',
+            data: {uid:uid},
+            dataType:'json',
+            success: function (res) {
+                if (res.data && res.data.memberInfo) {
+                    info = res.data.memberInfo;
+                    $('.avatar').attr('src', info.avatar);
+                    $('.uid').text(info.uid);
+                    $('.username').text(info.username);
+                    $('.follows').text(info.follows);
+                    $('.fans').text(info.fans);
+                    $('.profit').text(info.profit);
+
+                    var html = '';
+                    var avatars = info.friendsAvatar;
+
+                    try {
+                        html += '<div class="containerImg bigImg"><img src="'+ avatars[0] +'" alt=""> </div>';
+                        html += '<div class="containerImg smallImg"><img src="' + avatars[1] +'" alt=""> <img src="' + avatars[2] + '" alt=""> </div>';
+                        var j = 0;
+                        for (var i=0; i < 3; i++) {
+                             j = 3 + i * 5;
+                            html += '<div class="containerImg bigImg"><img src="'+ avatars[j] +'" alt=""> </div>';
+                            html += '<div class="containerImg smallImg"><img src="' + avatars[j+1] +'" alt=""> <img src="' + avatars[j+2] + '" alt=""> </div>';
+                            html += '<div class="containerImg smallImg"><img src="' + avatars[j+3] +'" alt=""> <img src="' + avatars[j+4] + '" alt=""> </div>';
+                        }
+                        html += '<div class="containerImg bigImg"><img src="'+ avatars[18] +'" alt=""> </div>';
+                        html += '<div class="containerImg smallImg"><img src="' + avatars[19] +'" alt=""> <img src="' + avatars[20] + '" alt=""> </div>';
+
+                        $('#masonry').html(html);
+
+                        /*<a href="maiguoer://home.maiguoer.com?uid=6933280">打开app</a><br/>*/
+                        wakeUpApp("maiguoer://home.maiguoer.com?uid=" + uid);
+
+                    } catch (error) {}
+                } else {
+                    var msg = res.msg ? res.msg : '请求失败请刷新！';
+                    showTip(msg);
+                }
+            },
+            error: function (res) {
+                var msg = res.msg ? res.msg : '请求失败请刷新！';
+                showTip(msg);
+            }
+        });
+
+        
+        //点击注册
+        $('.register').click(function () {
+            window.location.href = 'register.html?uid=' + uid + '&avatar=' + info.avatar + '&username=' + info.username;
+        });
+
+        //分享图标
+        $('.shareIcon').click(function () {
+            wakeUpAppOrDownload("maiguoer://home.maiguoer.com?uid=" + uid, 500);
+        });
+
+        //刷新
+        $('.shareRefresh').click(function () {
+            window.location.reload();
+        });
+
+    });
+</script>
+</body>
+</html>

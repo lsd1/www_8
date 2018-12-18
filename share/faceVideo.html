@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>他的主页</title>
+		<link rel="stylesheet" type="text/css" href="css/swiper-4.3.5.min.css"/>
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.7.1/skins/default/aliplayer-min.css" />
+		<link rel="stylesheet" type="text/css" href="fontt/demo.css"/>
+		<link rel="stylesheet" type="text/css" href="fontt/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="css/1v1_status_list.css"/>
+		<link rel="stylesheet" type="text/css" href="css/faceVideo.css"/>
+		<script>
+			// px与rem单位的换算
+			(function () {
+			  document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+			 })();
+		</script>
+	</head>
+	<body>
+		<div id="HomePage">
+			<div class="face">
+				
+				<div class="swiper">
+					<!--用户视频-->
+					
+					<a class="iconfont icon-fanhui fanhui" href="javascript:void(0);"></a>
+					<div class="video-area" id="player-con" style="height:4.2rem;"></div>
+					<!--用户图片-->
+					<div class="swiper-container">
+					   <div class="swiper-wrapper">
+						   <img src="images/my_homepage_bg@2x.png" alt="">
+					   </div>
+					   <div class="swiper-pagination"></div>
+					</div>	
+					<div class="user">
+					   <div class="user_box">
+						   <span id="username" class="username_uid"></span>
+						   <span id="targetUid" class="username_uid"></span>
+					   </div>
+					</div>
+				</div>
+				<!--白色背景-->
+				<div class="BGwhite c">
+					<div class="condition">
+						<div class="con_video fl wi20">
+							<span class="fon_big" id="videoCount"></span><span id="videoMinutes"></span><br />
+							<span class="spano">视频</span>
+						</div>
+						<div class="cin_voice fl wi20">
+							<span class="fon_big" id="audioCount"></span><span id="audioMinutes"></span><br />
+							<span class="spano">语音</span>
+							<div class="xian"></div>
+						</div>
+						<div class="fan fl wi20">
+							<span class="fon_big" id="follow"></span><br />
+							<span class="spano">粉丝</span>
+							<div class="xian"></div>
+						</div>
+						<div class="state fl wi20">
+							<span class="fon_big" id="isOnline"></span><br />
+							<span class="spano">状态</span>
+							<div class="xian"></div>
+						</div>
+					</div>
+				</div>
+				<!--费用详情-->
+				<div class="face_viode c">
+					<div class="face_right fl c">
+						<div class="face_img fl">
+							<img src="images/img/1v1_omepage_video@2x.png"/>
+						</div>
+						<div class="face_fo fl">
+							<span class="spano">视频聊天费用</span><br />
+							<span class="time260" id="videoPrice">/分钟</span>
+						</div>
+					</div>
+					<div class="face_left fr">
+						<div class="face_img fl">
+							<img src="images/img/1v1_omepage_voice@2x.png"/>
+						</div>							
+						<div class="face_fo fl">
+							<span class="spano">语音聊天费用</span><br />
+							<span class="time260" id="audioPrice">/分钟</span>
+						</div>							
+					</div>
+				</div>
+				<!--他的资料-->
+				<div class="uer_data c">
+					<ul>
+						<li>
+							<div class="fl spano">个人资料</div>
+							<div class="letter fl">
+								<span id="birthPeriod">&nbsp;</span>
+								<span id="constellation">&nbsp;</span>
+								<span id="resideCity">&nbsp;&nbsp;</span>
+								<span id="gender"></span>
+							</div>
+						</li>
+						<li>
+							<div class="fl spano">主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</div>
+							<div class="fl letter " id="title">&nbsp;</div>
+						</li>
+						<li>
+							<div class="pingjia fl"></div>
+							<div class="fl">TA的礼物</div>
+							<div class="fl letter scoreMean slider_num"></div>
+						</li>
+					</ul>
+				</div>
+				<div class="slide-box">
+				</div>
+				<div class="she">
+					<div class="fl she_xian"></div>
+					<div class="fl">TA在等你</div>
+					<div class="fl she_xian"></div>
+				</div>
+				<!--动态列表-->
+				<div class="bot_ma">
+					<div class="bottom servicesList" id="service">
+						<div class="cover_box"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--底部固定--->
+		<div class="goodsFix">
+			<div>
+				<p>打开“脉果儿”脉果儿APP查看更多精彩</p>
+			</div>
+			<a href="javascript:void(0);" class="register">注册</a>
+			<a href="javascript:void(0);" class="goodShowApp">打开app</a>
+		</div>
+	</body>
+</html>
+<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8" src="//g.alicdn.com/de/prismplayer/2.7.1/aliplayer-min.js"></script>
+<script src="js/swiper-4.3.5.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/common.js?v=20181018"></script>
+
+<script type="text/javascript">
+	$(function(){
+		var Request = getRequest();
+		var uid = Request['uid'];
+		var targetUid = Request['targetUid'];
+		//去注册
+		$(".register").click(function(){
+			window.location.href = 'register.html?uid=' + uid;
+		});
+		//打开APP
+        $('.goodShowApp').on('click',function () {
+            // wakeUpApp('maiguoer://otocard.maiguoer.com?targetUid=' + targetUid, 1000, uid);
+            wakeUpAppOrRegister('maiguoer://otocard.maiguoer.com?targetUid=' + targetUid, 1000, uid);
+			setTimeout(function () {
+			   document.getElementById('dis').style.display="block";
+			},1500);
+		});
+
+        //获取用户信息
+		getPublisherInfo(uid, targetUid);
+		//动态列表
+        reqCover();
+
+
+	});
+
+    //推荐聊主列表请求
+    function reqCover() {
+        $.ajax({
+            type:"GET",
+            url:"v2.7/share/recommend_host_list",
+            data:{},
+            dataType: 'json',
+            beforeSend: function () {
+                loading();
+            },
+            success: function(result){
+                if(result.code == 0) {
+                    console.log(result.data);
+                    getCoverList(result.data.hostList);
+                }else {
+                    showTip(result.msg);
+                }
+            },
+            error:function(res){
+                var msg = res.msg ? res.msg : '网络出错请重试！';
+                showTip(msg);
+            }
+        });
+    }
+	//获取视频
+	var playAuth;
+	function getVideo(uid, videoId){
+		$.ajax({
+			type:"get",
+			url:"v2.7/share/host_video_play_auth",
+			data: {uid:uid, videoId:videoId},
+			dataType: 'json',
+			beforeSend: function () {
+				loading();
+			},
+			success :function(res){
+				if(res.code == 0) {
+					initVideo(videoId, res.data.video.playAuth);
+				}
+			},
+			error :function(res){
+				console.log(res);
+			}
+		});
+	}
+
+	function initVideo(vid, playauth){
+		var player = new Aliplayer({
+			"id": "player-con",
+			"vid":vid,
+            "playauth":playauth,
+            "width":'100%',
+			"height":'100%',
+            "autoplay": false,
+            "isLive": false,
+            "preload": false,
+			"skinLayout":[
+            {name: "bigPlayButton", align: "cc", x: 30, y: 80},
+            {
+                name: "H5Loading", align: "cc"
+            },
+            {name: "errorDisplay", align: "tlabs", x: 0, y: 0},
+            {name: "infoDisplay"},
+            {name:"tooltip", align:"blabs",x: 0, y: 56},
+            {name: "thumbnail"},
+            {
+                name: "controlBar", align: "blabs", x: 0, y: 0,
+                children: [
+                    {name: "progress", align: "blabs", x: 0, y: 44},
+                    {name: "playButton", align: "tl", x: 15, y: 12},
+                    {name: "timeDisplay", align: "tl", x: 10, y: 7},
+                    {name: "fullScreenButton", align: "tr", x: 10, y: 12}
+                    // {name:"subtitle", align:"tr",x:15, y:12},
+                    // {name:"setting", align:"tr",x:15, y:12},
+                    // {name: "volume", align: "tr", x: 5, y: 10}
+                ]
+            }
+        ]
+		});
+        //暂停播放。
+        player.on('pause',function () {
+            $('.video-top,.video-bottom').show(1000);
+        });
+
+        //播放结束。
+        player.on('ended',function () {
+            $('.video-top,.video-bottom').show(1000);
+            $(".prism-big-play-btn").css('display','block!important');
+        });
+        $(".prism-big-play-btn").click(function () {
+            $(this).hide(1000);
+            $('.video-top,.video-bottom').hide(1000);
+            return false;
+        });
+	}
+	
+	//判断用户上传的是视频还是图片
+	
+	//获取用户信息
+	function getPublisherInfo(uid,targetid){
+		$.ajax({
+			type:"GET",
+			url:"v2.7/share/host_detail",
+			data:{targetUid: targetid},
+			dataType: 'json',
+			beforeSend: function () {
+				loading();
+			},
+			success: function(result){
+				console.log(result);
+				if(result.code == 0) {
+				    //生成礼物列表
+                    getGiftList(result.data.host.receivedGifts);
+					var vid = result.data.host.video.videoId;
+					var memberInfo = result.data.host.memberInfo; 
+					var count = result.data.host.count; 
+					var imgList = new Array;
+					var imgurl = result.data.host.images;
+					if(memberInfo.gender == 1 ){
+						$('#gender').addClass('iconfont icon-nv girl');//用户性别
+					}else{
+						$('#gender').addClass('iconfont icon-nan boy');//用户性别
+					}
+					if(result.data.host.isOnline == 0){//用户是否在线
+						$('#isOnline').text('离线');//用户离线
+					}else{
+						$('#isOnline').text('在线');//用户在线
+					}
+					$('#username').text(memberInfo.username+":");//用户名
+					$('#targetUid').text(memberInfo.uid);//用户ID
+					$('#birthPeriod').text(memberInfo.birthPeriod);//用户年龄
+					$('#constellation').text(memberInfo.constellation);//用户星座
+					$('#resideCity').text(memberInfo.resideCity);//
+					$('#title').text(result.data.host.title);//主题
+					$('#videoPrice').text(result.data.host.videoPrice+'/分钟');//视频通话价格
+					$('#audioPrice').text(result.data.host.audioPrice+'/分钟');//音频通话价格
+					$('#videoCount').text(count.videoCount+'次/');//用户视频次数
+					$('#videoMinutes').text(count.videoMinutes+" '");//用户视频分钟数
+					$('#audioCount').text(count.audioCount+'次/');//用户音频次数
+					$('#audioMinutes').text(count.audioMinutes+" '");//用户视音频分钟数
+					$('#follow').text(count.follow);//关注用户数
+					//$('.scoreMean').text(count.scoreMean+'分');//用户评分
+					//判断用户上传的是图片还是视频
+					if(imgurl == ""){
+						//视频就显示视频div 隐藏图片div
+						//默认图片路径
+						$(".swiper-container").css("display", "none");
+						$(".swiper-wrapper").html("<div class='swiper-slide'><img src='images/img/name_share_background@2x.png'/></div>");
+						getVideo(targetid, vid);	
+					}else{
+						//用户图片
+						//图片就显示图片div 隐藏视频div
+						$(".video-area").css("display", "none");
+						var bannerHtml = "";
+						var len = imgurl.length;
+						for(var i=0;i<len;i++){
+							bannerHtml+='<div class="swiper-slide" style="z-index:-1;overflow:hidden;"><img src="'+imgurl[i]+'"/></div>';
+						}
+						$(".swiper-wrapper").html(bannerHtml);
+						var swiper = new Swiper('.swiper-container', {
+					     	slidesPerView: 1,
+					      spaceBetween: 30,
+					      loop: true,
+					      pagination: {
+					        el: '.swiper-pagination',
+					        type: 'fraction',
+					      },
+					      navigation: {
+					        nextEl: '.swiper-button-next',
+					        prevEl: '.swiper-button-prev',
+					      },
+					   });
+					}			 
+				}
+			},
+			error:function(res){
+				var msg = res.msg ? res.msg : '网络出错请重试！';
+					showTip(msg);
+			}
+		});
+	}
+
+    //礼物列表
+    function getGiftList(data) {
+		var len = data.length;
+		if(len == 0) {
+		    $(".slide-box").css("display", "none");
+		    $(".slider_num").text('暂未收到礼物');
+		}else {
+		    var s_num = null;
+		    var sliderListText = '';
+		    for(var i = 0; i < len; i++) {
+		        s_num += Number(data[i].count);
+                sliderListText =
+					'<div class="slide-item">' +
+					'	<div class="img-box">' +
+					'		<img src="'+ data[i].gift.image +'" class="slide-img" alt="">' +
+					'	</div>' +
+					'	<p class="slide-num">x'+ data[i].count +'</p>' +
+					'</div>';
+                $(".slide-box").append(sliderListText);
+			}
+            $(".slider_num").text('('+ s_num +')');
+            $(".slider_num").addClass("red_num");
+        }
+    }
+	//获取动态列表
+    //推荐人列表推送
+    function getCoverList(data) {
+        if(data.length > 0) {
+            for(var i = 0; i < data.length; i++) {
+                var coverList = '';
+                //判断有无封面
+                var bgImg = '';
+                if(data[i].images.length == 0) {
+                    bgImg = data[i].video.coverUrl;
+                }else {
+                    bgImg = data[i].images[0];
+                }
+                //生成新的适配背景
+                // bgImg = adapNewImg(bgImg);
+                // adapNewImg(bgImg);
+                //判断是否在线
+                var isOnline = '';
+                var isOnlineClass = "";
+                if(data[i].isOnline == 0) {
+                    isOnline = '离线';
+                    isOnlineClass = "outLine";
+                }else {
+                    isOnline = '在线';
+                    isOnlineClass = "onLine";
+                }
+                //判断标签种类
+                var lableHTML = '';
+                if(data[i].category.name != "") {
+                    lableHTML +=
+                        '<div class="lable_list lable_list1">' +
+                        '	<span class="topic_lable">'+ data[i].category.name +'</span>' +
+                        '</div>';
+                }
+                if(data[i].memberInfo.birthPeriod != "") {
+                    lableHTML+=
+                        '<div class="lable_list lable_list2">' +
+                        '	<span class="age_lable">'+ data[i].memberInfo.birthPeriod +'</span>' +
+                        '</div>';
+                }
+                if(data[i].count.scoreMean != "") {
+                    lableHTML+=
+                        '<div class="lable_list lable_list3">' +
+                        '	<span class="fraction_lable">'+ data[i].count.scoreMean +'分</span>' +
+                        '</div>';
+                }
+                //判断性别
+                var gender = '';
+                if(data[i].memberInfo.gender != 1) {
+                    gender = "man_icon";
+                }else if(data[i].memberInfo.gender == 2){
+                    gender = "woman_icon";
+                }else {
+                    gender = "";
+                }
+                coverList = '<div class="cover_list">' +
+                    '	<div class="cover_img_box" style="background-image: url('+ bgImg +')">' +
+                    '	</div>' +
+                    '	<div class="duration">'+ parseInt(data[i].audio.duration) +'"</div>' +
+                    '	<div class="online_status">' +
+                    '		<span class="status_text '+ isOnlineClass +'">'+ isOnline +'</span>' +
+                    '	</div>' +
+                    '	<div class="bottom_box">' +
+                    '		<div class="title_text '+ gender +'">'+ data[i].memberInfo.username +'</div>' +
+                    '			<div class="lable_box">' +
+                    lableHTML+
+                    '		</div>' +
+                    '	</div>' +
+                    '</div>';
+                $(".cover_box").append(coverList);
+            }
+        }
+    }
+</script>

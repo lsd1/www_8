@@ -1,0 +1,48 @@
+@import url(../../../assets/css/less/public/base.less);
+.record {
+    &-top {
+        height: 48px;
+        border-bottom: 2px solid @gray;
+    }
+    &-item {
+        margin-right: 38px;
+        font-size: 16px;
+        height: 46px;
+        line-height: 46px;
+        cursor: pointer;
+        &.active {
+            color: @color-default;
+            border-bottom: 1px solid @color-default;
+        }
+    }
+    &-dropdown {
+        width: 60px;
+        cursor: pointer;
+    }
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+        padding: 14px 0;
+        background: @white;
+    }
+    .ant-table-thead > tr > th span{
+        opacity: .5;
+    }
+    .ant-table-tbody > tr > td[colspan='5'] {
+        padding: 5px 0;
+        background: @color-white;
+    }
+    .ant-pagination {
+        margin-top: 20px;
+        text-align: center;
+        float: none;
+    }
+    .ant-pagination-item a {
+        color: @black-1;
+    }
+    .ant-pagination-item-active {
+        background: @color-default;
+        a {
+            color: @white;
+        }
+    }
+}

@@ -1,0 +1,197 @@
+    @import url(../../../assets/css/less/public/base.less);
+    .payment {
+        &-box {
+            margin-top: 90px;
+        }
+        &-left {
+            width: 830px;
+        }
+        &-top {
+            min-height: 180px;
+            .title {
+                font-size: 36px;
+                margin: 6px 0;
+            }
+            .money {
+                font-size: 20px;
+            }
+        }
+        &-cont {
+            margin-top: 30px;
+            .label {
+                margin: 0 40px 0 15px;
+            }
+            .declare {
+                margin-top: 30px;
+                padding-left: 120px;
+            }
+            .datatime {
+                margin-top: 50px;
+            }
+            .mark {
+                padding: 0 8px;
+                border: 1px solid @black-1;
+                border-radius: 3px;
+            }
+        }
+        &-tips {
+            height: 40px;
+            line-height: 40px;
+        }
+        &-right {
+            width:370px;
+
+            height: 600px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+        }
+        .chat-top {
+            height: 90px;
+            padding: 0 25px;
+            background: @color-f8;
+        }
+        .chat-name {
+            margin-left: 15px;
+        }
+        .chat-box {
+            height: 431px;
+            padding-left: 25px;
+            padding-right: 25px;
+            overflow: auto;
+            &::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+            }
+
+            &::-webkit-scrollbar-track {
+                border: 1px #d3d3d3 solid;
+                box-shadow: 0px 0px 3px #dfdfdf inset;
+                border-radius: 10px;
+                background: #eee;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border: 1px #808080 solid;
+                border-radius: 10px;
+                background: #999;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background: #7d7d7d;
+            }
+        }
+        .chat-content {
+            position: relative;
+            width: 258px;
+            &:after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 0;
+                top: 0;
+            }
+        }
+        .chat-content-top {
+            padding: 10px;
+            display: inline-block;
+            background: @color-f8;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            border-radius: 3px;
+        }
+        .chat-content.left-arrow {
+            margin-left: 10px;
+            &:after {
+                left: -10px;
+                border-top: 10px solid @color-f8;
+                border-left: 10px solid transparent;
+            }
+        }
+        .small-time{
+            font-size:12px;
+        }
+        .chat-content.right-arrow {
+            margin-right: 10px;
+            &:after {
+                right: -10px;
+                border-top: 10px solid @color-f8;
+                border-right: 10px solid transparent;
+            }
+        }
+        .chat-input {
+            width: 370px;
+            height: 73px;
+            overflow-y: hidden;
+            position: absolute;
+            .input-textArea {
+                width: 320px;
+                border: none;
+                resize: none;
+                max-height: 70px;
+                &:focus,
+                &:hover {
+                    border: 0;
+                    box-shadow: none;
+                    border-color: @white;
+                }
+            }
+        }
+        .btn-confirm {
+            width: 50px;
+            position: absolute;
+            top: 50%;
+            right: 0px;
+            height: 70px;
+            transform: translateY(-50%);
+        }
+        .cancel-top {
+            width: 500px;
+            height: 72px;
+            background: @darkgray;
+            font-size: 18px;
+            text-align: center;
+            line-height: 72px;
+            color: #fff;
+        }
+        .ant-btn {
+            margin: 25px 0;
+            font-size: 14px;
+            padding: 0 25px;
+            height: 64px;
+        }
+        .ant-btn-primary[disabled] {
+            border: none;
+            background: @darkgray;
+            span {
+                color: @white;
+            }
+        }
+        .ant-btn.sell-btn[disabled] {
+            background: @white;
+        }
+        .ant-btn-primary.green {
+            background: @green;
+            border-color: @green;
+            &:focus,
+            &:hover {
+                border: 0;
+                box-shadow: none;
+                border-color: @white;
+            }
+        }
+        .photo {
+            &:after {
+                content: none;
+            }
+        }
+    }
+    
+    .popover-payment-box {
+        z-index: 5;
+        .ant-popover-inner {
+            background: #fff9e5;
+            box-shadow: none;
+        }
+        .ant-popover-arrow {
+            background: #fff9e5;
+        }
+    }

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>分享商品</title>
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/myShop.css">
+    <link rel="stylesheet" href="css/shopDetails.css">
+    <link rel="stylesheet" href="css/share.css"/>
+    <script>
+        // px与rem单位的换算
+        (function(){
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        })();
+    </script>
+</head>
+<body>
+
+<!-- 店铺广告轮播图 -->
+<div class="swiper-container swiper-container1 shopDetails">
+    <div class="backForwd">
+        <a href="javascript:void(0);" class="goBack"><img src="images/nav_back@2x.png" alt=""></a>
+    </div>
+    <div class="offTheShelf">
+        <img src="images/store_commodity_soldout@2x.png" alt="">
+    </div>
+    <div class="swiper-wrapper"></div>
+    <div class="swiper-pagination"></div>
+</div>
+<div class="details">
+    <div class="detailsTop">
+        <div class="detailsLeft fl">
+            <p><i>￥</i><b class="prcie"></b></p>
+            <span>PV：<span class="pv"></span></span>
+        </div>
+        <div class="detailsRight fr">
+            <span class="collect collectionAfter"></span>
+            <img class="share_link" src="images/store_commodity_share@2x.png" alt="">
+        </div>
+    </div>
+    <div class="detailsBot">
+        <span></span>
+         <!--<i>自提</i>-->
+         <!--<i>邮寄</i>-->
+    </div>
+    <p class="recommend"></p>
+    <p class="postage" style="display: none">邮费:<span id="postage"></span></p>
+</div>
+<div class="goodsRetails">
+    <a href="javascript:void(0);">
+        <div class="detailsTop">
+            <a href="javascript:void(0);" class="goods_ratings">
+                <p class="fl">商品评价 <span class="ratings_rate">(好评率<i>0%</i>)</span></p>
+                <div>
+                    <span><i>0</i>条评价</span>
+                    <img src="images/common_arrows@2x.png" alt="">
+                </div>
+            </a>
+        </div>
+    </a>
+    <div class="detailsCenter">
+        <p class="detailsTitle">— 商品详情 —</p>
+        <div class="de_content">
+        </div>
+    </div>
+</div>
+<div class="detail">
+    <p class="detailsTitle">— 服务须知 —</p>
+</div>
+<div class="instrDetail">
+    <ul>
+        <li style="color: #CCCCCC"><span>1.销售的商品均由卖家通过脉果儿平台发布，脉果儿平台不直接参与销售。</span></li>
+        <li style="color: #CCCCCC"><span>2.在本平台产生的纠纷行为可以寻求脉果儿平台仲裁解决。</span></li>
+    </ul>
+</div>
+<div id="lianjie">
+    <div id="dis">
+        <div class="prompt">
+            <a class="iconfont icon-guanbi" onclick="hide()"></a>
+            <div class="prompt_ti">
+                <p>提示</p>
+                <p>请先完成注册</p>
+            </div>
+            <div class="prompt_bottom">
+                <a href="#" onclick="hide()">取消</a>
+                <a href="register.html" style="color:#337FFF;border-left:1px solid #E3E3E3;">去注册</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="goodsFix goodShowApp" id="joinUs">
+    <img src="images/icon_48.png" alt=""/>
+    <div>
+        <p>脉果儿</p>
+        <p>专注社交价值新理念</p>
+    </div>
+    <a href="javascript:void(0);">打开APP</a>
+</div>
+<div class="shelt_img">
+    <div class="swiper-container swiper-container2 look_img_box">
+        <div class="swiper-wrapper look_img" id="look_pic">
+            <div class="swiper-slide">
+                <img src="images/wei7.jpg" alt=""/>
+            </div>
+        </div>
+        <div class="swiper-pagination img_index"></div>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/common.js?v=20181018"></script>
+<script src="js/swiper-3.4.2.jquery.min.js"></script>
+
+<script type="text/javascript">
+    function hide(){
+        document.getElementById('dis').style.display="none";
+    }
+    var Request = getRequest();
+    var goodsId = Request['goodsId'];
+    var uid = Request['uid'];
+
+    $(document).ready(function () {
+
+        if (!goodsId) {
+            showTip('缺少商品ID');
+            return false;
+        }
+
+        getGoodsDetail(goodsId);
+
+        // //加入我们
+        // $('#joinUs').click(function () {
+        //     wakeUpAppOrDownload('maiguoer://home.maiguoer.com?uid=' + memberInfo.uid);
+        //     // if (uid) {
+        //     //     window.location.href = 'register.html?uid=' + uid;
+        //     // } else {
+        //     //     window.location.href = 'register.html';
+        //     // }
+        // });
+
+    });
+
+    var mySwiper = new Swiper('.swiper-container1',{
+        autoplay: 2000,
+        pagination: '.swiper-pagination',
+        loop:true
+    });
+    var look_pic = new Swiper('.swiper-container2',{
+        pagination: '.swiper-pagination',
+        paginationType: 'fraction',
+        loop:false
+    });
+
+    function getGoodsDetail(goodsId){ //获取商品详情页内容
+        $.ajax({
+            type:"GET",
+            url:"v2.0/share/goods_info",
+            data:{goodsId: goodsId},
+            dataType:"json",
+            beforeSend: function () {
+                loading();
+            },
+            success:function (res) {
+
+                if (!res.data || !res.data.goodsInfo) {
+                    var msg = res.msg ? res.msg : '获取数据失败!';
+                    showTip(msg);
+                    return false;
+                }
+                //唤起APP
+                $('.goodShowApp').on('click',function () {
+                    wakeUpAppOrRegister('maiguoer://goods.maiguoer.com?uid=' + uid, 1000, uid);
+                    setTimeout(function () {
+                        document.getElementById('dis').style.display="block";
+                    },1500);
+                });
+                var goodsDetails=res.data.goodsInfo;
+                var bannerHtml = '';
+                $('.myShop').attr("href","my_shop_main.html?storeId="+goodsDetails.storeId);
+                $.each(goodsDetails.images, function (index, img) {
+                    bannerHtml += '<div class="swiper-slide"> <img src="' + img + '" alt=""> </div>';
+                });
+                $('.swiper-wrapper').html(bannerHtml);
+                mySwiper.update();
+                $('.swiper-container1 .swiper-wrapper').on('click',function(){ //点击查看大图
+                    var imgs=$(this).find('img'),big_pic='';
+                    $.each(imgs, function (index, img) {
+                        big_pic += '<div class="swiper-slide"> <img src="' + img.src + '" alt=""> </div>';
+                    });
+                    $('#look_pic').html(big_pic);
+                    $('.shelt_img').fadeIn();
+                    look_pic.update();
+                    $('.swiper-pagination-current').text('1')
+                    if($('.look_img img').length==1){
+                        $('.swiper-pagination').hide();
+                    }
+                })
+                if($('.swiper-container1 .swiper-wrapper .swiper-slide').length == 1){
+                    $('.swiper-container1 .swiper-pagination').hide();
+                }
+                $('.prcie').text(goodsDetails.price);
+                $('.pv').text(goodsDetails.backPV);
+                $('.value_added').text(goodsDetails.backRateAmount);
+                $('.detailsBot span:first-child').text(goodsDetails.goodsName);
+                $('.recommend').text(goodsDetails.specContent);
+                $('.ratings_rate i').text(goodsDetails.commentRate);
+                $('.detailsTop div span i').text(goodsDetails.commentCount);
+                var sendLen=goodsDetails.spendTypes.length,spend='';
+                $('.postage').hide();
+                for(var j=0;j<sendLen;j++){
+                    spend+= "<i>"+goodsDetails.spendTypes[j].name+"</i>";
+                    if(goodsDetails.spendTypes[j].name == "邮寄"){
+                        $('.postage').show();
+                        $('#postage').html(goodsDetails.spendTypes[j].postage > 0 ? toFixed(goodsDetails.spendTypes[j].postage) + '元' : '包邮');
+                    }
+                }
+                $(".detailsBot span").after(spend);
+
+                var content = transGoodsDetailHtml(goodsDetails.content);
+                $('.detailsCenter').append(content);
+
+                if(goodsDetails.onSale!=1){ //判断是否在销售中 1在销售中 0 已下架
+                    $('.offTheShelf').show();
+                    $('#purchase').css('background','#E1E1E1').attr('disabled',"true");
+                }
+
+                // wakeUpApp('maiguoer://goods.maiguoer.com?goodsId='+ goodsId +'&uid=' + uid);
+
+            },
+            complete: function () {
+                closeLoading();
+            }
+        });
+    }
+
+
+    //获取图片html
+    function transGoodsDetailHtml(content) {
+        var html = '';
+        try {
+            var reg = /\[(mgeimg:.+?)\]/g;
+            var sections = content.split(reg);
+
+            $.each(sections, function (i, val) {
+                if (val.length == 0) {
+                    return true;
+                }
+
+                if (val.toLowerCase().indexOf('mgeimg:', 0) == 0) {
+                    html += '<img src="'+ val.substring('mgeimg:'.length)+ '"/>';
+                } else {
+                    html += '<p class="detailsText">'+ val.replace(/\n/g, '<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;') +'</p>';
+                }
+            });
+        } catch (error) {
+            html = content;
+        }
+
+        return html;
+    }
+
+
+
+</script>
+
+</body>
+</html>

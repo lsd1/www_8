@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>脉果令</title>
+    <style>
+        html,body,div,p,span,a{
+            margin:0;
+            padding: 0;
+            border: 0;
+        }
+        html,body,.body{
+            height:100%;
+            width:100%;
+        }
+        body,.body {
+            background-color: #ef0006;
+        }
+        .body{
+            max-width: 450px;
+            position: relative;
+            display: block;
+            background: url("./images/bg.png") no-repeat;
+            background-size:100% 100%;
+            margin:0 auto;
+        }
+        .body .num_container{
+            width: 90%;
+            height: 9rem;
+            margin-top: 90%;
+            position: absolute;
+            margin-left: 5%;
+            background: url("./images/count.png") no-repeat;
+            background-size:100% 100%;
+        }
+        .body .num_container .num_list{
+            width: 70%;
+            height: 4rem;
+            display: block;
+            margin: 0 auto;
+            margin-top: 4rem;
+        }
+        .body .num_container .num_list .num {
+            width: 18%;
+            margin-left: 7%;
+            height: 100%;
+            float: left;
+            background-size:100%100%;
+        }
+        .body .msg_container {
+            width: 100%;
+            height: 6.4rem;
+            color: white;
+            overflow: hidden;
+            margin: 0 auto;
+            margin-top: 1rem;
+        }
+        .body .msg_container .msg{
+            width:100%;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .body .msg_container .shelf {
+            background: -webkit-linear-gradient(rgb(239, 0, 6),rgba(255, 255, 255, 0),rgb(239, 0, 6)); /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(rgb(239, 0, 6),rgba(255, 255, 255, 0),rgb(239, 0, 6)); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(rgb(239, 0, 6),rgba(255, 255, 255, 0),rgb(239, 0, 6)); /* Firefox 3.6 - 15 */
+            background: linear-gradient(rgb(239, 0, 6),rgba(255, 255, 255, 0),rgb(239, 0, 6)); /* 标准的语法 */
+            width: 100%;
+            height: 7rem;
+            position: absolute;
+        }
+        .header{
+            width: 100%;
+            height: 2.5rem;
+            color: rgba(255, 255, 255, 0.71);
+            background-color: rgba(233, 0, 4, 0.189);
+            line-height: 2.5rem;
+            display: block;
+            position: absolute;
+            z-index: 99;
+            font-size: 1rem;
+        }
+        .header a {
+            text-decoration: none;
+            float: left;
+            color: rgba(255, 255, 255, 0.71);
+            font-size: 0.9rem;
+        }
+        .header span {
+            margin: 0 auto;
+            display: block;
+            position: relative;
+            width: 5rem;
+            text-align: center;
+        }
+        .header i {
+            font-style: normal;
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="body">
+<!--    <div class="header">
+        <a href="javascript:;" id="goApp"><i >返回</i></a>
+        <span>脉果令</span>
+    </div>-->
+    <div class="num_container">
+        <div class="num_list"></div>
+        <div class="msg_container">
+            <div class="shelf"></div>
+        </div>
+    </div>
+</div>
+<script src="./js/jquery-1.11.3.min.js"></script>
+<script>
+    var is_roll = false;
+    var t = 0;
+    getData();
+    setInterval(getData,10000);
+
+    function getData() {
+        $.ajax({
+            url:'v2.0/share/token_give',
+            type:'get',
+            dataType:'json',
+            success:function (res) {
+                if(res.code !=0)
+                    return false;
+                loadData(res.data);
+                if(is_roll)
+                    return false;
+                roll();
+            },
+        });
+    }
+
+    function loadData(data) {
+        var numHtml = '';
+        var msgHtml = '';
+        for(var i = 0; i< data.surplus.toString().length; i++){
+            var url = './images/'+data.surplus.toString().charAt(i) +'.png';
+            numHtml += '<div class="num" style="background: url(' + url + ') no-repeat;background-size:100%100%;"></div>'
+        }
+        $.each(data.giveList, function (i, res) {
+            msgHtml += '<span class="msg">恭喜用户 '+ res.nickname +'(ID:'+ res.uid +') 成为令主</span>';
+        });
+        console.log(numHtml);
+        $('.msg_container').append(msgHtml);
+        $('.num_list').html(numHtml);
+    }
+
+    function roll() {
+        is_roll = true;
+        window.clearInterval(t);
+        t = setInterval(function () {
+            var first = $('.msg:first');
+            var height = $('.msg:first').css('height');
+            first.animate({height:"0px"}, 2000, function () {first.remove();first.css('height', height);$('.msg_container').append(first);});
+        }, 2100);
+    }
+    $('#goApp').click(function () {
+        try {
+            window.maiguoer.goApp();
+        } catch (error) {
+            window.location.href ='maiguoer://home.maiguoer.com';
+        }
+    });
+</script>
+</body>
+</html>

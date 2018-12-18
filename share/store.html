@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>分享店铺</title>
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/myShop.css">
+    <link rel="stylesheet" href="css/share.css"/>
+    <script>
+        // px与rem单位的换算
+        (function(){
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        })();
+    </script>
+</head>
+<body>
+<!-- 店铺广告轮播图 -->
+<div class="swiper-container swiper-container1">
+    <div class="swiper-wrapper">
+    </div>
+    <!-- 返回箭头 -->
+    <div class="backForwd">
+        <a href="javascript:void(0);" class="goBack"><img src="images/nav_back@2x.png" alt=""></a>
+    </div>
+    <!-- 更多操作 -->
+    <div class="more">
+        <img src="images/nav_more@2x.png" alt="">
+    </div>
+    <!-- 店名及评分 -->
+    <div class="nameScore">
+        <p class="shopName"><span></span><span></span></p>
+        <ul class="shopScore">
+            <li class="star"></li>
+            <li class="star"></li>
+            <li class="star"></li>
+            <li class="star"></li>
+            <li class="emptyStar"></li>
+            <li class="lastScore">3.0</li>
+        </ul>
+    </div>
+</div>
+<!-- 商户的三个tab栏 -->
+<ul class="shopTab">
+    <li><a class="active">商品</a></li>
+    <li><a>评价</a></li>
+    <li><a>商家</a></li>
+</ul>
+<!-- 主要内容部分 -->
+<section>
+    <!-- 商品部分 -->
+    <div class="tabDiv" style="display:block;">
+        <div class="noGoods">
+            <img src="images/store_homepage_activity_commodity@2x.png" alt=""/>
+            <p>暂时没有商品哦~</p>
+        </div>
+        <div class="goods">
+            <!--没有商品显示的部分-->
+            <div class="loading">
+                <img src="images/loding.gif"/>
+            </div>
+            <div class="goodsLeft">
+                <ul class="goodsLists"></ul>
+            </div>
+            <div class="goodsRight">
+                <!-- 全部商品 -->
+                <ul class="allGoods">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 评价部分 -->
+    <div class="tabDiv ratingsbox">
+        <div class="noRatings" style="display: block" >
+            <img src="images/store_homepage_evaluate_margin@2x.png" alt=""/>
+            <p>暂时没有评价哦~</p>
+        </div>
+    </div>
+
+    <!-- 商家部分 -->
+    <div class="tabDiv">
+        <div class="merchant">
+            <h2 class="merchantName"><span></span><i></i><a class="tel" href="tel:13764567708,11"></a></h2>
+        </div>
+        <div class="myShopType">
+            <aside class="merchant_type"></aside>
+            <div class="typeDetail">
+                <h3>商家类型</h3>
+                <p><span>餐饮美食</span> <span>川湘菜、烧烤</span></p>
+            </div>
+        </div>
+        <div class="myShopType">
+            <aside class="merchant_info"></aside>
+            <div class="typeDetail businessProfile">
+                <h3>商家简介</h3>
+                <p></p>
+            </div>
+        </div>
+        <a href="javascript:void(0);" class="online_result consult">在线咨询</a>
+    </div>
+</section>
+<div id="lianjie">
+    <div id="dis">
+        <div class="prompt">
+            <a class="iconfont icon-guanbi" onclick="hide()"></a>
+            <div class="prompt_ti">
+                <p>提示</p>
+                <p>请先完成注册</p>
+            </div>
+            <div class="prompt_bottom">
+                <a href="#" onclick="hide()">取消</a>
+                <a href="register.html" id="joinUs" style="color:#337FFF;border-left:1px solid #E3E3E3;">去注册</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="goodsFix goodShowApp">
+    <img src="images/icon_48.png" alt="">
+    <div>
+        <p>脉果儿</p>
+        <p>专注价值社交新理念</p>
+    </div>
+    <a href="#">打开app</a>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/swiper-3.4.2.jquery.min.js"></script>
+<script src=js/common.js?v=20181018></script>
+<script>
+    function hide(){
+        document.getElementById('dis').style.display="none";
+    }
+    var mySwiper = new Swiper('.swiper-container1', {
+        loop:true,
+        updateOnImagesReady : true
+    });
+    function getScore(score){
+        var star='';
+        star+= "<li class='emptyStar'></li><li class='emptyStar'></li><li class='emptyStar'></li><li class='emptyStar'></li><li class='emptyStar'></li><li class='lastScore'>"+score.toFixed(1)+"</li>"
+        $('.shopScore').html(star);
+        if(!score==0){
+            $('.shopScore li').slice(0,score).removeClass('emptyStar').addClass('star');
+        }
+        return  $('.shopScore');
+    }
+
+    function getStoreInfo(storeId, uid) {  // 获取店铺主页信息
+        $.ajax({
+            type:"GET",
+            url:"v2.0/share/store_info?storeId="+ storeId,
+            data:{},
+            dataType:"json",
+            success:function (res) {
+                console.log(res);
+                if (!res.data || !res.data.storeInfo) {
+                    var msg = res.msg ? res.msg : '获取数据失败!';
+                    showTip(msg);
+                    return false;
+                }
+
+                var info=res.data.storeInfo;
+                $('.merchantName span').text(info.address);
+                $('.merchantName .tel').attr("href","tel:"+info.telephone);
+                $('.shopName span:first-child').text(info.storename);
+                info.branchname==''?$('.shopName span:last-child').remove():$('.shopName span:last-child').text("("+info.branchname+")");
+                $('.typeDetail p span').eq(0).text(info.industry);
+                // 判断是否有business
+                $('.shopScore li.lastScore').text()
+                // 星星及评分
+                getScore(info.storeScore)
+                $('.businessProfile p').text(info.profile);
+                var imgs = info.images,bannerHtml = '';
+                $.each(imgs, function (index, img) {
+                    bannerHtml += '<div class="swiper-slide"> <img src="' + img + '" alt=""> </div>';
+                });
+                $('.swiper-wrapper').html(bannerHtml);
+                mySwiper.update();
+                // 判断是否是金牌店铺
+                if(info.isUnionMerchant ==1) {
+                    $('.shopName').append('<img src="images/merchant.png" style="width:1.1rem;height: 0.6rem;position:absolute;top: 0.1rem;"/>')
+                }
+                var goods_type_list=res.data.categoryList,lis=' ';
+                var goodsList=res.data.goodsList,goodsLis='';
+                $.each(goods_type_list,function(i,result){ //获取商品的分类名称
+                    lis += "<li data-id="+result.id+">"+ result.cateName+ "</li>"
+                })
+                $('.goodsLists').html(lis);
+                $('.goodsLists li').eq(0).addClass('current')
+                if(goodsList.length==0 && $('.goodsLists li').length==1 && $('.goodsLists li').data('id')==0){
+                    $('.noGoods').show()
+                    $('.goods').hide()
+                }
+                if(goodsList.length==0){
+                    goodsLis="<p class='no_list'>暂时没有商品哦~</p>";
+                }
+                $.each(goodsList,function(i,result){ //获取商品的分类名称
+                    goodsLis+= " <li><a href='#'><img class='goodsImg' src="+result.image+"><div class='goodsInfo'><p>"+result.goodsName+"</p><p>"+result.specContent+"</p><p>PV"+result.backPV+"</p><p class='goodsPrice fr'>￥"+result.price+"</p></div></a></li>"
+                })
+                $('.allGoods').html(goodsLis);
+                //唤起APP
+                $('.goodShowApp').on('click',function () {
+                    wakeUpAppOrRegister('maiguoer://store.maiguoer.com?uid=' + info.id, 1000, uid);
+                    setTimeout(function () {
+                        document.getElementById('dis').style.display="block";
+                    },1500);
+                });
+                // wakeUpApp("maiguoer://store.maiguoer.com?storeId="+ storeId + "&uid=" + uid);
+            }
+        });
+    }
+
+    window.onload=function(){
+        var Request = getRequest();
+        var storeId =Request['storeId'];
+        var uid = Request['uid'];
+
+        if (!storeId || isNaN(storeId)) {
+            showTip('缺少店铺ID');
+            return false;
+        }
+
+        getStoreInfo(storeId, uid);
+
+        //加入我们
+        $('#joinUs').click(function () {
+            window.location.href = 'register.html?uid=' + uid;
+        });
+
+        $(".shopTab > li").click(function () { //商品-评价-商家的切换
+            $(this).children('a').addClass("active").parent().siblings().children('a').removeClass("active");
+            $('.tabDiv').eq($(this).index()).show().siblings().hide();
+        });
+
+    }
+
+</script>
+
+</body>
+</html>

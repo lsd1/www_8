@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>脉果儿</title>
+    <link rel="stylesheet" href=css/public.css>
+    <link rel="stylesheet" href="css/share_article.css?v=20180303">
+    <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.7.1/skins/default/aliplayer-min.css" />
+</head>
+<body>
+    <div class="header" id="header">
+        <a href="javascript:void(0);" class="back"><img src="images/nav_back@2x.png" alt=""><i>返回</i></a>
+        <span class="fr">
+            <img src="images/shortcut_dynamic_content_flower@2x.png" alt="">
+            <img src="images/shortcut_dynamic_content_dislike@2x.png" alt="">
+            <img src="images/shortcut_dynamic_content_share@2x.png" alt="" id="delete">
+        </span>
+        <i></i>
+    </div>
+    <div class="content">
+        <div class="contentTop">
+            <div class="summaryImg fl">
+                <img id="avatar" src="images/bg2.jpg" alt="" class="fr">
+            </div>
+            <div class="inform fl">
+                <p class="zoneUser"></p>
+                <i class="zoneDate"></i>
+            </div>
+            <div class="tabColumns fr">
+                <span></span>
+                <div class="tabColumn fl">
+                    <a>
+                        <p class="zoneFlower">0</p>
+                        <p>送花</p>
+                    </a>
+                </div>
+                <span></span>
+                <div class="tabColumn fl">
+                    <a>
+                        <p class="zonePraise">0</p>
+                        <p>点赞</p>
+                    </a>
+                </div>
+                <span></span>
+                <div class="tabColumn fl">
+                    <a>
+                        <p class="zoneForward">0</p>
+                        <p>转发</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="contener" id="zoneDetail">
+            <!--<p>我家的后面有一个很大的园，相传叫作百草园。现在是早已并屋子一起卖给朱文公的子孙了，连那最末次的相见也已经隔了七八年，其中似乎确凿只有一些野草；但那时却是我的乐园。</p>
+            <div class="forwordImg">
+                <img src="images/44.jpg" alt="">
+            </div>-->
+        </div>
+        <div class="comment">
+            <span>评论 <i class="commentCount">0</i></span>
+        </div>
+        <ul class="commentContener">
+           <!-- <li class="table-view-cell rightTop after">
+                <div class="rightImg fl">
+                    <img src="images/login_defaultavatar@2x.png" alt="">
+                </div>
+                <div class="rightInfor fl">
+                    <div class="rightInforTop">
+                        <span>我是美少女</span>
+                    </div>
+                    <div class="rightInforBot">
+                        <span>单身/</span>
+                        <span>95后/</span>
+                        <span>白羊座/</span>
+                        <span>行政助理</span>
+                    </div>
+                    <div class="details">
+                        <span>很漂亮的地方，下次可以一起去啊！</span>
+                    </div>
+                </div>
+            </li>-->
+        </ul>
+    </div>
+    <div class="goodsFix">
+        <img src="images/icon_48.png" alt="">
+        <p><i></i>分分钟让你的人脉变钱脉</p>
+        <a href="javascript:void(0);" id="joinUs">马上下载</a>
+    </div>
+</body>
+<script type="text/javascript" charset="utf-8" src="//g.alicdn.com/de/prismplayer/2.7.1/aliplayer-min.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/common.js?v=20181018"></script>
+
+<script>
+    (function () {
+        window.oneRem = document.documentElement.clientWidth / 7.5;
+        document.documentElement.style.fontSize = oneRem + 'px';
+    })();
+
+    $(document).ready(function () {
+
+        var Request = getRequest();
+        var uid = Request['uid'];
+        var zid = Request['zid'];
+        window.count = 1;
+
+        //获取动态信息
+        getZoneInfo(uid, zid);
+
+        //加入我们
+        $('#joinUs').click(function () {
+            var Request = getRequest();
+            var uid = Request['uid'];
+            window.location.href = 'register.html?uid=' + uid;
+        });
+    });
+
+
+    /**
+     * 获取用户动态信息
+     *
+     * @param uid
+     * @param zid
+     */
+    function getZoneInfo(uid, zid) {
+        $.ajax({
+            type: 'GET',
+            url: 'v2.0/share/zone_info',
+            data: {uid: uid, zid: zid},
+            dataType: 'json',
+            beforeSend: function () {
+                loading();
+            },
+            success: function (res) {
+                if (res.data && res.data.zoneDetail) {
+                    var zone = res.data.zoneDetail;
+                    var curType = zone.curType ? zone.curType : 0;
+
+                    $('.zoneUser').text(zone.memberInfo.username);
+                    $('#avatar').attr("src", zone.memberInfo.avatar);
+                    $('.zoneDate').text(zone.datetime);
+                    $('.zoneFlower').text(zone.flower);
+                    $('.zonePraise').text(zone.praise);
+                    $('.zoneForward').text(zone.forward);
+
+                    var zoneDetailHtml = '';
+
+                    if(zone.message){
+                        var videoRex = new RegExp(/\[mgevid.*?\]/ig);
+                        var r = zone.message.match(videoRex);
+                        var allVideoHtml = '';
+                        console.log(r);
+                        if(r){
+                            r.forEach(function (item, index) {
+                                var videoHtml = videoTagDeal(item);
+                                allVideoHtml += videoHtml;
+                                zone.message = zone.message.replace(item, videoHtml);
+                            });
+                        }
+                    }
+
+
+                    if (curType == 1) {
+                        zoneDetailHtml += '<p>'+ zone.message +'</p>';
+                        $.each(zone.zoneAttach, function (i, url) {
+                            console.log(url);
+                            zoneDetailHtml += '<div class="forwordImg"><img width="100%" src="'+ url + '"/></div>';
+                        });
+                    } else {
+                        zoneDetailHtml = transGoodsDetailHtml(zone.message);
+                    }
+
+                    $('#zoneDetail').html(zoneDetailHtml);
+                    activeVideo();
+                    var commentHtml = '';
+                    var singleHtml = '';
+                    var birthPeriodHtml = '';
+                    var constellationHtml = '';
+                    $('.commentCount').text(zone.comment);
+                    $.each(res.data.commentList, function (i, comment) {
+                        switch (comment.memberInfo.isSingle ) {
+                            case 1:
+                                singleHtml = '单身';
+                                break;
+                            case 2:
+                                singleHtml = '非单身';
+                                break;
+                            default:
+                                singleHtml = '保密';
+                        }
+
+                        birthPeriodHtml = comment.memberInfo.birthPeriod ?  comment.memberInfo.birthPeriod + '/' : '';
+                        constellationHtml = comment.memberInfo.birthPeriod ?  comment.memberInfo.birthPeriod + '/' : '';
+                        commentHtml += '<li class="table-view-cell rightTop after"><div class="rightImg fl"> <img src="'+ comment.memberInfo.avatar +'" alt=""> </div>';
+                        commentHtml += '<div class="rightInfor fl"><div class="rightInforTop"><span>'+ comment.memberInfo.username +'</span> </div><div class="rightInforBot"><span>' + singleHtml + '/</span>';
+                        commentHtml += '<span>'+ birthPeriodHtml +'</span> <span>'+ constellationHtml +'</span> <span>'+ comment.memberInfo.position +'</span> </div>';
+                        commentHtml += ' <div class="details"> <span>'+ comment.commentInfo.content +'</span> </div> </div> </li>';
+                    });
+                    $('.commentContener').html(commentHtml);
+
+                    //<!--<a href="maiguoer://zone.maiguoer.com?zid=111307&uid=6933280&curType=0">打开app</a><br/>-->
+                    wakeUpApp("maiguoer://zone.maiguoer.com?zid="+ zid + "&uid="+ uid + "&curType=" + curType);
+                } else {
+                    var msg = res.msg ? res.msg : '获取数据失败!';
+                    showTip(msg);
+                    return false;
+                }
+            },
+            complete:function () {
+                closeLoading();
+            },
+            error:function (res) {
+                var msg = res.msg ? res.msg : '获取数据失败,请重试!';
+                showTip(msg);
+            }
+        });
+    }
+
+    function activeVideo() {
+        $('.video').each(function (index, ele) {
+            var vid = $(ele).data('vid');
+            var coverUrl = $(ele).data('cover');
+            var id = $(ele).attr('id');
+            getPlayAuth(vid).then(function (playAuth) {
+                initVideo(vid, playAuth, id, coverUrl);
+            });
+        });
+    }
+
+    function videoTagDeal(videoTag) {
+        videoTag = videoTag.replace(']', '');
+        var data = videoTag.split(':');
+        var vid = data[1];
+        var coverUrl  =  data[3];
+        var videoHtml = '<div class="video" data-vid="' + vid + '" data-cover="' + coverUrl + '"  id="video_' + count + '" > </div>';
+        count ++;
+        return videoHtml;
+    }
+
+    function getPlayAuth(vid){
+        return new Promise(function(resolve, reject){
+            $.ajax({
+                url: 'v2.0/share/zone_video_play_auth?lang=0&videoId=' + vid,
+                type:'GET',
+                success:function (res) {
+                    var res = JSON.parse(res);
+                    if(res.code == 0){
+                        resolve(res.data.video.playAuth);
+                    }else{
+                        $('.empty_text').html(res.msg);
+                        $('.empty').show();
+                        return false;
+                    }
+                },
+                error:function(){
+                }
+            });
+        });
+    }
+
+    function initVideo(vid, playauth, eleId, coverUrl){
+        var img_url = coverUrl+'?'+Date.parse(new Date());
+        var img = new Image();
+
+        img.src = img_url;
+        img.onload = function(){
+            var width = $("#zoneDetail").width();
+            var videoWidth,videoheight;
+            var imgScale = img.width / img.height;
+            var maxHeight = $(window).height();
+            var maxWidth = $(window).width();
+            var clientScale = maxWidth / maxHeight;
+            var marginLeft = 0;
+            if(imgScale > clientScale){
+                videoWidth = width;
+                videoheight = width / imgScale;
+            }else{
+                videoWidth = width;
+                videoheight = width / imgScale * 0.8;
+            }
+
+            var player = new Aliplayer({
+                "id": eleId,
+                "cover": coverUrl,
+                "vid":vid,
+                "playauth":playauth,
+                "width": videoWidth + 'px',
+                "height": videoheight + 'px',
+                "autoplay": false,
+                "isLive": false,
+                "rePlay": false,
+                "playsinline": false,
+                "preload": false,
+                "controlBarVisibility": "hover",
+                "useH5Prism": true,
+                "skinLayout":[
+                    {name: "bigPlayButton", align: "cc", x: 30, y: 80},
+                    {
+                        name: "H5Loading", align: "cc"
+                    },
+                    {name: "errorDisplay", align: "tlabs", x: 0, y: 0},
+                    {name: "infoDisplay"},
+                    {name:"tooltip", align:"blabs",x: 0, y: 56},
+                    {name: "thumbnail"},
+                    {
+                        name: "controlBar", align: "blabs", x: 0, y: 0,
+                        children: [
+                            {name: "progress", align: "blabs", x: 0, y: 44},
+                            {name: "playButton", align: "tl", x: 15, y: 12},
+                            {name: "timeDisplay", align: "tl", x: 10, y: 7},
+                            {name: "fullScreenButton", align: "tr", x: 10, y: 12},
+                            // {name:"subtitle", align:"tr",x:15, y:12},
+                            // {name:"setting", align:"tr",x:15, y:12},
+                            // {name: "volume", align: "tr", x: 5, y: 10}
+                        ]
+                    }
+                ]
+            }, function (player) {
+                sessionStorage.setItem('fail', '');
+            });
+
+            player.on('error',function(){
+                var fail = sessionStorage.getItem('fail');
+                if(fail){
+                    if(fail > 2){
+                        return false;
+                    }else{
+                        sessionStorage.setItem('fail', parseInt(fail) + 1);
+                    }
+                }else{
+                    sessionStorage.setItem('fail', 1);
+                }
+                location.reload();
+            });
+
+            //暂停播放。
+            player.on('pause',function () {
+                $("#"+eleId).removeClass('videoPlay');
+                $(this).find(".prism-big-play-btn").css('zIndex', 1000);
+                $(this).find(".prism-big-play-btn").css('display','block!important');
+                // $("#"+eleId).css("marginLeft", 'auto');
+            });
+
+            //播放结束。
+            player.on('ended',function () {
+                $(this).find(".prism-big-play-btn").css('zIndex', 1000);
+                $(this).find(".prism-big-play-btn").css('display','block!important');
+                // $("#"+eleId).css("marginLeft", 'auto');
+                $("#"+eleId).removeClass('videoPlay');
+            });
+
+            player.on('play',function () {
+                $("#"+eleId).addClass('videoPlay');
+                // $("#"+eleId).css("marginLeft", marginLeft);
+                $(this).find(".prism-big-play-btn").css('zIndex', 10003);
+            });
+        }
+
+    }
+
+    function transGoodsDetailHtml(content) {
+        console.log(content);
+        var html = '';
+        try {
+            var reg = /\[(mgeimg:.+?)\]/g;
+            var sections = content.split(reg);
+            $.each(sections, function (i, val) {
+                if (val.length == 0) {
+                    return true;
+                }
+                if (val.toLowerCase().indexOf('mgeimg:', 0) == 0) {
+                    html += '<div class="forwordImg"><img width="100%" src="'+ val.substring('mgeimg:'.length)+ '"/></div>';
+                } else {
+                    html += '<p>'+ val.replace(/\n/g, '</p><p>') +'</p>';
+                }
+            });
+        } catch (error) {
+            html = content;
+        }
+        console.log(html);
+        return html;
+    }
+
+</script>
+</html>

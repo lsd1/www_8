@@ -1,0 +1,338 @@
+html,body,h1,h2,h3,h4,h5,ul,li,p{
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑";
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+img{
+    display: block;
+}
+input{
+  color:#666666; 
+}
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.white{
+	color:white;
+}
+.SkinBG {
+    width: 100%;
+    height:11rem;
+    background: url("../images/backg.png") no-repeat top left;
+    background-imgae: cover;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    position: relative;
+    /*margin:-20px auto;*/
+}
+.showService{
+	text-decoration:underline;
+}
+.head span{
+    padding-right: 0.30rem;
+    font-size: 0.32rem;
+}
+.signinTop{
+    width: 100%;
+    height: 2.31rem;
+    position: relative;
+    padding-top: 0.89rem;
+    margin-bottom:1.13rem;
+}
+.signinTop .top{
+    width: 100%;
+    height: 1.81rem;
+    background: #B90500;
+}
+.signinTop .top .topImg{
+    position: absolute;
+    left: 1.74rem;
+    bottom: 0.7rem;
+}
+.signinTop .top .topImg img{
+    width: 4rem;
+    height: 1.04rem;
+
+}
+.signinTop .bot{
+    width: 7.5rem;
+    height: 0.50rem;
+}
+.signinTop .bot img{
+    width: 100%;
+}
+
+.TSize {
+    font-size: 0.25rem;
+}
+.form_zhuce{
+	width:5.6rem;
+	height:0.7rem;
+	margin-left: 0.9rem;
+	margin-top: 0.38rem;
+	border-radius:4px;
+	font-size: 0.31rem;
+	background:white;
+	line-height:0.7rem;
+	font-family: "微软雅黑";
+
+}
+.form_zhuce>.inpue_num{
+	width:2.6rem;
+}
+.form_zhuce .span{
+	color:#03A1FA;
+	width:1.5rem;
+	font-size:0.25rem;
+	height:100%;
+	margin-left:0.2rem;
+}
+
+.form_zhuce .tubiao{
+	margin-left:0.1rem;
+	background:white;
+	width:0.5rem;
+	height:0.7rem;
+	display:inline-block;
+	border-radius:4px;
+	text-align:center;
+	line-height:0.7rem;
+}
+
+.forget{
+    font-size: 0.25rem;
+    color: #B90500;
+    margin-top:0.2rem;
+    margin-left:5.8em;
+    font-family: "微软雅黑";
+}
+.forget a,.forget span {
+    display: inline-block;
+    color: #fff;
+}
+.formCont{
+    text-align:center;
+    margin-top: 0.3rem;
+    
+}
+
+.formCont button{
+    width: 5.7rem;
+    height: 0.8rem;
+    border: none;
+    background-color: #B90500;
+    color: #fff;
+    font-size: 0.35rem;
+    -webkit-border-radius: 0.16rem;
+    -moz-border-radius: 0.16rem;
+    border-radius: 0.16rem;
+    font-family: "微软雅黑";
+}
+.hint{
+   color: #666666;
+}
+
+
+/*logo*/
+.logoBox {
+    height: 4rem;
+    text-align: center;
+    color:white;
+    font-size:0.28rem;
+    margin:auto;
+
+}
+.logoBox .logoBox_daoshi{
+	width:2.5rem;
+	margin:auto;
+	height:0.45rem;
+}
+.image02{
+	width:2.5rem;
+	height:1px;
+	margin:auto;
+}
+/*.image02 img{
+	width:100%;
+	height:100%;
+}*/
+.logoBox .logoBox_name{
+	height:0.7rem;
+	line-height:1rem;
+	font-size:0.3rem;
+	margin-bottom:0.1rem;
+}
+.logoBox .logo{
+    width: 1.3rem;
+    margin:auto;
+    padding-top:1.3rem;
+}
+
+.formItemRight{
+	width:4.5rem;
+}
+.hasUid{
+    height:1.3rem;
+    display: block;
+}
+#hasUid{
+    margin-top: 0.2rem;
+}
+#pavatar {
+    display: inline-block;
+    width:1rem;
+    height: 1rem;
+    border-radius: 0.7rem;
+    margin-left: 0.25rem;
+}
+#pusername {
+    display: inline-block;
+}
+#puid {
+    width:3.3rem;
+    font-size: 0.27rem;
+}
+#noUid {
+    margin-left: 0.41rem;
+}
+.left_area{
+    float: left;
+    display: inline-block;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-left: 0.2rem;
+
+}
+.right_area{
+    float: left;
+    display: inline-block;
+    height: 1.3rem;
+    margin-left: 0.1rem;
+    font-size: 0.25rem;
+}
+.right_area div span{
+    height: 0.5rem;
+    line-height: 0.5rem;
+    margin-left: 0.1rem;
+}
+
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
+    color:#666;
+    font-size:0.28rem;
+    font-family: "微软雅黑";
+}
+input::-moz-placeholder,textarea::-webkit-input-placeholder{   /* Mozilla Firefox 19+ */
+    color:#666;
+     font-size:0.28rem;
+    font-family: "微软雅黑";
+}
+input:-moz-placeholder,textarea::-webkit-input-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#666;
+     font-size:0.28rem;
+    font-family: "微软雅黑";
+}
+input:-ms-input-placeholder,textarea::-webkit-input-placeholder{  /* Internet Explorer 10-11 */ 
+    color:#666;
+     font-size:0.28rem;
+    font-family: "微软雅黑";
+}
+.auth {
+    background-color: rgba(0, 0, 0, 0);
+    float: left;
+}
+.lastLine {
+    width: 4.3rem;
+}
+.consumer_sub_btn {
+    position: relative;
+    width: 6.6rem;
+    height: 0.8rem;
+    background-color: rgba(185, 5, 0, 1);
+    border-radius:.1rem;
+    margin: 0 auto;
+
+}
+.consumer_sub_btn a {
+    display: block;
+    color: #FFFFFF;
+    /*width: 100%;*/
+    position: absolute;
+    font-size: .4rem;
+    line-height: .8rem;
+    color: #fff;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    left: .19rem;
+    background-size: .24rem .38rem;
+}
+/*做什么*/
+.liulan{
+	width:100%;	
+	font-family: "微软雅黑";
+}
+.liulan .how{
+	width:3.5rem;
+	margin:0 auto;
+	margin-top:0.3rem;
+	font-size:0.3rem;
+	color:#333333;
+}
+.liulan .video_dome{
+	margin-top:0.3rem;
+	height:4rem;
+}
+.gray_xian{
+	border-bottom:1px solid #EEEEEE;
+	width:100%;
+	height:0.2rem;
+}
+.liulan .video_dome .video_left{
+	width:45%;
+	height:100%;
+	font-size:0.31rem;
+}
+
+.liulan .video_dome .video_right{
+	width:45%;
+	height:100%;
+	font-size:0.31rem;
+}
+
+.liulan .video_dome img{
+	width:100%;
+	height:95%;
+	margin:0.2rem;
+}
+.font_gray{
+	color:#666;
+	margin-left:0.5rem;
+}
+.font_red{
+	margin-left:0.5rem;
+	margin-top:1.5rem;
+	color:#DD2727;
+}
+.liulan .li_jion{
+	margin-top:0.2rem;
+	height:1.2rem;
+}
+.liulan .li_jion button{
+	width:90%;
+	margin-left:0.4rem;
+	height:1rem;
+	border:0;
+	color:white;
+	font-size:0.35rem;
+	background:#B90500;
+	border-radius:4px;
+	font-family: "微软雅黑";
+}

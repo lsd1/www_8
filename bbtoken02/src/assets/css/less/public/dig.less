@@ -1,0 +1,13 @@
+.bgPosition(@spriteWidth, @spriteHeight, @iconWidth, @iconHeight, @iconX, @iconY){
+
+//$spriteWidth 雪碧图的宽度px
+//$spriteHeight 雪碧图的高度px
+//$iconWidth 需要显示icon的宽度px
+//$iconHeight 需要显示icon的高度px
+//$iconX icon的原始x坐标
+//$iconY icon的原始y坐标
+  @swidth:@spriteWidth - @iconWidth;
+   @sheight:@spriteHeight - @iconHeight;
+  background-position-x:percentage(@iconX /@swidth);
+  background-position-y:percentage(@iconY /@sheight);
+}

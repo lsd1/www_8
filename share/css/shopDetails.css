@@ -1,0 +1,335 @@
+.swiper-pagination-bullet-active {
+    color: #ffffff;
+    background-color: #fff;
+}
+.details {
+    background-color: #fff;
+    padding: 0.40rem 0.51rem 0.41rem 0.30rem;
+    box-sizing: border-box;
+}
+.details .detailsTop{
+    overflow: hidden;
+}
+.details .detailsTop .detailsLeft p{
+    display: inline-block
+}
+.details .detailsTop .detailsLeft p i{
+    font-size: 0.24rem;
+}
+#put_name {
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+    font-size: .32rem;
+    width: 2rem;
+    font-weight:500;
+}
+#put_rate{
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+    font-size: .32rem;
+    width: .8rem;
+    font-weight:300;
+}
+
+.details .detailsTop .detailsLeft span {
+    color: #FFA200;
+    font-size: 0.24rem;
+}
+.details .detailsTop .detailsLeft span #put_pv{
+    color: #FFA200;
+    font-size: 0.24rem;
+    width: .4rem;
+}
+.details .detailsTop .detailsLeft span #put_addprace{
+    color: #FFA200;
+    font-size: 0.24rem;
+    width: .4rem;
+}
+.details .detailsTop .detailsLeft p {
+    font-size: 0.36rem;
+    color: #FF0000;
+    font-weight: 700;
+}
+.details .detailsTop .detailsLeft p #put_rate{
+    font-size: 0.46rem;
+    color: #FF0000;
+}
+.details .detailsTop .detailsRight{
+    font-size: 0;
+}
+.details .detailsTop .detailsRight img{
+    width: 0.40rem;
+    height: 0.40rem;
+    padding-top: 0.1rem;
+}
+.details .detailsBot{
+    margin: .1rem 0;
+}
+.details .detailsBot span{
+    font-size: 0.32rem;
+    font-weight: 700;
+}
+.details .detailsBot i {
+    font-size: 0.2rem;
+    color: #FF0101;
+    border-radius: 0.08rem;
+    padding: 0 0.12rem;
+    border: 1px solid #FF0101;
+    margin: 0 .12rem;
+}
+.recommend,.postage{
+    font-size: .24rem;
+    color: #666;
+}
+.recommend #put_text{
+    font-size: 0.24rem;
+    color: #666666;
+    padding-top: 0.20rem;
+}
+.goodsRetails{
+    margin-top:0.19rem;
+    background-color: #fff;
+}
+.goodsRetails .detailsTop {
+    height: 0.89rem;
+    line-height: 0.89rem;
+    padding: 0 0.30rem;
+    border-bottom: 1px solid #DFDFDF;
+}
+.goodsRetails .detailsTop p{
+    font-size: 0.32rem;
+    color: #333333;
+}
+.goodsRetails .detailsTop p span.ratings_rate{
+    font-size: 0.24rem;
+}
+.goodsRetails .detailsTop div{
+    overflow: hidden;
+    text-align: right;
+}
+.goodsRetails .detailsTop div span {
+    font-size: 0.24rem;
+    color: #CCCCCC;
+}
+.goodsRetails .detailsTop div img {
+    width: 0.13rem;
+    height: 0.24rem;
+    padding-top: 0.35rem;
+}
+.detailsCenter{
+    padding: 0 0.20rem;
+}
+.detailsCenter img{
+    width: 100%;
+    margin: .24rem 0 !important;
+}
+.detailsText {
+    font-size: 0.30rem;
+    color: #666666;
+    text-indent: 2em;
+    word-break: break-all;
+}
+.detailsCenter .detailsTitle {
+    font-size: 0.28rem;
+    padding-top: 0.27rem;
+    text-align: center;
+}
+.de_content{
+    font-size: 0.30rem;
+    color: #666666;
+    text-indent: 2em;
+    text-align: left;
+    padding: 0.22rem 0;
+    line-height: .46rem;
+}
+.de_content img {
+    width: 100%;
+    float: left !important;
+    margin-bottom: .24rem !important;
+}
+.detail {
+    width: 100%;
+    height: 0.81rem;
+    line-height: 0.81rem;
+    background-color: #fff;
+    text-align: center;
+    margin-top: 0.21rem;
+}
+.detail p {
+    font-size: 0.28rem;
+}
+.instrDetail {
+    background-color: #fff;
+    margin-bottom: 1.2rem;
+}
+.instrDetail ul {
+    padding: 0 0.58rem 0.17rem 0.58rem;
+}
+.instrDetail ul li{
+    color: #CCCCCC;
+}
+.instrDetail ul li span {
+    font-size: 0.26rem;
+    color: #666666;
+}
+.instrDetailBot{
+    margin-bottom: 1.6rem;
+}
+.goodsFix {
+    width: 100%;
+    height: 1rem;
+    position: fixed;
+    bottom: 0;
+    background-color: #F4F4F4;
+    /*box-shadow: 0 -2px 3px #CCCCCC;*/
+}
+.goodsFix div {
+    height: 1rem;
+    display: inline-block;
+    padding: 0.17rem 0.17rem 0.10rem 0.34rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+.goodsFix div img {
+    width: 0.40rem;
+    height: 0.40rem;
+}
+.goodsFix div p{
+    font-size: 0.20rem;
+    color: #333333;
+}
+.goodsFix button {
+    width: 2.20rem;
+    height: 100%;
+    font-size: 0.30rem;
+    color: #ffffff;
+    border: none;
+}
+.goodsFix .line{
+    width: 0.01rem;
+    height: 0.99rem;
+    float: left;
+}
+.de_content_text{
+    text-align: left;
+}
+.collect {
+    display: inline-block;
+    width: 0.40rem;
+    height: 0.40rem;
+    background: url("../images/store_commodity_collect_nor@2x.png") no-repeat;
+    background-size: 0.40rem 0.40rem;
+    margin: 0.1rem 0.5rem 0 0;
+}
+.collectionImg{
+    background: url("../images/store_commodity_collect-_pre@2x.png") no-repeat;
+    background-size: 0.40rem 0.40rem;
+    margin: 0.1rem 0.5rem 0 0;
+}
+.fix {
+    width: 100%;
+    height: 1.36rem;
+    background-color: rgba(255,255,255,.9);
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0 -2px 3px #CCCCCC;
+}
+.fix .confirmBtn {
+    width: 7.19rem;
+    height: 0.89rem;
+    font-size: 0.36rem;
+    color: #ffffff;
+    border-radius: 0.08rem;
+    background-color: #B90500;
+    margin: 0.20rem;
+    border: none;
+}
+
+/*发货，退货*/
+.orderDetails {
+    font-size: 0.28rem;
+    color: #333333;
+    background-color: #fff;
+    margin-bottom: 0.19rem;
+    padding: 0.23rem 0.20rem 0.30rem 0.23rem;
+    box-sizing: border-box;
+}
+.orderDetails div{
+    display: flex;
+}
+.orderDetails div span {
+    display: block;
+    width: 1.5rem;
+}
+.orderDetails div p{
+    flex: 1;
+}
+.logistics {
+    background-color: #fff;
+}
+.logistics ul li {
+    height: 0.89rem;
+    line-height: 0.89rem;
+    display: flex;
+    border-bottom: 1px solid #DFDFDF;
+    margin-left: 0.29rem;
+    box-sizing: border-box;
+}
+.logistics p {
+    width: 1.5rem;
+    font-size: 0.30rem;
+}
+.logistics div{
+    flex: 1;
+}
+.logistics div span {
+    font-size: 0.24rem;
+    color: #CCCCCC;
+}
+.logistics div img{
+    width: 0.13rem;
+    height: 0.24rem;
+    padding-top: 0.34rem;
+}
+.fillIn div{
+    text-align: left;
+}
+.fillIn div input::-webkit-input-placeholder {
+    color: #CCCCCC;
+    font-size: 0.28rem;
+}
+.goodsSubmit {
+    width: 7.19rem;
+    height: 0.89rem;
+    border: none;
+    font-size: 0.36rem;
+    color: #ffffff;
+    border-radius: 0.12rem;
+    margin: 1.99rem 0 0 0.15rem;
+}
+.swiper-container-horizontal>.swiper-pagination{
+    z-index: 2;
+}
+.shopDetails{
+    position: relative;
+}
+.offTheShelf {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -1rem;
+    margin-left: -1rem;
+    z-index: 99;
+    display: none;
+}
+.offTheShelf img{
+    width: 2rem;
+    height: 2rem;
+}
+

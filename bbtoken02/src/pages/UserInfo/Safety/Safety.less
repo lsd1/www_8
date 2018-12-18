@@ -1,0 +1,73 @@
+@import url(../../../assets/css/less/public/base.less);
+
+.safety{
+  .bar{
+  	width: 80px;
+  	height: 6px;
+  	position: relative;
+  	display: inline-block;
+  	background: @color-gray;
+  	&:after{
+        content:'';
+        width:0;
+  		height:6px;
+  		position: absolute;
+  		background:@color-default;
+  		top:0;
+  		left: 0;
+  	}
+  	&.bar-50:after{
+  		width:50%;
+  	}
+  	&.bar-100:after{
+  		width:100%;
+  	}
+
+  }
+  .pb-150{
+  	padding-bottom: 150px;
+  }
+  &-item{
+  	 padding: 30px 0;
+  	 border-bottom: 1px solid #e8e8e8;
+  	 .icon{
+  	 	width:43px;
+  	 }
+  	 .declare{
+  	 	width:460px;
+  	 }
+  	 .info{
+  	 	width:160px;
+  	 }
+  	 .btn{
+  	 	width:210px;
+  	 }
+  }
+  .ant-btn{
+    width:100px;
+  }
+}
+.safety-model{
+  .group-code{
+    width:110px;
+    background:none;
+  }
+	.ant-modal-body{
+    padding:0;
+	}
+	.ant-modal-footer{
+		border-top: 1px solid #e8e8e8;
+	}
+	.ant-form-item-label{
+		line-height: 30px;
+	}
+	.ant-form-item{
+		margin-bottom: 0;
+	}
+	.ant-form-item-label label{
+		opacity: .5;
+	}
+  .ant-input-group-addon{
+    padding: 0;
+  }
+}

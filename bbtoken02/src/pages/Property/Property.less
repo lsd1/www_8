@@ -1,0 +1,47 @@
+@import url(../../assets/css/less/public/base.less);
+
+.pproperty{
+	padding-top: 60px;
+	.box{
+		background:@white;
+		box-shadow: 0 0 8px rgba(240,240,240,1);
+	}
+	.aside{
+		width: 240px;
+		height: 460px;
+		
+		border-radius: 3px;
+		overflow-x: hidden;
+
+		&-item{
+			width:100%;
+			display: block;
+			height:50px;
+			padding:0 20px;
+			line-height: 50px;
+
+			
+			&.active{
+				background: @color-default;
+				span{
+					color:@black-1;
+					opacity:1;
+				}
+			}
+			&:hover{
+				color:@black-1;
+				span{
+					color:@black-1;
+					opacity:1;
+				}
+			}
+
+			span{
+				opacity: .5;
+				display:block;
+				border-bottom:1px solid @color-white; 
+			}
+		}
+	}
+
+}

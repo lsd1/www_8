@@ -1,0 +1,69 @@
+a{
+    text-decoration: none;
+    font-weight: normal;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+body,h1,p,section,div,ul,li{
+    padding: 0;
+    margin: 0;
+}
+header{
+    height: .89rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0;
+    position: relative;
+    padding: 0 .19rem;
+    background:#B90500;
+    text-align: center;
+
+}
+header .title{
+    font-size: .36rem;
+    color: #fff;
+    line-height: .89rem;
+    font-weight: normal;
+}
+.back{
+    position: absolute;
+    font-size: .3rem;
+    line-height: .89rem;
+    color: #fff;
+    padding-left: .3rem;
+    left: .19rem;
+    background: url("../images/nav_back@2x.png") no-repeat left center;
+    background-size: .24rem .38rem;
+}
+.content{
+    display: flex;
+    flex-direction:column;
+    height: 100%;
+}
+section{
+    flex: 1;
+    padding: .4rem .25rem 0.3rem .25rem;
+}
+section p,ul li{
+    font-size: .3rem;
+    line-height: .46rem;
+    color: #333;
+}
+ul li{
+    list-style: none;
+}
+.list{
+    margin-bottom: .5rem;
+}
+.list h2{
+    color: #000;
+    font-size: .3rem;
+    margin: 0;
+}
+section .list:nth-child(2){
+    margin-top:.5rem;
+}
+
+

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>1V1聊主招募</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="mui/css/mui.min.css" rel="stylesheet" />
+    <!-- <link href="css/anchor_recruiment.css" rel="stylesheet" /> -->
+	<link rel="stylesheet" type="text/css" href="css/1v1_status_list.css"/>
+	<link href="css/share_call.css" rel="stylesheet" />
+
+    <script>
+        // px与rem单位的换算
+        (function () {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        })();
+    </script>
+</head>
+<!-- 头部开始 -->
+<!--<header class="mui-bar mui-bar-nav">-->
+    <!--<h1 class="mui-title">TA的通话</h1>-->
+<!--</header>-->
+<!-- 头部结束 -->
+<!-- 内容区域 -->
+<div class="mui-content">
+	<!-- 通话内容介绍 -->
+	<div class="call_style">
+		<div class="call_box duration_box">
+			<div class="call_text dura_text">
+				通话时长<span class="call_num dura_num"></span>分钟
+			</div>
+		</div>
+		<div class="call_box revenue_box">
+			<div class="call_text reve_text">
+				通话收益<span class="call_num reve_num"></span>元
+			</div>
+		</div>
+	</div>
+	<!-- 通话内容介绍结束 -->
+	<!-- 礼物部分 -->
+	<div class="receive_box">
+		<div class="dividing">
+			收到礼物
+		</div>
+		<div class="gift_box"></div>
+	</div>
+	<!-- 礼物部分结束 -->
+	<!-- 动态盒子 -->
+    <div class="bottom">
+		<div class="dividing">
+			TA在等你
+		</div>
+		<div class="cover_box">
+		</div>
+	</div>
+	<!-- 动态盒子结束 -->
+</div>
+<!--内容区域结束 -->
+
+<!-- 底部按钮 -->
+<div class="footer_btn">
+	<!--<div class="recruit_btn">先了解一下</div>-->
+	<div class="open_app">我要做1v1聊主</div>
+</div>
+<!-- 底部按钮结束 -->
+<body>
+<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/common.js?v=20181018"></script>
+<script type="text/javascript">
+    $(function () {
+        var request = getRequest();
+        var uid = request['uid'];
+        var callId = request['callId'];
+        // $('.status_zero').css("display","block");
+      	reqGift(callId);
+        reqCover();
+
+
+        //打开app
+		$('.open_app').click(function () {
+            wakeUpAppOrRegister('maiguoer://home.maiguoer.com?uid=' + uid, 2000, uid);
+        });
+
+		
+		//礼物列表请求
+		function reqGift(callId) {
+            $.ajax({
+                type:"GET",
+                url:"v2.9/share/call_info",
+                data:{callId: callId},
+                dataType: 'json',
+                beforeSend: function () {
+                    loading();
+                },
+                success: function(result){
+                    if(result.code == 0) {
+						console.log(result.data);
+						getTheReq(result.data.call);//拼接通话数据
+						getGiftList(result.data.receivedGifts);//拼接礼物列表
+                    }else {
+                        showTip(result.msg);
+					}
+                },
+                error:function(res){
+                    var msg = res.msg ? res.msg : '网络出错请重试！';
+                    showTip(msg);
+                }
+
+            });
+        }
+
+        //推荐聊主列表请求
+		function reqCover() {
+            $.ajax({
+                type:"GET",
+                url:"v2.7/share/recommend_host_list",
+                data:{},
+                dataType: 'json',
+                beforeSend: function () {
+                    loading();
+                },
+                success: function(result){
+                    if(result.code == 0) {
+                        console.log(result.data);
+                        getCoverList(result.data.hostList);
+                    }else {
+                        showTip(result.msg);
+                    }
+                },
+                error:function(res){
+                    var msg = res.msg ? res.msg : '网络出错请重试！';
+                    showTip(msg);
+                }
+            });
+        }
+
+
+        //数据拼接
+		function getTheReq(data) {
+			$('.dura_num').text(data.callDuration);
+            $('.reve_num').text(data.revenue);
+
+        }
+		//礼物列表
+        function getGiftList(data) {
+			var len = data.length;
+            if(len == 0) {
+			    $('.receive_box').css("display","none");
+			}else {
+                var listHTML = '';
+                $('.receive_box').css("display","block");
+                for(var i = 0; i <= len; i++) {
+					listHTML = '<div class="gift_list">'+
+                        '<div class="img_box">'+
+                        '<img src="'+ data[i].gift.image +'" alt="">'+
+                        '</div>'+
+                        '<p class="gift_type">'+ data[i].gift.name +'</p>'+
+                        '<p class="gift_amount">'+ data[i].price +'元</p>'+
+                        '<p class="gift_num">x'+ data[i].count +'</p>'+
+                        ' </div>';
+					$('.gift_box').append(listHTML);
+				}
+			}
+        }
+
+
+        //推荐人列表推送
+		function getCoverList(data) {
+			if(data.length > 0) {
+			    for(var i = 0; i < data.length; i++) {
+                    var coverList = '';
+                    //判断有无封面
+					var bgImg = '';
+					if(data[i].images.length == 0) {
+                        bgImg = data[i].video.coverUrl;
+					}else {
+					    bgImg = data[i].images[0];
+					}
+					//判断是否在线
+					var isOnline = '';
+					var isOnlineClass = "";
+					if(data[i].isOnline == 0) {
+                        isOnline = '离线';
+                        isOnlineClass = "outLine";
+					}else {
+                        isOnline = '在线';
+                        isOnlineClass = "onLine";
+                    }
+                    //判断标签种类
+					var lableHTML = '';
+					if(data[i].category.name != "") {
+						lableHTML +=
+									'<div class="lable_list lable_list1">' +
+									'	<span class="topic_lable">'+ data[i].category.name +'</span>' +
+                        			'</div>';
+					}
+					if(data[i].memberInfo.birthPeriod != "") {
+                        lableHTML+=
+									'<div class="lable_list lable_list2">' +
+									'	<span class="age_lable">'+ data[i].memberInfo.birthPeriod +'</span>' +
+									'</div>';
+					}
+					if(data[i].count.scoreMean != "") {
+                        lableHTML+=
+									'<div class="lable_list lable_list3">' +
+                        			'	<span class="fraction_lable">'+ data[i].count.scoreMean +'分</span>' +
+									'</div>';
+					}
+					//判断性别
+					var gender = '';
+					if(data[i].memberInfo.gender != 1) {
+                        gender = "man_icon";
+					}else if(data[i].memberInfo.gender == 2){
+					    gender = "woman_icon";
+					}else {
+					    gender = "";
+					}
+                    coverList = '<div class="cover_list">' +
+								'	<div class="cover_img_box" style="background-image: url('+ bgImg +')">' +
+								'	</div>' +
+								'	<div class="duration">' + parseInt(data[i].audio.duration) +'"</div>' +
+								'	<div class="online_status">' +
+								'		<span class="status_text '+ isOnlineClass +'">'+ isOnline +'</span>' +
+								'	</div>' +
+								'	<div class="bottom_box">' +
+								'		<div class="title_text '+ gender +'">'+ data[i].memberInfo.username +'</div>' +
+								'			<div class="lable_box">' +
+												lableHTML+
+								'		</div>' +
+								'	</div>' +
+								'</div>';
+                    $(".cover_box").append(coverList);
+				}
+			}
+        }
+    })
+</script>
+</body>
+
+</html>

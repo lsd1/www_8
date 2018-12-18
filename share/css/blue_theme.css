@@ -1,0 +1,35 @@
+
+.commercialHeader,.header,a.release,.goodsFix button,.fix button,body.shop_ewm,.share,.headSearch,.goodsSubmit{
+    background: #03A1FA ;
+}
+
+.recommendType{
+    color: #03A1FA;
+    border: .02rem solid #03A1FA;
+}
+button.putOnShelves,button.cancelTheShelf,button.grounding{
+    border: .02rem solid #03A1FA;
+}
+.shopTab li a.active,.record .active{
+    color: #03A1FA;
+    border-bottom: .05rem solid #03A1FA;
+}
+.goodsLeft li.current{
+    border-left: .07rem solid #03A1FA;
+    color: #03A1FA;
+    background: #fff;
+}
+.confirms button{
+    border: 1px solid #03A1FA;
+}
+.myShopType .merchant_info{
+    background: url("../images/store_homepage_introduce@2x.png") no-repeat ;
+    background-size: .45rem;
+}
+.myShopType .merchant_type{
+    background: url("../images/store_homepage_type@2x.png") no-repeat ;
+    background-size: .45rem;
+}
+.detailsTitle {
+    color: #03A1FA;
+}

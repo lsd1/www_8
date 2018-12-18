@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>分享</title>
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="css/shareToTheGroup.css">
+    <script>
+        // px与rem单位的换算
+        (function () {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        })();
+    </script>
+</head>
+
+<body>
+<div class="shareTop">
+    <div class="header" id="header">
+        <h1>群资料</h1>
+    </div>
+    <div class="shareImg">
+        <img src="" alt="" class="groupAvatar">
+    </div>
+    <div class="qrCode">
+        <img src="images/comm_chatting_setting_group_qr@2x.png" alt="" >
+    </div>
+</div>
+<div class="shareBot">
+    <p class="groupName"></p>
+    <p class="groupId"></p>
+    <p class="groupInfor groupCategory"></p>
+</div>
+<div class="intro">
+    <h5>群组简介</h5>
+    <p class="groupProfile"></p>
+</div>
+<div class="groupMembers">
+    <span><img src="images/comm_chatting_setting_group_count@2x.png" alt=""></span>
+    <div class="groupMembersFr">
+       <!-- <img src="images/01.jpg" alt="">
+        <img src="images/01.jpg" alt="">
+        <img src="images/01.jpg" alt="">-->
+        <div class="fr" id="memberNum">
+            <span class="memberNum"></span>
+            <img class="arrow" src="images/common_arrows@2x.png" alt="">
+        </div>
+    </div>
+</div>
+<p class="createTime">本群组创建于 <i class="createTime"></i></p>
+<div class="goodsFix" id="joinUs">
+    <img src="images/icon_48.png" alt="">
+    <p><i></i>分分钟让你的人脉变钱脉</p>
+    <a href="javascript:void(0)" >马上下载</a>
+</div>
+
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/common.js?v=20181018"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var Request = getRequest();
+        var groupId = Request['groupId'];
+        var uid = Request['uid'];
+
+        if (!groupId || isNaN(groupId)) {
+            showTip('链接有误！');
+            return false;
+        }
+
+        getGroupInfo(groupId, uid);
+
+        $('#joinUs').click(function () {
+            window.location.href = 'register.html?uid=' + uid;
+        });
+
+    });
+
+    
+    function getGroupInfo(groupId, uid) {
+        $.ajax({
+            type: 'GET',
+            url: 'v2.0/share/group_info',
+            data: {groupId: groupId},
+            dataType: 'json',
+            beforeSend: function () {
+                loading();
+            },
+            success: function (res) {
+                if (res.data && res.data.groupInfo) {
+                    var groupInfo = res.data.groupInfo;
+
+                    $('.groupName').text(groupInfo.groupName);
+                    $('.groupId').text('群ID：' + groupInfo.groupId);
+                    var groupProfile = groupInfo.content ? groupInfo.content : '暂时没有群组简介';
+                    $('.groupProfile').text(groupProfile);
+                    $('.groupCategory').text(groupInfo.categoryContent);
+                    $('.createTime').text(groupInfo.datetime);
+                    $('.memberNum').text(groupInfo.memberNum + '人');
+                    $('.groupAvatar').attr('src', groupInfo.groupAvatar);
+                    $('.groupAvatar').attr('src', groupInfo.groupAvatar);
+
+                    if (groupInfo.groupBgImage.lastIndexOf('avatar.png') != (groupInfo.groupBgImage.length - 10) ) {
+                        $('.shareTop').css("background","url("+ groupInfo.groupBgImage + ")");
+                    }
+
+                    var avatarHtml = '';
+                    $.each(groupInfo.userAvatars, function (i, avatar) {
+                        avatarHtml += ' <img src="'+ avatar +'" alt="">';
+                    });
+
+                    $('#memberNum').prepend(avatarHtml);
+
+                    //<!-- <a href="maiguoer://group.maiguoer.com?uid=6933280&groupId=1507843">打开app</a><br/>  -->
+                    wakeUpApp('maiguoer://group.maiguoer.com?uid='+ uid +'&groupId=' + groupId);
+
+                } else {
+                    var msg = res.msg ? res.msg : '请求出错,请重试！';
+                    showTip(msg);
+                }
+            },
+            error: function (res) {
+                var msg = res.msg ? res.msg : '请求出错,请重试！';
+                showTip(msg);
+            },
+            complete:function () {
+                closeLoading();
+            }
+        });
+    }
+</script>
+
+
+</body>
+</html>

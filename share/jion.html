@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="full-screen" content="yes">
+    	<!--<br />-->
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>注册成功</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="css/register_jion.css"/>
+	</head>
+	<script>
+        // px与rem单位的换算
+        (function () {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        })();
+
+    </script>
+	<body>
+	<div class="jion">
+			<div class="header">
+				<a href="register.html"> < </a>
+				<span class="resp">注册</span>
+			</div>
+			<div class="content">
+				<div class="image01"><img src="../images/ZClogo.png"/></div>
+				<div class="successful">注册成功</div>
+				<p>进入[进入脉果儿]了解更多精彩内容</p>
+			</div>
+			<div class="download">
+				<a href="javascript:">
+					<button id="join" type="button">立即下载</button>
+				</a>
+   			</div>
+		</div>
+	</body>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/common.js?v=20181018"></script>
+	<script>
+        var Request = getRequest();
+        var uid = Request['uid'] ? Request['uid'] : '100000';
+        // var loc = location.href;
+        // var n1 = loc.length;//地址的总长度
+        // var n2 = loc.indexOf("=");//取得=号的位置
+        // var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+		$('#join').click(function () {
+            wakeUpAppOrDownload('maiguoer://home.maiguoer.com?uid=' + uid);
+        });
+		console.log(uid);
+	</script>
+</html>

@@ -1,0 +1,198 @@
+html {
+    background-color: black;
+}
+html,body,div,span,h1,p,a{
+    margin:0;
+    padding:0;
+}
+body {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.header{
+    height:0.88rem;
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: 0.3rem;
+
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.prism-ErrorMessage{
+    /*opacity: 0;*/
+    display: none!important;
+}
+.video-area{
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+}
+.video-top{
+    display: flex;
+    height: 1.25rem;
+    width: 100%;
+    background-color: rgba(33, 33, 33, 0.46);
+    position: absolute;
+    z-index: 1;
+}
+.video-top,.top-left{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.top-left .left-img{
+    display: flex;
+    width: 0.8rem;
+    height: 0.8rem;
+    align-items: flex-end;
+    justify-content: flex-end;
+    background-image:url("http://app.img.maiguoer.com/member/avatar.png");
+    background-size: cover;
+    border-radius: 0.5rem;
+    margin-left: 0.4rem;
+}
+.top-left .left-img img{
+    width: 0.32rem;
+    height: 0.32rem;
+    display: none;
+}
+.top-left .left-content{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    margin-left: 0.22rem;
+    color: #FFFFFF;
+}
+.video-top .top-right{
+    color: #FFFFFF;
+    background-color: #DD2727;
+    border-radius: 0.1rem;
+    width: 1rem;
+    height: 0.42rem;
+    text-align: center;
+    margin-right: 0.3rem;
+    font-size: 0.24rem;
+    line-height: 0.42rem;
+}
+.left-content .content-top, .left-content .content-bottom{
+    font-size: 0.22rem;
+}
+.video-bottom {
+    display: flex;
+    height: 1.25rem;
+    width: 100%;
+    background-color: rgba(33, 33, 33, 0.46);
+    position: absolute;
+    /*bottom: 0;*/
+    z-index: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.bottom-left, .bottom-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    font-size: 0.24rem;
+}
+.video-bottom .bottom-left .left-img img,.video-bottom .bottom-right .right-img img{
+    width: 0.46rem;
+    height: 0.46rem;
+}
+.left-content,.right-content{
+    color: #FFFFFF;
+}
+.prism-player .prism-big-play-btn .outter{
+    border: none!important;
+}
+.prism-big-play-btn{
+    background: url("../images/video.png") no-repeat!important;
+    background-size: cover!important;
+}
+.prism-player .prism-cc-btn,.prism-setting-btn,.prism-volume{
+    display: none;
+}
+.video-top,.video-bottom{
+    transition: width 2s;
+    -moz-transition: width 2s;	/* Firefox 4 */
+    -webkit-transition: width 2s;	/* Safari 和 Chrome */
+    -o-transition: width 2s;	/* Opera */
+}
+.to-app{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    position: absolute;
+    z-index: 1002;
+    width:4.95rem;
+    height:3.62rem;
+    background:rgba(255,255,255,1);
+    font-size: 0.24rem;
+    border-radius: 0.1rem;
+    align-items: center;
+    justify-content: space-around;
+    display: none;
+}
+.to-app .content-top{
+    display:flex;
+    height: 1.41rem;
+    align-items: center;
+    border-bottom: 1px solid rgba(238,238,238,1);
+}
+.to-app .content-top .app-img{
+    width: 0.71rem;
+    height: 0.7rem;
+    background-image: url("../images/favicon.ico");
+    border-radius: 0.1rem;
+}
+.to-app .content-top .app-desc{
+    width: 2.4rem;
+    margin-left: 0.1rem;
+}
+.to-app .btn-close{
+    position: absolute;
+    right: 0.05rem;
+    top: 0.05rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    text-align: center;
+    line-height: 0.5rem;
+    font-size: 0.35rem;
+}
+.to-app .btn-go{
+    width: 2.75rem;
+    height: 0.61rem;
+    background: rgba(221,39,39,1);
+    text-align: center;
+    line-height: 0.61rem;
+    border-radius: 0.1rem;
+    color: white;
+}
+.btn-close img{
+    width:0.24rem;
+    height:0.24rem;
+}
+.video-desc{
+    position: absolute;
+    font-size: 0.24rem;
+    bottom: 1.24rem;
+    z-index: 1;
+    color: #ffffff9c;
+    left: 0.2rem;
+    width: 95%;
+    word-break: break-all;
+}
+.prism-info-display{
+    width: 50%!important;
+}
+.prism-controlbar{
+    bottom: 4px!important;
+}

@@ -1,0 +1,501 @@
+<!--<scripti>window.location.href = "http://www.maiguoer.com/data/download/";</scrpt>-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="full-screen" content="yes">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--<br />-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--<meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+    <title>注册</title>
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="css/app_services.css">
+    <link rel="stylesheet" href="css/register.css?v=20180329">
+    <link rel="stylesheet" type="text/css" href="font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="font/demo.css"/>
+    <script>
+        // px与rem单位的换算
+        (function () {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        })();
+    </script>
+</head>
+<body>
+	<div class="SkinBG">
+    <div class="blackBG">
+        <div id="registerPage">
+            <div class="logoBox">
+                <img class="logo" src="../images/ZClogo.png" alt=""/>
+                <p class="logoBox_name">导师名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <img class="image02" src="images/img/register_line@2x.png" alt="" />
+                <p class="logoBox_daoshi">ID：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <img class="image02" src="images/img/register_line@2x.png" alt="" />                
+                              
+            </div>
+            <form action="">
+            	<div class="passportForm tutor">
+                <!--<div id="recommender" class="TSize">-->
+                    <!--<div id="noUid">-->
+                        <!--<span>导师ID号</span>-->
+                        <!--<input class="formItemRight" type="text" placeholder="请填写推荐人的脉果ID" id="puid" autocomplete="off">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="form_zhuce ">
+                    <span class="tubiao iconfont icon-renbudaiwaiquan"></span>
+                    <input class="formItemRight" type="text" placeholder="请输入昵称" id="username" >
+                </div>
+                <div class="form_zhuce">
+                    <span class="tubiao iconfont icon-mima"></span>
+                    <input class="formItemRight " type="password" placeholder="请输入密码（6~20位字符）" id="password" >
+                </div>
+            </div>
+            <div class="passportForm">
+                <div class="form_zhuce">
+                	<span class="tubiao iconfont icon-zhucedenglushoujihao"></span>
+                    <input class="formItemRight reg_input" type="text" placeholder="请输入注册手机号码" id="telephone" >
+                </div>
+                <div class="form_zhuce">
+                	<span class="tubiao iconfont icon-shoujiyanzhengma"></span>
+                  <input class="inpue_num " type="number" placeholder="请输入注册验证码" id="verifycode" >|
+                  <span class="span" id="getVerifyCode">获取验证码</span>
+                </div>
+            </div>
+            <a href="javascript:void(0);">
+                <div class="formCont">
+                    <button type="button" id="submitBtn">立即注册</button>
+                </div>
+            </a>
+            </form>
+            <div class="forget">
+                <span class="hint">注册即表示您同意</span><a href="javascript:void(0);" class="showService">《脉果儿服务条款》</a>
+            </div>
+        </div>
+    </div>
+	</div>
+	<div class="liulan">
+   	<div class="how">
+   		[ 脉果儿App ] 能做什么?
+   	</div>
+   	<div class="video_dome">
+   		<div class="video_left fl">
+   			<p class="font_red">一、视频动态</p>
+   			<p class="font_gray">记录生活精彩点滴</p>
+   		</div>
+   		<div class="video_right fl">
+   			<img src="images/img/register_bootpage_noe@2x.png"/>
+   		</div>
+   	</div>
+   	<div class="gray_xian"></div>
+   	<div class="video_dome">
+   		<div class="video_left fl">
+   			<img src="images/img/register_bootpage_two@2x.png"/>
+   		</div>
+   		<div class="video_right fl">
+   			<p class="font_red">二、移动电商</p>
+   			<p class="font_gray">随时随地想购就购</p>
+   		</div>
+   	</div>
+   	<div class="gray_xian"></div>
+   	<div class="video_dome">
+   		<div class="video_left fl">
+   			<p class="font_red">三、社交聊天</p>
+   			<p class="font_gray">茫茫人海遇见有趣</p>
+   		</div>
+   		<div class="video_right fl">
+   			<img src="images/img/register_bootpage_three@2x.png"/>
+   		</div>
+   	</div>
+   	<div class="gray_xian"></div>
+   	<div class="video_dome">
+   		<div class="video_left fl">
+   			<img src="images/img/register_bootpage_four@2x.png"/>
+   		</div>
+   		<div class="video_right fl">
+   			<p class="font_red">四、娱乐互动</p>
+   			<p class="font_gray">神兽萌宠任你选</p>
+   		</div>
+   	</div>
+   	<div class="gray_xian"></div>
+   	<div class="li_jion">
+   		<a href="#">
+   			<button id="jion" type="button">立即加入</button>
+   		</a>
+   	</div>
+	</div>
+<!--脉果儿服务条款-->
+	<div id="servicePage" style="display: none">
+    <header>
+        <h1 style="position: static;">
+            <a class="back" href="register.html">返回</a>
+            <span class="title">脉果儿APP服务条款</span>
+        </h1>
+    </header>
+    <div class="content" style="background: #fff">
+        <section>
+            <div class="list">
+                <h2>1、服务条款的确认和接纳</h2>
+                <p>
+                    脉果儿APP的各项内容和服务的所有权归深圳市脉果儿网络科技有限责任公司（以下简称：本公司或脉果儿）拥有。用户接受本服务之前，请务必仔细阅读本条款。特别注意字体加粗有下划线的条款。用户使用服务，或通过完成注册程序，表示用户了解并完全接受所有服务条款。</p>
+            </div>
+            <div class="list">
+                <h2>2、用户同意</h2>
+                <p>本公司APP将公开用户的姓名、地址、帐号，但不会公开电话号码等信息，并且需要上传用户通讯录信息。</p>
+                <ul>
+                    <li>用户在本网站和APP中的任何行为必须遵循：</li>
+                    <li>(1) 传输资料时必须符合中国有关法律法规。</li>
+                    <li>(2) 不得使用信息服务进行违法犯罪或有损公序良俗的行为。</li>
+                    <li>(3) 不干扰或扰乱网络服务秩序。</li>
+                    <li>(4) 遵守所有使用服务的有关互联网协议、规定、惯例。用户的行为准则是以互联网法规，政策、惯例为根据的。</li>
+                </ul>
+            </div>
+            <div class="list">
+                <h2>3、服务条款的修改</h2>
+                <p>
+                    本公司有权在必要时修改本服务条款内容，修改后的服务条款将会在官网、页面上公布，公布之日即生效。若用户不接受所改动的内容，用户有权主动注销自己的会员资格。如果您不注销自己的会员资格，则视为接受修改后的服务条款。本公司对服务条款在合法范围内拥有最终解释权。
+                </p>
+            </div>
+            <div class="list">
+                <h2>4、用户的帐号、密码和安全性</h2>
+                <p>
+                    一旦成功注册成为会员，每个用户将有一个密码和用户名。用户不应将其用户名、密码转让或出借予他人使用。因黑客行为或用户的保管疏忽导致用户名、密码遭他人非法使用、盗取或对用户造成损失，本公司不承担任何责任。另外，每个用户都要对以其用户名进行的所有活动和事件承担责任。用户有权变更账户之密码。用户若发现任何第三方非法使用用户帐号或存在安全漏洞的情况，请及时告知本公司。用户若利用漏洞进行不正当的操作以牟取利益，公司有权对其进行封号处理，若因此为本公司或其他用户造成损失，该用户应承担相应的法律责任。</p>
+            </div>
+            <div class="list">
+                <h2>5、拒绝提供担保</h2>
+                <p>
+                    用户明确同意使用本公司服务，由用户个人承担风险。本公司努力维护APP系统稳定运行，但是本公司APP不担保服务一定满足用户的要求，也不担保服务不会中断，对服务的及时性、安全性、准确性都不作担保。同时本公司APP不保证能过长期无错误运营，也不保证服务器不受病毒或者其他故障的侵扰。用户了解并接受：任何通过服务取得的信息资料的可靠性有用性取决于用户自己的判断，用户自行独立承担所有风险和责任。
+                </p>
+            </div>
+            <div class="list">
+                <h2>6、有限责任</h2>
+                <p><b>卖家表述的对买家有重大利害关系的格式条款内容应当显著，且不得低于脉果儿规则的要求，同时不存在免除卖家自身应当承担的责任、加重买家责任、排除买家主要权利等内容，否则该条款无效。</b></p>
+            </div>
+            <div class="list">
+                <h2>7、对用户信息的存储和限制</h2>
+                <p>本公司APP不对用户发布信息的删除或储存失败负责，本公司有判定用户的行为是否符合服务条款的要求和精神的保留权利。如果用户违背了服务条款的规定，有中断对其提供服务的权利。 </p>
+            </div>
+            <div class="list">
+                <h2>8、结束服务</h2>
+                <p>本网站及APP可随时根据实际情况中断一项或多项服务，不需对任何个人或第三方负责或知会。</p>
+                <ul>
+                    <li>同时用户若反对任何服务条款的建议或对后来的条款修改有异议，或对服务不满，用户可以行使如下权利：</li>
+                    <li>(1) 不再使用本公司的服务。</li>
+                    <li>(2) 通知本公司停止对该用户的服务。</li>
+                </ul>
+            </div>
+            <div class="list">
+                <h2>9、信息内容的所有权</h2>
+                <p>
+                    本公司的信息内容包括：文字、软件、声音、相片；以及其它信息，所有信息内容受著作权法、商标法、专利法以及其他相关法律法规的保护。用户仅能在授权范围内使用这些内容，而不能擅自复制、发布、传播与此相关的信息内容、或创造与内容有关的派生产品。</p>
+            </div>
+            <div class="list">
+                <h2>10 隐私保护条款</h2>
+                <p>本公司将严格保密用户的个人隐私信息，承诺未经过您的同意不得披露您的个人隐私信息。</p>
+                <ul>
+                    <li>但在以下情形下，本公司将无法再提供予您前述保证而披露您的相关信息。这些情形包括但不限于：</li>
+                    <li>* 为了您的交易顺利完成，我们不得不把您的某些信息，如您的姓名、联系电话等提供给相关方如物流服务方，以便于他们及时与您取得联系，提供服务。</li>
+                    <li>* 当您在本公司APP的行为违反服务条款，或可能损害他人权益或导致他人遭受损害，本公司将披露您的个人隐私信息用于辨识、联络或采取法律行动所必要的行动。</li>
+                    <li>* 法律法规所规定的必须披露或公开的个人隐私信息。</li>
+                    <li>* 当司法机关或其它有权机关依法执行公务，要求提供特定个人隐私信息时，我们必须给予必要的配合。</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+	</div>
+</body>
+</html>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/common.js?v=20181018"></script>
+<script src="js/md5.js"></script>
+<script src="js/gt.js"></script>
+<script>
+    var verifyCodeFlag = true;
+    var handlerEmbed = function (captchaObj) {
+        captchaObj.onReady(function () {
+            $("#wait").hide();
+        }).onSuccess(function () {
+            var result = captchaObj.getValidate();
+            if (!result) {
+                return alert('请完成验证');
+            }
+
+            //手机号
+            var telephone = $('#telephone').val();
+
+            //发送验证码
+            $.ajax({
+                type: 'POST',
+                url: 'v2.0/register/send_sms',
+                async: false,
+                data: {mobile: telephone,geetest_challenge:result.geetest_challenge,geetest_validate:result.geetest_validate,geetest_seccode:result.geetest_seccode},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 0) {
+                        timeCounter();
+                    } else {
+                        var msg = res.msg ? res.msg : '请求验证码失败请重试';
+                        showTip(msg);
+                    }
+                },
+                error: function (res) {
+                    var msg = res.msg ? res.msg : '请求验证码失败请重试';
+                    showTip(msg);
+                },
+                complete: function () {
+                    verifyCodeFlag = true;
+                }
+            });
+        });
+
+        $('#getVerifyCode').click(function () {
+
+            // var puid = $('#puid').val();
+            // if (puid.length == 0) {
+            //     showTip('请输入导师号');
+            //     return false;
+            // }
+
+            //用户名
+            var nickname = $('#username').val();
+            if (nickname.length == 0 ) {
+                showTip('请填写用户昵称');
+                return false;
+            }
+
+            //密码
+            var password = $('#password').val();
+            if (password.length < 6 || password.length > 20) {
+                showTip('密码为6-20个字符');
+                return false;
+            }
+
+            //手机号
+            var telephone = $('#telephone').val();
+            if (!(/^[1][3456789][0-9]{9}$/.test(telephone))) {
+                showTip('请输入正确的手机号码');
+                return false;
+            }
+
+            if (!verifyCodeFlag) {
+                return false;
+            }
+
+            verifyCodeFlag = false;
+
+            //校验手机号
+            var is_register = true;
+
+            //校验手机号是否注册
+            $.ajax({
+                type: 'POST',
+                url: 'v2.0/register/check_mobile',
+                async: false,
+                data: {mobile: telephone},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code != 0) {
+                        var msg = res.msg ? res.msg : '手机号校验失败请重试';
+                        showTip(msg);
+                        return false;
+                    } else {
+                        is_register = false;
+                    }
+                },
+                error: function (res) {
+                    var msg = res.msg ? res.msg : '手机号校验失败请重试';
+                    showTip(msg);
+                    return false;
+                },
+                complete:function () {
+                    verifyCodeFlag = true;
+                }
+            });
+
+            if (is_register)
+                return false;
+
+            captchaObj.verify();
+        });
+    };
+
+    $.ajax({
+        // 获取id，challenge，success（是否启用failback）
+        url: "web/StartCaptchaServlet.php?t=" + (new Date()).getTime(), // 加随机数防止缓存
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            // 使用initGeetest接口
+            // 参数1：配置参数
+            // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+            initGeetest({
+                // 以下 4 个配置参数为必须，不能缺少
+                gt: data.gt,
+                challenge: data.challenge,
+                offline: !data.success, // 表示用户后台检测极验服务器是否宕机
+                new_captcha: data.new_captcha, // 用于宕机时表示是新验证码的宕机
+
+                product: "bind", // 产品形式，包括：float，popup
+                width: "300px"
+            }, handlerEmbed);
+        }
+    });
+</script>
+<script>
+
+    $(document).ready(function () {
+        var Request = getRequest();
+        var uid = Request['uid'] ? Request['uid'] : '100000';
+            $.ajax({
+                type: 'GET',
+                url: 'v2.0/share/invite',
+                data: {uid: uid},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.data && res.data.memberInfo) {
+                        info = res.data.memberInfo;
+                        $('.logoBox_name').html('导师名称：' + info.username);
+                        $('.logoBox_daoshi').html('ID:' + info.uid);
+                        // var html =
+                        //     '<div id="hasUid">' +
+                        //     '   <div class="left_area">' +
+                        //     '       <img id="pavatar" src="' + info.avatar + '">' +
+                        //     '   </div>' +
+                        //     '   <div class="right_area">' +
+                        //     '       <div><span>导师昵称:<span><span id="pusername">' + info.username + '</span></div>' +
+                        //     '       <div><span>导师ID号:</span><input readonly="readonly" class="formItemRight" type="text" value="' + info.uid + '" id="puid" autocomplete="off"></div>' +
+                        //     '   </div>' +
+                        //     '</div>';
+                        // $('#noUid').remove();
+                        // $('#recommender').html(html).addClass('hasUid');
+                    }
+                }
+            });
+
+        $(".reg_input").keyup(function(){
+            this.value = this.value.replace(/\s+/g,'');
+        });
+
+
+        $("#password").blur(function(){
+            var password = $(this).val();
+            if (password.length < 6 || password.length > 20) {
+                showTip('密码为6-20个字符');
+                return false;
+            }
+        });
+
+        var submitFlag = true;
+        //确定按钮
+        $('#submitBtn').click(function () {
+
+            //导师号
+            // var puid = $('#puid').val();
+            // if (puid.length == 0) {
+            //     showTip('请输入导师号');
+            //     return false;
+            // }
+
+            //用户名
+            var nickname = $('#username').val();
+            if (nickname.length == 0 ) {
+                showTip('请填写用户昵称');
+                return false;
+            }
+
+            //密码
+            var password = $('#password').val();
+            if (password.length < 6 || password.length > 20) {
+                showTip('密码为6-20个字符');
+                return false;
+            }
+            //手机号
+            var mobile = $('#telephone').val();
+            if (!(/^[1][3456789][0-9]{9}$/.test(mobile))) {
+                showTip('请输入正确的手机号码');
+                return false;
+            }
+
+            //验证码
+            var verifycode = $('#verifycode').val();
+            if (verifycode.length != 6 ) {
+                showTip('请输入正确的验证码');
+                return false;
+            }
+
+            if (!submitFlag) {
+                return false;
+            }
+
+            submitFlag = false;
+
+            $.ajax({
+                type: 'POST',
+                url: 'v2.0/register',
+                data: {nickname:nickname, password:hex_md5(password), mobile:mobile, verifycode:verifycode, puid:uid},
+                dataType: 'json',
+                beforeSend:function(){
+                    btn_loading();
+                },
+                success:function (res) {
+                    if (res.data && res.data.loginInfo) {
+                        var info = res.data.loginInfo;
+
+                        showTip('注册成功!');
+                         $('#submitBtn').attr('disabled', true).css('backgroundColor', '#8a8a8a');
+                        //唤起APP 或者去到下载页面
+                        window.location.href='jion.html?uid=' + info.uid;
+                        // wakeUpAppOrDownload('maiguoer://home.maiguoer.com?uid=' + info.uid);
+
+                    } else {
+                        var msg = res.msg ? res.msg : '注册失败请重试';
+                        showTip(msg);
+                    }
+                },
+                error: function (res) {
+                    var msg = res.msg ? res.msg : '注册失败请重试';
+                    showTip(msg);
+                },
+                complete:function(){
+                    submitFlag = true;
+                    closeLoading();
+                }
+            });
+        });
+
+
+        //切换页面
+        $('.showService').click(function () {
+            togglePage('servicePage');
+        });
+				
+    });
+
+    var wait=60;
+
+    function timeCounter() {
+
+        if (wait == 0) {
+            $('#getVerifyCode').removeAttr("disabled");
+            $('#getVerifyCode').val('获取验证码');
+            $('#getVerifyCode').text('获取验证码');
+            wait = 60;
+        } else {
+            $('#getVerifyCode').attr("disabled", true);
+            $('#getVerifyCode').val("重新发送(" + wait + ")");
+            $('#getVerifyCode').text("重新发送(" + wait + ")");
+            wait--;
+            setTimeout(function() {
+                timeCounter()
+            }, 1000);
+        }
+    }
+
+
+    //切换div显示
+    function togglePage(pageId) {
+
+    		$('#' + pageId).show().siblings('div').hide()
+    	
+    }
+
+</script>

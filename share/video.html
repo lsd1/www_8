@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="IE=edge" >
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+<title>脉果儿小视频分享</title>
+<script>
+    var w = document.documentElement.clientWidth || document.body.clientWidth;
+    var h = document.documentElement.clientHeight || document.body.clientHeight;
+    fontsizeWidth = w  > h ? h : w;
+    document.documentElement.style.fontSize = fontsizeWidth / 7.5 + 'px';
+</script>
+<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.7.1/skins/default/aliplayer-min.css" />
+<link rel="stylesheet" href="./css/video.css" />
+</head>
+<body>
+<div class="video-top">
+    <div class="top-left">
+        <div class="left-img" id="avatar"><img id="auth" src=""></div>
+        <div class="left-content">
+            <p class="content-top" id="username">　</p>
+            <p class="content-bottom"><span id="date">0000-00-00 00:00:00</span> · <span id="playTimes">0</span>次播放</p>
+        </div>
+    </div>
+    <div class="top-right show-tips" >关注</div>
+</div>
+<div class="video-area" id="player-con"></div>
+<div class="empty">
+    <span class="empty_text">该动态不存在!</span>
+</div>
+<span class="video-desc" id="title" ></span>
+<div class="video-bottom show-tips">
+    <div class="bottom-left">
+        <div class="left-img">
+            <img src="./images/like.png"/>
+        </div>
+        <div class="left-content">赞 · <span id="praise">0</span></div>
+    </div>
+    <div class="bottom-right">
+        <div class="right-img">
+            <img src="./images/chat.png"/>
+        </div>
+        <div class="right-content">评论 · <span id="comment">0</span></div>
+    </div>
+</div>
+<div class="to-app-box">
+    <div class="to-app">
+        <div class="btn-close"><img src="./images/close.png" /></div>
+        <div class="content-top">
+            <div class="app-img"></div>
+            <div class="app-desc">上脉果儿APP发现更多精彩</div>
+        </div>
+        <div class="content-bottom">
+            <div class="btn-go">
+                下载/打开脉果儿
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//g.alicdn.com/de/prismplayer/2.7.1/aliplayer-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/common.js?v=20181018"></script>
+<script>
+var coverUrl = '';
+function getVid(){
+    return new Promise(function(resolve, reject){
+        $.ajax({
+            url: 'v2.0/share/zone_info?lang=0&zid='+getRequest().zid,
+            type:'GET',
+            success:function (res) {
+                var res = JSON.parse(res);
+                if(res.code==0){
+                    var zoneDetail = res.data.zoneDetail;
+                    //渲染界面
+                    renderMemberInfo(zoneDetail);
+                    coverUrl = zoneDetail.zoneVideo.coverUrl;
+                    resolve(zoneDetail.zoneVideo.videoId);
+                }else{
+                    $('.empty_text').html(res.msg);
+                    $('.empty').show();
+                    return false;
+                }
+            },
+            error:function(){
+
+            }
+        });
+    });
+}
+
+function getPlayAuth(vid){
+    return new Promise(function(resolve, reject){
+        $.ajax({
+            url: 'v2.0/share/zone_video_play_auth?lang=0&videoId=' + vid,
+            type:'GET',
+            success:function (res) {
+                var res = JSON.parse(res);
+                if(res.code == 0){
+                    resolve(res.data.video.playAuth);
+                }else{
+                    $('.empty_text').html(res.msg);
+                    $('.empty').show();
+                    return false;
+                }
+            },
+            error:function(){
+            }
+        });
+    });
+}
+
+function initVideo(vid, playauth){
+    var player = new Aliplayer({
+        "id": "player-con",
+        "cover": coverUrl,
+        "vid":vid,
+        "playauth":playauth,
+        "width": "100%",
+        "height": ($(document).height()) + 'px',
+        "autoplay": false,
+        "isLive": false,
+        "rePlay": false,
+        "playsinline": true,
+        "preload": false,
+        "controlBarVisibility": "hover",
+        "useH5Prism": true,
+        "skinLayout":[
+            {name: "bigPlayButton", align: "cc", x: 30, y: 80},
+            {
+                name: "H5Loading", align: "cc"
+            },
+            {name: "errorDisplay", align: "tlabs", x: 0, y: 0},
+            {name: "infoDisplay"},
+            {name:"tooltip", align:"blabs",x: 0, y: 56},
+            {name: "thumbnail"},
+            {
+                name: "controlBar", align: "blabs", x: 0, y: 0,
+                children: [
+                    {name: "progress", align: "blabs", x: 0, y: 44},
+                    {name: "playButton", align: "tl", x: 15, y: 12},
+                    {name: "timeDisplay", align: "tl", x: 10, y: 7},
+                    {name: "fullScreenButton", align: "tr", x: 10, y: 12},
+                    {name:"subtitle", align:"tr",x:15, y:12},
+                    {name:"setting", align:"tr",x:15, y:12},
+                    {name: "volume", align: "tr", x: 5, y: 10}
+                ]
+            }
+        ]
+    }, function (player) {
+        sessionStorage.setItem('fail', '');
+        console.log("播放器创建了。");
+    });
+
+    player.on('error',function(){
+        var fail = sessionStorage.getItem('fail');
+        if(fail){
+            if(fail > 2){
+                return false;
+            }else{
+                sessionStorage.setItem('fail', parseInt(fail) + 1);
+            }
+        }else{
+            sessionStorage.setItem('fail', 1);
+        }
+        location.reload();
+    });
+
+    //暂停播放。
+    player.on('pause',function () {
+        $('.video-top,.video-bottom').show(1000);
+    });
+
+    //播放结束。
+    player.on('ended',function () {
+        $('.video-top,.video-bottom').show(1000);
+        $(".prism-big-play-btn").css('display','block!important');
+    });
+    $(".prism-big-play-btn").click(function () {
+        $(this).hide(1000);
+        $('.video-top,.video-bottom').hide(1000);
+        return false;
+    });
+}
+
+function renderMemberInfo(zoneDetail) {
+    $("#avatar").css('background-image', "url("+zoneDetail.memberInfo.avatar+")");
+    $("#username").text(zoneDetail.memberInfo.username);
+    $("#date").text(zoneDetail.datetime);
+    $("#playTimes").text(zoneDetail.view);
+    $("#praise").text(zoneDetail.praise);
+    $("#comment").text(zoneDetail.comment);
+    $("#title").text(zoneDetail.title);
+    if(zoneDetail.memberInfo.businessAuthStatus === 1){
+        $("#auth")[0].src = './images/auth_2.png';
+        $("#auth").show();
+    }else if(zoneDetail.memberInfo.authStatus === 1){
+        $("#auth")[0].src = './images/auth_1.png';
+        $("#auth").show();
+    }
+}
+
+getVid().then(function(vid){
+    getPlayAuth(vid).then(function(playauth){
+        initVideo(vid, playauth);
+    });
+});
+
+</script>
+<script>
+$('.btn-close').click(function () {
+    $('.to-app-box').hide();
+});
+
+$('.show-tips').click(function () {
+    $('.to-app').css('margin-top', h/2-$('.to-app').height()/2);
+    $('.to-app-box').show();
+});
+
+$('.btn-go').click(function () {
+    //唤起APP 或者去到下载页面
+    wakeUpAppOrDownload('maiguoer://home.maiguoer.com?uid=');
+});
+
+function wakeUpApp(url, time) {
+    var timeout = time ? time : 1500;
+    setTimeout(function () {
+        window.location.href = url;
+    }, timeout);
+}
+
+function wakeUpAppOrDownload(wakeUrl, wakeTime) {
+    var timeout = wakeTime ? wakeTime : 1000;
+    try {
+        wakeUpApp(wakeUrl, timeout);
+    } catch (error) {}
+    setTimeout(function () {
+        window.location.href = 'http://www.maiguoer.com/data/download/';
+    }, timeout + 1000);
+}
+</script>
+</body>
