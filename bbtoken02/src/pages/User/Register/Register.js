@@ -50,7 +50,7 @@ class Register extends PureComponent {
         };
 
     }
-    @backPrev('/exchange/BTC/USDT')
+    @backPrev('/exchange/MDB/USDT')
     componentDidMount() {
             const { dispatch } = this.props;
             dispatch({
@@ -289,7 +289,7 @@ class Register extends PureComponent {
                    <div className="container ">
                    <div className="flex-box register-box">
                       <Form className="register-left" onSubmit={this.handleSubmit} layout="vertical">
-                          <p className="register-title">{intl.get('USER_REGISTER_EXBB')}</p>
+                          <p className="register-title">{intl.get('USER_REGISTER_BDAEX')}</p>
                           <dl className="register-tab flex-box white mb-md">
                              <dd className={cx('register-item',{active:active===1})}  onClick={()=>this.switchHandle(1)}>{intl.get('USER_MOBILE_REG')}</dd>
                              <dd className={cx('register-item',{active:active===2})} onClick={()=>this.switchHandle(2)}>{intl.get('USER_MAILBOX_REG')}</dd>

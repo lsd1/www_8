@@ -38,7 +38,7 @@ class Login extends PureComponent  {
     }
 
 
-    @backPrev('/exchange/BTC/USDT')
+    @backPrev('/exchange/MDB/USDT')
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch({

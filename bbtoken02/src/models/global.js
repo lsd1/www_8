@@ -22,7 +22,7 @@ export default {
         url: '',
         USD: 6.5,
         countryData: [],
-        lang: 'zh-CN',
+        lang: 'en-US',
         config: {},
         pathName:''
     },

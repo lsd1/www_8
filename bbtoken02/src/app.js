@@ -61,7 +61,7 @@ class App extends Component {
             initDone: false,
             langTo: null,
             languages:{
-              langs:cookie.get('lang') || 'zh-CN',
+              langs:cookie.get('lang') || 'en-US',
               langHanlde : this.langHanlde
             }
            
@@ -76,14 +76,14 @@ class App extends Component {
             //兼容老版本项目重定向到注册页面
              if(location.hash.includes('agent')){
                 const param=qs.parse(location.hash.split('?')[1]);
-               history.push(`/${cookie.get('lang') || 'zh-CN'}/register/${param.agent}`);
+               history.push(`/${cookie.get('lang') || 'en-US'}/register/${param.agent}`);
              }
              
     }
     server(currentLocale,callback){
       const {dispatch}=this.props;
       const langList=['zh-CN','zh-TW','en-US'];
-      const lang=langList.includes(currentLocale)?currentLocale:'zh-CN';
+      const lang=langList.includes(currentLocale)?currentLocale:'en-US';
        dispatch({
                 type: 'global/fetchGetLang',
                 payload: {
@@ -108,7 +108,7 @@ class App extends Component {
          */
     loadLocales() {
         const pathname = location.pathname.split("/");
-        let currentLocale = navigator.language;
+        let currentLocale = '';
         let lang = cookie.get('lang');
         if (pathname.length >= 2 && pathname[1].length > 0) {
             currentLocale = pathname[1];
@@ -118,7 +118,7 @@ class App extends Component {
                 cookieLocaleKey: "lang"
             });
         } else {
-            cookie.set('lang', ['zh-CN', 'zh-TW'].includes(currentLocale) ? currentLocale : 'zh-CN');
+            cookie.set('lang', ['zh-CN', 'zh-TW','en-US'].includes(currentLocale) ? currentLocale : 'en-US');
         }
         this.server(currentLocale,()=>{
            this.setState({ initDone: true,footInitDone:true, langTo: lang });

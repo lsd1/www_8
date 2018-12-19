@@ -22,7 +22,7 @@ class Protocol extends PureComponent {
         this.state={
         	content:`
 <div data-v-643022ad="" style="white-space: normal; text-indent: 2em; color: #666; font-family: &quot;Helvetica Neue&quot;, Helvetica, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, 微软雅黑, Arial, sans-serif; font-variant-ligatures: normal; orphans: 2; widows: 2; ">
-        本协议是您与服务提供商EXBB之间就使用任何由EXBB网站（http://www.exbb.io）以及EXBB相关公司提供的服务时，所达成的权力义务关系的协议。请确认您已阅读、理解，并接受所有本文包含的条款以及纳入通用数据保护条例（GDPR）的隐私政策。 由于此协议具有法律约束力，请在使用我们的服务前仔细阅读。注册访问和使用EXBB，表示您已同意本协议中所有条款。如有异议，请您保持账户锁定状态（针对现有用户）并停止使用EXBB。为了本协议表述之方便，公司和该网站在本协议中合称使用“我们”或其他第一人称称呼。只要登陆该网站的自然人或其他主体均为本网站的用户，本协议表述之便利，以下使用“您”或其他第二人称。为了本协议表述之便利，我们和您在本协议中合称为“双方”，我们或您单称为“一方”。
+        本协议是您与服务提供商BDAEX之间就使用任何由BDAEX网站（http://www.bdaex.io）以及BDAEX相关公司提供的服务时，所达成的权力义务关系的协议。请确认您已阅读、理解，并接受所有本文包含的条款以及纳入通用数据保护条例（GDPR）的隐私政策。 由于此协议具有法律约束力，请在使用我们的服务前仔细阅读。注册访问和使用BDAEX，表示您已同意本协议中所有条款。如有异议，请您保持账户锁定状态（针对现有用户）并停止使用BDAEX。为了本协议表述之方便，公司和该网站在本协议中合称使用“我们”或其他第一人称称呼。只要登陆该网站的自然人或其他主体均为本网站的用户，本协议表述之便利，以下使用“您”或其他第二人称。为了本协议表述之便利，我们和您在本协议中合称为“双方”，我们或您单称为“一方”。
     </div>
 <p>
     <em data-v-643022ad="" class="paragraph" style="white-space: normal; font-weight: bold; color: #666; font-family: &quot;Helvetica Neue&quot;, Helvetica, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, 微软雅黑, Arial, sans-serif; font-variant-ligatures: normal; orphans: 2; widows: 2; ">重要提示：</em><span style="color: #666; font-family: &quot;Helvetica Neue&quot;, Helvetica, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, 微软雅黑, Arial, sans-serif; font-variant-ligatures: normal; orphans: 2; widows: 2; "></span>
@@ -81,7 +81,7 @@ class Protocol extends PureComponent {
     </li>
     <li>
         <p>
-            5 http://www.exbb.io 为本网站唯一官方对外信息公布平台；
+            5 http://www.bdaex.io 为本网站唯一官方对外信息公布平台；
         </p>
     </li>
     <li>

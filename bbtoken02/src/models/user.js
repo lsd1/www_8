@@ -82,7 +82,7 @@ export default {
                  message.success('登录成功！');
                  Cookies.remove('pathName');
                 yield put({ type: 'save', payload: { userInfo: data.data,isLogin:true } });
-                yield put(routerRedux.push(pathName || `/${Cookies.get('lang') || 'zh-CN'}/exchange/BTC/USDT`));
+                yield put(routerRedux.push(pathName || `/${Cookies.get('lang') || 'en-US'}/exchange/MDB/USDT`));
             } else {
                 callback();
             }

@@ -20,7 +20,7 @@ axios.interceptors.request.use(config => { // 这里的config包含每次请求�
 
     //  存在将api_token写入 request header
     config.headers['x-auth-token'] = `${localStorage.getItem('TOKEN')}`;
-    config.headers['Accept-Language'] = cookie.get('lang') || 'zh-CN';
+    config.headers['Accept-Language'] = cookie.get('lang') || 'en-US';
 
     return config;
 }, err => {

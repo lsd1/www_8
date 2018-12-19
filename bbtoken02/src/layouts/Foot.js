@@ -94,7 +94,7 @@ class Foot extends PureComponent {
         return (
             <footer className="footer flex-box flex-between page-pd" style={{marginTop:footMarginTop}}>
                <div className="footer-left">
-                  <h5 className="footer-title">EXBB</h5>
+                  <h5 className="footer-title">BDAEX</h5>
                   <p className="footer-small mt-md">{intl.get('FOOT_DESC')}</p>
                   <div className="footer-icon-item mt-sm">
                     <Popover content={<div style={{width:100,height:100}}><img src={require('@/assets/images/wchat.jpg')} /></div>} placement="top">
@@ -103,11 +103,11 @@ class Foot extends PureComponent {
                      <Popover content={<div style={{width:100,height:100}}><img src={require('@/assets/images/QQ.jpg')} /></div>} placement="top" >
                         <img className="pointer" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABRklEQVR42sWWzUvDQBDFVdCbbAuCJz9ugk3Ri1glBw9WPUgPbY7ptaL0lKpo6If/eXwDWyhL3ky3IB5+EHZm30smk9lsVVWl0QQpGIICTEEJxiD3saamwQIODMAC/BgsfK5b1+AMfFNBTgnalkHHvGv7aW6YQWKIz8HYMzdMktDAgVIRfgT7y03++kExKoFbNRgo4i2lS84Vk2xp0FBKcy9JBndKqRqSkJKEL7C3hsEu+CQaqSTkJNgLhDSeiUYuwYIELyMMLohGIcEpCZ5GGJwQjRkzeAM7EQbbsqfOgJXomopxOqxEw5rA8QYGR3UvmbXpFehHtGlP9pA2DT60+E5KrA9NyGoSniLK0+Wjgg+7F3AYCB0IwZrkjPiws8f1B3gFk5W1iV97Z+P6Lw+c2385MkMcyCIO/Ywd+rG/LTNP4dfM35Zft2xSLLwACIUAAAAASUVORK5CYII=" />
                       </Popover>
-                      <a target="_blank" href="http://share.newbiyong.com/index.html?url=http://sh//://share.telebox88.com/exbbcommunity?channel=guanwang ">
+                      <a target="_blank" href="http://share.newbiyong.com/index.html?url=http://sh//://share.telebox88.com/bdaexcommunity?channel=guanwang ">
                         <img className="pointer" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADOUlEQVRIS61WTWgcZRh+nm+6JqlGDASEFKqnXqxFvRT1IiqiHrSlEhShElvY7G72Z0IFCwq5qPSSndlNdnbBNGigh1SxLfRgwXqxLagotCWoPRU0EWls1Uo2pjOPTDa7bNbdZKru8Xufn/3en+8dIsIvn598yBizA+B2QHfVKFo0xv84nU7PbyTBTsF8fvoeY6opCQdJ3N8BJwBngwDv2nbibDtMWwPX9d4EdBjg3REuuAbRmS1btC+VSt1s5qwzqFQqsWo1+BDAy9GF1yHngsA8bdvxhfppw2B2dtZaWFg8BeD5fylep31LrjyayWSWw4OGgeN4JRKJ/yheK780lcslDzYMXNfbCeDS/yFe1zDG7Eqn45dWb+A4pU9I7rl9Ay0D/AjAVgB7W/gns9nEHo6Pj/cY03ODxB1RDSR9ZQynu7rMsXg8/ls+X37FGB1r5kv4q6fH9NF1yy8COrGZuIRfAMwYw6OZzPCc45T3Wxbm0unhrx3HGydht2oEgfay1vN4r4PBiqTTAKYHBvpPDw4O+hMTE/f5vilLOJrLJY/XUux9QeLxNhqH6TjeJIlkS/CKBO/WLTNz6FD8WhgL23h+/tooQFviPtsevhCej42Nmb6+e6sAYq0GEkp03VIBYHrd9BHJ3t7u6aGhoZCItbdoRkIfoKdyueT3dXyh4D0s4Zv2GdDkBinSssRzpK5KeA3AxVhMz6VSqZ+bxRzHi5MotzOQ9DYdp/QCyZObFdmy/P6RkZHFVpzrelMAXu/A389KpbJ1aSm4vlGbhi2XyyW6whd227Y7/wiLXRd0nNJlkg+0Mwj/VMRB07xlBY/5vvWZpF9J82o2O3ylNkPdN0maNgZfZrOJ3asGxWLlwSAILnZKk6QlgH+S6F/DVCW8AfB3Uh+044UzYNvJE02PXel9kgc2q0W0uM5ns8nVuWgYFAqFriCInSfxSDSRjvf9IUxnvSHWLZxisTjg+9aZTkWLYDzn+3hmdDTxUx37j5V55MhUb3f38izAZyMINiASPo3Fgpc2XJnNgvm896QxegvgE82pbDGVhM8lvHNbS79ZJEybZA0GAXeQ2i5RpH4EzHfGrBzf7LPlb/zNUOFM31CwAAAAAElFTkSuQmCC" />
                       </a>
                    </div>
-                   <p className="copyright">Copyright © 2017 - &nbsp;&nbsp;EXBB.IO</p>
+                   <p className="copyright">Copyright © 2017 - &nbsp;&nbsp;BDAEX.IO</p>
                </div>
                <div className="footer-right flex-box flex-end">
                   {data.map(data=>{

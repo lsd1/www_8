@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+</head>
+<style>
+    body {
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-direction:column;
+        flex-wrap: wrap;
+        margin: 1.5rem;
+        font-family: sans-serif;
+    }
+    .center {
+       text-align: center;
+    }
+    .left {
+        text-align: left;
+    }
+    .right {
+        text-align: right;
+    }
+    .first-title {
+        font-weight: bold;
+        font-size: larger;
+        color: #2D2E38;
+    }
+    .second-title{
+        font-weight: bold;
+        font-size: large;
+        color: #2D2E38;
+    }
+    .item{
+        margin-top: .5rem;
+    }
+    .item-title{
+        margin-top: .5rem;
+        font-weight: bold;
+        font-size: medium;
+        color: #2D2E38;
+    }
+    .item-content{
+        margin-top: .2rem;
+        text-indent: 2rem;
+        color: #999;
+    }
+    .item-li{
+        margin-top: .2rem;
+        text-indent: 2rem;
+    }
+</style>
+<body>
+    <div class="first-title center">
+        <!--标题一-->
+    </div>
+    <!--<div class="second-title center">-->
+        <!--标题二-->
+    <!--</div>-->
+    <div class="item">
+        <div class="item-title">
+            <!--一级条例标题-->
+        </div>
+        <div class="item-content">
+            <!--一级条例内容或二级条例标题-->
+            <!--<div class="item-li">-->
+                <!--二级条例内容-->
+            <!--</div>-->
+        </div>
+    </div>
+</body>
+<script>
+    noWrap(['second-title', 'first-title']);
+    /**
+     * desc     防止标题换行
+     * params   className
+     * params type:string、object
+     */
+    function noWrap(ele) {
+        var eleArr = [],type = typeof ele;
+        if(type === "object"){
+            for (var i in ele){
+                eleArr.push(ele[i]);
+            }
+        }else if(type === "string"){
+            eleArr.push(ele);
+        }
+
+        for(var j = 0; j < eleArr.length; j++) {
+            var eleHandle = document.querySelector('.' + eleArr[j]),
+                eleStyle = window.getComputedStyle(eleHandle),
+                eleStyleFontSize = Number(eleStyle.fontSize.replace('px', '')),
+                eleContentLength= eleHandle.innerText.length,
+                eleRealWidth = eleStyleFontSize * eleContentLength,
+                eleWidth = eleStyle.width.replace('px', '');
+
+            if(eleRealWidth > eleWidth) {
+                eleHandle.style.fontSize = (eleWidth / (eleContentLength)) + 'px';
+            }
+        }
+    }
+</script>
+</html>

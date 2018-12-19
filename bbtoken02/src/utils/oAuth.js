@@ -42,7 +42,7 @@ export const PrivateDefaultRoute  = ({ component: Component,lang, ...rest }) => 
             render={
                 props => ((findIndex>-1&&!!hasLogin()) ? ( <Redirect to={
                         {
-                            pathname: `/${lang}/exchange/BTC/USDT`,
+                            pathname: `/${lang}/exchange/MDB/USDT`,
                             state: {
                                 from: props.location
                             }

@@ -57,7 +57,7 @@ class Index extends PureComponent {
 
     render() {
         const {children,className,title}=this.props;
-        return (<DocumentTitle title={title ||'EXBB'}><div className={className}>{children}</div></DocumentTitle>);
+        return (<DocumentTitle title={title ||'BDAEX'}><div className={className}>{children}</div></DocumentTitle>);
     }
 }
 export default Index;
