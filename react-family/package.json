@@ -1,0 +1,17 @@
+{
+  "name": "react-family",
+  "version": "1.0.0",
+  "description": "react-family-listen",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "lsd",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.0",
+    "babel-loader": "^8.0.4",
+    "webpack": "^3.12.0"
+  }
+}
