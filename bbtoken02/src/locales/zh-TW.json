@@ -1,4 +1,6 @@
 {
+    "GLOBAL_DEFAULT_COUNTRY":"中國",
+    "GLOBAL_LANG_NAME":"zhName",
     "GLOBAL_DOWN":"APP下載",
     "GLOBAL_CANCEL": "取消",
     "GLOBAL_OK": "確定",
@@ -17,6 +19,7 @@
     "GLOBAL_BANK": "銀行卡",
     "GLOBAL_ALIPAY": "支付寶",
     "GLOBAL_PAYMENT": "支付",
+    "GLOBAL_FM": "飛馬錢包",
     "GLOBAL_QQ": "QQ",
     "GLOBAL_QQ_EMPTY": "QQ號不能為空",
     "GLOBAL_QQ_ERR": "QQ號格式錯誤",

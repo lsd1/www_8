@@ -13,6 +13,7 @@ import { Form, Input, Button, Icon } from 'antd';
 import { Link } from 'dva/router';
 import {pwd} from '@/utils/regular';
 import {backPrev} from '@/utils/decorator';
+import Cookies from 'js-cookie';
 
 const FormItem = Form.Item;
 
@@ -38,7 +39,7 @@ class Login extends PureComponent  {
     }
 
 
-    @backPrev('/exchange/MDB/USDT')
+    @backPrev('/exchange/${Cookies.get("exist_symbol")}')
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch({

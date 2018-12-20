@@ -226,6 +226,25 @@ export async function updateWechat(params) {
 export async function saveWechat(params) {
     return request.post(`${globalData.url}/uc/approve/bind/wechat`,params);
 }
+
+/**
+ * [saveFm 绑定飞马账号]
+ * @param  {[type]} params [description]
+ * @return {[type]}        [description]
+ */
+export async function saveFm(params) {
+    return request.post(`${globalData.url}/uc/approve/bind/fm`,params);
+}
+
+/**
+ * [updateFm 修改飞马账号]
+ * @param  {[type]} params [description]
+ * @return {[type]}        [description]
+ */
+export async function updateFm(params) {
+    return request.post(`${globalData.url}/uc/approve/update/fm`,params);
+}
+
 /**
  * [updatePassword 修改密码]
  * @param  {[type]} params [description]

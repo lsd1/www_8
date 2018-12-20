@@ -17,6 +17,7 @@ import { email, numbers, pwd } from '@/utils/regular';
 import './Register.less';
 import { delay } from '@/utils/utils';
 import {backPrev} from '@/utils/decorator';
+import Cookies from 'js-cookie';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -50,7 +51,7 @@ class Register extends PureComponent {
         };
 
     }
-    @backPrev('/exchange/MDB/USDT')
+    @backPrev('/exchange/${Cookies.get("exist_symbol")}')
     componentDidMount() {
             const { dispatch } = this.props;
             dispatch({
@@ -296,11 +297,11 @@ class Register extends PureComponent {
                           </dl>
                           <FormItem  label={intl.get('USER_NATIONALITY')} >
                               {form.getFieldDecorator('country', {
-                                initialValue: '中国'
+                                initialValue: intl.get('GLOBAL_DEFAULT_COUNTRY')
                               })(
                                 <Select  style={{ width: '100%' }} onChange={this.countryHandle}>
                                   {countryData.map(item=>{
-                                    return (<Option key={item.enName}  area={item.areaCode}  value={item.zhName}>{item.zhName}</Option>);
+                                    return (<Option key={item.enName}  area={item.areaCode}  value={eval("item."+ intl.get('GLOBAL_LANG_NAME'))}>{eval("item."+ intl.get('GLOBAL_LANG_NAME'))}</Option>);
                                   })}
                                 </Select>
                               )}

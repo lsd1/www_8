@@ -20,9 +20,6 @@ import { formatNumber, toFixed, mul } from '@/utils/utils';
 import PayIcon from '../component/PayIcon';
 import Details from '../component/Details';
 
-
-
-
 import '../Trade.less';
 import './Index.less';
 const FormItem = Form.Item;
@@ -62,9 +59,10 @@ const CreateForm = Form.create()(props => {
               })(
                 <Select   style={{ width: '100%' }}>
                       <Option value="">{intl.get('GLOBAL_ALLPAY_MANAGER')}</Option>
-                      <Option value="微信">{intl.get('GLOBAL_WECHAT')}</Option>
+                      {/* <Option value="微信">{intl.get('GLOBAL_WECHAT')}</Option> */}
                       <Option value="支付宝">{intl.get('GLOBAL_ALIPAY')}</Option>
                       <Option value="银联">{intl.get('GLOBAL_PAY')}</Option>
+                      <Option value="飞马">{intl.get('GLOBAL_FM')}</Option>
                 </Select>
               )}
             </FormItem>

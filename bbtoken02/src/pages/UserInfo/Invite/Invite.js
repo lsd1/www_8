@@ -156,7 +156,7 @@ class Invite extends PureComponent {
                  <article className="article flex-box flex-between">
                     <Aside />
                    <section className="content">
-                       <img className="invite-adv" src={require('@/assets/images/Invite.jpg')} alt="" />
+                       <img className="invite-adv" src={require('@/assets/images/Invite.png')} alt="" />
 
                        <Box className="mt-lg" title={intl.get('USERINFO_MY_WAY')}>
                         <div className="user-box ">

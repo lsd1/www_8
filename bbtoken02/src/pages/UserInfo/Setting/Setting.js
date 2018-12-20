@@ -28,6 +28,7 @@ const payForm = {
     cardNo: '',
     ali: '',
     wechat: '',
+    fm: '',
     qrCodeUrl: [],
     branch: ''
 };
@@ -71,7 +72,8 @@ const CreateForm = Form.create()(props => {
                       {/*<Option value={1}>PalPal支付</Option>*/}
                       <Option value={2}>{intl.get('GLOBAL_BANK')}</Option>
                       <Option value={3}>{intl.get('GLOBAL_ALIPAY')}</Option>
-                      <Option value={4}>{intl.get('GLOBAL_WECHAT')}</Option>
+                      {/* <Option value={4}>{intl.get('GLOBAL_WECHAT')}</Option> */}
+                      <Option value={5}>{intl.get('GLOBAL_FM')}</Option>
                 </Select>
               )}
             </FormItem>
@@ -131,10 +133,10 @@ const CreateForm = Form.create()(props => {
                   )}
             </FormItem>
             </Fragment>)}
-            {(status===3||status===4)&&(<Fragment>
-              <FormItem label={`${status===3?intl.get('GLOBAL_ALIPAY'):intl.get('GLOBAL_WECHAT')}${intl.get('USERINFO_PAYMENT_NO')}`} colon={false}  >
-              {form.getFieldDecorator(`${status===3?'ali':'wechat'}`,{
-                initialValue:payInfo[`${status===3?'aliNo':'wechat'}`],
+            {(status!==2)&&(<Fragment>
+              <FormItem label={`${status === 3 ? intl.get('GLOBAL_ALIPAY') : status===4 ? intl.get('GLOBAL_WECHAT') : intl.get('GLOBAL_FM')}${intl.get('USERINFO_PAYMENT_NO')}`} colon={false}  >
+              {form.getFieldDecorator(`${status === 3 ? 'ali' : status === 4 ? 'wechat' : 'fm'}`,{
+                initialValue:payInfo[`${status === 3 ? 'ali' : status === 4 ? 'wechat' : 'fm'}`],
                 rules: [{ required: true, message:  `${intl.get('USERINFO_PAYMENT_NO')}${intl.get('GLOBAL_EMPTY')}` }]
               })(
                 <Input placeholder={`${intl.get('USERINFO_PLEASE_ENTER')}${intl.get('USERINFO_PAYMENT_NO')}`}  />
@@ -282,7 +284,7 @@ class Setting extends PureComponent {
         let paydata = {};
         let qrCodeUrl = [];
         if (type === 2) {
-            paydata = userPayment[{ 2: 'bankInfo', 3: 'alipay', 4: 'wechatPay' }[state]];
+            paydata = userPayment[{ 2: 'bankInfo', 3: 'alipay', 4: 'wechatPay', 5: 'fmPay' }[state]];
             paydata.qrCodeUrl=paydata.qrCodeUrl || paydata.qrWeCodeUrl;
             qrCodeUrl = paydata.qrCodeUrl ? [{ uid: '-1', url: paydata.qrCodeUrl}] : [];
         }
@@ -311,7 +313,7 @@ class Setting extends PureComponent {
     handleOk = (value, form) => {
             const { status, type } = this.state;
             const { dispatch,global:{pathName},history } = this.props;
-            const typeWay = { 2: 'user/saveBindBank', 3: 'user/saveBindAlipay', 4: 'user/saveBindWechat' }[status];
+            const typeWay = { 2: 'user/saveBindBank', 3: 'user/saveBindAlipay', 4: 'user/saveBindWechat', 5: 'user/saveBindFm' }[status];
             if (value.qrCodeUrl) {
                 value.qrCodeUrl = value.qrCodeUrl[0].url ? value.qrCodeUrl[0].url : value.qrCodeUrl[0].response.data;
 
@@ -376,7 +378,26 @@ class Setting extends PureComponent {
     render() {
         const { visible, status, payInfo } = this.state;
         const { user: { userPayment } } = this.props;
-        console.log(userPayment)
+        // const { user: { userPayment } } = {
+        //     user:{
+        //         userPayment:{
+        //             "realName" : "刘思东",
+        //             "bankVerified" : 0,
+        //             "aliVerified" : 1,
+        //             "wechatVerified" : 0,
+        //             "fmVerified" : 0,
+        //             "bankInfo" : null,
+        //             "alipay" : {
+        //             "aliNo" : "13613040011",
+        //             "qrCodeUrl" : "http://maiguoer-game.oss-cn-hongkong.aliyuncs.com/2018/12/20/a6460f1a-2fce-40e7-a17c-3bfb0214dc30.png"
+        //             },
+        //             "wechatPay" : null,
+        //             "fmPay" : null,
+        //             "memberLevel" : 1
+        //         }
+        //     }
+        // };
+        console.log(userPayment);
         const handleEdit = {
             selectChange: this.selectHandle,
             handleCancel: this.handleCancel,
@@ -432,7 +453,7 @@ class Setting extends PureComponent {
                                  
                               </div>
                             </div>
-                            <div className="setting-item flex-box flex-alignItem">
+                            {/* <div className="setting-item flex-box flex-alignItem">
                               <Icon  className="icon fz-lg ml-md wx-icon" type="weixin-copy" />
                               <p className="declare ml-xs fz-xs opacity-5">{intl.get('GLOBAL_WECHAT')}</p>
                               <p className="info fz-xs">
@@ -447,8 +468,23 @@ class Setting extends PureComponent {
                                  <p className="yellow pointer" onClick={()=>this.showModal(4,userPayment.wechatPay?2:1)}>{userPayment.wechatPay?intl.get('USERADV_EDIT'):intl.get('USERINFO_BINDING')}</p>
                               
                               </div>
+                            </div> */}
+
+                            <div className="setting-item flex-box flex-alignItem">
+                              <Icon  className="icon fz-lg ml-md wx-icon" type="weixin-copy" />
+                              <p className="declare ml-xs fz-xs opacity-5">{intl.get('GLOBAL_FM')}</p>
+                              <p className="info fz-xs">
+                               {userPayment.fmPay&&(
+                                  <Fragment>
+                                    <span className="mr-sm">{userPayment.realName}</span>
+                                    <span className="mr-sm">{userPayment.fmPay.fmNo}</span>
+                                    <span className="mr-sm">{intl.get('GLOBAL_FM')}</span>
+                                  </Fragment>)} 
+                              </p>
+                              <div className="btn flex-box flex-end">
+                                 <p className="yellow pointer" onClick={()=>this.showModal(5,userPayment.fmPay?2:1)}>{userPayment.fmPay?intl.get('USERADV_EDIT'):intl.get('USERINFO_BINDING')}</p>
+                              </div>
                             </div>
-                            
                          </div>
                        </Box>
                    </section>

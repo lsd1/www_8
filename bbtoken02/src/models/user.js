@@ -6,7 +6,7 @@
  */
 import { getCaptcha, postLogin,postPhoneReg,postEmailReg,getUserInvite,getUserRecord,
     getUserReward,getUserSetting,saveBindEmail,saveBindPhone,saveApproveName,updatefundsPasswords
-    ,updateNickName,getPayment,updateBank,saveBank,updateAlipay,saveAlipay,updateWechat,saveWechat,updatePassword
+    ,updateNickName,getPayment,updateBank,saveBank,updateAlipay,saveAlipay,updateWechat,saveWechat,updateFm,saveFm,updatePassword
     ,getResetMobileCode,getResetEmailCode,postResetPassword,getMobileCode,updateResetPrice
 } from "@/services/user";
 import {getLogin} from "@/services/api";
@@ -82,7 +82,7 @@ export default {
                  message.success('登录成功！');
                  Cookies.remove('pathName');
                 yield put({ type: 'save', payload: { userInfo: data.data,isLogin:true } });
-                yield put(routerRedux.push(pathName || `/${Cookies.get('lang') || 'en-US'}/exchange/MDB/USDT`));
+                yield put(routerRedux.push(pathName || `/${Cookies.get('lang') || 'en-US'}/exchange/${Cookies.get('exist_symbol')}`));
             } else {
                 callback();
             }
@@ -290,6 +290,19 @@ export default {
         //绑定或者修改微信信息 type:1 绑定，2修改
         *saveBindWechat({ payload,callback}, { select,put,call}){
             const data = yield call(payload.type===1?saveWechat:updateWechat,payload);
+            if(data.code===0){
+                const userSetting = yield select(state => state.user.userSetting);
+                message.success(data.message);
+                yield put({ type: 'save', payload: { userSetting: {
+                    ...userSetting,
+                    accountVerified:1
+                } } });
+              callback&&callback(data);
+            }
+        },
+        //绑定或者修改飞马信息 type:1 绑定，2修改
+        *saveBindFm({ payload,callback}, { select,put,call}){
+            const data = yield call(payload.type===1?saveFm:updateFm,payload);
             if(data.code===0){
                 const userSetting = yield select(state => state.user.userSetting);
                 message.success(data.message);

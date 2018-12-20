@@ -7,6 +7,7 @@
 import { getBanner, getThumbTrend,postFavorAdd,postFavorDelete,getFavorList } from '@/services/api';
 import { toFixed, mul } from '@/utils/utils';
 import {message} from 'antd';
+import Cookies from 'js-cookie';
 
 
 
@@ -55,6 +56,7 @@ export default {
                 const thumbData = yield select(state => state.home.thumbTrendData);
                 const usd = yield select(state => state.global.USD);
                 let list = thumbData.length > 0 ? thumbData : ((yield call(getThumbTrend))).map(item => bind(item, usd));
+                list.length > 0 ? Cookies.set('exist_symbol', list[0]['symbol']) : null;
                 if(isLogin){
                     const favorData = yield select(state => state.home.favorList);
                     favorList = favorData.length > 0 ? favorData : yield call(getFavorList);

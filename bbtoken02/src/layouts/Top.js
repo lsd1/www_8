@@ -15,8 +15,10 @@ import intl from 'react-intl-universal';
 import {ThemeContext} from '@/context/theme-context';
 import {globalData} from '@/utils/config';
 import QRCode from 'qrcode.react';
+import Cookies from 'js-cookie';
 
 const Option = Select.Option;
+const exixt_symbol = window.localStorage.getItem('exixt_symbol');
 
 
 @withRouter
@@ -121,7 +123,7 @@ class Top extends PureComponent {
                 <nav  className="flex-box flex-alignItem head-left">
                  <h1 className="logo"><Link to={`/${lang}/`}><img  className="logo-img" src={require(`@/assets/images/logo${content?'':'2'}.png`)} alt="" />BDAEX</Link></h1>
                   <ul className="flex-box flex-wrap nav flex-item ml-md">
-                   <li className="nav-item"><NavLink isActive={this.oddEvent} className="link  head-link" to={`/${lang}/exchange/MDB/USDT`} >{intl.get('TOP_COIN')}</NavLink></li>
+                   <li className="nav-item"><NavLink isActive={this.oddEvent} className="link  head-link" to={`/${lang}/exchange/${Cookies.get('exist_symbol')}`} >{intl.get('TOP_COIN')}</NavLink></li>
                    <li className="nav-item"><NavLink   className="link  head-link" to={`/${lang}/trade/USDT/1`} >{intl.get('TOP_LEGAL')}</NavLink></li>
                    <li className="nav-item"><NavLink   className="link  head-link" to={`/${lang}/ads/release`} >{intl.get('TOP_RELEASE')}</NavLink></li>
                   </ul>

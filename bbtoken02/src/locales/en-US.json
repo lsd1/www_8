@@ -1,4 +1,6 @@
 {
+    "GLOBAL_DEFAULT_COUNTRY":"China",
+    "GLOBAL_LANG_NAME":"enName",
     "GLOBAL_DOWN": "APP Download",
     "GLOBAL_CANCEL": "Cancel",
     "GLOBAL_OK": "OK",
@@ -17,6 +19,7 @@
     "GLOBAL_BANK": "Bank Card",
     "GLOBAL_ALIPAY": "Alipay",
     "GLOBAL_PAYMENT": "Payment",
+    "GLOBAL_FM": "FMwallet",
     "GLOBAL_QQ": "QQ",
     "GLOBAL_QQ_EMPTY": "QQ number cannot be empty",
     "GLOBAL_QQ_ERR": "The format of the QQ number is incorrect",

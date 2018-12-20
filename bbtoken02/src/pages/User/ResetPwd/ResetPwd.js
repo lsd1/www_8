@@ -40,7 +40,7 @@ class ResetPwd extends PureComponent {
         };
 
     }
-    @backPrev('/exchange/MDB/USDT')
+    @backPrev('/exchange/${Cookies.get("exist_symbol")}')
     componentDidMount() {
     	
 

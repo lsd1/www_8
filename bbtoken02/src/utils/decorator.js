@@ -13,7 +13,7 @@ import cookie from 'js-cookie';
  * @param {[type]} parms [statistics]
  */
 export function backPrev(parms){
-    const url=parms || '/exchange/MDB/USDT';
+    const url=parms || '/exchange/${Cookies.get("exist_symbol")}';
     let ret,method;
         return function(target, key, descriptor) {
             method = descriptor.value;
