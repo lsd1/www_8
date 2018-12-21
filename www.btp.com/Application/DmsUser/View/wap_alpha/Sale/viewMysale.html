@@ -1,0 +1,278 @@
+<php>
+$nowtitle=L('产品选购信息');
+</php>
+<include file="Public:header" />
+<div class="content notice">
+
+	<div class="list-block">
+		<ul>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('编号')}：</div>
+					<div class="item-after">{$saleData.编号}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('购买时间')}：</div>
+					<div class="item-after"><if condition="$saleData['购买时间']">{$saleData.购买时间|date='Y-m-d H:i:s',###}</if></div>
+				</div>
+			</li>
+			<if condition="$saleData['到款时间'] gt 0">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('到款时间')}：</div>
+					<div class="item-after"><if condition="$saleData['到款时间']">{$saleData.到款时间|date='Y-m-d H:i:s',###}</if></div>
+				</div>
+			</li>
+			</if>
+            <if condition="adminshow('baodan_wuliu') eq true">
+                <if condition="$saleData['发货时间'] gt 0">
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('发货时间')}：</div>
+                        <div class="item-after"><if condition="$saleData['发货时间']">{$saleData.发货时间|date='Y-m-d H:i:s',###}</if></div>
+                    </div>
+                </li>
+                </if>
+                <if condition="$saleData['收货时间'] gt 0">
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('收货时间')}：</div>
+                        <div class="item-after"><if condition="$saleData['收货时间']">{$saleData.收货时间|date='Y-m-d H:i:s',###}</if></div>
+                    </div>
+                </li>
+                </if>
+			</if>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('报单类别')}：</div>
+					<div class="item-after">{:L($saleData['报单类别'])}</div>
+				</div>
+			</li>                
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('报单状态')}：</div>
+					<div class="item-after">{:L($saleData['报单状态'])}</div>
+				</div>
+			</li>
+			<if condition="$saleData['报单金额'] neq 0">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('报单金额')}：</div>
+					<div class="item-after">{$saleData.报单金额}</div>
+				</div>
+			</li>
+			</if>
+
+
+			<if condition="$saleData['产品'] eq 1">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('购物金额')}：</div>
+					<div class="item-after">{$saleData.购物金额}</div>
+				</div>
+			</li>
+			<if condition="$adminshow eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('购物PV')}：</div>
+					<div class="item-after">{$saleData.购物pv}</div>
+				</div>
+			</li>
+			</if> 
+			</if> 
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('实付款')}：</div>
+					<div class="item-after">{$saleData.实付款}</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div class="list-block">
+		<ul>
+			<if condition="$saleData['升级数据'] gt 0">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('原始级别')}：</div>
+					<div class="item-after">{$oldlevel}</div> 
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('升至级别')}：</div>
+					<div class="item-after">{$nowlevel}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="adminshow('baodan_wuliu') eq true">
+			<if condition="$saleData['物流费'] gt 0" >
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('产品重量')}：</div>
+					<div class="item-after">{$saleData['产品总重量']}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+                    <div class="item-title label">{:L('物流费')}：</div>
+					<div class="item-after">{$saleData['物流费']}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="$saleData['发货方式'] neq ''">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('发货方式')}：</div>
+					<div class="item-after">{$saleData['发货方式']}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="$saleData['产品'] eq 1">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('收货人')}：</div>
+					<div class="item-after">{$saleData.收货人}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('联系电话')}：</div>
+					<div class="item-after">{$saleData.联系电话}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('收货地址')}：</div>
+					<div class="item-after">{$saleData.收货省份}{$saleData.收货城市}{$saleData.收货地区}{$saleData.收货街道}{$saleData.收货地址}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('物流状态')}：</div>
+					<div class="item-after">{$saleData.物流状态}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="$saleData['快递公司'] neq ''">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('快递公司')}</div>
+					<div class="item-after">{$saleData.快递公司}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('快递查询')}</div>
+					<div class="item-after">
+					<!--<if condition="$re eq ''">
+						<a href="http://www.kuaidi100.com/"  title="快递查询" target="_blank" >快递查询</a>
+						<else/>
+						<a  target="dialog" width="500" height="600" href="__CONTROLLER__/viewExpressByOrderId/id/{$saleData['id']}" title="跟踪物流" class="btn-blue fr button button-rounded button-primary">跟踪物流</a>
+						</if>-->
+							<input class="button_text" type="button" value="{:L('查看物流')}" name="subbut"  id='subbut' onclick="alertcheck()" />
+					</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('快递单号')}：</div>
+					<div class="item-after" id="order">{$saleData.快递订单}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('快递备注')}：</div>
+					<div class="item-after">{$saleData.快递备注}</div>
+				</div>
+			</li>
+			</if>
+			</if>
+		</ul>
+	</div>
+
+	<present name="productData">	
+	<div class="card no-magin-lr">
+		<div class="card-header"><strong>{:L('产品选购信息')}</strong></div>
+		<div class="card-content">
+			<div class="card-content-inner">
+				<div class="list-block">
+					<ul>
+						<foreach name="productData" item="paydata">
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('名称')}：</div>
+								<div class="item-after">{$paydata['名称']}</div> 
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('数量')}：</div>
+								<div class="item-after">{$paydata['数量']}</div> 
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('价格')}：</div>
+								<div class="item-after">{$paydata['价格']}</div> 
+							</div>
+						</li>
+						<if condition="$adminshow eq true">
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('PV')}：</div>
+								<div class="item-after">{$paydata['pv']}</div> 
+							</div>
+						</li>
+						</if>
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('总价')}：</div>
+								<div class="item-after">{$paydata['总价']}</div> 
+							</div>
+						</li>
+						<if condition="$adminshow eq true">
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('总PV')}：</div>
+								<div class="item-after">{$paydata['总pv']}</div> 
+							</div>
+						</li>
+						</if>
+						</foreach>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="card-footer">
+			<span>{:L('汇总')}：{$saleData.购物金额}</span>
+			<if condition="$adminshow eq true">
+			<span>{$saleData.购物pv}</span>
+			</if>
+		</div>
+	</div>
+	</present>
+
+	<p>
+		<a class="button button-fill button-big button-warning back">{:L('返回')}</a>
+	</p>
+
+</div>
+<include file="Public:footer" />
+<script type="text/javascript">
+function alertcheck(){	
+	var order	   = $('#order').text();
+	$.get('__CONTROLLER__/orderAjax',{'order':order},function(data){
+			eval("var json="+data);
+			var order_list = json.re;
+			if(json.status == 1){
+		        	location.href="__CONTROLLER__/viewExpressByOrderId?"+"order="+encodeURI(order);
+			    }else{
+			    	window.open("http://www.kuaidi100.com/");
+			    }
+	});
+}
+</script>
+

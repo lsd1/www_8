@@ -1,0 +1,68 @@
+<include file="Public:header" />
+<div class="content notice">
+	<form id="sendform" action="__MODULE__/Mail/send_email" method="post">
+		<div class="list-block">
+		<ul>
+			<if condition="$mailset eq true">
+			<li>
+				<div class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('收件人')}</div>
+						<div class="item-input">
+							<input type="text" name="receiver" id="receiver" placeholder="{:L('默认空则发送给管理员')}">
+						</div>
+					</div>
+				</div>
+			</li>
+			</if>
+			<li>
+				<div class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('标题')}</div>
+						<div class="item-input">
+							<input type="text" name="title" id="title" placeholder="{:L('填写标题')}">
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="align-top">
+				<div class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('内容')}</div>
+						<div class="item-input">
+							<textarea id="content_1" name="center" placeholder="{:L('邮件内容')}..."></textarea>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<p>
+		<a class="button button-fill button-big button-warning submit">{:L('提交')}</a>
+	</p>
+	</form>
+</div>
+
+<include file="Public:footer" />
+<script>
+//提交
+$(document).on('click', '.submit', function() {
+    if (form_check()) {
+        $(this).parents('form').submit();
+    }
+});
+function form_check() {
+	if($('#title').val()=='') {
+        $.modal({text: "{:L('请输入标题！')}",buttons: [{text: "{:L('确定')}"}]});
+		$('#title').focus();
+		return false;
+	}
+	if($('#content_1').val()=='') {
+        $.modal({text: "{:L('请输入内容！')}",buttons: [{text: "{:L('确定')}"}]});
+		$('#content_1').focus();
+		return false;
+	}
+	return true;
+}
+</script>
+

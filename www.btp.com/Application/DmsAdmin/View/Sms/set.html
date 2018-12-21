@@ -1,0 +1,120 @@
+<div class="pageContent" layoutH="0">
+<form method="post" action="__CONTROLLER__/set" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDoneReload);">
+<input type="hidden" name="save" value="1" />
+<table class="list" width="70%" cellpadding="0" cellspacing="0" style="table-layout: automatic;">
+<thead>
+	<tr>
+	<th  colspan="6" style="text-align:left;">&nbsp;<img style="vertical-align:middle" src="__PUBLIC__/Images/cog.png" />&nbsp;&nbsp;短信设置</th>
+	</tr>
+</thead>
+
+<tbody>
+	<tr height="50" >
+		<td style="font-weight:bold">操作</td>
+		<td style="font-weight:bold">开关</td>
+		<td style="font-weight:bold" width="550">短信内容</td>
+		<td style="font-weight:bold">监听手机号</td>
+		<td style="font-weight:bold">测试</td>
+	</tr>
+	<tr>
+		<td>注册（提示）</td>
+		<td><input type="checkbox" name="Switch[]" value="regsmsSwitch" <eq name="vo.regsmsSwitch" value="1">checked</eq>/>开启</td>
+		<td height="70"><textarea cols="60" rows="2" name="regsmsContent" id='regsmsContent'>{$vo.regsmsContent}</textarea><br/>（注：内容可替换字段：[编号]、[姓名]、[性别]）</td>
+		<td><input name="regsmsMobile" type="text" value="{$vo.regsmsMobile}" size="20"/></td>
+		<td>
+			<div class="buttonActive" style="margin:5px auto;">
+				<div class="buttonContent" ><button type="button" onclick="smstest('__CONTROLLER__/testinput/msg/'+$('#regsmsContent').val(),'短信测试',500,200)">测试</button></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>注册（手机号真实性验证码）</td>
+		<td><input type="checkbox" name="Switch[]" value="verifiregmobliesmsSwitch" <eq name="vo.verifiregmobliesmsSwitch" value="1">checked</eq>/>开启</td>
+		<td height="70"><textarea cols="60" rows="2" name="verifiregmobliesmsContent" id='verifiregmobliesmsContent'>{$vo.verifiregmobliesmsContent}</textarea><br/>（注：内容可替换字段：[编号]、[验证码]）</td>
+		<td></td>
+		<td>
+			<div class="buttonActive" style="margin:5px auto;">
+				<div class="buttonContent" ><button type="button" onclick="smstest('__CONTROLLER__/testinput/msg/'+$('#verifiregmobliesmsContent').val(),'短信测试',500,200)">测试</button></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>订单审核（提示）</td>
+		<td><input type="checkbox" name="Switch[]" value="accoksmsSwitch" <eq name="vo.accoksmsSwitch" value="1">checked</eq>/>开启</td>
+		<td height="70"><textarea cols="60" rows="2" name="accoksmsContent" id='accoksmsContent'>{$vo.accoksmsContent}</textarea><br/>（注：内容可替换字段：[编号]、[报单金额]、[购物金额]、[实付款]）</td>
+		<td><input name="accoksmsMobile" type="text" value="{$vo.accoksmsMobile}" size="20"/></td>
+		<td>
+			<div class="buttonActive" style=";margin-top:5px;">
+				<div class="buttonContent" ><button type="button" onclick="smstest('__CONTROLLER__/testinput/msg/'+$('#accoksmsContent').val(),'短信测试',500,200)">测试</button></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>修改密码（提示）</td>
+		<td><input type="checkbox" name="Switch[]" value="changePwdsmsSwitch" <eq name="vo.changePwdsmsSwitch" value="1">checked</eq>/>开启</td>
+		<td height="70"><textarea cols="60" rows="2" name="changePwdsmsContent" id='changePwdsmsContent'>{$vo.changePwdsmsContent}</textarea><br/>（注：内容可替换字段：[编号]、[姓名]、[一级新密码]、[二级新密码]）</td>
+		<td><input name="changePwdsmsMobile" type="text" value="{$vo.changePwdsmsMobile}" size="20"/></td>
+		<td>
+			<div class="buttonActive" style=";margin-top:5px;">
+				<div class="buttonContent" ><button type="button" onclick="smstest('__CONTROLLER__/testinput/msg/'+$('#changePwdsmsContent').val(),'短信测试',500,200)">测试</button></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>修改密码（验证码）</td>
+		<td><input type="checkbox" name="Switch[]" value="verificatesmsSwitch" <eq name="vo.verificatesmsSwitch" value="1">checked</eq>/>开启</td>
+		<td height="70"><textarea cols="60" rows="2" name="verificatesmsContent" id='verificatesmsContent'>{$vo.verificatesmsContent}</textarea><br/>（注：内容可替换字段：[编号]、[验证码]）</td>
+		<td>&nbsp;</td>
+		<td>
+			<div class="buttonActive" style=";margin-top:5px;">
+				<div class="buttonContent" ><button type="button" onclick="smstest('__CONTROLLER__/testinput/msg/'+$('#verificatesmsContent').val(),'短信测试',500,200)">测试</button></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>转账转出（提示）</td>
+		<td><input type="checkbox" name="Switch[]" value="zhzhsmsSwitch" <eq name="vo.zhzhsmsSwitch" value="1">checked</eq>/>开启</td>
+		<td height="70"><textarea cols="60" rows="2" name="zhzhsmsContent" id='zhzhsmsContent'>{$vo.zhzhsmsContent}</textarea><br/>（注：内容可替换字段：[转出编号]、[转入编号]、[转入金额]）</td>
+		<td><input name="zhzhsmsMobile" type="text" value="{$vo.zhzhsmsMobile}" size="20"/></td>
+		<td >
+			<div class="buttonActive" style=";margin-top:5px;">
+				<div class="buttonContent" ><button type="button" onclick="smstest('__CONTROLLER__/testinput/msg/'+$('#zhzhsmsContent').val(),'短信测试',500,200)">测试</button></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>转账接收（提示）</td>
+		<td><input type="checkbox" name="Switch[]" value="zhzhgetsmsSwitch" <eq name="vo.zhzhgetsmsSwitch" value="1">checked</eq>/>开启</td>
+		<td height="70"><textarea cols="60" rows="2" name="zhzhgetsmsContent" id='zhzhgetsmsContent'>{$vo.zhzhgetsmsContent}</textarea><br/>（注：内容可替换字段：[转出编号]、[转入编号]、[转入金额]）</td>
+		<td><input name="zhzhgetsmsMobile" type="text" value="{$vo.zhzhgetsmsMobile}" size="20"/></td>
+		<td>
+			<div class="buttonActive" style=";margin-top:5px;">
+				<div class="buttonContent" ><button type="button" onclick="smstest('__CONTROLLER__/testinput/msg/'+$('#zhzhgetsmsContent').val(),'短信测试',500,200)">测试</button></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>会员提现（提示）</td>
+		<td><input type="checkbox" name="Switch[]" value="txmsmsSwitch" <eq name="vo.txmsmsSwitch" value="1">checked</eq>/>开启</td>
+		<td height="70"><textarea cols="60" rows="2" name="txmsmsContent" id='txmsmsContent'>{$vo.txmsmsContent}</textarea><br/>（注：内容替换字段：[编号]、[提现额]、[实发]、[手续费]）</td>
+		<td><input name="txmsmsMobile" type="text" value="{$vo.txmsmsMobile}" size="20"/></td>
+		<td >
+			<div class="buttonActive" style=";margin-top:5px;">
+				<div class="buttonContent" ><button type="button" onclick="smstest('__CONTROLLER__/testinput/msg/'+$('#txmsmsContent').val(),'短信测试',500,200)">测试</button></div>
+			</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+ <div class="buttonActive" style="margin-top:5px;margin-left:500px;">
+	 <div class="buttonContent" >
+		<button type="submit">保存设置</button>
+	 </div>
+ </div>
+</form>
+</div>
+<script>
+function smstest(url,title,width,height){
+	$.pdialog.open(url,'newdialog',title,{width:width,height:height,mask:true,mixable:true,minable:true,resizable:true,drawable:true});
+}
+</script>

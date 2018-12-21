@@ -1,0 +1,395 @@
+.floor{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+
+.top-wrapper{
+	box-sizing: border-box;
+	height: 8.125rem;
+	padding-top: 2.5625rem;
+	border-bottom: 2px solid #dce1e7;
+}
+
+.top-wrapper .welcome{
+	font-size: 1.25rem;	
+	color: #4c5e70;
+	line-height: 1;
+	font-weight: bold;
+}
+
+.top-wrapper .login-time{
+	font-size: 1rem;	
+	color: #7b8da0;
+	line-height: 1;
+	margin-top: 0.875rem;
+}
+
+.floor-1{
+	margin-top: 2.5rem;
+}
+
+.floor-1 .block{
+	float: left;
+	width: 33.333%;
+	box-sizing: border-box;
+	padding: 0 0.625rem;
+}
+
+.floor-1 .block:first-child{
+	padding-left: 0;
+}
+
+.floor-1 .block:last-child{
+	padding-right: 0;
+}
+
+.floor-1 .block .inner{
+	width: 100%;
+	height: 19.375rem;
+	overflow: hidden;
+	background: #fff;
+	border-radius: 10px;
+}
+
+.floor-1 .title{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 2.1875rem;
+	font-size: 1.2724375rem;
+	color: #4c5e70;
+	margin-top: 1.8125rem;
+}
+
+.floor-1 .img-wrapper{
+	width: 100%;
+	text-align: center;
+	margin-top: 4.125rem;
+}
+
+.floor-1 .img-wrapper .thumb{
+	display: block;
+	width: auto;
+	height: 4.5rem;
+	margin: 0 auto;
+}
+
+.floor-1 .tips{
+	margin-top: 1.9375rem;
+	text-align: center;
+}
+
+.floor-1 .tips span{
+	display: inline-block;
+	height: 1.875rem;
+	padding: 0 1.5rem;
+	border-radius: 15px;
+	text-align: center;
+	line-height: 1.875rem;
+	color: #fff;
+	font-size: 1rem;
+}
+
+.color_y{
+	background: #f2ba22;
+}
+
+.color_r{
+	background: #fe5921;
+}
+
+.color_lb{
+	background: #16b8be;
+}
+
+.floor-2{
+	margin-top: 1.25rem;
+}
+
+.floor-2 .block{
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+}
+
+.floor-2 .block:first-child{
+	padding-right: 0.625rem;
+}
+
+.floor-2 .block:last-child{
+	padding-left: 0.625rem;
+}
+
+.floor-2 .block .inner{
+	width: 100%;
+	height: auto;
+	padding-bottom: 1.875rem;
+	background: #fff;
+	border-radius: 10px;
+}
+
+.floor-2 .title{
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 2.1875rem;
+	font-size: 1.25rem;
+	color: #4c5e70; 
+	line-height: 5.125rem;
+	border-bottom: 2px solid #dce1e7;
+}
+
+.floor-2 .btm{
+	box-sizing: border-box;
+	padding: 0 3rem 0 3.75rem;
+	position: relative;
+}
+
+.floor-2 .btm .left{
+	width: 3.125rem;
+	height: 100%;
+	box-sizing: border-box;
+	padding-top: 4%;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	justify-content: space-around;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.floor-2 .btm .left span{
+	flex: 1;
+	display: block;
+	text-align: center;
+	color: #6a798f;
+	font-size: 0.75rem;
+}
+
+.floor-2 .btm .right{
+	width: 100%;
+	height: auto;
+	position: relative;
+	z-index: 0;
+}
+
+.floor-2 .btm .right:after{
+	content: "";
+	display: block;
+	width: 100%;
+	height: auto;
+	padding-top: 73%;
+}
+
+.ri{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.floor-2 .btm .right .ri img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 1;
+}
+
+
+
+.floor-2 .btm .right .nbs{
+	display: inline-block;
+	width: auto;
+	min-width: 3.25rem;
+	height: 2.1875rem;
+	padding: 0 1.25rem;
+	border-radius: 4px;
+	line-height: 2.1875rem;
+	text-align: center;
+	font-size: 0.875rem;
+	color: #fff;
+	position: absolute;
+}
+
+.floor-2 .btm .right .nbs:after{
+	content: "";
+	width: 1.25rem;
+	height: 0.625rem;
+	position: absolute;
+	bottom: -0.625rem;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+}
+
+.floor-2 .btm1 .right .nbs{
+	background:  rgba(22, 184, 190, 0.7);
+	bottom: 70%;
+	left: 38%;
+	z-index: 9;
+}
+
+.floor-2 .btm1 .right .nbs:after{
+	background: url(../images/j1.png) no-repeat center;
+	background-size: 100%;
+}
+
+
+.floor-2 .btm2 .right .nbs{
+	background:  rgba(255, 153, 72, 0.7);
+	bottom: 58%;
+	left: 38%;
+	z-index: 9;
+}
+
+.floor-2 .btm2 .right .nbs:after{
+	background: url(../images/j2.png) no-repeat center;
+	background-size: 100%;
+}
+
+/*@media screen and (max-width: 75rem) {
+    .floor-2 .block{
+		float: left;
+		width: 100%;
+		box-sizing: border-box;
+	}
+	.floor-2 .block:first-child{
+		padding-right: 0;
+		margin-bottom: 0.75rem;
+	}
+
+	.floor-2 .block:last-child{
+		padding-left: 0;
+	}
+
+	.floor-2 .btm1 .right .nbs,
+    .floor-2 .btm2 .right .nbs{
+		left: 32%;
+	}
+}*/
+
+/*@media screen and (max-width: 85.375rem) {
+    .floor-2 .btm1 .right .nbs,
+    .floor-2 .btm2 .right .nbs{
+		left: 38%;
+	}
+}
+
+@media screen and (min-width: 85.4375rem) and (max-width: 90rem) {
+    .floor-2 .btm1 .right .nbs,
+    .floor-2 .btm2 .right .nbs{
+		left: 33%;
+	}
+}
+
+@media screen and (min-width: 90.0625rem) and (max-width: 100rem) {
+    .floor-2 .btm1 .right .nbs,
+    .floor-2 .btm2 .right .nbs{
+		left: 36%;
+	}
+}*/
+
+.floor-3{
+	margin-top: 1.25rem;
+}
+
+.floor-3 .title{
+	padding-top: 1.25rem;
+	font-size: 1.25rem;
+	color: #4c5e70;
+	line-height: 1;
+}
+
+.floor-3 .isEmpty{
+	font-size: 1rem;
+	color: #7b8da0;
+	line-height: 1;
+	margin-top: 0.875rem;
+}
+
+
+.notice-list{
+	margin-top: 2.5rem;
+	border-top: 2px solid #dce1e7;
+	padding-top: 2.5rem;
+}
+
+.list-item{
+	height: 8.875rem;	
+	border-radius: 10px;
+	background: #fff;
+	box-sizing: border-box;
+	padding: 1.3125rem 1.25rem;
+	margin-bottom: 1.25rem;
+	position: relative;
+}
+
+.list-item .lb{
+	width: 6.25rem;
+	height: 6.25rem;
+	background: #f0f0f0;
+	border-radius: 10px;
+	position: absolute;
+	top: 1.3125rem;
+	left: 1.25rem;
+}
+
+.list-item .lb img{
+	display: block;
+	width: 3.5625rem;
+	height: 3.125rem;
+	margin: 1.5625rem auto;
+}
+
+.list-item .cons{
+	width: 100%;
+	height: 6.25rem;
+	box-sizing: border-box;
+	padding-left: 7.5rem;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.list-item .cons a{
+	display: block;
+	width: 100%;
+	height: 6.25rem;
+}
+.list-item .cons .inner-title{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 1.25rem;
+	color: #4c5e70;
+	line-height: 1.75rem;
+}
+
+.list-item .cons .inner-date{
+	font-size: 0.875rem;
+	color: #999;
+	line-height: 1.125rem;
+}
+
+.list-item .cons .inner-txt{
+	margin-top: 0.625rem;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	word-break: break-all;
+	overflow: hidden;
+	font-size: 1rem;
+	color: #666;
+	line-height: 1.375rem;
+	height: 60px;
+}
+
+.list-item.listisEmpty .cons{
+	line-height: 6.25rem;
+	font-size: 1.625rem;
+	color: #4c5e70;
+}

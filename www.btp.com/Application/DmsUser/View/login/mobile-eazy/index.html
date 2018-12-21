@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>会员登录</title>
+    <link rel="stylesheet" href="__PUBLIC__/DmsUser/login/mobile-eazy/fonts/iconfont.css">
+    <link rel="stylesheet" href="__PUBLIC__/DmsUser/login/mobile-eazy/css/base.css">
+    <link rel="stylesheet" href="__PUBLIC__/DmsUser/login/mobile-eazy/css/common.css">
+</head>
+
+<body>
+	<div class="content">
+		<div class="title">Easy Block Chain</div>
+		<div class="sub-title">{:L('用户管理后台')}</div>
+		<div class="form-wrapper">
+			<form action="__CONTROLLER__/check" method="post">
+				<input type="hidden" name="act" value="verify" />
+				<div class="form-tit">{:L('登录账号')}</div>
+				<div class="form-group">
+					<i class="iconfont">&#xe677;</i>
+					<div class="form-input">
+						<input type="text" name="username" class="inner-input" placeholder="{:L('请输入账号')}">
+					</div>
+				</div>
+				<div class="form-group">
+					<i class="iconfont">&#xe77a;</i>
+					<div class="form-input">
+						<input type="password" name="password" autocomplete="off" class="inner-input" placeholder="{:L('请输入密码')}">
+					</div>
+				</div>
+				<if condition="isset($dispCode) and ($dispCode eq true)">
+				<div class="form-group form-verify">
+					<i class="iconfont">&#xe668;</i>
+					<div class="form-input">
+						<input id="verify" type="text" name="captcha" class="inner-input" autocomplete="off" placeholder="{:L('请输入验证码')}">
+					</div>
+					<img id="CreateCheckCode" src="__CONTROLLER__/verify/" onclick="fleshVerify()" alt="{:L('点击刷新验证码')}" class="img-verify">
+				</div>
+				</if>
+				<div class="btn-group">
+                	<input type="submit" class="btn-submit" value="{:L('登录')}"/>
+				</div>
+			</form>
+		</div>
+		<if condition="adminshow('mimazhaohui') eq true">
+        <div class="forgetPW">
+			<a href="__CONTROLLER__/getUserPwd2" class="fgPW">{:L('忘记密码')}</a>
+		</div>
+	    </if>
+		<div class="language-wrapper">
+			<div class="l-tit">{:L('语言选择')}</div>
+			<div class="flex">
+				<if condition="LANG_SET eq 'zh-cn'">
+				<a href="__ACTION__/l/zh-cn" class="flex-item clearfix active">
+				<else/>
+				<a href="__ACTION__/l/zh-cn" class="flex-item clearfix">
+				</if> 
+					<div class="radio-wrapper"></div>
+					<img src="__PUBLIC__/DmsUser/login/mobile-eazy/images/zh-cn.png" alt="" class="fg">
+					<span class="lt">中文</span>
+				</a>
+				<if condition="LANG_SET eq 'en'">
+				<a href="__ACTION__/l/en" class="flex-item clearfix active">
+				<else/>
+				<a href="__ACTION__/l/en" class="flex-item clearfix">
+				</if>
+					<div class="radio-wrapper"></div>
+					<img src="__PUBLIC__/DmsUser/login/mobile-eazy/images/en.png" alt="" class="fg">
+					<span class="lt">English</span>
+				</a>
+			</div>
+		</div>
+	</div>
+    <script src="__PUBLIC__/DmsUser/login/mobile-eazy/js/jquery-1.x.min.js"></script>
+</body>
+<script type="text/javascript">
+    function fleshVerify(type){ 
+        //重载验证码
+        var timenow = new Date().getTime();
+        $('#verifyImg').attr("src", '__CONTROLLER__/verify/'+timenow);
+    }
+</script>
+</html>

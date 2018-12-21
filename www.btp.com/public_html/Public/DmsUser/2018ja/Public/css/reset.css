@@ -1,0 +1,108 @@
+/*css reset code */
+
+/****  文字大小初始化,使1em=10px *****/
+html {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+body {
+	margin: 0;
+	font-size: 12px;
+	font-family: "microsoft yahei";
+	color: #333333;
+	background: #e8e8e8;
+}
+
+/* for IE/Win */
+html>body {
+	font-size: 12px;
+}
+
+/* for everything else */
+* {
+	margin: 0;
+}
+
+/*字体边框等初始化*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	padding: 0;
+	margin: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+fieldset, img {
+	border: 0;
+}
+
+address, caption, cite, code, dfn, th, var {
+	font-weight: normal;
+	font-style: normal;
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+caption, th {
+	text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	font-size: 100%;
+}
+
+q:before, q:after {
+	content: '';
+}
+
+abbr, acronym {
+	border: 0;
+}
+
+img {
+	display: block;
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #333333;
+	outline: none;
+}
+
+a:hover {
+	color: #d82428;
+	cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+
+	/* WebKit browsers */ 
+	color: #ccc;
+}
+
+:-moz-placeholder {
+
+	/* Mozilla Firefox 4 to 18 */ 
+	color: #ccc;
+}
+
+::-moz-placeholder {
+
+	/* Mozilla Firefox 19+ */ 
+	color: #ccc;
+}
+
+:-ms-input-placeholder {
+
+	/* Internet Explorer 10+ */ 
+	color: #ccc;
+}

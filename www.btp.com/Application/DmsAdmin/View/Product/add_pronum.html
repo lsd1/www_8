@@ -1,0 +1,84 @@
+<script language="JavaScript">
+function dialogAjaxDoneProductAdd(json)
+{
+	DWZ.ajaxDone(json);
+	navTab.reload();          //刷新列表
+	if(!json.data)
+	{
+		if (json.statusCode == DWZ.statusCode.ok)
+		{
+      if(json.callbackType==''){
+        $.pdialog.closeCurrent(); //关闭添加话框
+      }
+	  }
+  }
+}
+</script>
+<div class="pageContent">
+	<form action="__CONTROLLER__/addSavepronum:__XPATH__" method="post" class="pageForm required-validate" onsubmit="return iframeCallback(this,dialogAjaxDoneProductAdd)">
+		<input type="hidden" id="callbackType" name="callbackType" value="updateCurrent" />
+
+	    <div class="pageFormContent" layoutH="58">
+		<table cellpadding="3" cellspacing="3" >
+           <tr>
+               <td style="text-align:right;width:150px">产品ID：</td>
+               <td style="text-align:left" >
+                 <input type="text" name='pid' id="pid" value="{$_GET['id']}" size="10" onkeyup="getid(this)" />
+                 <span id='upidstate'>{$productInfo.名称}</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right;width:80px">入库数量：</td>
+                <td style="text-align:left" ><input type="text" class="required number" name="pro_num_in" value="10"  size="10" />&nbsp;<font color='red'>填写负数为出库</font></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;width:80px">备注：</td>
+                <td style="text-align:left" ><textarea type="text" rows="3" cols="50" name="beizhu"></textarea></td>
+            </tr>
+        </table>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button id="submitnext" type="submit"  name='submitnext'>确认并继续添加</button></div></div></li>
+				<li><div class="buttonActive"><div class="buttonContent"><button id="submit" type="submit" >确认</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+  </form>
+</div>
+<script defer="defer" type="text/javascript">
+$('#submit').click(function(){
+    $('#callbackType').remove();
+});
+var vd;
+function getid(e)
+{
+    clearTimeout(vd);
+    id=e.id;
+    idAjax('"+e.id+"');
+}
+function idAjax(name){
+    var postval = $("#pid").val();
+    if(postval==''){
+        $('#upidstate').html('');
+    }else{
+        $.ajax({
+           url:"__APP__/DmsAdmin/Product/idAjax/id/"+postval,
+           type:"GET",
+           dataType:"JSON",
+           data:postval,
+           success:function(data){
+                if( data.status == 0 )
+                {
+                    $('#upidstate').html('编号不正确');
+                }
+                else
+                {
+                    var userinfo = data.data;
+                    $('#upidstate').html(userinfo);
+                }
+           }
+        });
+    }
+}
+</script>

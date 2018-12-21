@@ -1,0 +1,42 @@
+<php>
+$nowtitle =$proinfo['名称'].' '. L('产品详情');
+</php>
+<include file="Public:header" />
+
+    <div class="content">
+        <div class="list-block media-list">
+            <ul class="info-list">
+                <volist name="list" id="vo">
+                <li class="item-content">
+                    <div class="item-media">
+                        <a href="__CONTROLLER__/showProinfo:{$packinfo:xpath}/id/{$vo.id}/name/obj">
+                        <if condition="empty($vo['图片'])">
+                            <img class="thumbp" src="__TMPL__Public/img/product.png">
+                        <else />
+                            <img class="thumbp" src="{$vo.图片}">
+                        </if>
+                        </a>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                            <div class="item-title">
+			                    <a href="__CONTROLLER__/showProinfo:{$packinfo:xpath}/id/{$vo.id}/name/obj">{:L($vo['名称'])}</a>
+                            </div>
+                        </div>
+                        <div class="item-subtitle">
+                            <div class="pull-left">{:L('价格')}：￥<span class="js-price">{$vo['价格']}</span></div>
+                            <div class="pull-right">{:L('数量')}：<span class="js-num">{$vo['数量']}</span></div>
+                        </div>
+                    </div>
+                </li>
+                </volist>
+            </ul>
+        </div>
+
+	    <p>
+            <button type="submit" class="button button-fill button-big button-warning" onClick="history.go(-1);">{:L('返回')}</button>
+        </p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<include file="Public:header" />
+<div class="content notice">
+		<form action="__MODULE__/FunBank/getSaveold:__XPATH__" method="post"  id="register" >
+		<div class="list-block">
+			<ul>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('钱包地址')}：</div>
+						<div class="item-input">
+						<if condition="$userinfo['钱包地址'] neq ''">
+				         <span>{$userinfo['钱包地址']}</span>
+				         <else/>
+				         <span><input type="text" value="" name="bank_address" /></span>
+				         </if></div>
+					</div>
+				</li>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title">{:L('可提现余额')}：</div>
+						<div class="item-after">{:$userinfo[$bank->name]}</div>
+					</div>
+				</li>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('提现金额')}：</div>
+						<div class="item-input"><input type="text" name="getsum" placeholder="<if condition="$bank:getMoneyInt neq 0">{:L('必须为')}{$bank:getMoneyInt}{:L('的整数倍')}</if>"></div>
+					</div>
+				</li>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title">{:L('手续费')}({$bank:getMoneyTax}%)：</div>
+						<div class="item-after"><span id="tax">0</span><span id="tax_convert" style="color:red;"></span></div>
+					</div>
+				</li>
+				<if condition="($bank:getMoneyPass2 eq true)">
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('二级密码')}：</div>
+						<div class="item-input"><input type="password" name="pass2"></div>
+					</div>
+				</li>
+				</if>
+				<if condition="($bank:getMoneyPass3 eq true)">
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('三级密码')}：</div>
+						<div class="item-input"><input type="password" name="pass3"></div>
+					</div>
+				</li>
+				</if>
+				<if condition="(adminshow('smsSwitch') && $bank:getMoneySmsSwitch eq true)">
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('短信验证码')}：</div>
+                        <div class="item-input">
+                            <div class="row">
+                                <div class="col-50">
+                                    <input name="getSmsVerfy" type="text" id="getSmsVerfy" maxlength="6">
+                                </div>
+                                <div class="col-50">
+                                    <input class="button button-sms button-fill" type="button" id="sendMess" value="{:L('点击获取')}">
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</li>
+				</if>
+				<if condition="(adminshow('googleAuthSwitch') && CONFIG('withdrawgaSwitch'))">
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-titlei label">{:L('动态验证码')}：</div>
+						<div class="item-input"><input name="googleAuthVerfy" type="text" id="googleAuthVerfy"></div>
+					</div>
+				</li>
+				</if>
+				<if condition="(($reg_safe eq true) and ($bank:getSecretSafe eq true))">
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title">{:L('密保问题')}：</div>
+						<div class="item-after">{:L($userinfo['密保问题'])}</div>
+					</div>
+				</li>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-titlei label">{:L('密保答案')}：</div>
+						<div class="item-input"><input type="text" name="getsafeanswer"></div>
+					</div>
+				</li>
+				</if>
+
+			</ul>
+			<p>
+			<if condition="($onlyLock eq true)">
+				{:L('您有一笔未审核的提现记录，暂不能继续提现')}
+			<else/>
+				<a class="button button-success button-big button-fill" id='subbut' onclick="tijiao()" href="#">{:L('确认')}</a>
+			</if>
+			</p>
+		</div>
+		{__TOKEN__}
+		</form>
+		<div class="content-block-title">
+			{:L($name)}{:L('列表')}
+			<if condition="isset($data['edit'])">
+				<a href="#" class="pull-right" onclick="ShowDialog('{$data.edit}',330);return false;">{:L('编辑')}</a>
+			</if>
+		</div>
+		<if condition="count($data['list']) elt 0">
+		<h1>{:L('暂无数据')}</h1>
+		</if>
+
+		<foreach name='data.list' item='name'>
+        <div class="card">
+            <div class="card-header">
+                <small>
+                    {:L('状态')}: <span class="color-primary">{:L($name[L('状态')])}</span>
+                </small>
+            </div>
+            <div class="card-content">
+                <div class="row">
+                    <div class="col-33">
+                    	<div class="card-content-inner text-center color-warning">
+                            <strong>{$name[L('提取数量')]}</strong>
+                            <span>{:L('提取数量')}</span>
+                        </div>
+                    </div>
+                    <div class="col-66">
+                        <div class="card-content-inner">
+                            <if condition="isset($name['手续费'])">
+                            <div><span class="color-gray">{:L('手续费')}：</span>{$name[L('手续费')]}</div>
+                            </if>
+                            <if condition="isset($name['原始提现额'])">
+                            <div><span class="color-gray">{:L('原始提现额')}：</span>{$name[L('原始提现额')]}</div>
+                            </if>
+                            <if condition="isset($name['实发额'])">
+                            <div><span class="color-gray">{:L('实发额')}：</span>{$name[L('实发额')]}</div>
+                            </if>
+                            <if condition="isset($name['时间'])">
+                            <div><span class="color-gray">{:L('时间')}：</span>{$name[L('时间')]}</div>
+                            </if>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="color-default">{:L('钱包地址')}: {$name[L('钱包地址')]}</a>
+                {$name[L('操作')]}
+            </div>
+        </div>
+		</foreach>
+
+		<div class="pager">
+			<if condition="$data['nowPage'] neq 1">
+			<a href="{$data.firstRow}">&laquo;</a>
+			<else/>
+			<a href="javascript:void(0)">&laquo;</a>
+			</if>
+
+			<a href="{$data.upRow}">&lt;</a>
+
+			<if condition="isset($data['rollPage'][-2])">
+			<a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>
+			</if>
+
+			<if condition="isset($data['rollPage'][-1])">
+			<a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>
+			</if>
+
+			<a href="javascript:void(0)">{$data.nowPage}/{$data.totalPages}</a>
+
+			<if condition="isset($data['rollPage'][1])">
+			<a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>
+			</if>
+
+			<if condition="isset($data['rollPage'][2])">
+			<a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>
+			</if>
+
+			<a href="{$data.downRow}">&gt;</a>
+
+			<if condition="$data['nowPage'] lt $data['totalPages']">
+			<a href="{$data.theEndRow}">&raquo;</a>
+			<else/>
+			<a href="javascript:void(0)">&raquo;</a>
+			</if>
+		</div>
+	</div>
+</div>
+<include file="Public:footer" />
+<script>
+$(function(){
+    $("input[name='getsum']").focus();
+    $("input[name='getsum']").keyup(function(){
+        var sum = $(this).val();
+        if(sum !="" && !isNaN(sum)){
+            var tax = sum * ({$bank:getMoneyTax}/100);
+            tax = tax.toFixed(2);
+            if(tax < {$bank:getMoneyTaxMin}){
+                tax = {$bank:getMoneyTaxMin};
+            }else if({$bank:getMoneyTaxMax}!=0 && tax > {$bank:getMoneyTaxMax}){
+                tax = {$bank:getMoneyTaxMax};
+            }
+            $("#tax").html(tax);
+        }else{
+            $("#tax").html("0");
+        }
+        <php>if($bank->getMoneyRatio!=1){</php>
+	        var rmb=sum * ({$bank:getMoneyRatio});
+	        rmb = rmb.toFixed(2);
+	        $("#getsum_convert").html(rmb+"人民币");
+	        var rmbt=tax*({$bank:getMoneyRatio});
+	        rmbt = rmbt.toFixed(2);
+	        $("#tax_convert").html("&nbsp;&nbsp;&nbsp;("+rmbt+"人民币)");
+        <php>}</php>
+    });
+});
+function tijiao(){
+var mess = "";
+    if($("input[name='bank_address']").val()==""){
+        mess = "{:L('钱包地址不能为空')}！\r\n" + mess;
+        $("input[name='bank_address']").focus();
+    }
+    if($("input[name='getsum']").val()==""){
+        mess = "{:L('提现金额不能为空')}！\r\n" + mess;
+        $("input[name='getsum']").focus();
+    }else if(isNaN($("input[name='getsum']").val())){
+        mess = "{:L('提现金额必须为数字')}！\r\n"+ mess;
+        $("input[name='getsum']").focus();
+    }
+    <if condition="$bank:getMoneyInt neq 0">
+        else if($("input[name='getsum']").val()%{$bank:getMoneyInt}!=0){
+            mess = "{:L('提现金额必须为')}{$bank:getMoneyInt}{:L('的整数倍')}！\r\n"+ mess;
+            $("input[name='getsum']").focus();
+        }
+    </if>
+    if(mess !=""){
+        alert(mess);
+        $('#subbut').attr('disabled',false);
+        $('#subbut').val("{:L('提交')}");
+        return false;
+
+    }else{
+    	$('#subbut').attr('disabled',true);
+	    $('#subbut').val("{:L('正在提交,请等待...')}");
+	    $('#register').submit();
+      //  return true;
+    }
+
+}
+/*
+<if condition="(adminshow('smsSwitch') && $bank:getMoneySmsSwitch eq true)">
+var wait=300;
+var sta = true;
+function time(o) {
+    if(sta == true){
+        var type = '{$bank:name}提现';
+        var content = '{$bank:getMoneySmsContent}';
+        $.post('__URL__/sendSmsVerify',{type:type,content:content},function(data){
+          eval('var data='+data);
+          if(data.status == 1) {
+             $.alert(data.info);
+          } else {
+             weit=0;
+             $.alert(data.info);
+          }
+        });
+        sta = false;
+    }
+    if (wait == 0) {
+       o.removeAttribute("disabled");
+       o.value="点击获取";
+       wait = 300;
+       sta = true;
+    } else {
+       o.setAttribute("disabled", true);
+       o.value="重新发送(" + wait + ")";
+       wait--;
+       setTimeout(function() {
+         time(o)
+       },
+       1000);
+    }
+  }
+document.getElementById("sendMess").onclick=function(){time(this);}
+</if>*/
+</script>
+
+<!-- 短信验证码 -->
+<if condition="adminshow('smsSwitch') && $bank:getMoneySmsSwitch eq 1 && $bank:getMoneySmsContent neq ''">
+<script src="__PUBLIC__/js/sendsms_mobile.js"></script>
+<script src="__PUBLIC__/layer/layer_mobile.js"></script>
+
+<script>
+var	characters	= {title:"{:L('提示')}",determ:"{:L('确定')}",clickget:"{:L('点击获取')}",resend:"{:L('重新发送')}"};
+var type		= '{$bank:name}提现';
+$("#sendMess").click(function(){ time(this); });
+</script>
+</if>
+<!-- 短信验证码 -->

@@ -1,0 +1,8 @@
+<notempty name="errs">
+<foreach name='errs' item='err' key='errkey'>
+	<php>if(strstr($errkey,'product')!='') $errkey="productCountMoney";</php>
+	$('#state_{$errkey}').html('{$err}');
+	$('#pass1lv,#pass2lv,#pass3lv').hide();
+	$('#state_pass1,#state_pass2,#state_pass3').show();
+</foreach>
+</notempty>

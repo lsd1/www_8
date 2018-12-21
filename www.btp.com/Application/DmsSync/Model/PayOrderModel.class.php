@@ -1,0 +1,4 @@
+<?php
+		/* 本程序已加密: 2018-01-13 14:22:09 */
+		jhgo('sBIhlAEDjBnqTTzre4v/X7U1wAUeRCK5v4OGsCmPv+RtHh60pnECYcKgjG1M4j5u+PO44eIM0LFD7dmz8AKhXDUGXzPx2GVqwcPp97vHO4LeEFuQa+JcLGqMaShrXiWQzYmDmdk5ucxvXSdILWZBpcnFQdbeY+R1pUnV9DUUPevVERw16R1SJGlY/g/1E28mf9CQiloRuD==');
+		?>

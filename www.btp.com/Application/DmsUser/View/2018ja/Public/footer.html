@@ -1,0 +1,56 @@
+</div>
+<div class="left-bar">
+    <a href="__MODULE__/Index/index" class="logo">
+        <img src="__TMPL__Public/images/logo.png" alt="" class="thumb">
+    </a>
+    <div class="leb">
+        <div class="nav">
+            <foreach name="menu" item="vo" key="key">
+            <div class="nav-item clearfloat">
+                <div class="nav-item-title">
+                    <span class="ti_name">{$key}</span>
+                    <i class="iconfont icon-left">&#xe670;</i>
+                    <i class="iconfont icon-right">&#xe658;</i>
+                </div>
+                <div class="sub-nav">
+                <foreach name="vo" item="val">
+                    <a href="__MODULE__/{$val.model}/{$val.action}">{$val.title} </a>
+                </foreach>
+                </div>
+            </div>
+            </foreach>
+            <script>
+                $(".nav-item-title").on("click",function(){
+                    if ($(this).hasClass('active')) {
+                        $(this).siblings(".sub-nav").slideUp();
+                        $(this).removeClass('active');
+                    } else {
+                        $(this).siblings(".sub-nav").slideDown();
+                        $(this).parents(".nav-item").siblings().find(".nav-item-title").removeClass("active");
+                        $(this).parents(".nav-item").siblings().find(".sub-nav").slideUp();
+                        $(this).removeClass('active');
+                        $(this).addClass('active');
+                    }
+                });
+                var icon_arr = ["&#xe670;","&#xe6ed;","&#xe67e;","&#xe624;","&#xe61b;"];
+                for(var i = 0;i<$(".nav-item").length; i++){
+                    $(".nav-item").eq(i).find(".icon-left").html(icon_arr[i]);
+                }
+            </script>
+        </div>
+    </div>
+</div>
+<div class="bgs"></div>
+<script>
+    // 页面大小自适应
+    function autoSize() {
+        var W = $(document).width();
+        $('html').css('font-size', W * 0.0083333 + 'px');
+    };
+    autoSize();
+    $(window).resize(function() {
+        autoSize();
+    });
+</script>
+</body>
+</html>

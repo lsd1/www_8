@@ -1,0 +1,84 @@
+<script>
+function smsnavTabAjaxDone(json){
+	DWZ.ajaxDone(json);
+	if (json.statusCode == DWZ.statusCode.ok){
+		if (json.navTabId){
+			if(navTab._getTab(json.navTabId)){
+				navTab.reloadFlag(json.navTabId);
+			}else if(typeof(tab) == "undefined"){
+				navTab.openTab(json.navTabId,json.forwardUrl,{ 'title':json.navTabTitle});
+			}
+		}
+		if ("closeCurrent" == json.callbackType) {
+			navTab.closeCurrentTab(json.navTabId);
+			$.pdialog.closeCurrent();
+		}
+	}
+}
+</script>
+<div class="pageContent">
+
+	<form method="post" action="__ACTION__" class="pageForm required-validate" onsubmit="return validateCallback(this, smsnavTabAjaxDone)">
+		<input type="hidden" name="callbackType" value="closeCurrent" />
+		<input type="hidden" name="navTabId" value="{:md5(__CONTROLLER__.'/index')}" />
+		<input type="hidden" name="forwardUrl" value="__CONTROLLER__/index" />
+		<input type="hidden" name="navTabTitle" value="短信平台" />
+		<input type="hidden" name="save" value="1" />
+		<input type="hidden" name="id" value="{$id}" />
+		<input type="hidden" name="sms" value="{$sms}" />
+		<div class="pageFormContent" layoutH="58">
+			<table>
+			<foreach name="smsInfo['config']" item="vo">
+			<assign name="radio_i" value="0" />
+			<tr>
+			<td style="text-align:left">{$vo.name}：</td>
+			<td style="text-align:left">
+			<switch name="vo.type" >
+			<case value="radio">				
+				<foreach name="vo.options" key="op_val" item="op_name">
+				<input type="radio" name="attr[{$vo.config_name}]" id="{$vo.config_name}{$op_val}" value="{$op_val}" <eq name="radio_i" value="0">checked="checked"</eq>/><label for="{$vo.config_name}{$op_val}">{$op_name}</label>&nbsp;
+				<assign name="radio_i" value="$radio_i+1" />
+				</foreach>
+			</case>
+
+			<case value="text">
+				<if condition="strpos($vo['name'],'密码')!==false">
+					<input type="password" name="attr[{$vo.config_name}]" value="{$vo.config_value}" style="{$vo.style}"/>
+				<else/>
+					<input type="text" name="attr[{$vo.config_name}]" value="{$vo.config_value}" style="{$vo.style}"/>
+				</if>
+				<present name="vo.memo"><label>{$vo.memo}</label></present>
+				<input type="hidden" name="name[{$vo.config_name}]" value="{$vo.name}" style="{$vo.style}"/>
+			</case>
+
+			</switch>
+			</td>
+			</tr>
+			</foreach>
+			<tr>
+				<td style="text-align:left">短信类型：</td>
+				<td style="text-align:left">
+					<input name="isaudio" type="radio" value="0" <eq name="isaudio" value="0">checked="checked"</eq> />文本
+					<input name="isaudio" type="radio" value="1" <eq name="isaudio" value="1">checked="checked"</eq> />语音
+				</td>
+			</tr>
+			<!--
+			<tr>
+				<td style="text-align:left">是否使用：</td>
+				<td style="text-align:left">
+					<input name="state" type="radio" value="1" <eq name="state" value="1">checked="checked"</eq> />使用 
+					<input name="state" type="radio" value="0" <eq name="state" value="0">checked="checked"</eq> />不使用
+				</td>
+			</tr>
+			-->
+			</table>
+		</div>
+
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button id="submit" type="submit">确定</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>

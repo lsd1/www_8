@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{:CONFIG('SYSTEM_TITLE')}</title>
+    <link rel="stylesheet" href="/Public/usewebreg/css/usewebreg.css">
+    <style>
+        body .main {
+            margin-top: 10px;
+            margin-left: 0;
+        }
+        /*.button_text {
+            margin-left: 150px;
+        }*/
+    </style>
+    <script src="__TMPL__Public/js/html5.min.js"></script>
+    <script src="__PUBLIC__/jquery-1.x.min.js"></script>
+    <script src="/Public/directSell/area_select.js"></script>
+</head>
+<body>
+<body>
+    <header id="header">
+        <div class="nav-top"></div>
+        <nav class="nav">
+            <div class="center">
+                <h1 class="logo">
+                    <p>{:L('欢迎注册')}！{:CONFIG('SYSTEM_TITLE')}</p>
+                </h1>
+            </div>
+        </nav>
+    </header>
+   	<div id="wrap">
+        <div class="center">
+			<div class="core_con">
+				<table class="tablebg" id="table1">
+		            <tr>
+		                <td style="vertical-align:middle" >
+		                    <img src="__PUBLIC__/Images/ExtJSicons/arrow/accept.png" style="display:inline"/>&nbsp;<span  >{:L('恭喜，您已成功注册会员')}{$newuserid}。</span>
+		                </td>
+		            </tr>
+		        </table>
+		        <notempty name="recipts">
+		        <table class="tablebg" id="table4">
+		            <tr>
+		                <td class="recipt">
+		                    <foreach name="recipts" item="vo" key='rkey'>
+		                    	<a href="{$vo}"/> {:L($rkey)}</a>
+		                    </foreach>
+		                </td>
+		            </tr>
+		        </table>
+		        </notempty>
+			</div>
+			<div class="core_page"></div>
+		</div>
+	</div>
+	</body>
+</html>

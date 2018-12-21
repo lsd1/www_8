@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con>
+<user name="会员" noup="true">
+	<!--
+	<product name="产品">
+	</product>
+	-->
+	<levels name="会员级别">
+		<_con lv="10" name="#xghyjbmc1#" pvmoney="#lv1money#" money="#lv1money#"/>
+		<_con lv="20" name="#xghyjbmc2#" pvmoney="#lv2money#" money="#lv2money#"/>
+		<_con lv="30" name="#xghyjbmc3#" pvmoney="#lv3money#" money="#lv3money#"/>
+	</levels>
+	<!--9.3修改级别判断-->
+   	<levels name="拿奖资格" calStart="false" calEnd="true" scalStart="false" scalEnd="false" mustEgt="false">
+   		<!--
+		<_con lv='1' name='不拿' where='[首次启动时间]>>={caltime}'/>
+		<_con lv='2' name='拿'   where='[首次启动时间]>>={caltime} and (([会员级别]=10 and (([管理_左区本月业绩]>=#lv1money# and [管理_左区累计业绩]>>管理_右区累计业绩) or ([管理_右区本月业绩]>=#lv1money# and [管理_左区累计业绩]>管理_右区累计业绩) or ([管理_左区本月业绩]>=#lv1money# and [管理_右区本月业绩]>=#lv1money# and [管理_左区累计业绩]=管理_右区累计业绩))) or ([会员级别]=20 and (([管理_左区本月业绩]>=#lv2money# and [管理_左区累计业绩]>>管理_右区累计业绩) or ([管理_右区本月业绩]>=#lv2money# and [管理_左区累计业绩]>管理_右区累计业绩) or ([管理_左区本月业绩]>=#lv2money# and [管理_右区本月业绩]>=#lv2money# and [管理_左区累计业绩]=管理_右区累计业绩))) or ([会员级别]=30 and (([管理_左区本月业绩]>=#lv3money# and [管理_左区累计业绩]>>管理_右区累计业绩) or ([管理_右区本月业绩]>=#lv3money# and [管理_左区累计业绩]>管理_右区累计业绩) or ([管理_左区本月业绩]>=#lv3money# and [管理_右区本月业绩]>=#lv3money# and [管理_左区累计业绩]=管理_右区累计业绩)))) '/>
+	-->
+	<_con lv="1" name="不拿"/>
+	<_con lv="2" name="拿"/>
+	</levels>
+	<!--新增-->
+	<levels name="级差级别">
+		<_con lv="1" name="暂无" />
+        <!--后期增加两个级别-->
+        <_con lv="5" name="#xzjcjbmc1#" />
+        <_con lv="6" name="#xzjcjbmc2#" />
+
+		<_con lv="10" name="#xgjcjbmc1#" where="[管理_左区累计业绩]>=#jlxqyj# and [管理_右区累计业绩]>=#jlxqyj# and [会员级别]>=20 and [推荐业绩累计]>=#jlzyj# and #sjjl#=1"/>
+		<_con lv="20" name="#xgjcjbmc2#" where="[管理_左区累计业绩]>=#zjxqyj# and [管理_右区累计业绩]>=#zjxqyj# and [会员级别]>=20 and [推荐业绩累计]>=#zjzyj# and #sjzj#=1"/>
+		<_con lv="30" name="#xgjcjbmc3#" where="[管理_左区累计业绩]>=#hhrxqyj# and [管理_右区累计业绩]>=#hhrxqyj# and [会员级别]>=20 and [推荐业绩累计]>=#hhrzyj# and #sjhhr#=1"/>
+		<_con lv="40" name="#xgjcjbmc4#" where="[管理_左区累计业绩]>=#dsxqyj# and [管理_右区累计业绩]>=#dsxqyj# and [会员级别]>=20 and [推荐业绩累计]>=#dszyj# and #sjds#=1"/>
+		<_con lv="50" name="#xgjcjbmc5#" where="{down,推荐,级差级别=40,>=#yxdszt#}  and #sjyxds#=1"/>
+		<_con lv="60" name="#xgjcjbmc6#" where="{down,推荐,级差级别=40,>=#exdszt#}  and #sjexds#=1"/>
+		<_con lv="70" name="#xgjcjbmc7#" where="{down,推荐,级差级别=40,>=#sxdszt1#}  and #sjsxds1#=1"/>
+		<_con lv="80" name="#xgjcjbmc8#" where="{down,推荐,级差级别=40,>=#sxdszt2#}  and #sjsxds2#=1"/>
+		<_con lv="90" name="#xgjcjbmc9#" where="{down,推荐,级差级别=40,>=#wxdszt#}  and #sjwxds#=1"/>
+	</levels>
+
+	<accbank name="注册扣款">
+		<_bank name="激活币" minval="#glf3#%" maxval="#glf3#%"/>
+		<_bank name="积分" minval="0%" maxval="100%"/>
+	</accbank>
+	<accbank name="升级扣款">
+		<_bank name="激活币" minval="#sjkkzd#%" maxval="#sjkkzd#%"/>
+        <_bank name="积分" minval="0%" maxval="100%"/>
+	</accbank>
+	<!--IndexController.class.php;accbank.class.php;CommonController.class.php;SaleController.class.php-->
+	<sale_reg lvName="会员级别" name="前台注册" fromNoName="服务中心" fromNoWhere="[服务中心]=1" byname="会员注册" selLv='10' user="会员" accbank="注册扣款" showRatio='true'>
+		<_addval from="[报单金额]" to="管理"/>
+		<_addval from="{shijian1}" to="到期时间" where="M[会员级别]=10"/>
+        <!--
+		<_addval from="{shijian2}" to="到期时间" where="M[会员级别]=20"/>
+		<_addval from="{shijian3}" to="到期时间" where="M[会员级别]=30"/>
+    -->
+	</sale_reg>
+	<sale_reg lvName="会员级别" name="后台注册" fromNoName="服务中心" fromNoWhere="[服务中心]=1" byname="会员注册" selLv='10' user="admin">
+		<_addval from="[报单金额]" to="管理"/>
+		<_addval from="{shijian1}" to="到期时间" where="M[会员级别]=10"/>
+        <!--
+		<_addval from="{shijian2}" to="到期时间" where="M[会员级别]=20"/>
+		<_addval from="{shijian3}" to="到期时间" where="M[会员级别]=30"/>
+    -->
+	</sale_reg>
+	<sale_reg lvName="会员级别" name="服务中心注册" byname="服务中心注册" netname="管理" user="admin" alert="false" defaultLv="10">
+        <_update set="服务中心=1"/>
+        <!--
+        <_update set="登陆锁定=1"/>
+    -->
+	</sale_reg>
+	<!--
+	<sale_buy lvName="会员级别" name='会员续费' user='会员' accbank="注册扣款" >
+		<_addval from='#lv1money#' to='管理' where='M[会员级别]=10' />
+		<_addval from='#lv2money#' to='管理' where='M[会员级别]=20' />
+		<_addval from='#lv3money#' to='管理' where='M[会员级别]=30' />
+	</sale_buy>
+-->
+	<sale_buy lvName="会员级别" name='设置拿奖' user='admin' >
+		<_update set='拿奖判断=1'/>
+		<_update set='拿奖资格=2'/>
+	</sale_buy>
+
+	<sale_up lvName="级差级别" name='设置级差级别' user='admin' >
+	</sale_up>
+
+	<net_rec name='推荐'>
+	</net_rec>
+
+	<!--后期添加sale_up-->
+	<sale_up name="后台升级" byname="会员升级" lvname="会员级别" user="admin">
+    </sale_up>
+    <sale_buy lvName="会员级别" byname="#xgsjjk#" name='升级金卡' user='会员' money='#lv2money#' setNumber='true' accbank='升级扣款' dispWhere='[会员级别]=10 or [会员级别]=20' showRatio='true' >
+    	<_addval from="[报单金额]" to="升级额"/>
+    	<_addval from="[报单金额]" to="升级业绩"/>
+    	<_addval from="[报单金额]" to="推荐业绩"/>
+    	<_update set="会员级别=20"/>
+        <_update set="级差级别=5" where="M[级差级别]>>10"/>
+	</sale_buy>
+
+	<sale_buy lvName="会员级别" byname="#xgsjzk#" name='升级钻卡' user='会员' money='#lv3money#' setNumber='true' accbank='升级扣款' dispWhere='#sjzk#=1' showRatio='true' >
+		<_addval from="[报单金额]" to="升级额"/>
+		<_addval from="[报单金额]" to="升级业绩"/>
+		<_addval from="[报单金额]" to="推荐业绩"/>
+		<_update set="会员级别=30"/>
+        <_update set="级差级别=6" where="M[级差级别]>>10"/>
+	</sale_buy>
+
+	<net_place name="管理" pvfun="true">
+		<_region name="左"/>
+		<_region name="右"/>
+	</net_place>
+
+	<fun_bank name="激活币" byname="#xgjhb#" getMoney="false"/>
+	<fun_bank name="积分" byname="#xgmc#" getMoney="false"/>
+
+	<fun_val name="到期时间" mode="int(10)" default="0"/>
+	<fun_val name="到期" mode="int(1)" default="0"/>
+	<fun_val name="考核时间" mode="int(10)" default="0"/>
+	<fun_val name="考核" mode="int(1)" default="0"/>
+	<!--9.3号处理新加上月考核（1上月考核通过下月拿奖0没考核通过）和拿奖判断（1拿奖有两个条件满足一个都可以拿奖1：上月考核通过这个月拿奖2：这个月考核通过次日拿奖0不拿）和第一月底（判断是否是第一个月底不考核0不考核1考核）-->
+	<fun_val name="上月考核" mode="int(1)" default="0"/>
+	<fun_val name="拿奖判断" mode="int(1)" default="0"/>
+	<fun_val name="第一个月底" mode="int(1)" default="0"/>
+	<fun_val name="首次启动时间" mode="int(10)" default="0"/>
+	<!--12月10号定制**奖金暂停=1不产生奖金-->
+	<fun_val name="奖金暂停" mode="int(1)" default="0"/>
+	<!--新单-->
+	<fun_treenum name='推荐业绩' netName='推荐' />
+    <fun_val name="升级额" />
+    <fun_treenum name='升级业绩' netName='管理' />
+    <!--
+	<fun_val name="升级额1" />
+	<fun_val name="升级额2" />
+-->
+	<fun_val name="拿贡献奖" mode="int(1)" default="0"/>
+    <fun_val name="钱包地址" mode="varchar(150)" default=""/>
+
+	<tle name="销售奖金" tleMode="d" autoGive="true">
+		<!--12.15号定制日产积分是按照注册时的级别分红-->
+        <prize_rebate name="创客分红" lvname="会员级别" rowfrom="0" rowname="id"   where='[服务中心]=0' to='日产积分' userDisp='false' adminDisp='false' >
+            <_con minlv="10" maxlv="10" val="#rcytb1#" />
+        </prize_rebate>
+		<prize_rebate name="日产积分" byname="#xgmc#" lvname="会员级别" rowfrom="3" rowname="购物金额" table='订单分红' where="[到期时间]>{caltime}" >
+			<_addval to="积分" val="#glf1#%"/>
+			<_con minlv="20" maxlv="20" val="#lv2money#" where='M[服务中心]=0' />
+            <_con minlv="30" maxlv="30" val="#lv3money#" where='M[服务中心]=0' />
+			<_top val="#rcjffd1#" mode="day" where="[会员级别]=10"/>
+			<_top val="#rcjffd2#" mode="day" where="[会员级别]=20"/>
+			<_top val="#rcjffd3#" mode="day" where="[会员级别]=30"/>
+		</prize_rebate>
+        <!--
+        <prize_rebate name="分红" lvname="会员级别" rowfrom="3" rowname="购物金额"  table='订单分红' where='[到期时间]>{caltime}' >
+            <_con minlv="10" maxlv="10" val="10%" />
+            <_con minlv="20" maxlv="20" val="20%" />
+            <_con minlv="30" maxlv="30" val="30%" />
+        </prize_rebate>
+        -->
+        <!--
+		<prize_rebate name="日产积分2" byname="E贝积分2" lvname="会员级别" rowfrom="0" rowname="升级额2" where="[到期]=0 and [奖金暂停]=0 and [服务中心]=0" >
+			<_addval to="积分" val="90%"/>
+			<_con minlv="30" maxlv="30" val="#lv3money#"  />
+			<_top val="#rcjffd1#" mode="day" where="[会员级别]=10"/>
+			<_top fun_valal="#rcjffd2#" mode="day" where="[会员级别]=20"/>
+			<_top val="#rcjffd3#" mode="day" where="[会员级别]=30"/>
+		</prize_rebate>
+        -->
+		<prize_rec name="推广奖" byname='#xgtgj#' lvname="会员级别" netname="管理" rowfrom="1" rowname="报单金额" where="[报单类别]='前台注册' or [报单类别]='后台注册'" >
+			<_addval to="积分" val="#glf2#%"/>
+            <_con minlv="10" maxlv="30" minlayer="1" maxlayer="999999" val="#tgj#%" where="{region_num,false}!=1 and (M[拿奖资格]=2 or M[拿奖判断]=1) and M[奖金暂停]=0"/>
+            <_top val="#tgjfd1#" mode="day" where="[会员级别]=10"/>
+            <_top val="#tgjfd2#" mode="day" where="[会员级别]=20"/>
+            <_top val="#tgjfd3#" mode="day" where="[会员级别]=30"/>
+            <!--
+            <_top val="#tgjfd1#" mode="day" where="[会员级别]=10 and #sjfd#=0"/>
+            <_top val="#tgjfd2#" mode="day" where="[会员级别]=20 and #sjfd#=0"/>
+            <_top val="#tgjfd3#" mode="day" where="[会员级别]=30 and #sjfd#=0"/>
+
+            <_top val="#tgjfd1#" mode="day" where="[申请会员级别]=10 and #sjfd#=1"/>
+            <_top val="#tgjfd2#" mode="day" where="[申请会员级别]=20 and #sjfd#=1"/>
+            <_top val="#tgjfd3#" mode="day" where="[申请会员级别]=30 and #sjfd#=1"/>
+        -->
+        </prize_rec>
+
+        <prize_rec name="管理奖" byname="#xgglj#" lvname="会员级别" netname="推荐" rowfrom="0" rowname="推广奖" >
+        	<_addval to="积分" val="#glf2#%"/>
+            <_con minlv="10" maxlv="30" minlayer="2" maxlayer="2" val="#glj#%" where="(M[拿奖资格]=2 or M[拿奖判断]=1) and M[奖金暂停]=0"/>
+            <_con minlv="10" maxlv="30" minlayer="4" maxlayer="4" val="#glj#%" where="(M[拿奖资格]=2 or M[拿奖判断]=1) and M[奖金暂停]=0"/>
+            <_con minlv="10" maxlv="30" minlayer="6" maxlayer="6" val="#glj#%" where="(M[拿奖资格]=2 or M[拿奖判断]=1) and M[奖金暂停]=0"/>
+            <_top val="#gljfd1#" mode="day" where="[会员级别]=10"/>
+            <_top val="#gljfd2#" mode="day" where="[会员级别]=20"/>
+            <_top val="#gljfd3#" mode="day" where="[会员级别]=30"/>
+        </prize_rec>
+        <!--
+		<prize_rec name="升级奖" lvname="会员级别" netname="推荐" rowfrom="1" rowname="报单金额" where="[报单类别]='升级金卡' or [报单类别]='升级钻卡'" to='级差奖' userDisp='false' adminDisp='false'>
+        	<_addval to="积分" val="#glf2#%"/>
+            <_con minlv="20" maxlv="20" minlayer="1" maxlayer="999999" val="#sjj1#%" where="M[奖金暂停]=0 and M[会员级别]>=20 and M[级差级别]=1"/>
+            <_con minlv="30" maxlv="30" minlayer="1" maxlayer="999999" val="#sjj2#%" where="M[奖金暂停]=0 and M[会员级别]>=20 and M[级差级别]=1"/>
+        </prize_rec>
+        -->
+		<prize_rebate name="贡献奖" byname="#xggxj#" lvname="会员级别" rowfrom="0" rowname="id" where="[推荐_推荐人数]>=2 and [拿贡献奖]=0" >
+        	<_addval to="积分" val="#glf2#%"/>
+            <_con minlv="10" maxlv="30" val="#gxj#" where="M[奖金暂停]=0 "/>
+        </prize_rebate>
+        <prize_lvdiff name='级差奖' byname="#xgjcj#" netname="推荐" rowname='报单金额' rowfrom='1' lvname='级差级别' where="[报单类别]='升级金卡' or [报单类别]='升级钻卡'" >
+            <_addval to="积分" val="#glf2#%"/>
+            <_con lv='5' val='#xzjcj1#%' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='6' val='#xzjcj2#%' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='10' val='#jcj1#%' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='20' val='#jcj2#%' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='30' val='#jcj3#%' where=" M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='40' val='#jcj4#%' where=" M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='50' val='#jcj5#%' where=" M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='60' val='#jcj6#%' where=" M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='70' val='#jcj7#%' where=" M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='80' val='#jcj8#%' where=" M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='90' val='#jcj9#%' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+        </prize_lvdiff>
+        <prize_lvdiff name='育成奖' byname="#xgycj#" netname="推荐" rowname='报单金额' rowfrom='1' lvname='级差级别' where="[报单类别]='升级金卡' or [报单类别]='升级钻卡'" >
+            <_addval to="积分" val="#glf2#%"/>
+            <_con lv='40' equals='#tjjbl1#%' minequal='1' maxequal='1' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='50' equals='#tjjbl2#%' minequal='1' maxequal='1' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='50' equals='#tjjbl3#%' minequal='2' maxequal='2' where=" M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='60' equals='#tjjbl4#%' minequal='1' maxequal='1' where=" and M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='60' equals='#tjjbl5#%' minequal='2' maxequal='2' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='60' equals='#tjjbl6#%' minequal='3' maxequal='3' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='70' equals='#tjjbl7#%' minequal='1' maxequal='1' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='70' equals='#tjjbl8#%' minequal='2' maxequal='2' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='70' equals='#tjjbl9#%' minequal='3' maxequal='3' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='70' equals='#tjjbl10#%' minequal='4' maxequal='4' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='80' equals='#tjjbl11#%' minequal='1' maxequal='1' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='80' equals='#tjjbl12#%' minequal='2' maxequal='2' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='80' equals='#tjjbl13#%' minequal='3' maxequal='3' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='80' equals='#tjjbl14#%' minequal='4' maxequal='4' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='80' equals='#tjjbl15#%' minequal='5' maxequal='5' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+
+            <_con lv='90' equals='#tjjbl16#%' minequal='1' maxequal='1' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='90' equals='#tjjbl17#%' minequal='2' maxequal='2' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='90' equals='#tjjbl18#%' minequal='3' maxequal='3' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='90' equals='#tjjbl19#%' minequal='4' maxequal='4' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='90' equals='#tjjbl20#%' minequal='5' maxequal='5' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+            <_con lv='90' equals='#tjjbl21#%' minequal='6' maxequal='6' where="M[奖金暂停]=0 and M[会员级别]>=20" />
+        </prize_lvdiff>
+        <!--
+        <prize_sql sql="{shangyekaohe}" tlemode="m"/>
+        <prize_sql sql="{najiangpanduan}" tlemode="d"/>
+        -->
+	</tle>
+</user>
+<!--用户设置节点,生成奖金设置页面-->
+<!-- 每个input项需要inname属性 当奖金参数被修改，日志会使用此标示 类似别名byname -->
+<tleset title="用户设置">
+	<table title="会员额度">
+		<tr>
+			<td>创客: </td><td><input value="300" name="lv1money" inname="创客注册额"/></td>
+		</tr>
+		<tr>
+			<td>金卡会员: </td><td><input value="3000" name="lv2money" inname="金卡会员注册额"/></td>
+		</tr>
+		<tr>
+			<td>钻卡会员: </td><td><input value="3000" name="lv3money" inname="钻卡会员注册额"/></td>
+		</tr>
+	</table>
+	<table title="订单有效时间">
+		<tr>
+			<td>创客: </td><td><input value="300" xml="false" name="zyts1" inname="创客时间"/>天</td>
+		</tr>
+		<tr>
+			<td>金卡会员: </td><td><input value="3000" xml="false" name="zyts2" inname="金卡会员时间"/>天</td>
+		</tr>
+		<tr>
+			<td>钻卡会员: </td><td><input value="6000" xml="false" name="zyts3" inname="钻卡会员时间"/>天</td>
+		</tr>
+		<!--
+		<tr>
+			<td>在到期前: </td><td><input value="10" xml='false' name="dqxfts" inname="在到期前天可续费"/>天可续费</td>
+		</tr>
+	-->
+	</table>
+	<table title="日产积分">
+		<tr>
+			<td>创客日产积分数量: </td><td><input value="1" name="rcytb1" inname="创客日产积分"/></td>
+		</tr>
+		<tr>
+			<td>金卡会员日产积分数量: </td><td><input value="10" xml="false" name="rcytb2" inname="金卡会员日产积分"/></td>
+		</tr>
+		<tr>
+			<td>钻卡会员日产积分数量: </td><td><input value="100" xml="false" name="rcytb3" inname="钻卡会员日产积分"/></td>
+		</tr>
+		<tr>
+			<td>创客日产积分封顶: </td><td><input value="300" name="rcjffd1" inname="创客日产积分封顶"/></td>
+		</tr>
+		<tr>
+			<td>金卡会员日产积分封顶: </td><td><input value="3000" name="rcjffd2" inname="金卡会员日产积分封顶"/></td>
+		</tr>
+		<tr>
+			<td>钻石会员日产积分封顶: </td><td><input value="30000" name="rcjffd3" inname="钻石会员日产积分封顶"/></td>
+		</tr>
+	</table>
+	<table title="推广奖">
+		<tr>
+			<td>小区新增业绩总和的</td><td><input value="20" name="tgj" inname="推广奖" xml="false"/>%</td>
+	    </tr>
+	    <tr>
+			<td>创客日封顶</td><td><input value="300" name="tgjfd1" inname="推广奖A日封顶" xml="false"/></td>
+	    </tr>
+	    <tr>
+			<td>金卡会员日封顶</td><td><input value="3000" name="tgjfd2" inname="推广奖B日封顶" xml="false"/></td>
+	    </tr>
+	    <tr>
+			<td>钻卡会员日封顶</td><td><input value="6000" name="tgjfd3" inname="推广奖C日封顶" xml="false"/></td>
+	    </tr>
+	</table>
+	<table title="管理奖">
+		<tr>
+			<td>第二、四、六代推广奖总额的</td><td><input value="10" name="glj" inname="管理奖" xml="false"/>%</td>
+	    </tr>
+        <tr>
+            <td>创客日封顶</td><td><input value="300" name="gljfd1" inname="管理奖日封顶1" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>金卡会员日封顶</td><td><input value="3000" name="gljfd2" inname="管理奖日封顶2" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>钻卡会员日封顶</td><td><input value="6000" name="gljfd3" inname="管理奖日封顶3" xml="false"/></td>
+        </tr>
+	</table>
+    <!--
+	<table title="升级奖">
+		<tr>
+			<td>升级为金卡拿升级额的</td><td><input value="10" name="sjj1" inname="升级奖1" />%</td>
+	    </tr>
+	    <tr>
+			<td>升级为钻卡拿升级额的</td><td><input value="20" name="sjj2" inname="升级奖2" />%</td>
+	    </tr>
+	</table>
+-->
+	<table title="贡献奖">
+		<tr>
+			<td>直推2个的奖励</td><td><input value="300" name="gxj" inname="贡献奖" xml="false"/>积分</td>
+	    </tr>
+	</table>
+    <table title="管理费">
+        <tr>
+            <td>产出的积分：</td>
+            <td><input value="90" name="glf1" inname="管理费1" />%进入积分</td>
+        </tr>
+        <tr>
+            <td>产生的奖金：</td>
+            <td><input value="80" name="glf2" inname="管理费2" />%进入积分</td>
+        </tr>
+        <tr>
+            <td>其他产注册：</td>
+            <td>用户使用不低于<input value="50" name="glf3" xml='false' inname="注册扣除比例1" />%的激活币进行注册</td>
+        </tr>
+        <tr>
+            <td>升级扣款：</td>
+            <td>用户使用不低于<input value="50" name="sjkkzd" xml='false' inname="升级扣款扣除比例" />%的激活币进行升级</td>
+        </tr>
+    </table>
+    <table title="钻卡级别设置">
+        <tr>
+            <td>
+                开启后会员可以升级钻卡
+                <select name='sjzk' xml='false' inname="升级封顶" >
+                    <option value='1' >开启</option>
+                    <option value='0' >关闭</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <table title="修改升级名称">
+        <tr>
+            <td>升级金卡改为</td><td><input value="升级金卡" name="xgsjjk" inname="修改升级名称1" isnum="false" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>升级钻卡改为</td><td><input value="升级钻卡" name="xgsjzk" inname="修改升级名称2" isnum="false" xml="false"/></td>
+        </tr>
+    </table>
+	<table title="修改钱包名称">
+        <tr>
+            <td>激活币名称改为</td><td><input value="激活币" name="xgjhb" inname="修改激活币名称" isnum="false" xml="false"/></td>
+        </tr>
+		<tr>
+			<td>积分名称改为</td><td><input value="E贝积分" name="xgmc" inname="修改积分名称" isnum="false" xml="false"/></td>
+	    </tr>
+	</table>
+    <table title="修改会员级别名称">
+        <tr>
+            <td>创客改为</td><td><input value="创客" name="xghyjbmc1" inname="修改会员级别名称1" isnum="false" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>金卡级别改为</td><td><input value="金卡会员" name="xghyjbmc2" inname="修改会员级别名称2" isnum="false" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>钻卡级别改为</td><td><input value="钻卡会员" name="xghyjbmc3" inname="修改会员级别名称3" isnum="false" xml="false"/></td>
+        </tr>
+    </table>
+	<table title="修改级差级别名称">
+        <tr>
+            <td>金卡级别改为</td><td><input value="金卡" name="xzjcjbmc1" inname="金卡级别改为1" isnum="false" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>钻卡级别改为</td><td><input value="钻卡" name="xzjcjbmc2" inname="金卡级别改为2" isnum="false" xml="false"/></td>
+        </tr>
+		<tr>
+			<td>经理级别改为</td><td><input value="经理" name="xgjcjbmc1" inname="修改级差级别名称1" isnum="false" xml="false"/></td>
+	    </tr>
+	    <tr>
+			<td>总监级别改为</td><td><input value="总监" name="xgjcjbmc2" inname="修改级差级别名称2" isnum="false" xml="false"/></td>
+	    </tr>
+	    <tr>
+			<td>合伙人级别改为</td><td><input value="合伙人" name="xgjcjbmc3" inname="修改级差级别名称3" isnum="false" xml="false"/></td>
+	    </tr>
+	    <tr>
+			<td>董事级别改为</td><td><input value="董事" name="xgjcjbmc4" inname="修改级差级别名称4" isnum="false" xml="false"/></td>
+	    </tr>
+	    <tr>
+			<td>一星大使级别改为</td><td><input value="一星大使" name="xgjcjbmc5" inname="修改级差级别名称5" isnum="false" xml="false"/></td>
+	    </tr>
+	    <tr>
+			<td>二星大使级别改为</td><td><input value="二星大使" name="xgjcjbmc6" inname="修改级差级别名称6" isnum="false" xml="false"/></td>
+	    </tr>
+	    <tr>
+			<td>三星大使级别改为</td><td><input value="三星大使" name="xgjcjbmc7" inname="修改级差级别名称7" isnum="false" xml="false"/></td>
+	    </tr>
+	    <tr>
+			<td>四星大使级别改为</td><td><input value="四星大使" name="xgjcjbmc8" inname="修改级差级别名称8" isnum="false" xml="false"/></td>
+	    </tr>
+	    <tr>
+			<td>五星大使级别改为</td><td><input value="五星大使" name="xgjcjbmc9" inname="修改级差级别名称9" isnum="false" xml="false"/></td>
+	    </tr>
+	</table>
+    <table title="修改奖金名称">
+        <tr>
+            <td>推广奖改为</td><td><input value="推广奖" name="xgtgj" inname="修改奖金名称1" isnum="false" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>管理奖改为</td><td><input value="管理奖" name="xgglj" inname="修改奖金名称2" isnum="false" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>贡献奖改为</td><td><input value="贡献奖" name="xggxj" inname="修改奖金名称3" isnum="false" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>级差奖改为</td><td><input value="级差奖" name="xgjcj" inname="修改奖金名称4" isnum="false" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>育成奖改为</td><td><input value="育成奖" name="xgycj" inname="修改奖金名称5" isnum="false" xml="false"/></td>
+        </tr>
+    </table>
+	<table title="升级规则">
+		<tr>
+			<td>金卡会员总业绩达到</td><td><input value="1000000" name="jlzyj" inname="经理升级规则1" /></td>
+			<td>小区业绩达到</td><td><input value="300000" name="jlxqyj" inname="经理升级规则2" /></td>
+			<td>成为经理</td>
+			<td>
+				<select name='sjjl' xml='false' inname="升级经理" >
+				    <option value='1' >开启</option>
+				    <option value='0' >关闭</option>
+				</select>
+			</td>
+	    </tr>
+	    <tr>
+			<td>金卡会员总业绩达到</td><td><input value="10000000" name="zjzyj" inname="总监升级规则1" /></td>
+			<td>小区业绩达到</td><td><input value="3000000" name="zjxqyj" inname="总监升级规则2" /></td>
+			<td>成为总监</td>
+			<td>
+				<select name='sjzj' xml='false' inname="升级总监" >
+				    <option value='1' >开启</option>
+				    <option value='0' >关闭</option>
+				</select>
+			</td>
+	    </tr>
+	    <tr>
+			<td>金卡会员总业绩达到</td><td><input value="50000000" name="hhrzyj" inname="合伙人升级规则1" /></td>
+			<td>小区业绩达到</td><td><input value="15000000" name="hhrxqyj" inname="合伙人升级规则2"/></td>
+			<td>成为合伙人</td>
+			<td>
+				<select name='sjhhr' xml='false' inname="升级合伙人" >
+				    <option value='1' >开启</option>
+				    <option value='0' >关闭</option>
+				</select>
+			</td>
+	    </tr>
+	    <tr>
+			<td>金卡会员总业绩达到</td><td><input value="100000000" name="dszyj" inname="董事升级规则1" /></td>
+			<td>小区业绩达到</td><td><input value="40000000" name="dsxqyj" inname="董事升级规则2" /></td>
+			<td>成为董事</td>
+			<td>
+				<select name='sjds' xml='false' inname="升级董事" >
+				    <option value='1' >开启</option>
+				    <option value='0' >关闭</option>
+				</select>
+			</td>
+	    </tr>
+	    <tr>
+	    	<!--
+			<td>金卡会员总业绩达到</td><td><input value="300000000" name="yxdszyj" inname="一星大使升级规则1" /></td>
+		-->
+			<td>金卡会员直推</td><td colspan='2'><input value="3" name="yxdszt" inname="一星大使升级规则2" />个董事</td>
+			<td colspan='2'>成为一星大使</td>
+			<td>
+				<select name='sjyxds' xml='false' inname="升级一星大使" >
+				    <option value='1' >开启</option>
+				    <option value='0' >关闭</option>
+				</select>
+			</td>
+	    </tr>
+	    <tr>
+	    	<!--
+			<td>金卡会员总业绩达到</td><td><input value="500000000" name="exdszyj" inname="二星大使升级规则1" /></td>
+		-->
+			<td>金卡会员直推</td><td colspan='2'><input value="3" name="exdszt" inname="二星大使升级规则2" />个董事</td>
+			<td colspan='2'>成为二星大使</td>
+			<td>
+				<select name='sjexds' xml='false' inname="升级二星大使" >
+				    <option value='1' >开启</option>
+				    <option value='0' >关闭</option>
+				</select>
+			</td>
+	    </tr>
+	    <tr>
+	    	<!--
+			<td>金卡会员总业绩达到</td><td><input value="1000000000" name="sxdszyj1" inname="三星大使升级规则1" /></td>
+		-->
+			<td>金卡会员直推</td><td colspan='2'><input value="3" name="sxdszt1" inname="三星大使升级规则2" />个董事</td>
+			<td colspan='2'>成为三星大使</td>
+			<td>
+				<select name='sjsxds1' xml='false' inname="升级三星大使" >
+				    <option value='1' >开启</option>
+				    <option value='0' >关闭</option>
+				</select>
+			</td>
+	    </tr>
+	    <tr>
+	    	<!--
+			<td>金卡会员总业绩达到</td><td><input value="1500000000" name="sxdszyj2" inname="四星大使升级规则1" /></td>
+		-->
+			<td>金卡会员直推</td><td colspan='2'><input value="3" name="sxdszt2" inname="四星大使升级规则2" />个董事</td>
+			<td colspan='2'>成为四星大使</td>
+			<td>
+				<select name='sjsxds2' xml='false' inname="升级四星大使" >
+				    <option value='1' >开启</option>
+				    <option value='0' >关闭</option>
+				</select>
+			</td>
+	    </tr>
+	    <tr>
+	    	<!--
+			<td>金卡会员总业绩达到</td><td><input value="300000000" name="wxdszyj" inname="五星大使升级规则1" /></td>
+		-->
+			<td>金卡会员直推</td><td colspan='2'><input value="3" name="wxdszt" inname="五星大使升级规则2" />个董事</td>
+			<td colspan='2'>成为五星大使</td>
+			<td>
+				<select name='sjwxds' xml='false' inname="升级五星大使" >
+				    <option value='1' >开启</option>
+				    <option value='0' >关闭</option>
+				</select>
+			</td>
+	    </tr>
+	</table>
+    <table title="级差奖">
+        <tr>
+            <td>金卡拿升级订单的</td>
+            <td colspan='2'><input value="5" name="xzjcj1" inname="新增级差奖1" />%</td>
+        </tr>
+        <tr>
+            <td>钻卡拿升级订单的</td>
+            <td colspan='2'><input value="10" name="xzjcj2" inname="新增级差奖2" />%</td>
+        </tr>
+        <tr>
+            <td>经理拿升级订单的</td>
+            <td colspan='2'><input value="15" name="jcj1" inname="级差奖1" />%</td>
+        </tr>
+        <tr>
+            <td>总监拿升级订单的</td>
+            <td colspan='2'><input value="20" name="jcj2" inname="级差奖2" />%</td>
+        </tr>
+        <tr>
+            <td>合伙人拿升级订单的</td>
+            <td colspan='2'><input value="25" name="jcj3" inname="级差奖3" />%</td>
+        </tr>
+        <tr>
+            <td>董事拿升级订单的</td>
+            <td colspan='2'><input value="30" name="jcj4" inname="级差奖4" />%</td>
+        </tr>
+        <tr>
+            <td>一星大使拿升级订单的</td>
+            <td colspan='2'><input value="35" name="jcj5" inname="级差奖5" />%</td>
+        </tr>
+        <tr>
+            <td>二星大使拿升级订单的</td>
+            <td colspan='2'><input value="40" name="jcj6" inname="级差奖6" />%</td>
+        </tr>
+        <tr>
+            <td>三星大使拿升级订单的</td>
+            <td colspan='2'><input value="45" name="jcj7" inname="级差奖7" />%</td>
+        </tr>
+        <tr>
+            <td>四星大使拿升级订单的</td>
+            <td colspan='2'><input value="50" name="jcj8" inname="级差奖8" />%</td>
+        </tr>
+        <tr>
+            <td>五星大使拿升级订单的</td>
+            <td colspan='2'><input value="55" name="jcj9" inname="级差奖9" />%</td>
+        </tr>
+        <tr>
+            <td>董事同级奖拿</td>
+            <td>1代的</td>
+            <td><input value="2" name="tjjbl1" inname="一星大使同级奖" />%</td>
+        </tr>
+        <tr>
+            <td rowspan='2'>一星大使同级奖拿</td>
+            <td>1代的</td>
+            <td><input value="2" name="tjjbl2" inname="一星大使同级奖1" />%</td>
+        </tr>
+        <tr>
+            <td>2代的</td>
+            <td><input value="2" name="tjjbl3" inname="一星大使同级奖2" />%</td>
+        </tr>
+        <tr>
+            <td rowspan='3'>二星大使同级奖拿</td>
+            <td>1代的</td>
+            <td><input value="3" name="tjjbl4" inname="二星大使同级奖1" />%</td>
+        </tr>
+        <tr>
+            <td>2代的</td>
+            <td><input value="3" name="tjjbl5" inname="二星大使同级奖2" />%</td>
+        </tr>
+        <tr>
+            <td>3代的</td>
+            <td><input value="3" name="tjjbl6" inname="二星大使同级奖3" />%</td>
+        </tr>
+        <tr>
+            <td rowspan='4'>三星大使同级奖拿</td>
+            <td>1代的</td>
+            <td><input value="4" name="tjjbl7" inname="三星大使同级奖1" />%</td>
+        </tr>
+        <tr>
+            <td>2代的</td>
+            <td><input value="4" name="tjjbl8" inname="三星大使同级奖2" />%</td>
+        </tr>
+        <tr>
+            <td>3代的</td>
+            <td><input value="4" name="tjjbl9" inname="三星大使同级奖3" />%</td>
+        </tr>
+        <tr>
+            <td>4代的</td>
+            <td><input value="4" name="tjjbl10" inname="三星大使同级奖4" />%</td>
+        </tr>
+        <tr>
+            <td rowspan='5'>四星大使同级奖拿</td>
+            <td>1代的</td>
+            <td><input value="5" name="tjjbl11" inname="四星大使同级奖1" />%</td>
+        </tr>
+        <tr>
+            <td>2代的</td>
+            <td><input value="5" name="tjjbl12" inname="四星大使同级奖2" />%</td>
+        </tr>
+        <tr>
+            <td>3代的</td>
+            <td><input value="5" name="tjjbl13" inname="四星大使同级奖3" />%</td>
+        </tr>
+        <tr>
+            <td>4代的</td>
+            <td><input value="5" name="tjjbl14" inname="四星大使同级奖4" />%</td>
+        </tr>
+        <tr>
+            <td>5代的</td>
+            <td><input value="5" name="tjjbl15" inname="四星大使同级奖5" />%</td>
+        </tr>
+        <tr>
+            <td rowspan='6'>五星大使同级奖拿</td>
+            <td>1代的</td>
+            <td><input value="6" name="tjjbl16" inname="五星大使同级奖1" />%</td>
+        </tr>
+        <tr>
+            <td>2代的</td>
+            <td><input value="6" name="tjjbl17" inname="五星大使同级奖2" />%</td>
+        </tr>
+        <tr>
+            <td>3代的</td>
+            <td><input value="6" name="tjjbl18" inname="五星大使同级奖3" />%</td>
+        </tr>
+        <tr>
+            <td>4代的</td>
+            <td><input value="6" name="tjjbl19" inname="五星大使同级奖4" />%</td>
+        </tr>
+        <tr>
+            <td>5代的</td>
+            <td><input value="6" name="tjjbl20" inname="五星大使同级奖5" />%</td>
+        </tr>
+        <tr>
+            <td>6代的</td>
+            <td><input value="6" name="tjjbl21" inname="五星大使同级奖6" />%</td>
+        </tr>
+    </table>
+    <table title="前台显示修改">
+        <tr>
+            <td>PRC该为</td>
+            <td><input value="PRC" name="qtxsxg" inname="前台显示修改" isnum="false" xml="false"/></td>
+        </tr>
+        <tr>
+            <td>汇款通知</td>
+            <td>
+                <select name='hktzkg' xml='false' inname="汇款通知" >
+                    <option value='1' >开启</option>
+                    <option value='0' >关闭</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>购买申请</td>
+            <td>
+                <select name='gmsqkg' xml='false' inname="购买申请" >
+                    <option value='1' >开启</option>
+                    <option value='0' >关闭</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</tleset>
+</con>

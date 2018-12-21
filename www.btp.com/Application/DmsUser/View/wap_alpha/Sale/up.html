@@ -1,0 +1,435 @@
+<include file="Public:header" />
+<div class="content">
+<!-- 这里是页面内容区 -->
+	<div class="list-block">
+	<form name="form1" method="post" action="__MODULE__/Sale/upSave:__XPATH__" id="register">
+		<ul>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('编号')}：</div>
+					<div class="item-input">	
+						<if condition="($sale:lockMe eq false)">
+						<input type="text" value="" name="userid" id="userid" onkeyup="getInfo(this)">
+						<else/>
+						{$userinfo.编号}
+						</if>
+					</div>
+				</div>
+			</li>
+			<notempty name="shop">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{$shop}：</div>
+					<div class="item-input" ><input type="text" value="" name="shop"></div>
+				</div>
+			</li>
+			</notempty>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('新'.$sale->lvName)}：</div>
+					<div class="item-input">
+						<select name='lv' id="lv">
+							<option value="">{:L('请选择')}</option>
+							<if condition="($sale:lockMe eq true)">
+							<foreach name='levelsopts'  item='level'>
+							<option value="{$level.lv}">{$level.name}</option>
+							</foreach>            
+							</if>            
+						</select>
+					</div>
+				</div>
+			</li>
+			<if condition="count($area) gt 0">
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title"><strong>{:L('代理区域')}</strong></div>
+				</div>
+			</li>
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('国家')}：</div>
+					<div class="item-input">
+                        <select name="country1" id="country1_id">
+						    <option value="">国家</option>
+						</select>
+                    </div>
+				</div>
+			</li>
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('省/州')}：</div>
+					<div class="item-input">
+                        <select name="province1" id="province1_id" >
+						    <option value="">省份</option>
+						</select>
+					</div>
+				</div>
+			</li>
+            <if condition="$area['city'] neq ''">
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('城市')}：</div>
+					<div class="item-input">
+                        <select name="city1"  id="city1_id" >
+                            <option value="">城市</option>
+                        </select>
+					</div>
+				</div>
+            </li>
+			</if>
+            <if condition="$area['county'] neq ''">
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('地区')}：</div>
+					<div class="item-input">
+                        <select name="county1"  id="county1_id" >
+                            <option value="">区县</option>
+                        </select>
+					</div>
+				</div>
+			</li>
+			</if>
+            <if condition="$area['town'] neq ''">
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('街道')}：</div>
+					<div class="item-input">
+                        <select name="town1"  id="town1_id" >
+                            <option value="">乡镇街道</option>
+                        </select>
+					</div>
+				</div>
+			</li>
+			</if>
+			</if>
+			<if condition="$sale:extra eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title"><strong>{:L('物流信息')}</strong></div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('国家')}：</div>
+					<div class="item-input">
+                        <select name="country" id="country_id">
+						    <option value="">国家</option>
+						</select>
+                    </div>
+				</div>
+			</li>
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('省/州')}：</div>
+					<div class="item-input">
+                        <select name="province" id="province_id" >
+						    <option value="">省份</option>
+						</select>
+					</div>
+				</div>
+			</li>
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('城市')}：</div>
+					<div class="item-input">
+                        <select name="city"  id="city_id" >
+                            <option value="">城市</option>
+                        </select>
+					</div>
+				</div>
+            </li>
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('地区')}：</div>
+					<div class="item-input">
+                        <select name="county"  id="county_id" >
+                            <option value="">区县</option>
+                        </select>
+					</div>
+				</div>
+			</li>
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('街道')}：</div>
+					<div class="item-input">
+                        <select name="town" id="town_id" >
+                            <option value="">乡镇街道</option>
+                        </select>
+					</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('收货人')}：</div>
+					<div class="item-input"><input name="reciver" id="reciver" type="text" value="{$userinfo.收货人}"/></div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('联系电话')}：</div>
+					<div class="item-input"><input name="mobile" id="mobile" type="text" value="{$userinfo.移动电话}"></div>
+					
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('收货地址')}：</div>
+					<div class="item-input"><input name="address" id="address" type="text" value="{$userinfo.地址}" size="50"></div>
+				</div>
+			</li>
+			</if>
+		</ul>
+
+		<present name="productArr">
+		<include file="product" />
+		</present>  
+		<present name="bankRatio" >
+        <div id='bankRatiotype' class="list-block" style="clear:both;margin:10px auto; margin-top:50px;">
+        	<php>$ratio=0;$p=false;</php>
+        	<foreach name='bankRatio' key="fkey" item="bankval">
+        	<php>
+        		$val=0+$bankval['maxval'];
+        		if($bankval['extra']==false){
+            		if(100>=$ratio && $val+$ratio>100){
+            			$val=100-$ratio;
+            		}
+            		$ratio+=$val;
+        		}
+        		if(strstr($bankval['maxval'],"%")){
+        			$p=true;
+        		}
+        	</php>
+        	<ul>
+            	<li class="item-content">
+	            	<div class="item-inner">
+						<div class="item-title label">{$bankval.name}：</div>
+						<div class="item-input">
+							<if condition="$bankval['extra']">{$val}&nbsp;{:L('支付额外金额')}<else/><input  name="accval[{$fkey}]" value="{$val}" type="text" size="5"/></if>&nbsp;<span id="money{$fkey}">&nbsp;&nbsp;</span>&nbsp;</if>
+						</div>
+						<div class="item-title label"><if condition="$p">%{:L('支付时货币比率')}<else/>{:L('支付时货币金额')}</if></div>
+					</div>
+            	</li>
+            </ul>
+            </foreach>
+            <ul><li colspan="3" class="msg">{:L('提示：设定的比率排除额外支付，相加等于支付订单金额的100%，并且每个货币的余额足够支付的比率')}<br><span id="state_accval"></span></li></ul>
+        </div>
+        </present>
+
+		<p>
+			<a id="subbut" class="button button-fill button-big button-warning" href="#">{:L('确定')}</a>
+		</p>
+	</form>
+	</div>
+
+</div>
+<include file="Public:footer" />
+<script src="__PUBLIC__/jquery-2.x.min.js"></script>
+<script src="__TMPL__Public/js/area_select.js"></script>
+<script>
+//地址选择
+<if condition="($sale:extra eq true)">
+var country		= "{$userinfo['国家']}";
+var province	= "{$userinfo['省份']}";
+var city		= "{$userinfo['城市']}";
+var county		= "{$userinfo['地区']}";
+var town		= "{$userinfo['街道']}";
+$$.area_select_bind( 'country_id' , 'province_id' , 'city_id' , 'county_id','town_id' );
+if(country!='')
+{
+	$$("#country_id option[value='{$userinfo['国家']}']").attr('selected',true);
+	$$("#country_id").change();
+}
+if(province!='') {
+	$$("#province_id option[value='{$userinfo['省份']}']").attr('selected',true);
+	//触发省份的 change事件
+	$$("#province_id").change();
+}
+if( city!='' ) {
+	//触发城市的 change事件
+	$$("#city_id option[value='{$userinfo['城市']}']").attr('selected',true);
+	$$("#city_id").change();
+}
+if(county!='') {
+	$$("#county_id option[value='{$userinfo['地区']}']").attr('selected',true);
+	$$("#county_id").change();
+}
+if( town!='' ) {
+	$$("#town_id option[value='{$userinfo['街道']}']").attr('selected',true);
+}
+
+</if>
+<if condition="(count($area) gt 0)">
+var country1		= "{$userinfo['代理国家']}";
+var province1	= "{$userinfo['代理省份']}";
+var city1		= "{$userinfo['代理城市']}";
+var county1		= "{$userinfo['代理地区']}";
+var town1		= "{$userinfo['代理街道']}";
+
+$$.area_select_bind( 'country1_id' , 'province1_id' , 'city1_id' , 'county1_id','town1_id' );
+if(country1!='')
+{
+	$$("#country1_id option[value='{$userinfo['代理国家']}']").attr('selected',true);
+	$$("#country1_id").change();
+}
+if(province1!='')
+{
+	$$("#province1_id option[value='{$userinfo['代理省份']}']").attr('selected',true);
+	//触发省份的 change事件
+	$$("#province1_id").change();
+}
+if( city1!='' )
+{
+	//触发城市的 change事件
+	$$("#city1_id option[value='{$userinfo['代理城市']}']").attr('selected',true);
+	$$("#city1_id").change();
+}
+if(county1!='')
+{
+	$$("#county1_id option[value='{$userinfo['代理地区']}']").attr('selected',true);
+	$$("#county1_id").change();
+}
+if( town1!='' ) {
+	$$("#town1_id option[value='{$userinfo['代理街道']}']").attr('selected',true);
+}
+</if>
+
+var vd;
+function getInfo(e) {
+	clearTimeout(vd);
+	vd = setTimeout("upAjax('"+e.id+"')",600);
+}
+
+function upAjax(id) {
+	var userid	   = $.trim($('#'+id).val());
+	$.get('__MODULE__/Sale/upAjax:__XPATH__/userid/'+userid,function(data) {
+		try {
+			eval("var json="+data);
+			if( json.status == 0 ) {
+                $.modal({text: "{:L('请输入正确的'.$userName.'编号')}",buttons: [{text: "{:L('确定')}"}]});
+            }
+			$('#lv').empty().append("<option value=''>{:L('请选择')}</option>");
+			var level_list = json.data;
+			for(i=0;i<level_list.length;i++) {
+				$('#lv').append("<option value='"+level_list[i].lv+"'>"+level_list[i].name+"</option>");
+			}
+		}
+		catch(e) {
+            $.modal({text: data,buttons: [{text: "{:L('确定')}"}]});
+            $.modal({text: "{:L('网络异常')}",buttons: [{text: "{:L('确定')}"}]});
+		}
+	});
+}
+
+//是否显示确认框
+$(document).on('click','#subbut', function () {
+    var productList = '';
+    var sumNum = 0;
+    var sumValue = 0;
+    if ($('.num-value').get(0)) {
+        $.each($('.num-value'), function (index, value) {
+            if (parseInt(value.value) > 0) {
+                var productimg = '';
+                sumNum += parseInt(value.value);
+                sumValue += parseInt(value.value) * parseInt(value.getAttribute('productMoney'));
+                console.log(value);
+
+                if (value.getAttribute('productImg')) {
+                    productimg = value.getAttribute('productImg');
+                } else {
+                    productimg = '__TMPL__Public/img/product.png';
+                }
+                productList += '<li>'+
+                                    '<div class="item-content">'+
+                                        '<div class="item-media">'+
+                                            '<img src="'+productimg+'" style="width:2.2rem;">'+
+                                        '</div>'+
+                                        '<div class="item-inner">'+
+                                            '<div class="item-title-row">'+
+                                                '<div class="item-title">'+value.getAttribute('productname')+'<small>（{:L('数量')}:'+value.value+'）</small></div>'+
+                                                '<div class="item-after">{:L('单价')}：'+value.getAttribute('productmoney')+'</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</li>';
+                
+                }
+        });
+        if (sumNum > 0) {
+            productList += '<li class="item-content">'+
+                              '<div class="item-inner">'+
+                                  '<div class="item-title">{:L("总数量")}：'+sumNum+'</div>'+
+                                  '<div class="item-after"><strong class="color-danger">{:L("总金额")}：￥'+sumValue+'</strong></div>'+
+                              '</div>'+
+                          '</li>';
+        } else  {
+            productList = '<li class="item-content">'+
+                              '<div class="item-inner">'+
+                                  '<div class="item-title"><strong class="color-danger">{:L("请选择商品")}</strong></div>'+
+                              '</div>'+
+                          '</li>';
+        }
+    }
+
+
+    /*物流*/
+    if( {$wuliu} == 1 ){
+	<if condition="($sale:extra eq true)">
+    productList += '<li class="item-content">'+
+                       '<div class="item-inner">'+
+                           '<div>{:L("收货地址")}：'+
+                               '<span class="color-gray">' + $("#country_id").val()+$("#province_id").val()+$("#city_id").val()+$("#county_id").val()+$("#town_id").val()+$("#address").val() + '</span></div>'+
+                       '</div>'+
+                   '</li>'+
+                   '<li class="item-content">'+
+                       '<div class="item-inner">'+
+                           '<div class="item-title">{:L("收货人")}</div>'+
+                           '<div class="item-after">' + $("#reciver").val() + '</div>'+
+                       '</div>'+
+                   '</li>'+
+                   '<li class="item-content">'+
+                       '<div class="item-inner">'+
+                           '<div class="item-title">{:L("联系电话")}</div>'+
+                           '<div class="item-after">' + $("#mobile").val() + '</div>'+
+                       '</div>'+
+                   '</li>'
+    </if>
+    }
+   productList += '<li class="item-content">'+
+       '<div class="item-inner">'+
+           '<div class="item-title"><strong class="color-danger">{:L("请确认升级信息，再点击确认")}</strong></div>' +
+       '</div>'+
+   '</li>';
+
+    var modal = $.modal({
+        title: '<strong>{:L("新级别")}：'+$('#lv option').not(function(){ return !this.selected }).html()+'</strong>',
+        <if condition="count($area) gt 0">
+		text: '{:L("选择区域")}：' + $("#country1_id").val()+$("#province1_id").val()+$("#city1_id").val()+$("#county1_id").val()+$("#town1_id").val(),     
+		</if>
+        afterText:  '<div class="swiper-container" style="width: auto; margin:5px -15px -15px">'+
+                        '<div class="swiper-pagination"></div>'+
+                        '<div class="swiper-wrapper">'+
+                            '<div class="list-block">'+
+                                '<ul>' + productList + '</ul>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>',
+        buttons: [
+        {
+            text: "{:L('确定')}",
+            bold: true,
+            onClick: function () {
+                $('#register').submit();
+            }
+        },
+        {
+            text: "{:L('取消')}",
+            bold: true,
+            onClick: function () {
+                return false;
+            }
+        },
+        ]
+    });
+});
+</script>
+

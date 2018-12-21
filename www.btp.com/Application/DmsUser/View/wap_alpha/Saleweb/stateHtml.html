@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{:CONFIG('SYSTEM_COMPANY')}</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="stylesheet" href="__TMPL__Public/dist/css/sm.css">
+        <link rel="stylesheet" href="__TMPL__Public/dist/css/sm-extend.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/ionicons.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/theme.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/app.css">
+        <script src="__TMPL__Public/js/zepto.js"></script>
+        <script>$.config={router: false}</script>
+
+    </head>
+    <body class="theme-blue">
+        <header class="bar bar-nav">
+            <h1 class="title">{:CONFIG('SYSTEM_COMPANY')}</h1>
+        </header>
+
+        <div class="content">
+            <h4>&nbsp;&nbsp;{:L('欢迎注册')}！</h4>
+            <p>{$message}</p>
+            <neq name="waitSecond" value="0">
+            <p>
+                {:L('系统模板')} <span id="wait" style="<if condition='$status'>color:blue<else/>color:red</if>;font-weight:bold">{$waitSecond}</span>{:L('秒后自动关闭，如果不想等待,直接点击')} <a id="href" href="{$jumpUrl}">{:L('这里')}</a> {:L('关闭')}
+            </p>
+            <else/>
+            <p>
+                {:L('请点击')} <a id="href" href="{$jumpUrl}">{:('这里')}</a> {:L('跳转页面')}
+            </p>
+            </neq>
+        </div>
+		<script type="text/javascript">
+		(function(){
+		var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+		var interval = setInterval(function(){
+			var time = --wait.innerHTML;
+			(time == 0) && (location.href = href);
+		}, 1000);	
+		})();
+		</script>
+    </body>
+</html>

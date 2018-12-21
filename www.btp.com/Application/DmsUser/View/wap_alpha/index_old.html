@@ -1,0 +1,99 @@
+<php>
+$nowtitle = L('会员管理系统');
+</php>
+<include file="Public:header" />
+<script src="__TMPL__Public/js/PhotoClip/iscroll-zoom.js"></script>
+<script src="__TMPL__Public/js/PhotoClip/hammer.min.js"></script>
+<script src="__TMPL__Public/js/PhotoClip/lrz.all.bundle.js"></script>
+<script src="__TMPL__Public/js/PhotoClip/PhotoClip.js"></script>
+<div class="content">
+    <!-- 这里是页面内容区 -->
+    <div class="user-box text-center">
+        <div class="user-inner">
+            <a class="user-link pull-left" href="__MODULE__/User/view">
+                <span class="icon ion-clipboard"></span>
+            </a>
+            <div class="user-face pull-left">
+                <div class="img-box">
+                    <input type="file" id="img-file" class="hide-file"  accept="image/*">
+                    <div class="header-img" id="header-img" <if condition="$userinfo['头像'] neq ''"> style="background: url({$userinfo['头像']});" <else />style="background: url(__TMPL__Public/img/face.png);" </if>></div>
+                </div>
+                <span class="user-name">{$userinfo.姓名}</span>
+                <span class="user-id">ID:{$userinfo.编号}</span>
+            </div>
+            <a class="user-link pull-right" href="__MODULE__/User/setPass">
+                <span class="icon ion-ios-unlocked-outline"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="list-block">
+        <ul>
+            <php>
+            $bg = 0;
+            </php>
+            <foreach name="menu" item="vo" key="key"> 
+            <li>
+                <a class="item-link item-content pop-nav" data-rol="{$bg}">
+                    <div class="item-media"><i class="icon {$icon[$bg]} bg-{$bg++}"></i></div>
+                    <div class="item-inner">
+                        <div class="item-title">{$key}</div>
+                    </div>
+                </a>
+            </li>
+            </foreach>
+        </ul>
+    </div>
+</div>
+<!-- 上传头像预览裁剪区域 -->
+<div class="clip-wrap">
+    <div class="clip-area" id="clipArea"></div>
+    <div class="loading"></div>
+    <div class="btn-wrap">
+        <div class="row">
+            <div class="col-50"><button class="js-cancal button button-fill button-warning">取消</button></div>
+            <div class="col-50"><button id="clipBtn" class="button  button-fill button-success">确定</button></div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />
+<script>
+var pc = new PhotoClip('#clipArea', {
+    size: $(document).width()*0.6,
+    outputSize: 320,
+    file: '#img-file',
+    view: '#header-img',
+    ok: '#clipBtn',
+    outputQuality: 0.8,
+    //img: 'img/mm.jpg',
+    loadStart: function() {
+        // console.log('开始读取照片');
+        $('.clip-wrap').show();
+    },
+    loadComplete: function() {
+        // console.log('照片读取完成');
+            $('.clip-wrap .loading').hide();
+    },
+    done: function(dataURL) {
+        $.post('__MODULE__/User/uploadPhotoSave',dataURL,function(data){
+			if(data.status == 1){
+				$('.clip-wrap').hide();
+				$('.clip-wrap .loading').show();
+			}else{
+				alert(data.info);
+			}
+		},'json')
+    },
+    fail: function(msg) {
+        alert(msg);
+    }
+});
+
+// 加载的图片必须要与本程序同源，否则无法截图
+//pc.load('img/mm.jpg');
+$('.js-cancal').on('click', function() {
+    $('.clip-wrap').hide();
+    $('.clip-wrap .loading').show();
+    pc.clear();
+})
+</script>

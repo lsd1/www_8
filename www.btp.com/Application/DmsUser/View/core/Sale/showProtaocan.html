@@ -1,0 +1,49 @@
+<div class="core_main User" id="showNotice">
+	<div class="core_title">
+    	<span class="core_title_con"><span>{:L('当前位置')}</span>：{$proinfo['名称']} {:L('产品详情')}</span>
+    </div>
+    <div class="core_con">
+        <table class="tablebg" id="table1" >
+            <thead>
+                <tr class="tdcenter">
+                    <td >{:L('序号')}</td>
+                    <td >{:L('产品名称')}</td>
+                    <td >{:L('图片')}</td>
+                    <td >{:L('价格')}</td>
+                    <td >{:L('数量')}</td>
+                </tr>
+            </thead>
+            <php>$ii=1;</php>
+            <tbody >
+            <foreach name="list" item="vo" >
+            
+                <tr class="tdcenter">
+                    <td>{$ii}</td>
+                    <td>
+                    	<a href="__CONTROLLER__/showProinfo:{$packinfo:xpath}/id/{$vo.id}/name/obj">{$vo.名称}</a>
+                    </td>
+                    <td>
+                        <php>$imgstr=$vo['图片'];</php>
+                        <if condition="(strlen($imgstr) eq 0)" >
+                            无
+                        <php> $productimg='无'; </php>
+                        <else/>
+                        <img src="{$vo.图片}" width='120px' />
+                        <php>
+                        $productimg="<img src='".$vo['图片']."' width='120px'/>"; 
+                        </php>
+                        </if>
+                    </td>
+                    <td>{$vo['价格']}</td>
+                    <td>{$vo['数量']}</td>
+                </tr>
+          
+            </tbody>
+            <php>$ii++;</php>
+            </foreach>
+           <tr >
+            <td class="backbtn" colspan="8"  style="text-align:center"><INPUT class="button_text" type="button"  id="but" value="{:L('关闭')}" name="but" onClick="window.close();"/>	</td>
+        </tr>
+        </table>
+    </div>
+</div>	

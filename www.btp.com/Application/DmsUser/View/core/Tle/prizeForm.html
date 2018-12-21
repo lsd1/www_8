@@ -1,0 +1,50 @@
+<div class="core_main Tle" id="prizeForm">
+	<div class="core_title">
+    	<span class="core_title_con"><span>{:L('当前位置')}</span>：{$nowtitle}</span>
+    </div>
+    <div class="core_con">
+        <foreach name="data" item="prize" >
+        <table class="tablebg">
+          <tr class="datafield">
+            <th colspan="5" style="">&nbsp;{:L($prize['name'])}&nbsp;
+            <notempty name="prize.PK">
+				<span style="color:#a33031">（奖金K值:{$prize['PK']['val']}%）</span>
+			</notempty>
+			<notempty name="prize.KW">
+				<span style="color:#a33031">（奖金K值:{$prize['KW']['val']}%）</span>
+			</notempty>
+			<notempty name="prize.TK">
+				<span style="color:#a33031">（总K值:{$prize['TK']['val']}%）</span>
+			</notempty>
+            </th>
+          </tr>
+			<tr class="datafield">
+				<td class="source"><if condition="$prize['list'][0]['lvname']">{:L($prize['list'][0]['lvname'])}</if></td>
+				<td class="source">{:L('来源')}</td>
+				<td class="number">{:L('奖金额')}</td>
+				<td class="calcul">{:L('计算方式')}</td>
+				<td class="layers">{:L('层数')}</td>
+			</tr>
+			<foreach name="prize.list" item="list" >
+			<tr class="datalist">
+				<td >{$list.lv}</td>
+				<td >{$list.编号}</td>
+				<td >
+					{$list.val}
+					<if condition="$list['val'] neq $list['trueval']">
+					<br><b><font color='#a33031'>封:{$list.trueval}</font></b>
+					</if>
+				</td>
+				<td ><if condition="$list.memo eq ''">-----<else/>{$list.memo}</if></td>
+				<td >{$list.layer}</td>
+			</tr>
+			</foreach>
+        </table>
+        </foreach>
+        <div style="text-align:center;padding-top:10px;">
+        	<input class="button_text" type="button"  id="but" value="{:L('返回')}" name="but" onClick="history.back();">
+		</div>
+
+    </div>
+    <div class="core_page"></div>
+</div>

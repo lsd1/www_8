@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{$SYSTEM_TITLE}</title>
+    <link rel="stylesheet" href="__TMPL__Public/style/view.css">
+    <script src="__PUBLIC__/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/Public/directSell/area_select.js"></script>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            text-align: left;
+            font-family: "微软雅黑";
+            font-size: 13px;
+            background-color: #2e3740;
+        }
+        .header {
+                height: 110px;
+                text-indent: 10px;
+                text-align: left;
+                color: #fc0;
+            }
+        .center {
+            margin-bottom: 50px;
+            text-align: left;
+            background-size: cover;
+        }
+        .core_main{
+        	margin:0 auto;
+        	width:1200px;
+        }
+        .core_title {
+            background-color: rgb(237, 237, 237);
+        }
+        .core_conp{
+        	padding:20px 10px 50px;
+        	background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="core_main Sale" id="product">
+    <div class="header"></div>
+    <div class="core_title"> <span class="core_title_con"><span>{:L('当前位置')}</span>：{$proinfo['名称']} {:L('产品详情')}</span></div>
+    <div class="core_conp">
+	    <table class="tablebg" id="table1" style="background:white">
+	        <thead>
+	            <tr>
+	                <td >{:L('序号')}</td>
+                    <td >{:L('产品名称')}</td>
+                    <td >{:L('图片')}</td>
+                    <td >{:L('价格')}</td>
+                    <td >{:L('数量')}</td>
+	            </tr>
+	        </thead>
+	        <php>$ii=1;</php>
+	        <tbody >
+	        <foreach name="list" item="vo" >
+	        
+	            <tr>
+	                <td>{$ii}</td>
+	                <td>
+	                	<a href="__CONTROLLER__/showProinfo:{$packinfo:xpath}/id/{$vo.id}/name/obj">{$vo.名称}</a>
+	                </td>
+	                <td>
+	                    <php>$imgstr=$vo['图片'];</php>
+	                    <if condition="(strlen($imgstr) eq 0)" >
+	                        无
+	                    <php> $productimg='无'; </php>
+	                    <else/>
+	                    <img src="{$vo.图片}" width='120px' />
+	                    <php>
+	                    $productimg="<img src='".$vo['图片']."' width='120px'/>"; 
+	                    </php>
+	                    </if>
+	                </td>
+	                <td>{$vo['价格']}</td>
+	                <td>{$vo['数量']}</td>
+	            </tr>
+	      
+	        </tbody>
+	        <php>$ii++;</php>
+	        </foreach>
+	       <tr >
+	        <td class="backbtn" colspan="8"  style="text-align:center"><INPUT class="button_text" type="button"  id="but" value="{:L('关闭')}" name="but" onClick="window.close();"/>	</td>
+	    </tr>
+	    </table>
+    </div>
+</div>	
+</body>
+</html>

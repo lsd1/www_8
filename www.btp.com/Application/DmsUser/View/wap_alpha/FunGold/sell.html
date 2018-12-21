@@ -1,0 +1,101 @@
+<include file="Public:header" />
+<div class="content notice">
+    <eq name="gold:sellOpen" value="1">
+    <div class="list-block">
+        <form method="post" id="form1" action="">
+            <input type="hidden" name="id" value="{$sellinfo.id}" />
+            <ul>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('买家编号')}：</div>
+                        <div class="item-input">{$sellinfo.编号}</div>
+                    </div>
+                </li>
+                <!-- 价格 -->
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('购买数量')}：</div>
+                        <div class="item-input"><span id="sellnum">{$sellinfo.未成交数量}</span></div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('购买价格')}：</div>
+                        <div class="item-input">{$sellinfo.单价}</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('需汇款金额')}：</div>
+                        <div class="item-input">{$sellinfo['未成交数量']*$sellinfo['单价']}</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('收款方式')}：</div>
+                        <div class="item-input"><input type="text" name="bank" value=""/></div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('银行卡号')}：</div>
+                        <div class="item-input"><input type="text" name="zhanghao" value=""/></div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('收款人')}：</div>
+                        <div class="item-input"><input type="text" name="huzhu" value=""/></div>
+                    </div>
+                </li>
+
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('联系方式')}：</div>
+                        <div class="item-input"><input type="text" name="mobile" value=""/></div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('卖出数量')}：</div>
+                        <div class="item-input"><if condition="$gold:buyAll eq 1">{$sellinfo['未成交数量']}<else/><input name="buynum" value="{$sellinfo['未成交数量']}" type="text" onkeyup="checknum(this)"/></if></div>
+                    </div>
+                </li>
+               
+                <li class="item-content">
+                    <div class="item-inner">
+                        <button id="sell_btn" type="button" class="button button-fill button-big button-warning" onclick="sell1();" >{:L('确定卖出')}</button>
+                    </div>
+                </li>
+            </ul>
+        </form> 
+    </div>
+    </eq>
+
+    
+
+</div>
+
+<include file="Public:footer" />
+
+<script>
+	function sell1(){
+		$("#sell_btn").attr("disabled","disabled");
+		var url="__CONTROLLER__/sellsave:__XPATH__";
+		$("#form1").attr("action",url);
+		$('#form1').submit();
+		$("#sell_btn").moveAttr("disabled");
+	}
+
+function checknum(e){
+    //判断是否是数字
+    if(isNaN($(e).val())){
+        layer.alert("{:L('非法数字')}", { title: "{:L('提示')}", btn: "{:L('确定')}"});
+        return false;
+    }
+    if($(e).val()>$('#sellnum').html()){
+        $(e).val($('#sellnum').html());
+    }
+}
+</script>
+

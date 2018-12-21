@@ -1,0 +1,188 @@
+<div class="core_main Fun_pay" id="index">
+	<div class="core_title">
+    	<span class="core_title_con"><span>当前位置</span>：{$nowtitle}</span>
+	
+        <span class="core_title_edit"></span>
+    </div>
+    <div class="core_con">
+    	<form method="post" action="__CONTROLLER__/pay_confirm" target="_self">
+            <table class="tablebg">
+                <tr>
+                    <td class="tbkey">支付货币类型：</td>
+                    <td class="tbval">
+                    <if condition="count($type) eq 1">
+                        <foreach name="type" item="vo">
+                        {$vo}
+                        <input name="type" id="type" type="hidden" value="{$key}">
+                        </foreach>
+                    <else/>
+                        <select name="type" id="type" onChange="calScale()">
+                            <foreach name="type" item="vo">
+                             <option value="{$key}">{$vo}</option>
+                            </foreach>
+                        </select>
+                    </if>
+                    </td>
+                </tr>  
+
+                <tr>
+                    <td class="tbkey">支付方式：</td>
+                    <td class="tbval">
+                        <select name="payment" id="payment">
+                        	<option value="" >请选择支付方式</option>
+                        <foreach name="list" item="payInfo" >                                   
+	                        <option value="{$payInfo.id}" >{$payInfo.name}</option>                                         
+                        </foreach>
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr id="direct" style="display:none">
+                    <td class="tbkey">直连银行：</td>
+                    <td class="tbval">
+                        <select name="direct" id="banklist">
+                        	<option value="">请选择直连银行</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="tbkey">支付金额：</td>
+                    <td class="tbval">
+                    	<input type="text" name="money" id="money" onKeyup="if($(this).val()>0)setTimeout(function(){calScale();},500)" />&nbsp;&nbsp;
+                    	<span id="scale_notice"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input class="button_text" type="submit" value="确认支付" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="core_page"></div>
+    <div class="core_title">
+    	<span class="core_title_con">{:L('在线支付订单记录')}</span>
+    </div>
+    <div class="core_con">
+        <table class="tablebg">
+        <TR class="datafield">
+            <foreach name='data.field' item='name'>
+            <TH >{$name}</TH>
+            </foreach>
+        </TR>
+        <foreach name='data.list' item='name'>
+        <TR class="datalist">
+            <foreach name="name" item='value' key='name1'>
+            <TD ><nobr>{$name.$name1}</nobr></TD>
+            </foreach>
+        </TR>
+        </foreach>
+        <notempty name="sum">
+        <tr class="datalist">
+            <foreach name="sum" item="vo">
+            <td><nobr>{$vo}</nobr></td>
+            </foreach>
+        </tr>
+        </notempty>
+       </table>
+       <notempty name="page">
+       <div>{$page}</div>
+       </notempty>
+    </div>
+    <div class="core_page">
+    <span>共{$data.count}条记录 {$data.nowPage}/{$data.totalPages}页 &nbsp;</span>
+    <if condition="$data['nowPage'] neq 1">
+    <a href="{$data.firstRow}">首页</a>&nbsp;&nbsp;
+    <else/><span>首页&nbsp;&nbsp;</span>
+    </if>
+    <a href="{$data.upRow}">上一页</a>&nbsp;&nbsp;
+    <if condition="isset($data['rollPage'][-2])">
+    <a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>&nbsp;&nbsp;
+    </if>
+    <if condition="isset($data['rollPage'][-1])">
+    <a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>&nbsp;&nbsp;
+    </if>
+    {$data.nowPage}&nbsp;&nbsp;
+    <if condition="isset($data['rollPage'][1])">
+    <a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>&nbsp;&nbsp;
+    </if>
+    <if condition="isset($data['rollPage'][2])">
+    <a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>&nbsp;&nbsp;
+    </if>
+    <a href="{$data.downRow}">下一页</a>&nbsp;&nbsp;
+    <if condition="$data['nowPage'] lt $data['totalPages']">
+    <a href="{$data.theEndRow}">尾页</a>
+    <else/><span>尾页</span>
+    </if>  
+    </div>
+</div>
+<script language="javascript">
+	$("#payment").change(function(){
+		var id= $(this).val();
+		$.ajax({
+			url:'__CONTROLLER__/payBank/id/'+id,
+			dataType:'json',
+			success:function(data){
+				if(data.status==1){
+					$("#direct").show();
+					var output = [];
+					$.each(data.banklist, function(key, value){
+						output.push('<option value="'+ key +'">'+ value +'</option>');
+					});
+					$("#banklist").append(output.join(''));
+				}else if(data.status==0){
+					$("#direct").hide();
+				}
+			}
+		});
+	});
+	//金额换算提示
+	function calScale(){
+		var money=$("#money").val();
+		var banktype=$("#type").val();
+		var postdata={};
+		postdata['money']    = money;
+		postdata['banktype']    = banktype;
+	    if(money>=0){
+	        $.ajax({
+	           url:"__APP__/DmsUser/Fun_pay/scaleAjax",
+	           type:"POST",
+	           data:postdata,
+	           dataType:"text",
+	           global:false,
+	           success:function(data){
+	               if(data == ''){
+	                  $("#scale_notice").html('');
+	               }else{
+	                  $("#scale_notice").html(data);
+	               }
+	           }  
+	        });
+	    }
+	}
+</script>
+<div align="center" id="qrcode" style="hidden"></div>
+<!--是否显示确认框-->
+<link rel="stylesheet" href="__PUBLIC__/zxxbox/common.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/zxxbox/jquery.zxxbox.3.0.js"></script>
+<script src="__PUBLIC__/js/qrcode.js"></script>
+<script>
+function showcode(e){
+	$("#qrcode").html("");
+	codeurl=$(e).attr('codeurl');
+	var url = codeurl;
+	//参数1表示图像大小，取值范围1-10；参数2表示质量，取值范围'L','M','Q','H'
+	var qr = qrcode(10, 'M');
+	qr.addData(url);
+	qr.make();
+	var wording=document.createElement('p');
+	wording.innerHTML = "微信扫码支付";
+	var code=document.createElement('DIV');
+	code.innerHTML = qr.createImgTag();
+	var element=document.getElementById("qrcode");
+	element.appendChild(wording);
+	element.appendChild(code);
+	var title="{:L('支付二维码')}";
+	$("#qrcode").zxxbox({title:title});
+}
+</script>

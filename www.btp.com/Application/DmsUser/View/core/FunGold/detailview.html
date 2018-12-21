@@ -1,0 +1,136 @@
+<load href="__PUBLIC__/My97DatePicker/WdatePicker.js" />
+<div class="core_main Fun_ep_deal" id="deal_list">
+     <div class="core_title">
+    	<span class="core_title_con">{:L('当前位置')}：{$nowtitle}</span>
+    </div>
+    <div class="core_con">
+    <form method="post" id="form1" action="">
+    	<input name="id" type="hidden" value="{$buyinfo['id']}"/>
+      <table class="tablebg">
+          <TR class="datafield">
+          	<TH ><nobr>{:L('卖家编号')}</nobr></TH>
+            <if condition="$sellinfo['开户银行'] neq ''">
+          	<TH ><nobr>{:L('开户银行')}</nobr></TH>
+            </if>
+            <if condition="$sellinfo['银行卡号'] neq ''">
+          	<TH ><nobr>{:L('银行卡号')}</nobr></TH>
+            </if>
+            <if condition="$sellinfo['开户名'] neq ''">
+          	<TH ><nobr>{:L('开户名')}</nobr></TH>
+            </if>
+            <if condition="$sellinfo['电话'] neq ''">
+          	<TH ><nobr>{:L('联系电话')}</nobr></TH>
+            </if>
+          </TR>
+          <TR class="datalist">
+          	<TD ><nobr><eq name="hang_type" value="1">{$sellinfo.编号}<else/>{$sellinfo.卖家编号}</eq></nobr></TD>
+            <if condition="$sellinfo['开户银行'] neq ''">
+          	<TD ><nobr>{$sellinfo.开户银行}</nobr></TD>
+            </if>
+            <if condition="$sellinfo['银行卡号'] neq ''">
+          	<TD ><nobr>{$sellinfo.银行卡号}</nobr></TD>
+            </if>
+            <if condition="$sellinfo['开户名'] neq ''">
+          	<TD ><nobr>{$sellinfo.开户名}</nobr></TD>
+            </if>
+            <if condition="$sellinfo['电话'] neq ''">
+          	<TD ><nobr>{$sellinfo.电话}</nobr></TD>
+            </if>
+          </TR>
+      </table>
+      <table class="tablebg">
+      	<tr class="datalist">
+		    <td class="tbkey">{:L('买家编号')}：</td>
+			<td  class="tbval">{$buyinfo.编号}</td>
+		</tr>
+		<tr class="datalist">
+		    <td class="tbkey">{:L('购买数量')}：</td>
+			<td  class="tbval">{$buyinfo.数量}</td>
+		</tr>
+		<tr class="datalist">
+		    <td class="tbkey">{:L('购买价格')}：</td>
+			<td  class="tbval">{$buyinfo.单价}</td>
+		</tr>
+		<tr class="datalist">
+		    <td class="tbkey">{:L('购买时间')}：</td>
+			<td  class="tbval">{$buyinfo.购买时间|date="Y-m-d H:i:s",###}</td>
+		</tr>
+		<notempty name="buyinfo['付款时间']">
+		<tr class="datalist">
+		    <td class="tbkey">{:L('汇款金额')}：</td>
+			<td  class="tbval">{$buyinfo.汇款金额}</td>
+		</tr>
+        </notempty>
+        <notempty name="buyinfo['开户银行']">
+		<tr class="datalist">
+		    <td class="tbkey">{:L('开户银行')}：</td>
+			<td  class="tbval">{$buyinfo.开户银行}</td>
+		</tr>
+        </notempty>
+        <notempty name="buyinfo['银行卡号']">
+		<tr class="datalist">
+		    <td class="tbkey">{:L('银行卡号')}：</td>
+			<td  class="tbval">{$buyinfo.银行卡号}</td>
+		</tr>
+        </notempty>
+        <notempty name="buyinfo['开户名']">
+		<tr class="datalist">
+		    <td class="tbkey">{:L('开户名')}：</td>
+			<td  class="tbval">{$buyinfo.开户名}</td>
+		</tr>
+        </notempty>
+        <notempty name="buyinfo['电话']">
+		<tr class="datalist">
+		    <td class="tbkey">{:L('联系电话')}：</td>
+			<td  class="tbval">{$buyinfo.电话}</td>
+		</tr>
+        </notempty>
+        <notempty name="buyinfo['汇款时间']">
+		<tr class="datalist">
+		    <td class="tbkey">{:L('汇款时间')}：</td>
+			<td  class="tbval">{$buyinfo.汇款时间|date="Y-m-d",###}</td>
+		</tr>
+        </notempty>
+        <notempty name="buyinfo['付款时间']">
+		<tr class="datalist">
+		    <td class="tbkey">{:L('付款时间')}：</td>
+			<td  class="tbval">{$buyinfo.付款时间|date="Y-m-d H:i:s",###}</td>
+		</tr>
+        </notempty>
+		<notempty name="buyinfo['确认时间']">
+		<tr class="datalist">
+		    <td class="tbkey">{:L('买家确认')}：</td>
+			<td  class="tbval">{$buyinfo.确认时间|date="Y-m-d H:i:s",###}</td>
+		</tr>
+		</notempty>
+		<notempty name="buyinfo['卖家申请说明']">
+		<tr class="datalist">
+		    <td class="tbkey">{:L('卖家仲裁说明')}：</td>
+			<td  class="tbval">{$buyinfo['卖家申请说明']}</td>
+		</tr>
+		</notempty>
+		<notempty name="buyinfo['买家凭据']">
+		<tr class="datalist">
+		    <td class="tbkey">{:L('买家凭据')}：</td>
+			<td  class="tbval"><img src="{$buyinfo['买家凭据']}"></td>
+		</tr>
+		</notempty>
+		<if condition="$buyinfo['状态']=='仲裁卖家' or $buyinfo['状态']=='仲裁买家'">
+		<tr class="datalist">
+			<td class="tbkey">{:L('仲裁扣星')}：</td>
+			<td class="tbval">{$buyinfo.仲裁扣分}</td>
+		</tr>
+		<tr class="datalist">
+			<td class="tbkey">{:L('仲裁说明')}：</td>
+			<td class="tbval">{$buyinfo.仲裁说明}</td>
+		</tr>
+		</if>
+		<tr>
+			<td colspan="2" style="text-align:center"><button id="rem_btn" type="button" class="input_button" onClick="history.back();">{:L('返回')}</button></td>
+		</tr>
+     </table>
+     </form>
+  </div>
+</div>
+</body>
+</html>

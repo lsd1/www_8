@@ -1,0 +1,22 @@
+<div class="pageContent">
+<div class="panelBar"></div>
+<table style="text-align:center;" class="table" width="100%" layoutH="95">
+	<thead >
+		<tr>
+			<th style="width:120px">变动项</th>
+			<th style="width:260px">变动前</th>
+			<th style="width:205px;">变动后</th>
+		</tr>
+	</thead>
+	<tbody class="xtabletbody">
+	<foreach name="change_data" item="vo" key="k">
+		<tr>
+			<td style="width:120px">{$k}</td>
+			<td style="width:60px">{$vo['old']}</td>
+			<td style="width:200px;">{$vo['new']}</td>
+		</tr>
+	</foreach>
+	</tbody>
+</table>
+<div class="panelBar"></div>
+</div>

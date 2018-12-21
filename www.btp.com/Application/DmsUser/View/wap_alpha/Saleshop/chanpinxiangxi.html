@@ -1,0 +1,102 @@
+<php>
+$nowtitle = L('产品详情');
+</php>
+<include file="Public:header" />
+<div class="content product">
+    <div class="content-block-title text-center" style="text-transform:none">
+        <strong>{$product['名称']}</strong>
+    </div>
+    <div class="text-center">
+        <img src="{$product.图片}" style="width:10rem;padding:.2rem;border:1px solid #cdcdcd;">
+    </div>
+    <br>
+    <form name="form1" method="post" action="__MODULE__/Saleshop/buygouwu:__XPATH__" id="form">
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner no-border">
+                            <div class="item-title">{:L('产品描述')}</div>
+                        </div>
+                    </div>
+                    <div class="item-content color-gray">
+                        <div>
+                            <if condition="$product['描述']">{:htmlspecialchars_decode($product['描述'])}<else />{:L('暂无')}</if>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{:L('零售价')}</div>
+                            <div class="item-after"><php>echo $product[$sale->productMoney];</php></div>
+                        </div>
+                    </div>
+                </li>
+                <if condition="$sale:productPV eq true">
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">PV</div>
+                            <div class="item-after">{$product.pv}</div>
+                        </div>
+                    </div>
+                </li>
+                </if>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{:L('剩余库存')}</div>
+                            <div class="item-after">{$product['可订购数量']}</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{:L('购买数量(件)')}</div>
+                            <div class="item-after">
+                                <ul class="product-num pull-right">
+                                    <li><span class="minus color-default">-</span></li>
+                                    <li class="num-box">
+                                        <input type="number" class="num-value" name="buynum" id="shuliang" value="1">
+                                    </li>
+                                    <li><span class="plus color-default">+</span></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <input type="hidden" name="proid" value="{$product.id}" />
+        <div class="content-padded">
+            <div class="row">
+                <div class="col-50"><button class="button button-big button-fill button-danger back">{:L('返回')}</button></div>
+                <div class="col-50"><button class="button button-big button-fill button-success" type="submit">{:L('加入购物车')}</button></div>
+            </div>
+        </div>
+    </form>
+</div>
+<include file="Public:footer" />
+<script>
+    //数值计算
+    $('.product-num .plus').click(function () {
+        var numValue = $(this).parents('.product-num').find('.num-value').val();
+        if (numValue < {$product['可订购数量']}) {
+            numValue++;
+            $(this).parents('.product-num').find('.num-value').val(numValue);
+        }
+    });
+    $('.product-num .minus').click(function () {
+        var numValue = $(this).parents('.product-num').find('.num-value').val();
+        if (numValue > 0) {
+            numValue--;
+            $(this).parents('.product-num').find('.num-value').val(numValue);
+        }
+    });
+
+</script>
+

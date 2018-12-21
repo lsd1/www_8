@@ -1,0 +1,70 @@
+<div class="content">
+	<div class="list-block">
+		<div class="content">
+			<div class="user-info">
+				<div class="info-box">
+					<table>
+						<tr>
+							<th colspan="2">{:L('用户编号')}：{$userinfo.编号}&nbsp; <span class="userlevel">
+								<if condition="$userinfo['会员级别'] eq  1 ">{:L('消费者')}
+								<elseif condition="$userinfo['会员级别'] eq  2"/>{:L('普通经销商')}
+								<elseif condition="$userinfo['会员级别'] eq  3"/>{:L('主级经销商')}
+								<elseif condition="$userinfo['会员级别'] eq  4"/>{:L('经理经销商')}
+								</if>
+								</span>
+							</th>
+						</tr>
+						<tr>
+							<td>{:L('昵称')}：{$userinfo.昵称}&nbsp; </td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>{:L('姓名')}：{$userinfo.姓名}&nbsp;</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>{:L('注册时间')}：{$userinfo.注册时间|date="Y-m-d H:i:s",###}&nbsp;</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<div class="list-block">
+					<ul>
+						<li class="item-content">
+							<div class="item-media"><i class="iconfont">&#xe616;</i></div>
+							<div class="item-inner">
+								<div class="item-title">{:L('货币总额')}</div>
+								<div class="item-after">
+									<span style="color-999">  </span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="h-line"></div>
+			<div class="user-fund">
+				<div class="list-block media-list" style="width:100%;background:#fff;">
+					<ul>
+						<foreach name="funbank" item="val" key='k'>
+						<li style="width:50%;float:left;">
+							<a href="__MODULE__/FunBank/index:{$val['xpath']}">
+							<div class="item-content">
+								<div class="item-media"><i class="iconfont">&#xe6a8;</i></div>
+								<div class="item-inner">
+									<div class="item-title-row">
+										<div class="item-title">{$k}</div>
+									</div>
+									<div class="item-subtitle">{$val['num']}</div>
+								</div>
+							</div>
+							</a>
+						 </li>
+						 </foreach>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

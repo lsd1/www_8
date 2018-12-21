@@ -1,0 +1,89 @@
+<include file="Public:header" />
+<div class="content notice">
+	<if condition="count($data['list']) elt 0">
+	<h1>{:L('暂无邮件')}</h1>
+	</if>
+
+	<foreach name='data.list' item='vo'>
+	<div class="card">
+		<div class="card-header">
+			<php>
+				if(mb_strlen($vo['标题'],'utf-8')>16){
+					$vo['标题'] = mb_substr($vo['标题'],0,16,'utf-8').'...';
+				}
+			</php>
+			{$vo.标题}
+			<a class="link" href="__MODULE__/Mail/del/id/{$vo.id}" onclick="return confirm('确定要删除吗?')"><span class="button button-warning">{:L('删除')}</span></a>
+		</div>
+		<div class="card-content">
+			<div class="row">
+				<div class="col-33">
+					<div class="card-content-inner text-center">
+						<if condition="$vo['状态'] neq 2">
+						<a href="__MODULE__/Mail/answer/id/{$vo.id}" class="color-warning">
+						<else/>
+						<a href="javascript:void(0);" class="color-gray">
+						</if>
+							<span class="icon icon-edit"></span>
+							<small>{:L('回复')}</small>
+						</a>
+					</div>
+				</div>
+				<div class="col-66">
+					<div class="card-content-inner">
+						<p></p>
+						<p><a href="__MODULE__/Mail/view/id/{$vo.id}">
+							<span class="color-gray">{:L('邮件状态')}：</span>
+							<if condition="$vo['状态'] eq 0">
+							{:L('未查看')} <img class="mail-status" src="__TMPL__Public/img/mail-unread.png">
+							<elseif condition="$vo['状态'] eq 1"/>
+							{:L('已查看')} <img class="mail-status" src="__TMPL__Public/img/mail-read.png">
+							<else/>
+							{:L('已回复')} <img class="mail-status" src="__TMPL__Public/img/mail-read.png">
+							</if>
+						</a></p>
+						<p><span class="color-gray">{:L('收件时间')}：</span>{:date('Y-m-d H:i:s',$vo['发送时间'])}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</foreach>
+	<div class="pager">
+		<if condition="$data['nowPage'] neq 1">
+		<a href="{$data.firstRow}">&laquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&laquo;</a>
+		</if>
+
+		<a href="{$data.upRow}">&lt;</a>
+
+		<if condition="isset($data['rollPage'][-2])">
+		<a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][-1])">
+		<a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>
+		</if>
+
+		<a href="javascript:void(0)">{$data.nowPage}/{$data.totalPages}</a>
+
+		<if condition="isset($data['rollPage'][1])">
+		<a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][2])">
+		<a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>
+		</if>
+
+		<a href="{$data.downRow}">&gt;</a>
+
+		<if condition="$data['nowPage'] lt $data['totalPages']">
+		<a href="{$data.theEndRow}">&raquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&raquo;</a>
+		</if>  
+	</div>   
+</div>
+<include file="Public:footer" />
+

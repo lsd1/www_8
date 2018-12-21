@@ -1,0 +1,20 @@
+<php>
+$nowtitle = L('信息管理>>查看公告');
+</php>
+<include file="Public:header" />
+<div class="content notice">
+	<div class="content-padded">
+		<div class="text-head">
+			<h1 class="text-title">{$list.标题}</h1>
+			<div class="sub-info">{:L('创建时间')}：{$list.创建时间|date="Y-m-d H:i:s",###}</div>
+		</div>
+		<div class="text-content">
+			{$list.内容}
+		</div>
+	</div>
+	<p>
+		<a class="button button-fill button-big button-warning back">{:L('返回')}</a>
+	</p>
+</div>
+<include file="Public:footer" />
+

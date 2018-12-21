@@ -1,0 +1,175 @@
+<php>
+$nowtitle=L('产品选购信息');
+</php>
+<include file="Public:header" />
+<div class="content notice">
+	<div class="list-block">
+		<ul>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('编号')}：</div>
+					<div class="item-after">{$saleData.编号}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('购买时间')}：</div>
+					<div class="item-after"><if condition="$saleData['购买时间']">{$saleData.购买时间|date='Y-m-d H:i:s',###}</if></div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('到款时间')}：</div>
+					<div class="item-after"><if condition="$saleData['到款时间']">{$saleData.到款时间|date='Y-m-d H:i:s',###}</if></div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('服务中心')}：</div>
+					<div class="item-after">{$saleData.服务中心编号}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('报单类别')}：</div>
+					<div class="item-after">{$saleData.报单类别}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('报单状态')}：</div>
+					<div class="item-after">{$saleData.报单状态}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('报单金额')}：</div>
+					<div class="item-after">{$saleData.报单金额}</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div class="list-block">
+		<ul>
+			<if condition="$saleData['产品'] eq 1">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('购物金额')}：</div>
+					<div class="item-after">{$saleData.购物金额}</div>
+				</div>
+			</li>
+			<if condition="$adminshow eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('购物PV')}：</div>
+					<div class="item-after">{$saleData.购物pv}</div>
+				</div>
+			</li>
+			</if>
+			</if>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('实付款')}：</div>
+					<div class="item-after">{$saleData.实付款}</div>
+				</div>
+			</li>
+			<if condition="($saleData['产品'] eq 1) and (adminshow('baodan_wuliu') eq true)">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('收货地址')}：</div>
+					<div class="item-after">{$saleData.收货省份}{$saleData.收货城市}{$saleData.收货地区}{$saleData.收货街道}{$saleData.收货地址}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('收货人')}：</div>
+					<div class="item-after">{$saleData.收货人}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('联系电话')}：</div>
+					<div class="item-after">{$saleData.联系电话}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('物流状态')}：</div>
+					<div class="item-after">{$saleData.物流状态}</div>
+				</div>
+			</li>
+			</if>
+
+		</ul>
+	</div>
+
+	<present name="productData">	
+	<div class="card no-magin-lr">
+		<div class="card-header"><strong>{:L('产品选购信息')}</strong></div>
+		<div class="card-content">
+			<div class="card-content-inner">
+				<div class="list-block">
+					<ul>
+						<foreach name="productData" item="paydata">
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('名称')}：</div>
+								<div class="item-after">{$paydata['名称']}</div> 
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('数量')}：</div>
+								<div class="item-after">{$paydata['数量']}</div> 
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('价格')}：</div>
+								<div class="item-after">{$paydata['价格']}</div> 
+							</div>
+						</li>
+						<if condition="$adminshow eq true">
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('PV')}：</div>
+								<div class="item-after">{$paydata['pv']}</div> 
+							</div>
+						</li>
+						</if>
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('总价')}：</div>
+								<div class="item-after">{$paydata['总价']}</div> 
+							</div>
+						</li>
+						<if condition="$adminshow eq true">
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title label">{:L('总PV')}：</div>
+								<div class="item-after">{$paydata['总pv']}</div> 
+							</div>
+						</li>
+						</if>
+						</foreach>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="card-footer">
+			<span>{:L('汇总')}：{$saleData.购物金额}</span>
+			<if condition="$adminshow eq true">
+			<span>{$saleData.购物pv}></span>
+			</if>
+		</div>
+	</div>
+	</present>
+
+	<p>
+		<a class="button button-fill button-big button-warning back">{:L('返回')}</a>
+	</p>
+
+        </div>
+<include file="Public:footer" />
+

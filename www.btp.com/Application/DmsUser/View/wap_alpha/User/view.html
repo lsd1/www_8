@@ -1,0 +1,188 @@
+<include file="Public:header" />
+<div class="content">
+	<div class="list-block">
+		<ul>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('用户编号')}：</div>
+					<div class="item-after">{$userinfo.编号}&nbsp;</div>
+				</div>
+			</li>
+			<!-- 头像 -->
+			<!--<li class="item-content">
+				<div class="face-img">
+					<if condition="empty($userinfo['头像']) neq true">
+					<img src="{$userinfo.头像}" alt="face">
+					<else />
+					<img src="__TMPL__Public/img/face.png" alt="face">
+					</if>
+				</div>
+			</li>-->
+			<if condition="in_array('name',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('姓名')}：</div>
+					<div class="item-after">{$userinfo.姓名}&nbsp;</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('alias',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('昵称')}：</div>
+					<div class="item-after">{$userinfo.昵称}&nbsp;</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('sex',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('性别')}：</div>
+					<div class="item-after">{:L($userinfo['性别'])}&nbsp;</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('reciver',$show) eq true and adminshow('baodan_wuliu') eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('收货人')}：</div>
+					<div class="item-after">{$userinfo.收货人}&nbsp;</div>
+				</div>
+			</li>
+			</if>
+			<foreach name="userlevel" item="lv" key="k">
+			<if condition="$k eq L('级差级别') and  $lv.byname neq L('暂无')">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('会员级别')}：</div>
+					<div class="item-after">{$lv.byname}&nbsp;</div>
+				</div>
+			</li>
+			</if>
+        	<if condition="$show_hy eq 1">
+        	<if condition="$k eq L('会员级别')">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('会员级别')}：</div>
+					<div class="item-after">{$lv.byname}&nbsp;</div>
+				</div>
+			</li>
+			</if>
+			</if>
+			</foreach>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('注册时间')}：</div>
+					<div class="item-after">{$userinfo.注册时间|date="Y-m-d H:i:s",###}&nbsp;</div>
+				</div>
+			</li>
+			<if condition="in_array('id_card',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('证件号码')}：</div>
+					<div class="item-after">{$userinfo.证件号码}&nbsp;</div>
+				</div>
+			</li>
+			</if>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('钱包地址')}：</div>
+					<div class="item-after">{$userinfo.钱包地址}&nbsp;</div>
+				</div>
+			</li>
+			<if condition="in_array('bank_apply_name',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('开户银行')}：</div>
+					<div class="item-after">{$userinfo.开户银行}&nbsp;</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('bank_card',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('银行卡号')}：</div>
+					<div class="item-after">{$userinfo.银行卡号}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('bank_name',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('开户名')}：</div>
+					<div class="item-after">{$userinfo.开户名}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('bank_apply_addr',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('开户地址')}：</div>
+					<div class="item-after">{$userinfo.开户地址}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('email',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">Email：</div>
+					<div class="item-after">{$userinfo.email}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('qq',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">QQ：</div>
+					<div class="item-after">{$userinfo.qq}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('weixin',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('微信号')}：</div>
+					<div class="item-after">{$userinfo.微信账号}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('alipay',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('支付宝')}：</div>
+					<div class="item-after">{$userinfo.支付宝}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('mobile',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('移动电话')}：</div>
+					<div class="item-after">{$userinfo.移动电话}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('area',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('地址')}：</div>
+					<div class="item-after">{$userinfo.国家} {$userinfo.省份} {$userinfo.城市} {$userinfo.地区} {$userinfo.街道}</div>
+				</div>
+			</li>
+			</if>
+			<if condition="in_array('address',$show) eq true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title">{:L('详细地址')}：</div>
+					<div class="item-after">{$userinfo.地址}</div>
+				</div>
+			</li>
+			</if>
+		</ul>
+		<div class="content-padded">
+			<div class="button button-big button-warning button-fill goback">{:L('返回')}</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer" />
+

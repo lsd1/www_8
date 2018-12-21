@@ -1,0 +1,176 @@
+<script src="__PUBLIC__/js/yangcong.js"></script> <!--  引入洋葱js文件 -->
+<script>
+function yangcong_bind_callback(json)
+{
+
+	DWZ.ajaxDone(json);
+		if (json.statusCode == DWZ.statusCode.ok)
+		{
+			$("#security_div").hide();
+			yangcong('bind2');//洋葱函数
+		}
+}
+</script>
+
+<p id="qrcode" style="text-align: center;display:none;"></p>
+
+<div id="security_div" class="pageContent">
+	<form id="security" action="{:U('updateSave')}" method="post" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone)">
+		<input type="hidden" name="id" value="{$vo.id}" />
+		<div class="pageFormContent" layoutH="58">
+			<table cellpadding="5" cellspacing="5">
+				<tr>
+					<th width="80">帐号：</th>
+					<td style="text-align:left" width="300">
+                    <input type="text" class="required" name="account" value="{$vo.account}" style="border:0px" readonly />
+					</td>
+				</tr>
+				<tr>
+					<th >昵称：</th>
+					<td style="text-align:left" >
+						<input type="text" class="required" name="nickname" value="{$vo.nickname}" style="border:0px" readonly />
+					</td>
+				</tr>
+				<tr>
+					<th>旧密码：</th>
+					<td style="text-align:left" >
+						<input type="password" autocomplete="off" class="required alphanumeric" minlength="1" maxlength="20" id="oldpassword" name="oldpassword" value="" />
+					</td>
+				</tr>
+				<tr>
+					<th>新密码：</th>
+					<td style="text-align:left" >
+						<input type="password" autocomplete="off" class="required" minlength="1" maxlength="20" id="password1" name="password1" value="" />
+					</td>
+				</tr>
+				<tr>
+					<th>确认新密码：</th>
+					<td style="text-align:left" >
+						<input type="password" autocomplete="off" class="required" minlength="1" maxlength="20" id="password2" name="password2" value="" />
+					</td>
+				</tr>
+
+
+				<if condition="qr()">
+				<tr><th> </th><td></td ></tr>
+				<tr>
+					<th  style="text-align:right">扫码登录：</th>
+					<td style="text-align:left">
+						<div class="buttonActive"><div class="buttonContent"><button id="addbind" type="button" >添加绑定</button></div></div>
+					</td>
+				</tr>
+				<tr>
+					<th  style="text-align:right">绑定列表：</th>
+					<td style="text-align:left" colspan="3">
+						<table>
+							<foreach name='maps' item='map'>
+								<tr>
+									<td style="line-height:0;valign:middle">
+										<eq name="map['type']" value="1">
+											<img src="/Public/Images/yc/yb16.png"/>
+										<else/>
+											<img src="/Public/Images/yc/yc16.png"/>
+										</eq>
+									</td>
+									<td style="text-align:left">&nbsp;
+										<neq name="map['name']" value="">
+										（{$map.name}）
+										</neq>&nbsp;
+									</td>
+									<td>
+										<gt name="map['endtime']" value="0">&nbsp;截止到&nbsp;{:date("Y-m-d",($map['endtime']))}&nbsp;
+											<eq name="map['status']" value="1">失效<else/>
+												<span style="color:#ff0000">已失效<span>
+											</eq>
+										<else/>
+										永久
+										</gt>&nbsp;
+									</td>
+									<td>
+										<eq name="map['endtime']" value="0">
+										<div class="buttonActive">
+											<div class="buttonContent">
+												<button onclick="deleteBut('{$map['id']}','{$map['account_id']}')" type="button" >删除</button>
+											</div>
+										</div>
+										</eq>
+									</td>
+								</tr>
+							</foreach>
+						</table>
+					</td>
+				</tr>
+				</if>
+
+			</table>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button id="submit" type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+
+
+	<form id="bind_form" action="{:U('yangcong_check')}" method="post" class="pageForm required-validate" onsubmit="return validateCallback(this,yangcong_bind_callback)">
+		<input type="hidden" name="id" value="{$vo.id}" />
+		<div class="pageFormContent" layoutH="58">
+			<table cellpadding="5" cellspacing="5">
+
+				<tr>
+                    <td style="text-align:right";>当前账号：</td><td><input type="text" name="account" readonly value="{$vo.account}" /></td>
+				</tr>
+				<tr>
+					<td style="text-align:right;">输入密码：</td><td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td style="text-align:right;">名称：</td><td><input type="text" class="textInput valid" name="name" placeholder="绑定记录中显示的名称"></td>
+				</tr>
+<!-- 				<tr>
+					<td style="text-align:right;">当前已绑定APP账号：{$count}</td>
+				</tr> -->
+
+			</table>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button id="submit" type="submit">申请绑定</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">关闭</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+</div>
+<script>
+	$('#bind_form').hide();
+	$('#addbind').click(function(){
+		$('#security').hide();
+		$('#bind_form').show();
+	});
+
+function deleteBut(id,adid){
+	alertMsg.confirm('你确定要删除吗',{
+		okCall:function(){
+			$.ajax({
+				url:"{:U('DmsSync/Admin/cancel_bind')}",
+				type:'POST',
+				data:{'id':id,'adid':adid,'bind_type':'2'},
+			    dataType:'json',
+			    global:true,
+				success:function(resp){
+			        	var r = eval(resp);
+			        	if(r.status == 1){
+			        		alertMsg.correct(r.info);
+			        		$.pdialog.reload("{:U('index')}");
+                        	return;
+                    	}else if(r.status == 0){
+                        	alertMsg.error(r.info);
+                        	return;
+                    	}
+			        }
+			})
+		}
+	});
+}
+</script>

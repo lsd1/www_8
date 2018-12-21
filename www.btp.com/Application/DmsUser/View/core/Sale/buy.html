@@ -1,0 +1,312 @@
+<if condition="($sale:extra eq true)">
+<script src="__PUBLIC__/directSell/area_select.js" type="text/javascript"></script>
+</if>
+<div class="core_main Sale" id="buy">
+	<div class="core_title">
+    	<span class="core_title_con"><span>{:L('当前位置')}：</span>{$nowtitle}</span>
+    </div>
+    <div class="core_con">
+        <form name="form1" method="post" action="__MODULE__/Sale/buySave:__XPATH__"   id="register" style="<present name='Buy_agreement'>display:none</present>" >
+        <div>
+        <table class="tablebg" id="table1">
+            <TR>
+                <td class="tbkey" >{:L('会员编号')}：</td>
+                <td class="tbval" >
+                	<if condition="($sale:lockMe eq false)">
+                        <input type="text" value="" size="20" name="userid" id="userid" />
+                    <else/>
+                        {$userinfo.编号}
+                        <input type="hidden" value="{$userinfo['编号']}" size="20" name="userid" id="userid"/>
+                   </if>
+                </td>
+                <td>&nbsp;<span id="state_userid"></span></td>
+            </TR>
+            <if condition="$sale:accBank neq ''">
+            <foreach name="banks" item="bank">
+            <tr>
+                <td class="tbkey" >{:L($bank->byname)}{:L('余额')}：</td>
+                <td class="tbval" >{:$userinfo[$bank->name]}</td>
+                <td>&nbsp;<span id="state_{$bank:xpath}"></span></td>
+            </tr>
+            </foreach>
+            </if>
+            <!--
+            <tr>
+                <td class="tbkey" >{:L('报单激活币的数量')}：</td>
+                <td class="tbval" ><span ><input  type="text" value="" name="jihuobi"/></span>&nbsp;&nbsp;<span class="msg" id="jihubi_aa" ></span></td>
+            </tr>
+            <tr>
+                <td class="tbkey" >{:L('另一种币的数量')}：</td>
+                <td class="tbval" ><span ><input  type="radio" value="1" name="ling_bi"/>运通币<input  type="radio" value="2" name="ling_bi"/>积分账户</span>&nbsp;&nbsp;<span class="msg" id="jihubi_aa" ></span></td>
+            </tr>
+            -->
+            <if condition="$sale:setMoney eq true">
+            <tr>
+                <td class="tbkey" >{:L('投资金额')}：</td>
+                <td class="tbval" ><input type="text" value="" name="setMoney" /></td>
+                <td>&nbsp;<span id="state_setMoney"> *</span></td>
+            </tr>
+            </if>
+            <if condition="$sale:setNumber eq true">
+            <tr>
+                <td class="tbkey" >{:L('单数')}：</td>
+                <td class="tbval" ><input type="text" id='ssaa_num' value="" name="setNumber" /></td>
+                <td>&nbsp;<span id="state_setNumber"> *</span></td>
+            </tr>
+            </if>
+            <if condition="($sale:setMoney neq true) and ($sale:money gt 0)">
+            <tr>
+                <td class="tbkey" >{:L('所需金额')}：</td>
+                <td class="tbval" id='ssaa_money' >{$sale:money}</td>
+                <input type="hidden" id='num_money' value="{$sale:money}" />
+                <td>&nbsp;</td>
+            </tr>
+            </if>
+            <notempty name="shop">
+            <tr>
+                <td class="tbkey" >{$shop}：</td>
+                <td class="tbval" ><span><input type="text" value="{$userinfo['服务中心编号']}" name="shop"  id="shop"  /></span>&nbsp;&nbsp;<span id="state_shop"> <if condition="$shopblank eq false">*</if></span></td>
+                <td>&nbsp;</td>
+            </tr>
+            </notempty>
+        </table>
+        </div>
+        <if condition="$sale:extra eq true ">
+            <table class="tablebg" id="table2">
+                <tr>
+                    <td colspan="2"><span>{:L('物流信息')}</span></TD>
+                </tr>
+                <if condition="adminshow('sale_sendtype') eq true">
+                	<td class="tbkey" >{:L('发货方式')}：</td>
+                    <td class="tbval" >
+                        <select name="sendtype">
+                            <option value="物流发货">{:L('物流发货')}</option>
+			                <option value="公司自提">{:L('公司自提')}</option>
+			                <option value="专卖店自提">{:L('专卖店自提')}</option>
+                        </select>
+                    </td>
+                </if>
+                <tr>
+                    <td class="tbkey" >国家：</td>
+                    <td class="tbval" >
+
+
+                        <select name="country" id="country_id" data-role="none">
+                            <option value="">请选择</option>
+                        </select>
+                        <select name="province"  id="province_id" data-role="none" <if condition="$logistic eq true">onChange="user_getTotalzf('{$sale:name}')"</if>>
+                            <option value="">请选择省</option>
+                        </select>
+                        <select name="city"  id="city_id" data-role="none" >
+                            <option value="">请选择城市</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="tbkey" >区县：</td>
+                    <td class="tbval" ><select name="county"  id="county_id" data-role="none" >
+                            <option value="">请选择</option>
+                        </select>
+                        <select name="town"  id="town_id" data-role="none" >
+                            <option value="">请选择街道</option>
+                        </select>
+
+                    </td>
+
+                <tr>
+                    <td class="tbkey" >{:L('收货人')}：</TD>
+                    <td class="tbval" ><input name="reciver" id="reciver" type="text" value="{$userinfo.收货人}"/> <font color='red'>*</font></TD>
+
+                </tr>
+                <tr>
+                    <td class="tbkey" >{:L('联系电话')}：</TD>
+                    <td class="tbval" ><input name="mobile" id="mobile" type="text" value="{$userinfo.移动电话}"> <font color='red'>*</font></TD>
+
+                </tr>
+                <tr>
+                    <td class="tbkey" >{:L('收货地址')}：</TD>
+                    <td class="tbval" ><input name="address" id="address" type="text" value="{$userinfo.地址}" size="50"/> <font color='red'>*<span>{:L('路况信息及门牌号等')}</span></font></TD>
+
+                </tr>
+
+            </table>
+        </if>
+        <div style="margin-top: 10px;margin-left: 10px;float: left;margin: 5px;font-size: 14px;color: red;"><span id="state_lockcon"></span></div>
+	        <present name="productArr">
+	        <include file="product"/>
+	        <div style="clear:both;"></div>
+	        </present>
+			<present name="bankRatio">
+            <TABlE class="tablebg" style="clear:both;margin:50px auto 0;">
+            	<php>$ratio=0;$p=false;</php>
+            	<foreach name='bankRatio' key="fkey" item="bankval">
+            	<php>
+            		$val=0+$bankval['maxval'];
+            		if($bankval['extra']==false){
+                		if(100>=$ratio && $val+$ratio>100){
+                			$val=100-$ratio;
+                		}
+                		$ratio+=$val;
+            		}
+            		if(strstr($bankval['maxval'],"%")){
+            			$p=true;
+            		}
+                    //dump($val);die;
+            	</php>
+            	<tr>
+                	<td class="tbkey">
+                    <if condition="$bankval.name eq '激活币'" >
+                            <?php echo L(CONFIG('xgjhb')); ?>
+                        </if>
+                        <if condition="$bankval.name eq '积分'" >
+                            <?php echo L(CONFIG('xgmc')); ?>
+                        </if>
+                    （{:$userinfo[$bankval['name']]}）：</td>
+                	<td class="tbval">
+                		<if condition="$bankval['extra']">{$val}
+                        <else/>
+                            <if condition="$bankval.name eq '激活币'" >
+                            <input class="bankrate1" name="accval[{$fkey}]" value="100" type="text" size="7" onkeyup="javaScript:lastnum=(100-$(this).val());$('.bankrate2').val(lastnum.toFixed(2));"/>
+                            </if>
+                            <if condition="$bankval.name eq '积分'" >
+                            <input  class="bankrate2" name="accval[{$fkey}]" value="0" type="text" size="7" onkeyup="javaScript:lastnum=(100-$(this).val());$('.bankrate1').val(lastnum.toFixed(2));"/>
+                            </if>
+                        </if>
+                        <if condition="$p">%</if>&nbsp;<span id="money{$fkey}">&nbsp;&nbsp;</span>
+                        <span class="msg">&nbsp;<if condition="$p">{:L('支付时货币比率')}<else/>{:L('支付时货币金额')}</if>&nbsp;<if condition="$bankval['extra']">{:L('支付额外金额')}</if>
+                        </span>
+                    </td>
+                	
+                </tr>
+                </foreach>
+                <tr><td colspan="3" class="msg">{:L('提示：请确认您设定的比例相加等于支付订单的100%，并且您所选用的账户余额足够支付当前的订单')}<br><span id="state_accval"></span></td></tr>
+            </TABLE>
+            </present>
+            <div>
+            <table class="tablebg" id="table3" style="border:none">
+                <TR>
+                    <td colspan="2" style="border:none">
+                		<input class="button_text" type="button" value="{:L('确认')}" name="subbut"  id='subbut' onclick="tijiao()" />
+                    </td>
+                </TR>
+            </table>
+         	</div>
+    </form>
+    <present name='Buy_agreement'>
+    <div id="Buy_agreement" style="display:block;">
+        <table class="tablebg" id="table4">
+            <tr>
+                <td class="tbkey" style="text-align:center;" >{:L('购物协议内容')}</td>
+            </tr>
+            <tr>
+                <td class="tbval">{$Buy_agreement}</td>
+            </tr>
+            <tr>
+                <td class="tbkey"  style="text-align:center;" ><INPUT class="button_text" type="button" value="{:L('同意并购物')}" onclick="$('#Buy_agreement').hide();$('#register').show()"/></td>
+            </tr>
+        </table>
+    </div>
+    </present>
+    </div>
+    <div style="clear:both;"></div>
+    <div class="core_page"></div>
+</div>
+<script type="text/javascript">
+<if condition="($sale:extra eq true)">
+$.area_default_show = true; //显示默认区域
+$.area_default_country="{$userinfo['国家']}";
+$.area_default_province="{$userinfo['省份']}";
+$.area_default_city="{$userinfo['城市']}";
+$.area_default_county="{$userinfo['地区']}";
+$.area_default_town="{$userinfo['街道']}";
+$.area_select_bind( 'country_id' , 'province_id' , 'city_id' , 'county_id','town_id' );
+</if>
+function tijiao(){
+	<if condition="($sale:productName neq '')">
+		alertcheck();
+	<else/>
+		$('#subbut').attr('disabled',true);
+		$('#subbut').val("{:L('正在提交,请等待...')}");
+		$('#register').submit();
+		$('#subbut').removeAttr('disabled');
+	</if>
+}
+</script>
+
+<if condition="($sale:productName neq '')">
+<!--是否显示确认框-->
+<link rel="stylesheet" href="__PUBLIC__/zxxbox/common.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/zxxbox/jquery.zxxbox.3.0.js"></script>
+<script type="text/javascript">
+function alertcheck(){
+	var alertstr ='<table class="tablebg" style="margin-top:0;">';
+		alertstr+='<tr><td class="tbkey">{:L("产品名称")}</td><td class="tbkey">{:L("价格")}</td><td class="tbkey">{:L("数量")}</td></tr>';
+		$("input[name^='productNum']").each(function(i){
+		    if($(this).val()!='')
+		    {
+		        var product =$(this).attr('productNumInfo').split("_");
+				alertstr+='<tr><td class="tbkey">'+product[2]+'</td><td class="tbkey">'+product[3]+'</td><td class="tbkey">'+$(this).val()+'</td></tr>';
+		    }
+		});
+		if( {$wuliu} == 1 ){
+			<if condition="($sale:extra eq true)">
+			alertstr+='<tr><td class="tbval">{:L("收货地址")}</td><td colspan="2" class="tbval">'+$("#country_id").val()+$("#province_id").val()+$("#city_id").val()+$("#county_id").val()+$("#town_id").val()+$("#address").val()+'</td></tr>';
+			alertstr+='<tr><td class="tbval">{:L("收货人")}</td><td colspan="2" class="tbval">'+$("#reciver").val()+'</td></tr>';
+			alertstr+='<tr><td class="tbval">{:L("联系电话")}</td><td colspan="2" class="tbval">'+$("#mobile").val()+'</td></tr>';
+			<else/>
+			alertstr+='<tr><td class="tbval">{:L("收货地址")}</td><td colspan="2" class="tbval">'+"{$userinfo.国家}{$userinfo.省份}{$userinfo.城市}{$userinfo.地区}{$userinfo.街道}"+'</td></tr>';
+			alertstr+='<tr><td class="tbval">{:L("收货人")}</td><td colspan="2" class="tbval">'+"{$userinfo.收货人}"+'</td></tr>';
+			alertstr+='<tr><td class="tbval">{:L("联系电话")}</td><td colspan="2" class="tbval">'+"{$userinfo.移动电话}"+'</td></tr>';
+			</if>
+		}
+		alertstr+='<tr><td colspan="3" class="tbval" style="text-align:center;">{:L("请确认产品信息，再点击确认")}</td></tr>';
+		alertstr+='</table>';
+	$.zxxbox.ask(alertstr, function(){
+		$('#subbut').attr('disabled','true');
+		$('#subbut').val('{:L("正在提交,请等待...")}');
+	    $('#register').submit();
+	    $.zxxbox.hide();
+	    $('#subbut').removeAttr('disabled');
+	}, null, {
+	    title: "{:L('友情提示')}",
+	    fix: true
+	});
+}
+</script>
+</if>
+<script type="text/javascript">
+$("#ssaa_num").keyup(function () {
+    var ss = $(this).val();
+    var num_money = $("#num_money").val();
+    if(ss>=1){
+        var money = ss*num_money;
+        console.log(ss);
+        console.log(num_money);
+        console.log(money);
+        $("#ssaa_money").html(money);
+        //alert(2222);
+    }
+    /*if (ss == "10") {
+        $("#jhbsl").html('300');
+    } else if (ss == "20") {
+        $("#jhbsl").html('3000');
+    }else if (ss == "30") {
+        $("#jhbsl").html('6000');
+    }*/
+    /*$.ajax({
+        url:"__APP__/DmsUser/Sale/regAjax_sum:__XPATH__+id/ss",
+        type:"POST",
+        data:postdata,
+        dataType:"script",
+        global:false,
+        success:function(data){
+           if(data == ''){
+              $("#state_"+name).html('<img style="display:inline" src="__PUBLIC__/Images/ExtJSicons/tick.png"/>');
+           }else{
+              data;
+           }
+        }
+    });*/
+});
+</script>

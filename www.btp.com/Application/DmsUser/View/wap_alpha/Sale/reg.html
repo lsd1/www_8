@@ -1,0 +1,854 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__TMPL__Public/css/common.css">
+<link rel="stylesheet" href="__TMPL__Public/css/inner.css">
+<div class="content reg">
+	<!--确认信息-->
+	<div class="list-block" id="salereg" style="<present name='regAgreement'>display:none</present>">
+	<form name="form1" method="post" action="__MODULE__/Sale/regSave:__XPATH__" id="form">
+		<div class="form-group">
+			<div class="form-label">{:L($user->byname.'编号')}</div>
+			<div class="form-input">
+				<if condition="($user:idEdit eq true) and ($user:idAutoEdit eq true)">
+				<input type="text" class="inner-input" value="{$userid}" name="userid" id="userid" onkeyup="getInfo(this)">
+				<elseif condition="($user:idAutoEdit eq true)"/>{$userid}<else/>
+				<input type="text" class="inner-input" value="" name="userid" id="userid" onkeyup="getInfo(this)"></if>
+			</div>
+			<div class="item-msg" id="state_userid"></div>
+		</div>
+		<if condition = "($sale:setLv eq true)">
+		<div class="form-group">
+			<div class="form-label">{:L($levels->byname)}</div>
+			<div class="form-input">
+				<select name='lv' class="ssaa" id="lv" <if condition="$zkbool eq true">onChange="user_getTotalzf('{$sale:name}','Sale');"</if>>
+					<foreach name='levelsopt' item='level'>
+					<notempty name="maxlv">
+					<if condition="$level.lv elt $maxlv">
+					<option value="{$level.lv}">{$level.name}</option>
+					</if>
+					<else/>
+					<option value="{$level.lv}">{$level.name}</option>
+					</notempty>
+					</foreach>
+				</select>
+			</div>
+			<div class="item-msg" id="state_lv"></div>
+		</div>
+		<else />
+		<input type="hidden" name="lv" id="lv" value="{$sale:defaultLv}">
+		</if>
+		<if condition="($sale:setNumber eq true)">
+		<div class="form-group">
+			<div class="form-label">{:L('单数')}</div>
+			<div class="form-input">
+				<input type="text" class="inner-input" name="setNumber">
+			</div>
+			<div class="item-msg" id="state_setNumber"></div>
+		</div>
+		</if>
+		<if condition="($sale:setMoney eq true)">
+			<div class="form-group">
+				<div class="form-label">{:L('报单金额')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="setMoney">
+				</div>
+				<div class="item-msg" id="state_setMoney"></div>
+			</div>
+		</if>
+		<if condition="in_array('name',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('真实姓名')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="name">
+				</div>
+				<div class="item-msg" id="state_name"></div>
+			</div>
+		</if>
+		<if condition="in_array('sex',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('性别')}</div>
+				<div class="form-input">
+					<input type="radio" name="sex" value="{:L('男')}" checked>{:L('男')}<input type="radio" name="sex" value="{:L('女')}">{:L('女')}
+				</div>
+				<div class="item-msg" id="state_sex"></div>
+			</div>
+		</if>
+		<if condition="in_array('alias',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('别名')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="alias">
+				</div>
+				<div class="item-msg" id="state_alias"></div>
+			</div>
+		</if>
+		<if condition="in_array('id_card',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('证件号码')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="id_card">
+				</div>
+				<div class="item-msg" id="state_id_card"></div>
+			</div>
+		</if>
+		<if condition="in_array('email',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">Email</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="email">
+				</div>
+				<div class="item-msg" id="state_email"></div>
+			</div>
+		</if>
+		<if condition="in_array('qq',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">QQ</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="qq">
+				</div>
+				<div class="item-msg" id="state_qq"></div>
+			</div>
+		</if>
+		<if condition="in_array('weixin',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('微信账号')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="weixin" onkeyup="getInfo(this)" id="weixin" autocomplete="off">
+				</div>
+				<div class="item-msg" id="state_weixin"></div>
+			</div>
+		</if>
+		<if condition="in_array('alipay',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('支付宝')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="alipay" onkeyup="getInfo(this)" id="alipay" autocomplete="off">
+				</div>
+				<div class="item-msg" id="state_alipay"></div>
+			</div>
+		</if>
+		<if condition="in_array('country_code',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('国家区号')}</div>
+				<div class="form-input">
+					<select name='country_code' id="country_code" style="width: 152px;height: 21px">
+						<foreach name='NumCheck' item='data' key='code'>
+						<option value="{$code}" data-pattern="{$data.exp}" <eq name="userinfo['国家代码']" value="$code">selected</eq>>{$data.zh-cn}</option>
+						</foreach>
+					</select>
+				</div>
+				<div class="item-msg" id="state_country_code"></div>
+			</div>
+		</if>
+		<if condition="in_array('mobile',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('移动电话')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="mobile" id="mobile">
+				</div>
+				<div class="item-msg" id="state_mobile"></div>
+			</div>
+		</if>
+		<if condition="adminshow('smsSwitch') && CONFIG('verifiregmobliesmsSwitch') eq 1 && CONFIG('verifiregmobliesmsContent') neq ''">
+			<div class="form-group">
+				<div class="form-label">{:L('短信验证码')}</div>
+				<div class="form-input">
+					<div class="col-50"><input name="regMobileSmsVerfy" type="text"  class="inner-input" id="regMobileSmsVerfy" /></div>
+                	<div class="col-50">
+	                    <span><input type="button" id="sendMess" class="send-msg  button button-fill button-sms" value="{:L('获取验证码')}" /></span>
+	                    <span class="msg" id="state_regMobileSmsVerfy"></span>
+               		</div>
+               		<div class="item-msg" id="state_regMobileSmsVerfy"></div>
+				</div>
+			</div>
+		</if>
+		<if condition="$haveuser eq true">
+			<notempty name="fun_val">
+			<foreach name="fun_val" item="fun" key="key">
+			<div class="form-group">
+				<div class="form-label">{$key}</div>
+				<div class="form-input">
+					<input type="text"  class="inner-input" name="{$fun}">
+				</div>
+				<div class="item-msg" id="state_{$fun}"></div>
+			</div>
+			</foreach>
+			</notempty>
+		</if>
+		<if condition="($haveuser eq true)">
+		<foreach name='nets' item='net'>
+			<if condition="($net.type eq 'text')">
+			<div class="form-group">
+				<div class="form-label">{$net.name}</div>
+				<div class="form-input">
+					<input type="text"  class="inner-input" value="{$net.value}" name="{$net.inputname}" otherpost='{$net.otherpost}' onkeyup="getInfo(this)" id="{$net.inputname}" autocomplete="off">
+				</div>
+				<div class="item-msg" id="state_{$net.inputname}"></div>
+			</div>
+			</if>
+			<if condition="($net.type eq 'select')">
+			<div class="form-group">
+				<div class="form-label">{$net.name}</div>
+				<div class="form-input">
+					<select name='{$net.inputname}' otherpost='{$net.otherpost}' id="{$net.inputname}" onchange="getInfo(this)">
+						<foreach name='net.Region' item='Region'>
+						<option value='{$Region.name}' byvalue="{$Region.byname}" <if condition="isset($_GET['position']) and $_GET['position']==$key">selected</if>>{$Region.byname}</option>
+						</foreach>
+					</select>
+				</div>
+				<div class="item-msg" id="state_{$net.inputname}"></div>
+			</div>
+			</if>
+		</foreach>
+		</if>
+		<present name="funReg">
+		<foreach name="funReg" item="fun" key="key">
+			<div class="form-group">
+				<div class="form-label">{$fun}</div>
+				<div class="form-input">
+					<input type="text" name="{$fun}">
+				</div>
+				<div class="item-msg" id="state_{$fun}"></div>
+			</div>
+		</foreach>
+		</present>
+		<!--所属商铺-->
+		<notempty name="shop">
+			<div class="form-group">
+				<div class="form-label">{:L($shop)}</div>
+				<div class="form-input">
+					<input type="text"  class="inner-input" name="shop"  onkeyup="getInfo(this)" id="shop" autocomplete="off">
+				</div>
+				<div class="item-msg" id="state_shop"></div>
+			</div>
+		</notempty>
+		{//密保问题1}
+		<if condition="$reg_safe eq true && $MIBAO_NUM egt 1">
+			<div class="form-group">
+				<div class="form-label">{:L('密保问题1')}</div>
+				<div class="form-input">
+					<select name="secretsafe_name1" id="dna_ques_1"  class="select_text"  >
+                        <option value="a" selected="selected" >{:L('请选择')}</option>
+                        <foreach name="mb" item="mibao">
+                            <option value="{$mibao}"  >{$mibao}</option>
+                        </foreach>
+                    </select>
+                    <div class="item-msg" id="state_secretsafe_name1"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('密保答案1')}</div>
+				<div class="form-input">
+					<input type="text"  class="inner-input" name="secretanswer1">
+				</div>
+				<div class="item-msg" id="state_secretanswer1"></div>
+			</div>
+		</if>
+		{//密保问题2}
+		<if condition="$reg_safe eq true && $MIBAO_NUM egt 2">
+			<div class="form-group">
+				<div class="form-label">{:L('密保问题2')}</div>
+				<div class="form-input">
+					<select name="secretsafe_name2" id="dna_ques_2">
+                        <option value="a" selected="selected" >{:L('请选择')}</option>
+                        <foreach name="mb" item="mibao">
+                            <option value="{$mibao}"  >{$mibao}</option>
+                        </foreach>
+                    </select>
+				</div>
+				<div class="item-msg" id="state_secretsafe_name2"></div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('密保答案2')}</div>
+				<div class="form-input">
+					<input type="text"  class="inner-input" name="secretanswer2">
+				</div>
+				<div class="item-msg" id="state_secretanswer2"></div>
+			</div>
+		</if>
+		{//密保问题3}
+		<if condition="$reg_safe eq true && $MIBAO_NUM egt 3">
+			<div class="form-group">
+				<div class="form-label">{:L('密保问题3')}</div>
+				<div class="form-input">
+					<select name="secretsafe_name3" id="dna_ques_3">
+                        <option value="a" selected="selected" >{:L('请选择')}</option>
+                        <foreach name="mb" item="mibao">
+                            <option value="{$mibao}"  >{$mibao}</option>
+                        </foreach>
+                    </select>
+				</div>
+				<div class="item-msg" id="state_secretsafe_name3"></div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('密保答案3')}</div>
+				<div class="form-input">
+					<input type="text"  class="inner-input" name="secretanswer3">
+				</div>
+				<div class="item-msg" id="state_secretanswer3"></div>
+			</div>
+		</if>
+		<if condition="in_array('area',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('国家')}</div>
+				<div class="form-input">
+					<select name="country" id="country_id">
+                        <option value="">{:L('请选择')}</option>
+                    </select>
+				</div>
+				<div class="item-msg" id="state_country"></div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('省/州')}</div>
+				<div class="form-input">
+					<select name="province" id="province_id">
+                        <option value="">{:L('请选择')}</option>
+                    </select>
+				</div>
+				<div class="item-msg" id="state_province"></div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('城市')}</div>
+				<div class="form-input">
+					<select name="city" id="city_id">
+                        <option value="">{:L('请选择')}</option>
+                    </select>
+				</div>
+				<div class="item-msg" id="state_province"></div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('地区')}</div>
+				<div class="form-input">
+					<select name="county" id="county_id">
+                        <option value="">{:L('请选择')}</option>
+                    </select>
+				</div>
+				<div class="item-msg" id="state_county"></div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('街道')}</div>
+				<div class="form-input">
+					<select name="town" id="town_id">
+                        <option value="">{:L('请选择')}</option>
+                    </select>
+				</div>
+				<div class="item-msg" id="state_town"></div>
+			</div>
+		</if>
+		<if condition="in_array('address',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('详细地址')}</div>
+				<div class="form-input">
+					<input type="text"  class="inner-input" name="address">
+				</div>
+				<div class="item-msg" id="state_address"></div>
+			</div>
+		</if>
+		<if condition="in_array('reciver',$show) eq true and adminshow('baodan_wuliu') eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('收货人')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="reciver">
+				</div>
+				<div class="item-msg" id="state_reciver"></div>
+			</div>
+		</if>
+		<if condition="in_array('bank_apply_name',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('开户行')}</div>
+				<div class="form-input">
+					<select name="bank_apply_name" id="bank">
+						<option value="">{:L('请选择')}</option>
+						<foreach name="banklist" item="bank">
+						<option value="{$bank.开户行}">{$bank['开户行']}</option>
+						</foreach>
+					</select>
+				</div>
+				<div class="item-msg" id="state_bank_apply_name"></div>
+			</div>
+		</if>
+		<if condition="in_array('bank_card',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('银行卡号')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="bank_card">
+				</div>
+				<div class="item-msg" id="state_bank_card"></div>
+			</div>
+		</if>
+		<if condition="in_array('bank_name',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('开户名')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="bank_name">
+				</div>
+				<div class="item-msg" id="state_bank_name"></div>
+			</div>
+		</if>
+		<if condition="in_array('bank_apply_addr',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('开户地址')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="bank_apply_addr">
+				</div>
+				<div class="item-msg" id="state_bank_apply_addr"></div>
+			</div>
+		</if>
+		<if condition="in_array('pass1',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('一级密码')}</div>
+				<div class="form-input">
+					<input type="password" class="inner-input" autocomplete="off" name="pass1">
+				</div>
+				<div class="item-msg" id="state_pass1"></div>
+			</div>
+		</if>
+		<if condition="in_array('pass1c',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('一级密码确认')}</div>
+				<div class="form-input">
+					<input type="password" class="inner-input" autocomplete="off" name="pass1c">
+				</div>
+				<div class="item-msg" id="state_pass1c"></div>
+			</div>
+		</if>
+		<if condition="in_array('pass2',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('二级密码')}</div>
+				<div class="form-input">
+					<input type="password" class="inner-input" autocomplete="off" name="pass2">
+				</div>
+				<div class="item-msg" id="state_pass2"></div>
+			</div>
+		</if>
+		<if condition="in_array('pass2c',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('二级密码确认')}</div>
+				<div class="form-input">
+					<input type="password" class="inner-input" autocomplete="off" name="pass2c">
+				</div>
+				<div class="item-msg" id="state_pass2c"></div>
+			</div>
+		</if>
+		<eq name="pwd3Switch" value="true">
+			<if condition="in_array('pass3',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('三级密码')}</div>
+				<div class="form-input">
+					<input type="password" class="inner-input" autocomplete="off" name="pass3">
+				</div>
+				<div class="item-msg" id="state_pass3"></div>
+			</div>
+			</if>
+			<if condition="in_array('pass3c',$show) eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('三级密码确认')}</div>
+				<div class="form-input">
+					<input type="password" class="inner-input" autocomplete="off" name="pass3c">
+				</div>
+				<div class="item-msg" id="state_pass3c"></div>
+			</div>
+			</if>
+		</eq>
+		<if condition="(adminshow('googleAuthSwitch') && CONFIG('registgaSwitch'))">
+			<div class="form-group">
+				<div class="form-label">{:L('动态验证码')}</div>
+				<div class="form-input">
+					<input name="googleAuthVerfy" type="text" id="googleAuthVerfy">
+				</div>
+				<div class="item-msg" id="state_googleAuthVerfy"></div>
+			</div>
+		</if>
+			<div class="form-group">
+				<div class="form-label">{:L('报单现金币数量')}</div>
+				<div class="form-input">
+					<span id="jhbsl">{$bd_num}</span>
+				</div>
+			</div>
+		<!--基本信息结束-->
+		<present name="productArr">
+		<include file="product"/>
+		</present>
+		<present name="bankRatio" >
+        <div id='bankRatiotype' class="list-block" style="clear:both;margin:10px auto; padding: 0;margin-top:50px;">
+        	<php>$ratio=0;$p=false;</php>
+        	<foreach name='bankRatio' key="fkey" item="bankval">
+        	<php>
+        		$val=0+$bankval['maxval'];
+        		if($bankval['extra']==false){
+            		if(100>=$ratio && $val+$ratio>100){
+            			$val=100-$ratio;
+            		}
+            		$ratio+=$val;
+        		}
+        		if(strstr($bankval['maxval'],"%")){
+        			$p=true;
+        		}
+        	</php>
+        	<div class="form-group">
+				<div class="form-label">
+				<if condition="$bankval.name eq '激活币'" >
+                    <?php echo L(CONFIG('xgjhb')); ?>
+                </if>
+                <if condition="$bankval.name eq '积分'" >
+                    <?php echo L(CONFIG('xgmc')); ?>
+                </if>
+                </div>
+				<div class="form-input">
+					<div class="form-icon"><if condition="$bankval['extra']">{$val}</if><if condition="$p">%</if></div>
+					<if condition="$bankval['extra']">
+						{$val}
+                    <else/>
+                        <if condition="$bankval.name eq '激活币'" >
+                        <input class="bankrate1 inner-input" name="accval[{$fkey}]" value="100" type="text" onkeyup="javaScript:lastnum=(100-$(this).val());$('.bankrate2').val(lastnum.toFixed(2));"/>
+                        </if>
+                        <if condition="$bankval.name eq '积分'" >
+                        <input  class="bankrate2 inner-input" name="accval[{$fkey}]" value="0" type="text" onkeyup="javaScript:lastnum=(100-$(this).val());$('.bankrate1').val(lastnum.toFixed(2));"/>
+                        </if>
+                    </if>
+				</div>
+			</div>
+			<!-- <div class="form-tip">
+				<if condition="$bankval['extra']">{$val}{:L('支付额外金额')}</if><span id="money{$fkey}"></span>
+				<if condition="$p">%{:L('支付时货币比率')}<else/>{:L('支付时货币金额')}</if>
+			</div> -->
+			<div class="form-tip">
+				<if condition="$bankval['extra']">{:L('支付额外金额')}</if><span id="money{$fkey}"></span>
+				<if condition="$p">{:L('支付时货币比率')}<else/>{:L('支付时货币金额')}</if>
+			</div>
+			</foreach>
+        </div>
+        </present>
+		<div class="btn-wrapper">
+			<input class="button button-fill button-big button-warning" type="button" value="{:L('提交')}" onclick="regAjaxall()">
+		</div>
+	</form>
+	</div>
+	<present name='regAgreement'>
+	<div id="regAgreement" class="list-block">
+		<ul>
+			<li class="item-content">
+				<div class="item-innerg">
+					<div class="item-titleg">{:L('注册协议内容')}</div>
+					<div class="item-afterg">
+						{$regAgreement}
+					</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-titleg">
+						<input class="button button-fill button-big button-warning" type="button" value="{:L('同意并注册')}" onclick="$('#regAgreement').hide();$('#salereg').show()">
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	</present>
+</div>
+
+<include file="Public:footer" />
+<script src="__PUBLIC__/jquery-2.x.min.js"></script>
+<script src="__TMPL__Public/js/area_select.js"></script>
+<script>
+$$.area_default_show=true;
+$$.area_default_country="{$userinfo['国家']}";
+$$.area_default_province="{$userinfo['省份']}";
+$$.area_default_city="{$userinfo['城市']}";
+$$.area_default_county="{$userinfo['地区']}";
+$$.area_default_town="{$userinfo['街道']}";
+$$.area_select_bind( 'country_id' , 'province_id' , 'city_id' , 'county_id', 'town_id' );
+function alertcheck (){
+    var modal = $.modal({
+        title: '<strong>{:L($levels->byname)}：'+$('#lv option').not(function(){ return !this.selected }).html()+'</strong>',
+        afterText:  '<div class="swiper-container" style="width: auto; margin:5px -15px -15px">'+
+                        '<div class="swiper-pagination"></div>'+
+                        '<div class="swiper-wrapper">'+
+                            '<div class="list-block">'+
+                                '<ul>' +
+                                	'<li class="item-content">'+
+                                       '<div class="item-inner">'+
+                                           '<div class="item-title">{:L("会员编号")}</div>'+
+                                           '<div class="item-after">' + $("#userid").val() + '</div>'+
+                                       '</div>'+
+                                   '</li>'+
+                                    <foreach name='nets' item='net'>
+                                    <if condition="($net.type eq 'text')">
+                                    '<li class="item-content">'+
+                                       '<div class="item-inner">'+
+                                           '<div class="item-title">{:L($net["name"])}</div>'+
+                                           '<div class="item-after">' + $("#{$net.inputname}").val() + '</div>'+
+                                       '</div>'+
+                                   '</li>'+
+                                    </if>
+                                    </foreach>
+                                    '<li class="item-content">'+
+                                        '<div class="item-title"><strong class="color-danger">{:L("一旦注册，将不能修改")}</strong></div>'+
+                                   '</li>'+
+                                '</ul>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>',
+        buttons: [
+        {
+            text: "{:L('确定')}",
+            bold: true,
+            onClick: function () {
+                $('#form').submit();
+            }
+        },
+        {
+            text: "{:L('取消')}",
+            bold: true,
+            onClick: function () {
+                return false;
+            }
+        },
+        ]
+    });
+}
+
+
+/*
+$('#country_code').change(function () {
+    if (test('#country_code', $('#mobile'))) {
+        $('#state_mobile').html('√');
+        } else {
+        $('#state_mobile').html('×');
+    }
+});
+$('#mobile').blur(function () {
+    if (test('#country_code', $(this))) {
+        $('#state_mobile').html('√');
+        } else {
+        $('#state_mobile').html('×');
+    }
+    }).keyup(function () {
+    if (test('#country_code', $(this))) {
+        $('#state_mobile').html('√');
+        } else {
+        $('#state_mobile').html('×');
+    }
+});
+function test(phoneNum, _this) {
+    optionVal = $(phoneNum).val();
+    pattern = RegExp($(phoneNum + ' option[value='+optionVal+']').attr("data-pattern") || ".+");
+    return pattern.test(_this.val());
+}
+*/
+
+var vd;
+var lastname;
+function getInfo(e) {
+    var thisname=e.name;
+    if(lastname == thisname){
+        clearTimeout(vd);
+        vd = setTimeout("regAjax('"+e.id+"')",600);
+    }else{
+        regAjax(e.id);
+        lastname=thisname;
+    }
+}
+function regAjaxall() {
+    $("[id^=state_]").text("");
+    $('#state_productCountMoney').text("");
+    var arr={$jsrequire};
+    var postdata	= {};
+    $("input").each(function(i,n){
+        var postname	= n.name;
+        var value  = n.value;
+        postdata[postname]	= value;
+    });
+    $("select").each(function(i,n){
+        var postname	= n.name;
+        var value  = n.value;
+        postdata[postname]	= value;
+    });
+    $.post('__MODULE__/Sale/regAjax:__XPATH__',postdata,function(data){
+        if(!data) {
+            <if condition="($alert eq true)">
+            alertcheck();
+            <else/>
+            $('#form').submit();
+            $('#regsubbutton').attr('disabled','true');
+            </if>
+        }
+        else {
+            eval(data);
+            return false;
+        }
+    });
+}
+function regAjax(name) {
+    var id			= $('#'+name).val();
+    var postname	= name;
+    var otherpost	= $('#'+name).attr('otherpost');
+    var postdata = {postname:name};
+    $("input").each(function(i,n) {
+        var postname	= n.name;
+        var value  = n.value;
+        postdata[postname]	= value;
+
+    });
+    $("select").each(function(i,n) {
+        var postname	= n.name;
+        var value  = n.value;
+        postdata[postname]	= value;
+    });
+    $.ajax({
+        url:"__APP__/DmsUser/Sale/regAjax:__XPATH__",
+        type:"POST",
+        data:postdata,
+        dataType:"script",
+        global:false,
+        success:function(data){
+            if(data == ''){
+                $("#state_"+name).html('<img src="__PUBLIC__/Images/ExtJSicons/tick.png"/>');
+                }else{
+                data;
+            }
+        }
+    });
+}
+</script>
+<!-- 短信验证码 -->
+<if condition="adminshow('smsSwitch') && CONFIG('verifiregmobliesmsSwitch') eq 1 && CONFIG('verifiregmobliesmsContent') neq ''">
+<script src="__PUBLIC__/js/sendsms_mobile.js"></script>
+<script src="__PUBLIC__/layer/layer_mobile.js"></script>
+<script>
+var	characters	= {title:"{:L('提示')}",determ:"{:L('确定')}",clickget:"{:L('点击获取')}",resend:"{:L('重新发送')}"};
+var type		= '注册手机号验证真实性';
+var mobile      = $("#mobile").val();
+var isaudio     = 0;//语音短信的预留开关，手机版暂时未使用
+var smsObj;
+
+$(".send-msg").click(function(){
+	if($("#mobile").length > 0){
+		mobile = $("#mobile").val();
+		var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+		if(mobile == '' || !myreg.test(mobile)){
+			$("#mobile").attr("style","border: 1px solid #b22222;");
+			document.form1.mobile.focus()
+			return false;
+		}else{
+			$("#state_mobile").html('');
+		}
+	}
+	smsObj = this;
+	if("{$picVerify}" === "false"){
+		time(smsObj);
+	}else{
+    layer.open({
+        title:['{:L("填写验证码")}','background-color:#0894ec;'],
+        skin: 'layui-layer-rim', //加上边框
+        area: ['300px', '200px'], //宽高
+        btn: ['{:L("确定")}'],
+        yes: function(index, layero){
+          //点击按钮之后，直接触发AJAX..
+          var postval = $("#verifyss").val();
+          if(postval == ''){
+          	postval = '***';
+          }
+          $.ajax({
+            url:"__CONTROLLER__/verify_s/id/"+postval,
+            type:"GET",
+            dataType:"JSON",
+            data:postval,
+            success:function(data){
+            data = JSON.parse(data);
+                if( data.status == 0 )
+                {
+                    $('#msg').html(data.tip);
+                    var timenow = new Date().getTime();
+                    $('#qqsmsverifyImg').attr('src', '__CONTROLLER__/verifyImg/adv/1/' + timenow);
+                }
+                else
+                {
+                    layer.close(index);     //关闭弹出层
+                    time(smsObj);
+                }
+            }
+            });
+        },
+        content: '<div style="margin:0 75px;"><img id="qqsmsverifyImg" src="__CONTROLLER__/verifyImg" onClick="smsfreshVerify(this)" border="0" alt="点击刷新验证码" ><br /><span id="msg" style="color:red"></span><br />'+'<input id="verifyss" maxlength="4" type="text" name="verifyss" value="" style="line-height:1.2rem;"></div>',
+    });
+    }
+});
+function smsfreshVerify() {
+    //重载验证
+    var timenow = new Date().getTime();
+    if (type) {
+        $('#qqsmsverifyImg').attr('src', '__CONTROLLER__/verifyImg/adv/1/' + timenow);
+    } else {
+        $('#qqsmsverifyImg').attr('src', '__CONTROLLER__/verifyImg/' + timenow);
+    }
+}
+$("#mobile").keyup(function(){
+	$("#mobile").attr("style","");
+});
+</script>
+</if>
+<!-- 短信验证码 -->
+<script>
+//密保显示的js
+    var mibao_option = $("#dna_ques_1").html();
+
+    $(".select_text").change(function(){
+        var name = this.name;
+            // 初始化除自身外的其他select
+            $(".select_text").each(function(){
+                if(this.name == name){
+                    return true;
+                }
+                var selected = this.value;
+                $(this).empty(); // 清空
+                $(this).prepend(mibao_option); // 初始化
+                $("#"+this.id+" option[value="+selected+"]").attr('selected','selected');
+            });
+        $(".select_text").each(function(){
+            var value = this.value;
+            var name = this.name;
+            if(value == 'a'){ // 过滤初始值
+                return true;
+            }
+            // 当前节点已选定的从其他节点删除掉
+            $(".select_text").each(function(){
+                if(this.name == name){ // 过滤自身
+                    return true;
+                }
+                $("#"+this.id+" option[value="+value+"]").remove(); //删除
+            });
+        });
+
+    });
+</script>
+<script type="text/javascript">
+$(function() {
+    $(".ssaa").change(function (){
+        var postval = $(this).val();
+        $.ajax({
+           url:"__APP__/DmsUser/Sale/idAjax_num/id/"+postval,
+           type:"GET",
+           dataType:"JSON",
+           data:postval,
+           success:function(data){
+       			data = $.parseJSON(data);
+                var userinfo = data.info;
+                //console.log(data.info);
+                $("#jhbsl").text(userinfo);
+           }
+        });
+    });
+
+});
+</script>
+<!--
+<script>
+$(".button_text").click(function(){
+alert(1);
+  $(".container-bag").show();
+})
+$(".js-esc").click(function(){
+  $(".container-bag").hide();
+})
+</script>
+-->

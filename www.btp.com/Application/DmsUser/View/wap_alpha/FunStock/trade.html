@@ -1,0 +1,152 @@
+<include file="Public:header" />
+<div class="content core_main Fun_pay" id="paylist">
+<div class="core_con">
+  <if condition='$fun_stock:buyDisp eq false'>
+  <form id="form_buy" name="form1" method="post" action="">
+    <div class="list-block">
+      <ul>
+        <li class="item-content">
+          <div class="item-inner" >
+            <sapn style="padding-left:40%;color:#0000CD;font-weight:bold">{:L('购买'.$stockName)}</sapn>
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+            {:L('购买数量')}：<input id="inp1_buy" type="text" name="num" style="width:40%;height:26px;" onkeyup="SumNum('buy')" >
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+            {:L('买入单价')}：<input type="text" id="inp2_buy" name="price" style="width:40%;height:26px;"  value="{$price}" <if condition="$stockInputPrice eq false"> readonly="readonly"<else />  onkeyup="SumNum('buy')" maxlength="{$decimalLen+2}"</if>>
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+            {:L('总买入价')}：<input type="text"  id="inp3_buy"   readonly="readonly" style="width:40%;height:26px;"  value="0" />
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+            {:L('交易密码')}：<input type="password" autocomplete="off"  id="inp4_buy"  name="password"  style="width:40%;height:26px;"  value="" />
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+            <if condition="$stockBuybutton eq true">
+              <input class="button button-big button-warning button-fill button_text" type="button" value="{:L('立即购买')}" onclick="sh('buy');" id="regsubbutton">
+            <else />
+              <input  type="button" disabled="disabled" class="button_onmouseover" value="{:L('暂停买入')}" >
+            </if>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </form>
+  </if>
+  <if condition='$fun_stock:sellDisp eq false'>
+  <form id="form_sell" name="form2" method="post" action="">
+    <div class="list-block">
+      <ul>
+        <li class="item-content">
+          <div class="item-inner" >
+            <span style="padding-left:40%;color:#FF0000;font-weight:bold">{:L('出售'.$stockName)}</span>
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+            {:L('卖出数量')}：<input id="inp1_sell" type="text" name="num" style="width:40%;height:26px;" onkeyup="SumNum('sell')">
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+            {:L('卖出单价')}：<input type="text" id="inp2_sell" name="price"  style="width:40%;height:26px;"  value="{$price}"  <if condition="$stockInputPrice eq false"> readonly="readonly"<else />  onkeyup="SumNum('sell')" maxlength="{$decimalLen+2}"</if>>
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+            {:L('总卖出价')}：<input type="text"  id="inp3_sell"   readonly="readonly" style="width:40%;height:26px;"  value="0" />
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+            {:L('交易密码')}：<input type="password" autocomplete="off"  id="inp4_sell"  name="password"  style="width:40%;height:26px;"  value="" />
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+              <if condition="$stockSalebutton eq true">
+                <input class="button button-big button-warning button-fill button_text" type="button" value="{:L('立即出售')}" onclick="sh('sell');" id="regsubbutton">
+              <else />
+                <input  type="button" disabled="disabled" class="button_onmouseover" value="{:L('暂停出售')}" >
+              </if>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </form>
+  </if>
+</div>
+</div>
+<include file="Public:footer" />
+<script type="text/javascript">
+function SumNum(type){
+	var sumValue;
+	a=$("#inp1_"+type).val();
+	b=$("#inp2_"+type).val();
+	if (isNaN(a))
+	{a=0}
+	if (isNaN(b))
+	{b=0}
+	sumValue = a*b;
+	$('#inp3_'+type).val(sumValue.toFixed({$decimalLen})) ;
+}
+
+function sh(type){
+	var startprice='{$price}';
+	var highprice='{$highprice}';
+    var lowprice='{$lowprice}';
+	var num=$("#inp1_"+type).val();
+	var price=$("#inp2_"+type).val();
+	var pass=$("#inp4_"+type).val();
+	var model=type;
+	var input='{$stockInputPrice}';
+	var con=true;
+	if((num<0 || num=='')){
+		con=false;
+        $.modal({text: "{:L('数量输入有误')}",buttons: [{text: "{:L('确定')}"}]});
+		return;
+	}
+	if((price<0 || price=='')){
+		con=false;
+        $.modal({text: "{:L('单价输入有误')}",buttons: [{text: "{:L('确定')}"}]});
+		return;
+	}
+	if(pass==''){
+		con=false;
+        $.modal({text: "{:L('请输入交易密码')}",buttons: [{text: "{:L('确定')}"}]});
+		return;
+	}
+	if(input){
+		if(price<lowprice && lowprice>0){
+			con=false;
+            alert("{:L('交易价格')}{:L('不能低于')}"+lowprice, { title: "{:L('提示')}", btn: "{:L('确定')}"});
+			return;
+		}else if(price>highprice  && highprice>0){
+			con=false;
+            alert("{:L('交易价格')}{:L('不能高于')}"+highprice, { title: "{:L('提示')}", btn: "{:L('确定')}"});
+			return;
+		}
+	}
+
+	if(con){
+		if(model =='buy'){
+			var url="__APP__/DmsUser/FunStock/stock_buy:__XPATH__";
+		}
+		if(model =='sell'){
+			var url="__APP__/DmsUser/FunStock/stock_sell:__XPATH__";
+		}
+		$("#form_"+type).attr("action",url);
+		$('#form_'+type).submit();
+	}
+}
+</script>

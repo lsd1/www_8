@@ -1,0 +1,26 @@
+<?php
+// funBank设置 生成日志修改需要读取本文件
+return [
+    'use'          		        =>		 '功能开关',
+    'getMoney'          		=>		 '允许提现',
+    'getMoneyTax'           	=>		 '提现手续费比率',
+    'getMoneyTaxMin'        	=>		 '提现手续费下限',
+    'getMoneyTaxMax'     	 	=>		 '提现手续费上限',
+    'getTaxFrom'     		 	=>		 '手续费来源',
+    'getMoneyMin'     		 	=>		 '最小提款额',
+    'getMoneyMax'     	     	=>		 '最大提款额',
+    'getMoneyRatio'     		=>		 '提现发放换算比',
+    'getMoneyBank'     			=>		 '提现时单独输入银行账号',
+    'getMoneyBankClear'     	=>		 '提现确认后清除银行信息',
+    'getMoneyInt'     	     	=>		 '整数倍设置',
+    'getOnly'     				=>		 '有未审记录不能提现',
+    'getMoneyWeek'     			=>		 '周几不能提现',
+    'getMoneyMday'     			=>		 '每月中的几号不能提现',
+    'getMoneyPass2'             =>       '提现需要二级密码',
+    'getMoneyPass3'             =>       '提现需要三级密码',
+    'bankIn'                    =>       '开启在线支付',
+    'bank_scale'                =>       '在线支付换算比',
+    'getMoneySmsSwitch'         =>       '短信验证码',
+    'getMoneySmsContent'        =>       '短信内容',
+    'getSecretSafe'             =>       '提现回答密保问题',
+];

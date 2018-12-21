@@ -1,0 +1,57 @@
+<php>
+$nowtitle = $tledate;
+</php>
+<include file="Public:header" />
+<div class="content notice">
+    <if condition="count($data) elt 0">
+    <h1>{:L('暂无数据')}</h1>
+    </if>
+    <foreach name="data" item="prize" >
+    <div class="content-block-title">
+        {:L($prize['name'])}
+    </div>
+    <foreach name="prize.list" item="list" >
+    <div class="card">
+        <div class="card-header">
+            {:L($prize['name'])} 
+            <notempty name="prize.PK">
+                <span style="color:#a33031">（奖金K值:{$prize['PK']['val']}%）</span>
+            </notempty>
+            <notempty name="prize.KW">
+                <span style="color:#a33031">（奖金K值:{$prize['KW']['val']}%）</span>
+            </notempty>
+            <notempty name="prize.TK">
+                <span style="color:#a33031">（总K值:{$prize['TK']['val']}%）</span>
+            </notempty>
+        </div>
+        <div class="card-content">
+            <div class="row">
+                <div class="col-33">
+                    <div class="card-content-inner text-center">
+                        <div class="color-warning">
+                            <strong>{$list.val}</strong>
+                            <span>{:L('奖金额')}</span>
+                            <if condition="$list['val'] neq $list['trueval']">
+							<br /><b><font color='#a33031'>封:{$list.trueval}</font></b>
+							</if>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-66">
+                    <div class="card-content-inner">
+                        <div><span class="color-gray">{:L('来源')}：</span>{$list.lv}</div>
+                        <div><span class="color-gray">{:L('计算方式')}：</span><if condition="$list.memo eq ''">-----<else/>{$list.memo}</if></div>
+                        <div><span class="color-gray">{:L('层数')}：</span>{$list.layer}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <if condition="$prize['list'][0]['lvname']">{:L($prize['list'][0]['lvname'])}</if>: {$list.lv}
+        </div>
+    </div>
+    </foreach>
+    </foreach>
+</div>
+<include file="Public:footer" />
+

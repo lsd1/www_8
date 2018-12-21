@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{:L('会员登录')}</title>
+    <link rel="stylesheet" href="__PUBLIC__/DmsUser/login/2018ja/fonts/iconfont.css">
+    <link rel="stylesheet" href="__PUBLIC__/DmsUser/login/2018ja/css/reset.css">
+    <link rel="stylesheet" href="__PUBLIC__/DmsUser/login/2018ja/css/style.css">
+    <script src="__PUBLIC__/DmsUser/login/2018ja/js/jquery-1.x.min.js"></script>
+</head>
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="left-wrapper">
+                <div class="main-title">Easy Block Chain</div>
+                <div class="sub-title">{:L('用户管理后台')}</div>
+                <div class="language-select">
+                    <span class="la">{:L('语言选择')}：</span>
+                    <a href="__CONTROLLER__/login/l/zh-cn" class="language-item">
+                        <img src="__PUBLIC__/DmsUser/login/2018ja/images/zh-cn.png" alt="">
+                        <span>中文</span>
+                    </a>
+                    <a href="__CONTROLLER__/login/l/en" class="language-item en">
+                        <img src="__PUBLIC__/DmsUser/login/2018ja/images/en.png" alt="">
+                        <span>English</span>
+                    </a>
+                </div>
+            </div>
+            <div class="right-wrapper">
+                <div class="form-wrapper">
+                    <form action="__CONTROLLER__/check" method="post">
+                        <input type="hidden" name="act" value="verify">
+                        <div class="form-title">{:L('登录账户')}</div>
+                        <div class="form-group form-name">
+                            <img src="__PUBLIC__/DmsUser/login/2018ja/images/icon1.png" class="form-icon" alt="">
+                            <input type="text" name="username" autocomplete="off" class="form-input" onfocus="this.value=' '" required placeholder="{:L('请输入登录账号')}">
+                        </div>
+                        <div class="form-group form-pw">
+                            <img src="__PUBLIC__/DmsUser/login/2018ja/images/icon2.png" class="form-icon" alt="">
+                            <input class="form-input" type="password" name="password" id="password" required placeholder="{:L('请输入登录密码')}" autocomplete="new-password">
+                        </div>
+                        <if condition="isset($dispCode) and ($dispCode eq true)">
+                            <div class="form-group form-verify">
+                                <i class="iconfont">&#xe668;</i>
+                                <input type="text" name="captcha" maxlength="4" autocomplete="off" class="form-input" required placeholder="{:L('请输入验证码')}">
+                                <img class="verify-img js-verify" src="__CONTROLLER__/verify/" alt="{:L('点击刷新验证码')}">
+                            </div>
+                        </if>
+                        <div class="btn-group">
+                            <eq name="isOpenTime" value="0">
+                                {:L('对不起，该时间段暂时不可访问')}
+                            <else/>
+                                <input type="submit" class="btn-submit" value="{:L('登录')}">
+                            </eq>
+                        </div>
+                    </form>
+                    <div class="get-pass">
+                        <if condition="adminshow('mimazhaohui') eq true">
+                            <a href="__CONTROLLER__/getUserPwd2/">{:L('忘记密码')}？</a>
+                        </if>
+                    </div>
+                    <!-- <div class="opentime">{:L($openTimeStr)}</div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 页面大小自适应
+        function autoSize() {
+            var W = $(document).width();
+            $('html').css('font-size', W * 0.0083333 + 'px');
+        };
+        autoSize();
+        $(window).resize(function() {
+            autoSize();
+        });
+    </script>
+</body>
+</html>
+

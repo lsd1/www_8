@@ -1,0 +1,4 @@
+before_script:
+rspec:
+  script:
+    - /usr/local/php/bin/php /home/phprunner/scan/sqlscan.php  -r '--e=public_html --e=ThinkPHP'

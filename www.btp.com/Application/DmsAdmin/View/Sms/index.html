@@ -1,0 +1,48 @@
+<script language="JavaScript">
+
+//卸载回调处理
+function uninstall_done(json)
+{
+	//显示消息框
+	DWZ.ajaxDone(json);
+	navTab.reload("__URL__/index",{navTabId:json.navTabId});
+}
+
+
+</script>
+<style type="text/css">
+.paylist{padding:10px}
+.paylist th{background-color:#dfe8f6}
+.paylist .memo{padding:5px;text-align:left}
+</style>
+
+<div class="paylist">
+<table border="1" bordercolor="#dddddd" style="border-collapse:collapse">
+<tr>
+<th width="100">短信平台名称</th>
+<th width="100">短信平台描述</th>
+<th width="100">余额</th>
+<th width="100">操作</th>
+</tr>
+
+<foreach name="list" item="vo">
+<tr>
+	<td><b>{$vo.name}</b></td>
+	<td class="memo">{$vo.memo}</td>
+	<td>
+		<eq name="vo.installed" value="0">
+		<else />
+			<if condition="preg_match('/[\x7f-\xff]/', $vo['surplus'])"><span style="color:red">{$vo.surplus}</span><else/>{$vo.surplus}</if>
+		</eq>
+	</td>
+	<td>
+		<eq name="vo.installed" value="0">
+		<a href="__CONTROLLER__/install/sms/{$key}" rel="pay_install" target="navTab" title="{$vo.name}">安装</a>
+		<else />
+		<a href="__CONTROLLER__/install/sms/{$key}" rel="pay_edit" target="navTab" title="{$vo.name}">编辑</a>
+		</eq>
+	</td>
+</tr>
+</foreach>
+</table>
+</div>

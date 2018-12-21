@@ -1,0 +1,59 @@
+<php>
+$nowtitle="物流信息";
+</php>
+<include file="Public:header" />
+<style>
+/* 列表样式 */
+
+.ickd_return {
+	border-left: 1px solid #adc5eb;
+	border-top: 1px solid #adc5eb;
+	color: #666;
+	height: 30px;
+	line-height: 30px;
+	width: 100%
+}
+.ickd_return {
+	border-left: 1px solid #adc5eb;
+	border-top: 1px solid #adc5eb;
+	color: #666;
+	height: 30px;
+	line-height: 30px;
+}
+.ickd_return th {
+
+	color: #666;
+	font-weight: 400;
+	text-align: center;
+	border-right: 1px solid #adc5eb;
+	border-bottom: 1px solid #adc5eb;
+}
+.ickd_return td {
+	border-right: 1px solid #adc5eb;
+	border-bottom: 1px solid #adc5eb;
+	padding: 5px;
+	text-align: center;
+}
+.ickd_return tr.hover {
+	background: #fbfbfb;
+}
+.ickd_return tr.curr {
+	background: #ebf3fc;
+	cursor: pointer;
+}
+</style>
+<div class="content">
+            <table width="100%" class="ickd_return">
+                <tr>
+                    <th>订单号：</th>
+                    <td align="left">{$saleData['快递订单']}</td>
+                </tr>
+                <foreach name="re" item="vo">
+                    <tr>
+                        <th>{$vo['time']}</th>
+                        <td align="left">{$vo['context']}</td>
+                    </tr>
+                </foreach>
+            </table>
+</div>
+<include file="Public:footer" />

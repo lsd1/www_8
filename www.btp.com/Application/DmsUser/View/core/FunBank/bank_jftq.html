@@ -1,0 +1,179 @@
+<load href="__PUBLIC__/My97DatePicker/WdatePicker.js" />
+<load href="__PUBLIC__/layer/layer.js" />
+<div class="core_main FunBank" id="add_rem">
+	<div class="core_title">
+    	<span class="core_title_con"><span>{:L('当前位置')}</span>：<span>{:L('积分提取')}</span></span>
+
+        <span class="core_title_edit"></span>
+    </div>
+    <div class="core_con">
+        <form action="__MODULE__/FunBank/jftq_save" method="post"  id="register" name='register' enctype="multipart/form-data">
+        <table class="tablebg">
+            <TR>
+                <TD class="tbkey">{:L('提取金额')}：</td>
+                <TD class="tbval"><input type="text" id="jftq_val" name="jftq_val" value="" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"></td>
+                <span></span>
+            </TR>
+            <TR>
+                <TD class="tbkey">{:L('钱包地址')}：</td>
+                <TD class="tbval"><input type="text" id="bank_address" style="width:300px" name="bank_address" value=""></td>
+            </TR>
+            <!--
+            <TR>
+              <TD class="tbkey">{:L('汇款开户名')}：</td>
+              <TD class="tbval"><input type="text" name="开户名" value="{$userinfo['开户名']}"></td>
+            </TR>
+            <TR>
+              <TD class="tbkey">{:L('汇款金额')}：</td>
+              <TD class="tbval"><input type="text" name="金额" id="money" value="">&nbsp;&nbsp;<span id='hkts' style='color:red'></span></td>
+            </TR>
+            -->
+            <TR>
+                <TD colspan="2">
+                <!--
+                <input type="hidden" name="编号" value="{$userinfo.编号}"/>
+                -->
+                <input  class="button_text" type="button" value="{:L('确认')}" name="subbut"  id='subbut' onclick="tijiao()"/>
+                <input class="button_text"  type="button"  id="but" value="{:L('返回')}" name="but" onclick="history.back();"/>
+                </td>
+            </TR>
+        </TABLE>
+        </form>
+    </div>
+
+    <div class="core_page"></div>
+</div>
+<script type="text/javascript">
+function tijiao(){
+	var mess = "";
+	if($('#jftq_val').val()=='' || $('#jftq_val').val()==null)
+	{
+		mess="{:L('请输入提取金额')}！<br/>"+mess;
+	}
+    if($('#bank_address').val()=='' || $('#bank_address').val()==null)
+    {
+        mess="{:L('请输入钱包地址')}！<br/>"+mess;
+    }
+    /*if($('#bank').val()==''){
+        mess="{:L('请输入开户银行')}！<br/>"+mess;
+		$('#bank').focus();
+    }
+	if($('#bank_no').val()=='')
+	{
+		mess="{:L('请输入银行卡号')}！<br/>"+mess;
+		$('#bank_no').focus();
+	}
+	if($('#money').val()=='')
+	{
+		mess="{:L('请输入汇款金额')}！<br/>"+mess;
+		$('#money').focus();
+	}
+    if(isNaN($('#money').val()))
+	{
+		mess="{:L('汇款金额必须为数字')}！<br/>"+mess;
+		$('#money').focus();
+	}
+	if($('#giveTime').val()=='')
+	{
+		mess= "{:L('请输入汇款时间')}！<br/>"+mess;
+		$('#giveTime').focus();
+	}*/
+	if(mess !=""){
+		layer.alert(mess, { title: "{:L('提示')}", btn: "{:L('确定')}"});
+		return false;
+	}
+	var ua = navigator.userAgent.toLowerCase();
+	var s;
+	if ((/firefox\/([\d.]+)/).test(ua)) { //判断火狐浏览器
+		$('#subbut').attr('disabled',true);
+		$('#subbut').val("{:L('正在提交,请等待...')}");
+		$('#register').submit();
+		$('#subbut').val("{:L('确认')}");
+		$('#subbut').attr('disabled',false);
+	} else {
+		$('#subbut').attr('disabled',true);
+		$('#subbut').val("{:L('正在提交,请等待...')}");
+		$('#register').submit();
+	}
+}
+/*$(function(){
+	$('#money').keyup(function(){
+		var str=$(this).val();
+		if({$USER_REMIT_MIN} != 0 && {$USER_REMIT_MAX}!=0){
+			if(parseInt(str)<parseInt({$USER_REMIT_MIN})){
+				$('#hkts').html("{:L('填写金额小于最低汇款金额限制')}"+{$USER_REMIT_MIN}+"{:L('元')}");
+				$('#subbut').attr('disabled',true);
+			}else{
+				$('#hkts').html('');
+				$('#subbut').attr('disabled',false);
+			}
+		}
+		if({$USER_REMIT_MIN} == 0 && {$USER_REMIT_MAX}!=0){
+			if(parseInt(str)>parseInt({$USER_REMIT_MAX})){
+				$('#hkts').html("{:L('填写金额大于最高汇款金额限制')}"+{$USER_REMIT_MAX}+"{:L('元')}");
+				$('#subbut').attr('disabled',true);
+			}else{
+				$('#hkts').html('');
+				$('#subbut').attr('disabled',false);
+			}
+		}
+		if({$USER_REMIT_MIN} != 0 && {$USER_REMIT_MAX}!=0){
+			if(parseInt(str)<parseInt({$USER_REMIT_MIN})){
+				$('#hkts').html("{:L('填写金额小于最低汇款金额限制')}"+{$USER_REMIT_MIN}+"{:L('元')}");
+				$('#subbut').attr('disabled',true);
+			}
+			if(parseInt(str)>parseInt({$USER_REMIT_MAX})){
+				$('#hkts').html("{:L('填写金额大于最高汇款金额限制')}"+{$USER_REMIT_MAX}+"{:L('元')}");
+				$('#subbut').attr('disabled',true);
+			}
+			if(parseInt(str)>=parseInt({$USER_REMIT_MIN}) && parseInt(str)<parseInt({$USER_REMIT_MAX}) || parseInt(str)>parseInt({$USER_REMIT_MIN}) && parseInt(str)<=parseInt({$USER_REMIT_MAX})){
+				$('#hkts').html('');
+				$('#subbut').attr('disabled',false);
+			}
+		}
+		if(str==''){
+			$('#hkts').html('');
+			$('#subbut').attr('disabled',false);
+		}
+	});
+	$('#money').blur(function(){
+		var str=$(this).val();
+		if({$USER_REMIT_MIN} != 0 && {$USER_REMIT_MAX}!=0){
+			if(parseInt(str)<parseInt({$USER_REMIT_MIN})){
+				$('#hkts').html("{:L('填写金额小于最低汇款金额限制')}"+{$USER_REMIT_MIN}+"{:L('元')}");
+				$('#subbut').attr('disabled',true);
+			}else{
+				$('#hkts').html('');
+				$('#subbut').attr('disabled',false);
+			}
+		}
+		if({$USER_REMIT_MIN} == 0 && {$USER_REMIT_MAX}!=0){
+			if(parseInt(str)>parseInt({$USER_REMIT_MAX})){
+				$('#hkts').html("{:L('填写金额大于最高汇款金额限制')}"+{$USER_REMIT_MAX}+"{:L('元')}");
+				$('#subbut').attr('disabled',true);
+			}else{
+				$('#hkts').html('');
+				$('#subbut').attr('disabled',false);
+			}
+		}
+		if({$USER_REMIT_MIN} != 0 && {$USER_REMIT_MAX}!=0){
+			if(parseInt(str)<parseInt({$USER_REMIT_MIN})){
+				$('#hkts').html("{:L('填写金额小于最低汇款金额限制')}"+{$USER_REMIT_MIN}+"{:L('元')}");
+				$('#subbut').attr('disabled',true);
+			}
+			if(parseInt(str)>parseInt({$USER_REMIT_MAX})){
+				$('#hkts').html("{:L('填写金额大于最高汇款金额限制')}"+{$USER_REMIT_MAX}+"{:L('元')}");
+				$('#subbut').attr('disabled',true);
+			}
+			if(parseInt(str)>=parseInt({$USER_REMIT_MIN}) && parseInt(str)<parseInt({$USER_REMIT_MAX}) || parseInt(str)>parseInt({$USER_REMIT_MIN}) && parseInt(str)<=parseInt({$USER_REMIT_MAX})){
+				$('#hkts').html('');
+				$('#subbut').attr('disabled',false);
+			}
+		}
+		if(str==''){
+			$('#hkts').html('');
+			$('#subbut').attr('disabled',false);
+		}
+	});
+})*/
+</script>

@@ -1,0 +1,111 @@
+<load href="__PUBLIC__/My97DatePicker/WdatePicker.js" />
+<div class="core_main Fun_ep_deal" id="deal_list">
+     <div class="core_title">
+    	<span class="core_title_con">{:L('当前位置')}：{$nowtitle}</span>
+    </div>
+    <div class="core_con">
+    <form method="post" id="form1" action="__CONTROLLER__/updateimgsave:__XPATH__" method="post" enctype="multipart/form-data">
+    	<input name="id" type="hidden" value="{$buyinfo['id']}"/>
+      <table class="tablebg">
+          <TR class="datafield">
+          	<TH ><nobr>{:L('卖家编号')}</nobr></TH>
+            <notempty name="buyinfo['开户银行']">
+          	<TH ><nobr>{:L('开户银行')}</nobr></TH>
+            </notempty>
+             <notempty name="buyinfo['银行卡号']">
+          	<TH ><nobr>{:L('银行卡号')}</nobr></TH>
+            </notempty>
+            <notempty name="buyinfo['开户名']">
+          	<TH ><nobr>{:L('开户名')}</nobr></TH>
+            </notempty>
+            <notempty name="buyinfo['电话']">
+          	<TH ><nobr>{:L('联系电话')}</nobr></TH>
+            </notempty>
+          </TR>
+          <TR class="datalist">
+          	<TD ><nobr>{$sellinfo.编号}</nobr></TD>
+            <notempty name="buyinfo['开户银行']">
+          	<TD ><nobr>{$sellinfo.开户银行}</nobr></TD>
+            </notempty>
+            <notempty name="buyinfo['银行卡号']">
+          	<TD ><nobr>{$sellinfo.银行卡号}</nobr></TD>
+            </notempty>
+            <notempty name="buyinfo['开户名']">
+          	<TD ><nobr>{$sellinfo.开户名}</nobr></TD>
+            </notempty>
+            <notempty name="buyinfo['电话']">
+          	<TD ><nobr>{$sellinfo.电话}</nobr></TD>
+            </notempty>
+          </TR>
+      </table>
+      <table class="tablebg">
+          <notempty name="buyinfo['付款时间']">
+			<tr class="datalist">
+			    <td class="tbkey">{:L('汇款金额')}：</td>
+				<td  class="tbval">{$buyinfo.汇款金额}</td>
+			</tr>
+            <notempty name="buyinfo['开户银行']">
+			<tr class="datalist">
+			    <td class="tbkey">{:L('开户银行')}：</td>
+				<td  class="tbval">{$buyinfo.开户银行}</td>
+			</tr>
+            </notempty>
+            <notempty name="buyinfo['银行卡号']">
+			<tr class="datalist">
+			    <td class="tbkey">{:L('银行卡号')}：</td>
+				<td  class="tbval">{$buyinfo.银行卡号}</td>
+			</tr>
+            </notempty>
+            <notempty name="buyinfo['开户名']">
+			<tr class="datalist">
+			    <td class="tbkey">{:L('开户名')}：</td>
+				<td  class="tbval">{$buyinfo.开户名}</td>
+			</tr>
+            </notempty>
+            <notempty name="buyinfo['电话']">
+			<tr class="datalist">
+			    <td class="tbkey">{:L('联系电话')}：</td>
+				<td  class="tbval">{$buyinfo.电话}</td>
+			</tr>
+            </notempty>
+			<tr class="datalist">
+			    <td class="tbkey">{:L('汇款时间')}：</td>
+				<td  class="tbval">{$buyinfo.汇款时间|date="Y-m-d",###}</td>
+			</tr>
+			<tr class="datalist">
+			    <td class="tbkey">{:L('付款时间')}：</td>
+				<td  class="tbval">{$buyinfo.付款时间|date="Y-m-d H:i:s",###}</td>
+			</tr>
+		</notempty>
+		<tr class="datalist">
+			<td class="tbkey">{:L('卖家申请说明')}：</td>
+			<td  class="tbval">{$buyinfo.卖家申请说明}</td>
+		</tr>
+		<tr class="datalist">
+			<td class="tbkey">{:L('申请凭据')}：</td>
+			<if condition="$buyinfo['买家凭据'] eq ''">
+			<td class="tbval"><img src="{$buyinfo['买家凭据']}" height="100px"></td>
+			<else/>
+			<td class="tbval"><img src="{$buyinfo['买家凭据']}" height="400px"></td>
+			</if>
+
+		</tr>
+		<tr class="datalist">
+			<if condition="$buyinfo['买家凭据'] eq ''">
+			<td class="tbkey">{:L('凭据提交')}：</td>
+			<else/>
+			<td class="tbkey">{:L('重新提交')}：</td>
+			</if>
+			<!-- <if condition="$buyinfo['买家凭据']"><input name="img" value="1" type="hidden"/><img src="{$buyinfo['买家凭据']}" height="400px"></if> -->
+			<td class="tbval"><input name="pingju" type='file' /></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<button id="save_btn" type="submit" class="input_button">{:L('仲裁申请')}</button>
+				<button id="back_btn" type="button" class="input_button" onClick="history.back();">{:L('返回')}</button>
+			</td>
+		</tr>
+     </table>
+     </form>
+  </div>
+</div>

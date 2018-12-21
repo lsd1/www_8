@@ -1,0 +1,81 @@
+<script>
+function navTabAjaxDoneReload(json){
+	DWZ.ajaxDone(json);
+	if (json.statusCode == DWZ.statusCode.ok){
+		$.pdialog.closeCurrent();
+		navTab.reload(json.forwardUrl);
+	}else{
+		var $pagerForm = $("#pagerForm", navTab.getCurrentPanel());
+		var args = $pagerForm.size()>0 ? $pagerForm.serializeArray() : {}
+		navTabPageBreak(args, json.rel);
+	}
+}
+</script>
+<div class="pageContent">
+	<form method="post" action="{:U('Admin/cancel_bind')}"  class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDoneReload)">
+		<input type="hidden" name="callbackType" value="closeCurrent" />
+		<input type="hidden" name="id" value="{$map['id']}"/>
+		<input type="hidden" name="adid" value="{$admininfo['id']}"/>
+		<input type="hidden" name="navTabId" value="{:md5(__CONTROLLER__.'/edit')}"/>
+		<input type="hidden" name="forwardUrl" value="__CONTROLLER__/edit/id/{$admininfo['id']}"/>
+		<input type="hidden" name="bind_type" value="{$map['type']}"/>
+		<input type="hidden" name="t" value="{$Think.get.t}"/>
+		<div class="pageFormContent" layoutH="58">
+			<table cellpadding="5" cellspacing="5">
+				<tr>
+					<th style="text-align:right">绑定信息：</th>
+					<td style="text-align:left">
+                    	（{$map.name}）&nbsp;<gt name="map['endtime']" value="0">&nbsp;截止到&nbsp;{:date("Y-m-d",($map['endtime']))}&nbsp;<eq name="map['status']" value="1">失效<else/><span style="color:#ff0000">已失效<span></eq><else/>永久</gt>&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<th style="text-align:right">管理员：</th>
+					<td style="text-align:left">
+                    	{$admininfo.account}<neq name="admininfo['nickname']" value="">（{$admininfo['nickname']}）</neq>
+					</td>
+				</tr>
+
+				<eq name="Think.get.t" value="0">
+					<tr>
+						<th style="text-align:right">备注名称：</th>
+						<td style="text-align:left">
+	                    	<input type="text" autocomplete="off" name='name' value="{$map['name']}"/>
+						</td>
+					</tr>
+					<tr>
+						<th style="text-align:right">有效期：</th>
+						<td style="text-align:left">
+	                    	<input type="text" class="date textInput" autocomplete="off" name='endtime' value="<if condition="$map['endtime']">{:date("Y-m-d",($map['endtime']))}</if>"/>
+						</td><td>&nbsp;&nbsp;(留空为永久)</td>
+					</tr>
+				<else/>
+					<eq name="map['type']" value="1">
+					<tr>
+						<th width="20%" style="text-align:right">点击输入key值：</th>
+						<td style="text-align:left;vertical-align: middle;height:30px;line-height:30px;" varalign="middle">
+	                    <input type="password" autocomplete="off"  id="ayubiopt" name='ayubiopt' value="" size='32'/>&nbsp;（当前管理员的yubikey或者您的yubikey）
+						</td>
+					</tr>
+					</eq>
+				</eq>
+
+			</table>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<eq name="Think.get.t" value="0">
+				<li><div class="buttonActive"><div class="buttonContent"><button id="submit" type="submit" >修改</button></div></div></li>
+				<else/>
+				<li><div class="buttonActive"><div class="buttonContent"><button id="submit" type="submit" >确认删除</button></div></div></li>
+				</eq>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+<script >
+$(function () {
+	$('#newyubiopt').focus();
+})
+</script >

@@ -1,0 +1,149 @@
+<include file="Public:header" />
+<script src="__TMPL__Public/js/echarts.min.js"></script>
+<!--<h2 class="container-title">{:L('会员信息')}</h2>-->
+<div class="line"></div>
+<ul class="info-box">
+    <li>
+        <a href="##">
+            <p class="info-title">{:L('会员编号')}：</p>
+            <img src="__TMPL__Public/img/user-name.png" alt="">
+            <div>
+                <p class="info-content">{$userinfo.编号}</p>
+            </div>
+        </a>
+    </li>
+    <li>
+        <!--<img src="__TMPL__Public/img/level1.png" alt="">-->
+            <foreach name="userlevel" item="lv" key="key">
+                <a href="##">
+                    <if condition="$key eq L('级差级别') and  $lv.byname neq L('暂无')">
+                        <p class="info-title">{$key}：</p>
+                        <img src="__TMPL__Public/img/level1.png" alt="">
+                        <div>
+                            <p class="info-content">{$lv.byname}</p>
+                        </div>
+                    </if>
+                    <if condition="$show_hy eq 1">
+                        <if condition="$key eq L('会员级别')">
+                            <p class="info-title">{$key}：</p>
+                            <img src="__TMPL__Public/img/level1.png" alt="">
+                            <div>
+                                <p class="info-content">{$lv.byname}</p>
+                            </div>
+                        </if>
+                    </if>
+                </a>
+            </foreach>
+    </li>
+    <li>
+        <a href="##">
+            <p class="info-title">{:L('注册时间')}：</p>
+            <img src="__TMPL__Public/img/reg-time.png" alt="">
+            <div>
+                <p class="info-content">{$userinfo.注册时间|date='Y-m-d H:i:s',###}</p>
+            </div>
+        </a>
+    </li>
+</ul>
+<!--<h2 class="container-title">{:L('账户总览')}</h2>-->
+<ul class="fund-box">
+
+    <foreach name="funbank" item="fun_bank" key="key">
+        <li>
+            <div class="fund-title">{$fun_bank.name}</div>
+            <div class="fund-info" id="currency">
+                <!--<img src="__TMPL__Public/img/fund-icon.png" alt="">-->
+                <span><i>{$userinfo[$key]}</i></span>
+            </div>
+            
+            <!--<p>{$fun_bank.num}</p>-->
+        </li>
+    </foreach>
+</ul>
+<!--<h2 class="container-title">{:L('系统公告')}</h2>-->
+<div class="welcom-h">
+    <h2>{:L('系统公告')}</h2>
+    <p>{:L('亲爱的会员')}，
+        <if condition='count($notice) gt 0'>
+        {:L('当前有')} 
+        {:count($notice)}{:L('条系统公告')}.
+        <else/>
+        {:L('目前暂无系统公告')}.
+        </if>
+    </p>
+
+<div class="line"></div>
+<if condition="empty($notice) neq true" >
+<foreach name="notice" item="vo">
+    <div class="notice-box">
+        <a href="" class="notice-list">
+            <div class="notice-img-wrap">
+                <img src="__TMPL__Public/img/notic_img.jpg" alt="">
+            </div>
+            <div class="notice-text-wrap">
+                <div class="notice-text">
+                    <h3 class="notice-head">
+                    <a href="__MODULE__/User/showNotice/id/{$vo.id}" style="color: #000;">{$vo['标题']}</a>
+                    </h3>
+                    <div class="notice-content-wrap">
+                        <div class="notice-content">
+                        <a href="__MODULE__/User/showNotice/id/{$vo.id}" style="color: #000;">{$vo.内容}</a>
+                        </div>
+                        <div class="notice-time">
+                        <a href="__MODULE__/User/showNotice/id/{$vo.id}" style="color: #000;">
+                        {:L('发布时间')}：{$vo.创建时间|date='Y-m-d',###}
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clth"></div>
+        </a>
+    </div>
+</foreach>
+<else/>
+    <div class="notice-box">
+        <a href="" class="notice-list">
+            <div class="notice-img-wrap">
+                <img src="__TMPL__Public/img/notic_img.jpg" alt="">
+            </div>
+            <div class="notice-text-wrap">
+                <div class="notice-text">
+                    <h3 class="notice-head"> {:L('暂无公告')} </h3>
+                    <div class="notice-content-wrap">
+                        <div class="notice-content"></div>
+                        <div class="notice-time"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clth"></div>
+        </a>
+    </div>
+</if>
+</div>
+
+<script>
+$(function() {
+    
+    
+    $('.nav-list span', '.sidebar-menu').on('click', function() {
+        $(this).parents('.nav-list').siblings('.active').removeClass('active');
+        $(this).parents('.nav-list').toggleClass('active');
+    });
+    
+    sidebarH();
+    $(window).resize(function(){
+        sidebarH();
+    });
+
+    function sidebarH() {
+        var $sidebarH = $(window).height()-166;
+        $(".sidebar-menu").height($sidebarH);
+    }
+
+
+});
+
+
+</script>
+<include file="Public:footer" />

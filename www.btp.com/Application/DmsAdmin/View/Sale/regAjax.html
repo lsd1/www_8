@@ -1,0 +1,6 @@
+<notempty name="errs">
+<foreach name='errs' item='err' key='errkey'>
+	<php>if(strstr($errkey,'product')!='') $errkey="productCountMoney";</php>
+	$('#state_{$errkey}',navTab.getCurrentPanel()).html('{$err}');
+</foreach>
+</notempty>

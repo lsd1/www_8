@@ -1,0 +1,167 @@
+<include file="Public:header" />
+<div class="content">
+    <form name="form2" method="post" action="__MODULE__/Saleshop/buy_shop:__XPATH__" id="form2">
+        <div class="list-block bg-w">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">{:L('商品分类')}</div>
+                            <div class="item-input">
+                                <select name="fenlei" id="fenlei">
+                                    <option value="">{:L('请选择')}</option>
+                                    <foreach name='fenleis' item="vos">
+                                    <option value="{$vos.名称}" <if condition="$fenlei eq $vos['名称']">selected</if>>{$vos.名称}</option>
+                                    </foreach>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">{:L('商品名称')}</div>
+                            <div class="item-input">
+                                <input type="text" value="{$pro_name}" name="pro_name" placeholder="{:L('商品名称')}">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">{:L('零售价(元)')}</div>
+                            <div class="item-input">
+                                <div class="search-box">
+                                    <input class="pull-left" type="number" value="{$lingshou_start}" name="lingshou_start">
+                                    <span class="pull-left text-center">-</span>
+                                    <input class="pull-left" type="number" value="{$lingshou_end}" name="lingshou_end">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <p>
+                <input type="submit" value="{:L('查询')}" name="search" class="button button-fill button-big"/>
+            </p>
+        </div>
+    </form>
+    <form name="form1" method="post" action="__MODULE__/Saleshop/buySave:__XPATH__" id="form">
+        <div class="list-block">
+            <ul>
+                <if condition="$sale:accBank neq ''">
+                <foreach name="banks" item="bank">
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{:L($bank->byname.'余额')}</div>
+                            <div class="item-after">
+                                {:$userinfo[$bank->name]} 元
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                </foreach>
+                </if>
+                <if condition="$discount eq 1">
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{:L('享受折扣')}</div>
+                            <div class="item-after">{$discount*10}折</div>
+                        </div>
+                    </div>
+                </li>
+                </if>
+                <if condition="$sale:logistic neq true">
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{:L('物品收费标准')}</div>
+                        </div>
+                    </div>
+                    <div class="item-content color-gray">
+                        <if condition="$areafei">{:L('首重')}{$areafei.首重}Kg{:L('以下的为')}{$areafei.首重价格}，{:L('续重价格')}{$areafei.续重价格}/Kg（{:L('随填写收货地区后可能有所变化')}）<else />{:L('基本标准')}：{:L('暂无')}（{:L('随填写收货地区后可能有所变化')}）</if>
+                    </div>
+                </li>
+                </if>
+            </ul>
+        </div>
+
+        <div class="content-block-title">
+            {:L('产品列表')}
+        </div>
+        <div class="list-block media-list product">
+            <ul class="info-list">
+                <foreach name='data.list' item='vo'>
+                <li class="item-content">
+                    <div class="item-media">
+                        <a href="__CONTROLLER__/chanpinxiangxi:__XPATH__/id/{$vo.id}">
+                        <if condition="empty($vo['图片'])">
+                            <img class="thumb" src="__TMPL__Public/img/product.png">
+                        <else />
+                            <img class="thumb" src="{$vo.图片}">
+                        </if>
+                        </a>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                            <div class="item-title">
+                                <a href="__CONTROLLER__/chanpinxiangxi:__XPATH__/id/{$vo.id}">{$vo.名称}</a>
+                            </div>
+                        </div>
+                        <div class="item-subtitle">
+                            {:L('零售价')}￥：
+                            <span class="color-danger">{$vo[$sale->productMoney]}</span>
+                        </div>
+                        <eq name="sale:productPV" value="true">
+                        <div class="item-bottom">
+                            {:L('价值PV')}：<span class="color-danger">{$vo.pv}</span>
+                        </div>
+                        </eq>
+                    </div>
+                </li>
+                </foreach>
+            </ul>
+        </div>
+    </form>
+    <div class="pager">
+		<if condition="$data['nowPage'] neq 1">
+		<a href="{$data.firstRow}">&laquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&laquo;</a>
+		</if>
+
+		<a href="{$data.upRow}">&lt;</a>
+
+		<if condition="isset($data['rollPage'][-2])">
+		<a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][-1])">
+		<a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>
+		</if>
+
+		<a href="javascript:void(0)">{$data.nowPage}/{$data.totalPages}</a>
+
+		<if condition="isset($data['rollPage'][1])">
+		<a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][2])">
+		<a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>
+		</if>
+
+		<a href="{$data.downRow}">&gt;</a>
+
+		<if condition="$data['nowPage'] lt $data['totalPages']">
+		<a href="{$data.theEndRow}">&raquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&raquo;</a>
+		</if>  
+	</div>  
+</div>
+<include file="Public:footer" />
+

@@ -1,0 +1,23 @@
+<php>
+$nowtitle = "查看邮件";
+</php>
+<include file="Public:header" />
+<div class="content notice">
+	<div class="content-padded">
+		<div class="text-head">
+			<h1 class="text-title">{$list.标题}</h1>
+			<div class="sub-info">发布时间：{$list.发送时间|date="Y-m-d H:i:s",###}</div>
+		</div>
+		<div class="text-content">
+			{$list.内容}
+		</div>
+	</div>
+	<p>
+        <neq name="list.状态" value="2">
+        	<a class="button button-fill button-big button-warning" onClick="location.href='__MODULE__/Mail/answer/id/{$list.id}';"> {:L('回复')}</a><br/>
+        </neq> 
+		<a class="button button-fill button-big button-warning back">{:L('返回')}</a>
+	</p>
+</div>
+<include file="Public:footer" />
+

@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title><if condition="!empty($SYSTEM_TITLE)">{:L($SYSTEM_TITLE)}<else/>{$SYSTEM_TITLE}</if></title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="stylesheet" href="__TMPL__Public/dist/css/sm.css">
+        <link rel="stylesheet" href="__TMPL__Public/dist/css/sm-extend.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/ionicons.css">
+        <link rel="stylesheet" href="__TMPL__Public/fonts2/iconfont.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/theme.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/app.css">
+        <script src="__TMPL__Public/js/zepto.js"></script>
+        <script>$.config={router: false}
+        var queren = '{:L("确认")}';
+		var	quxiao = '{:L("取消")}';
+        </script>
+
+    </head>
+    <body class="theme-blue">
+        <header class="bar bar-nav">
+        	<if condition="$now_model neq 'Saleweb'">
+        	<if condition="$now_model neq 'Index'">
+            <a class="button button-link button-nav pull-left back">
+                &nbsp;
+                <span class="icon icon-left"></span>
+            </a>
+            </if>
+            <!--<a class="button button-link button-nav pull-right logout">
+                <span class="icon ion-log-out"></span>
+                &nbsp;
+            </a>-->
+            </if>
+            <h1 class="title">{$nowtitle}</h1>
+        </header>
+        <php>
+        $iconfont=array('&#xe600;','&#xe607;','&#xe718;','&#xe61b;');
+        $i=0;
+        $bg = 1;
+        $pop = 0;
+        </php>
+        <nav class="bar bar-tab">
+            <a href="__MODULE__/Index/index" class="tab-item external pop-nav">
+                <i class="iconfont">&#xe884;</i>
+                <span class="tab-label">{:L('首页')}</span>
+            </a>
+            <present name="menu">
+            <foreach name="menu" item="vo" key="key">
+            <if condition='$i gt 0 and isset($iconfont[$i])'>
+            <a class="tab-item external pop-nav" menu='{$i}' data-rol="{$bg++}">
+                <i class="iconfont">{$iconfont[$i]}</i>
+                <span class="tab-label">{:mb_substr($key,0,strlen($key),'utf-8');}</span>
+            </a>
+            </if>
+            <php>$i++;</php>
+            </foreach>
+            </present>
+            <!--<a href="__MODULE__/User/Center" class="tab-item external pop-nav">-->
+            <a class="tab-item external pop-nav" menu='0' data-rol="0">
+                <i class="iconfont">&#xe600;</i>
+                <span class="tab-label">{:L('个人中心')}</span>
+            </a>
+        </nav>
+        <!--子菜单-->
+        <present name="menu">
+            <foreach name="menu" item="vo" key="key">
+                <div class="popup popup-{$pop++}">
+                    <div class="inner-header">
+                        <span class="inner-title">{$key}</span>
+                        <a href="__MODULE__/Index/index" class="backto"><i class="iconfont">&#xe884;</i></a>
+                        <a href="javascript:;" class="cls pop-close"><i class="iconfont">&#xe613;</i></a>
+                    </div>
+                    <div class="content">
+                        <div class="list-block">
+                            <php>
+                            	$bg = 0;
+                            </php>
+                            <foreach name="vo" item="val">
+                                <a class="menu-item border-bottom" href="__MODULE__/{$val.model}/{$val.action}">
+                                    <i class="iconfont left-icon">&#xe611;</i>
+                                    <div class="flex-item">{$val.title}</div>
+                                    <i class="iconfont right-icon">&#xe628;</i>
+                                </a>
+                            </foreach>
+                            <if condition="$val['model'] eq 'User'">
+                            	<a class="menu-item border-bottom" href="__MODULE__/Public/logout">
+                                    <i class="iconfont left-icon">&#xe611;</i>
+                                    <div class="flex-item">{:L('退出')}</div>
+                                    <i class="iconfont right-icon">&#xe628;</i>
+                                </a>
+                            </if>
+                        </div>
+                    </div>
+                </div>
+            </foreach>
+        </present>
+        <script src="__TMPL__Public/dist/js/sm.js"></script>
+        <script src="__TMPL__Public/dist/js/sm-extend.js"></script>
+        <script src="__TMPL__Public/js/app.js"></script>

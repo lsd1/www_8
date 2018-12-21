@@ -1,0 +1,199 @@
+<php>
+	define('regXpath',$regXpath);
+</php>
+<include file="Public:header" />
+<div class="content">
+<!-- 这里是页面内容区 -->
+	<div class="content-padded">
+	<form id="search_form" action="__CONTROLLER__/disp:__XPATH__"  method="post" >
+		<div class="searchbar row">
+			<div class="search-input col-80">
+				<label class="icon icon-search" for="search"></label>
+				<input type="search" id='search' name="uid" placeholder="{:L('请输入你在网络图中的账户')}"/>
+			</div>
+			<a id="submit" class="button button-fill button-primary col-20">{:L('搜索')}</a>
+		</div>
+		<if condition="$firstUserInfo['编号'] neq $thisUser['编号']">
+		<p class="buttons-row">
+			<a class="button button-round" href="__MODULE__/Net/disp:__XPATH__/uid/{:$firstUserInfo[$netNode->name.'_上级编号']}">{:L('上一层')}</a>
+			<a class="button button-round" href="__MODULE__/Net/disp:__XPATH__">{:L('置顶')}</a>
+		</p>
+		</if>
+	</form>
+	</div>
+
+	<!--网络图-->
+	<div class="net-title" id="network_link">
+		{$firstUserInfo['编号']}
+	</div>
+
+	<div class="content-padded">
+		<div class="tree" id="network_tree">
+			<ul role="tree">
+				<li id="tree_{$firstUserInfo['编号']}" class="parent_li" role="treeitem">
+					<span class="button" title="Collapse this branch">
+						<i class="ion ion-person-stalker"></i>
+						<b>{$firstUserInfo['编号']}</b>
+					</span>
+					<br>
+					<small>
+					<foreach name="netNode:getRegion()" item="region">
+					{:L($region['name'])}:{:$firstUserInfo[$netName.'_'.$region['name'].'区本日业绩']} | 
+					</foreach>
+					</small>
+					<small>
+					<foreach name="netNode:getRegion()" item="region">
+					{:L($region['name'])}:{:$firstUserInfo[$netName.'_'.$region['name'].'区累计业绩']} | 
+					</foreach>
+					</small>
+				
+					{// 向下递归遍历网络图的所有子节点 }
+					{:print_tree(0,$netTree,$netPlaceName,$firstUserInfo,$netName,$levelsArr,$showLayer,$netNode,$thisUser)}
+					<php>
+					//递归遍历网络图函数
+
+					function print_tree ($layer,$netTree,$netPlaceName,$parent,$netName,$levelsArr,$showLayer,$netNode,$thisUser) {
+					if($layer >= $showLayer-1) return;
+					$j=count($netPlaceName[$netName]);
+					$i = -1;
+					
+					</php>
+					<ul role="group">
+					<php>
+					foreach($netPlaceName[$netName] as $position){
+
+						$userInfo = array();
+						$i++;
+						if(isset($netTree[$layer])){
+							foreach($netTree[$layer] as $val){
+								if($val[$netName.'_上级编号'] === $parent['编号'] and $val[$netName.'_位置'] == $position){
+									$userInfo = $val;
+									break;
+								}
+							}
+						}
+					</php>
+					<notempty name="userInfo">
+					<li id="tree_{$userInfo['编号']}" data-group="<eq name='position' value='左'>0<else/>1</eq>" class="parent_li" role="treeitem">
+						<span class="button" title="Collapse this branch">
+						<a class="button-label">{:L($position)}</a> 
+						<if condition="$netNode:shopNetDisp eq 1 and $thisUser['服务中心'] eq 0">{$userInfo['编号']}<else /><a href="__MODULE__/Net/disp:__XPATH__/uid/{$userInfo['编号']}"><strong>{$userInfo['编号']}</strong></a></if>
+						</span>
+						<br>
+						<small style="color:#3276b1">
+						<foreach name="netNode:getRegion()" item="region">
+						{:L($region['name'])}:{:$userInfo[$netName.'_'.$region['name'].'区本日业绩']} |  
+						</foreach>
+						</small>
+						<small style="color:#3276b1">
+						<foreach name="netNode:getRegion()" item="region">
+						{:L($region['name'])}:{:$userInfo[$netName.'_'.$region['name'].'区累计业绩']} |  
+						</foreach>
+						</small>
+						{:print_tree($layer+1,$netTree,$netPlaceName,$userInfo,$netName,$levelsArr,$showLayer,$netNode,$thisUser)}
+					</li>
+					<else />           
+					<li>
+						<span>
+							<a class="button-label-alter">{:L($position)}</a><a href="__MODULE__/Sale/reg:{:constant('regXpath')}/pid/{$parent['编号']}/position/<eq name='position' value='左'>0<else/>1</eq>">{:L('注册')}</a>
+						</span>
+					</li>
+					</notempty>	
+					<php>}</php>
+					</ul>
+					<php>$layer++;}</php>
+				</li>
+		   </ul>
+	  </div>
+	</div>
+
+</div>
+<include file="Public:footer" />
+<script>
+// do not remove : global functions!
+//	pageSetUp();
+
+var tree_id = "";
+var menu_obj = $("#network_link");
+var search_obj = $("#search_text");
+var class_highline = "here";
+var class_old = "old";
+var active_name = "";
+var name_arr = [];
+
+var Get_tree_data = function(id) {
+    Set_tree(1);
+}
+
+function Set_tree(data) {
+    var tree_obj = $("#network_tree");
+    var max_level = 3;
+    var menu_html = "";
+    
+    network_init();
+}
+// page related scripts
+var network_init = function() {
+    $('.tree>ul').attr('role', 'tree').find('ul').attr('role', 'group');
+    $('.tree').find('li').has('ul').addClass('parent_li').attr('role', 'treeitem').children('span').attr('title', '合并分支').on('click', function(e) {
+        var children = $(this).parent('li.parent_li').children('ul').children('li');
+        children.toggle();
+        e.stopPropagation();
+    });
+
+    $("#submit").click(function(){
+        $('#search_form').submit();
+    });
+}
+function Check_exist_name(name) {
+    var result = false;
+    for(var i=name_arr.length - 1; i>=0; i--)
+    {
+        if(name == name_arr[i])
+        {
+            result = true;
+            break;
+        }
+    }
+    return result;
+}
+
+function Reset_menu_name() {
+    name_arr = [];
+    var a_list = menu_obj.find("a");
+    a_list.each(function(index, ele){
+        name_arr.push($(this).text());
+    });    
+}
+
+$("#Back_tree_view").click(function() {	
+	Get_tree_data(tree_id);
+});
+
+
+menu_obj.on("click", "a", function(event) {
+    var $this = $(this);
+    var id = $this.data("id");
+    var name = $this.text();
+    var parent = $this.parent();
+    var t_name = parent.get(0).tagName;
+
+    if($this.hasClass(class_highline)) { return false; }
+    
+    menu_obj.find("a").removeClass(class_highline);
+    $this.addClass(class_highline).removeClass(class_old);
+    
+    if("H3" == t_name) {
+        menu_obj.find("a:gt(0)").addClass(class_old);
+    }
+    else if("SPAN" == t_name) {
+        parent.nextAll().children("a").addClass(class_old);
+    }
+    Get_tree_data(id);
+
+    return false;
+});
+
+Get_tree_data();
+</script>
+

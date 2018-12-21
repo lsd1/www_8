@@ -1,0 +1,51 @@
+<!--此模板未来要改为调用cli.php的自动结算指令暂时保留，并不应倍启用-->
+<div layoutH="0">
+<table width="700px" class="list">
+  <thead>
+	<tr>
+	  <th colspan="5" style="text-align:left"><img style="vertical-align:middle" src="__PUBLIC__/Images/calculator.png" />&nbsp;&nbsp;自动结算地址</th>
+	</tr>
+     </thead>
+     <tfoot>
+		<tr>
+		<td style="width:120px;border-bottom:1px solid #ededed" class="tab2_border2">
+		地址:
+		</td>
+		<td style="border-bottom:1px solid #ededed" class="tab2_border2">
+		{$url}
+		</td>
+		</tr>
+		<tr>
+		<td style="width:120px;border-bottom:1px solid #ededed" class="tab2_border2">
+		最后调用:
+		</td>
+		<td style="border-bottom:1px solid #ededed" class="tab2_border2">
+		{$time|date="y-m-d H:i:s",###}
+		</td>
+		</tr>
+		<if condition="($is_exec eq true)">
+			<tr>
+			<td style="width:120px;border-bottom:1px solid #ededed" class="tab2_border2">
+			系统服务状态:
+			</td>
+			<td style="border-bottom:1px solid #ededed" class="tab2_border2">
+				<if condition="$serverrun"> 
+					正在运行
+				<else /> 
+					已经关闭
+				</if>
+			</td>
+			</tr>
+			<tr>
+			<td style="width:120px;border-bottom:1px solid #ededed" class="tab2_border2">
+			操作系统
+			</td>
+			<td style="border-bottom:1px solid #ededed" class="tab2_border2">
+				<a href="__CONTROLLER__/runset/val/true" target="ajaxTodo">开启服务</a>
+				<a href="__CONTROLLER__/runset/val/false" target="ajaxTodo">关闭服务</a>
+			</td>
+			</tr>
+		</if>
+</tfoot>
+</table>
+</div>

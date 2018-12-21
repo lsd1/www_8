@@ -1,0 +1,58 @@
+<div class="core_main Mail" id="view">
+	<div class="core_title">
+    	<span class="core_title_con"><span>{:L('当前位置')}</span>：{$nowtitle}</span>
+
+        <span class="core_title_edit"></span>
+    </div>
+    <div class="core_con">
+    	<table class="tablebg" >
+            <tr>
+                <td >&nbsp;&nbsp;{:L('查看邮件')}</td>
+            </tr>
+            <tr>
+                <td>
+                    <table style='width:100%;'>
+                    	<tr>
+                            <td style='width:20%;' >{:L('发件人')}：</td>
+                            <td style='width:80%;' >&nbsp;{$list.发件人}</td>
+                        </tr>
+                        <tr>
+                            <td style='width:20%;' >{:L('发件时间')}：</td>
+                            <td style='width:80%;' >&nbsp;{$list.发送时间|date="Y-m-d H:i:s",###}</td>
+                        </tr>
+                        <tr>
+                            <td >{:L('标题')}：</td>
+                            <td >&nbsp;{$list.标题}</td>
+                        </tr>
+                        <tr>
+                            <td >{:L('内容')}：</td>
+                            <td  style="text-align:left; word-break:break-all;">&nbsp;{:show_destr($list['内容'])}</td>
+                        </tr>
+                        <eq name="list.状态" value="2">
+                        <tr>
+                            <td >{:L('回复时间')}：</td>
+                            <td>&nbsp;{$list.回复时间|date="Y-m-d H:i:s",###}</td>
+                        </tr>
+                        <tr>
+                            <td >{:L('回复内容')}：</td>
+                            <td>&nbsp;{:show_destr($list['回复内容'])}</td>
+                        </tr>
+                        </eq>
+                        <tr>
+                            <td colspan="2" >
+                                <neq name="list.状态" value="2">
+                                <input class="button_text" type="button" onClick="location.href='__MODULE__/Mail/answer/id/{$list.id}';" value="{:L('回复')}"/>
+                                &nbsp;
+                                </neq>
+                                <input class="button_text" type="button" onClick="location.href='__MODULE__/Mail/index';" value="{:L('返回')}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="core_page"></div>
+</div>
+

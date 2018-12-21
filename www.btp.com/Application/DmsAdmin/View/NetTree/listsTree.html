@@ -1,0 +1,22 @@
+<div layoutH="0"  id="dirtreecontent">
+<script type="text/javascript">
+
+$('#style').bind('change',function()
+{
+	window.location.href = URL + '/index:__XPATH__/style/' + $(this).children("[selected='true']").val();
+});
+$(function(){
+	navTab.getCurrentPanel().find('#changeStyle').bind('change',function(){
+		//navTab.reload('',{data:{style:$(this).val()}});
+		navTab.reload('__APP__/DmsAdmin/NetTree/index:__XPATH__/style/'+$(this).val());
+	});
+
+	navTab.getCurrentPanel().find("[id^='doverUser_']").bind('mousemove',function(e){
+		showFloat(e,this);
+	});
+});
+
+</script>
+{$list}
+</div>
+

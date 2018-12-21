@@ -1,0 +1,97 @@
+<include file="Public:header" />
+<div class="content">
+    <form method="post" id="form1" action="__CONTROLLER__/buysave:__XPATH__">
+    <input type="hidden" name="id" value="{$sellinfo.id}" />
+    <div class="list-block">
+        <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('卖家编号')}</div>
+                    <div class="item-after"><strong>{$sellinfo.编号}</strong></div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('出售数量')}</div>
+                    <div class="item-after"><span id="sellnum">{$sellinfo.未成交数量}</span></div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('出售价格')}</div>
+                    <div class="item-after">{$sellinfo.单价}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('需汇款金额')}</div>
+                    <div class="item-after">{$sellinfo['未成交数量']*$sellinfo['单价']}</div>
+                </div>
+            </li>
+            <notempty name="sellinfo['开户银行']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('收款方式')}</div>
+                    <div class="item-after">{$sellinfo.开户银行}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="sellinfo['银行卡号']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('银行卡号')}</div>
+                    <div class="item-after">{$sellinfo.银行卡号}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="sellinfo['开户名']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('收款人')}</div>
+                    <div class="item-after">{$sellinfo.开户名}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="sellinfo['电话']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('联系方式')}</div>
+                    <div class="item-after">{$sellinfo.电话}</div>
+                </div>
+            </li>
+            </notempty>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('购买数量')}</div>
+                    <div class="item-after">
+                        <if condition="$gold:buyAll eq 1">
+                        {$sellinfo['未成交数量']}
+                        <else/>
+                        <input name="buynum" value="{$sellinfo['未成交数量']}" type="text" onkeyup="checknum(this)">
+                        </if>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="content-padding">
+        <button type="submmit" class="button button-big button-warning button-fill" id="zz_btn" >{:L('确定购买')}</button>
+        <span class="aa" id="notice_state"></span>
+    </div>
+    </form>
+<include file="Public:footer" />
+<script>
+function checknum(e){
+	//判断是否是数字
+	if(isNaN($(e).val())){
+        $.modal({
+            text: '{:L("非法数字")}',
+            buttons: [{text: '{:L("确定")}'}]
+        });
+		return false;
+	}
+	if($(e).val()>$('#sellnum').html()){
+		$(e).val($('#sellnum').html());
+	}
+}
+</script>

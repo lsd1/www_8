@@ -1,0 +1,239 @@
+<div class="core_main Sale" id="viewMysale">
+	<div class="core_title">
+    	<span class="core_title_con"><span>{:L('当前位置')}</span>：{$nowtitle}</span>
+    </div>
+    <div class="core_con">
+        <table class="tablebg" id="table1">
+            <tr >
+                <td class="tbkey"><nobr>{:L('编号')}：</nobr></td>
+                <td class="tbval"><nobr>{$saleData.编号}</nobr></td>
+            </tr>
+            <tr >
+                <td class="tbkey"><nobr>{:L('购买时间')}：</nobr></td>
+                <td class="tbval"><nobr><if condition="$saleData['购买时间']">{$saleData.购买时间|date='Y-m-d H:i:s',###}</if></nobr></td>
+            </tr>
+            <if condition="$saleData['到款时间'] gt 0">
+            <tr >
+                <td class="tbkey"><nobr>{:L('到款时间')}：</nobr></td>
+                <td class="tbval"><nobr><if condition="$saleData['到款时间']">{$saleData.到款时间|date='Y-m-d H:i:s',###}</if></nobr></td>
+            </tr>
+            </if>
+            <if condition="adminshow('baodan_wuliu') eq true">
+	            <if condition="$saleData['发货时间'] gt 0">
+	            <tr >
+	                <td class="tbkey"><nobr>{:L('发货时间')}：</nobr></td>
+	                <td class="tbval"><nobr><if condition="$saleData['发货时间']">{$saleData.发货时间|date='Y-m-d H:i:s',###}</if></nobr></td>
+	            </tr>
+	            </if>
+				<if condition="$saleData['收货时间'] gt 0">
+	            <tr >
+	                <td class="tbkey"><nobr>{:L('收货时间')}：</nobr></td>
+	                <td class="tbval"><nobr><if condition="$saleData['收货时间']">{$saleData.收货时间|date='Y-m-d H:i:s',###}</if></nobr></td>
+	            </tr>
+	            </if>
+            </if>
+            <tr >
+                <td class="tbkey"><nobr>{:L('报单类别')}：</nobr></td>
+                <td class="tbval"><nobr>{:L($saleData['报单类别'])}</nobr></td>
+            </tr>                
+            <tr >
+                <td class="tbkey"><nobr>{:L('报单状态')}：</nobr></td>
+                <td class="tbval"><nobr>{:L($saleData['报单状态'])}</nobr></td>
+            </tr>
+            <if condition="$saleData['报单金额'] neq 0">
+            <tr >
+                <td class="tbkey"><nobr>{:L('报单金额')}：</nobr></td>
+                <td class="tbval"><nobr>{$saleData.报单金额}</nobr></td>
+            </tr>
+            </if>
+
+           
+            <if condition="$saleData['产品'] eq 1 && false">
+	            <tr >
+	                <td class="tbkey"><nobr>{:L('购物金额')}：</nobr></td>
+	                <td class="tbval"><nobr>{$saleData.购物金额}</nobr></td>
+	            </tr>
+	            <if condition="$adminshow eq true">
+	            <tr >
+	                <td class="tbkey"><nobr>{:L('购物PV')}：</nobr></td>
+	                <td class="tbval"><nobr>{$saleData.购物pv}</nobr></td>
+	            </tr>
+	            </if> 
+            </if> 
+             <tr >
+                <td class="tbkey"><nobr>{:L('实付款')}：</nobr></td>
+                <td class="tbval"><nobr>{$saleData.实付款}</nobr></td>
+            </tr>
+            <if condition="$saleData['报单状态'] == '已撤销'">
+             <tr >
+                <td class="tbkey"><nobr>{:L('撤销理由')}：</nobr></td>
+                <td class="tbval"><nobr>{$saleData.撤销理由}</nobr></td>
+            </tr>
+            </if>
+        </table>
+        
+        <table class="tablebg" id="table2">
+            <if condition="$saleData['升级数据'] gt 0">
+			<tr>
+				<td class="tbkey">{:L('原始级别')}：</td>
+				<td class="tbval">{$oldlevel}</td>
+			</tr>
+			<tr>
+				<td class="tbkey">{:L('升至级别')}：</td>
+				<td class="tbval">{$nowlevel}</td>
+			</tr>
+			</if>
+            <if condition="adminshow('baodan_wuliu') eq true">
+	            <if condition="$saleData['物流费'] gt 0" >
+				<tr>
+					<td class="tbkey">{:L('产品重量')}：</td>
+					<td class="tbval">{$saleData['产品总重量']}</td>
+				</tr>
+				
+				<tr>
+					<td class="tbkey">{:L('物流费')}：</td>
+					<td class="tbval">{$saleData['物流费']}</td>
+				</tr>
+				</if>
+				<if condition="$saleData['发货方式'] neq ''">
+				<tr>
+					<td class="tbkey">{:L('发货方式')}：</td>
+					<td class="tbval">{$saleData['发货方式']}</td>
+				</tr>
+				</if>
+				<if condition="$saleData['产品'] eq 1">
+	            <tr >
+	                <td class="tbkey"><nobr>{:L('报单中心')}：</nobr></td>
+	                <td class="tbval"><nobr>{$saleData.服务中心编号}</nobr></td>
+	            </tr>
+	             <tr >
+	                <td class="tbkey"><nobr>{:L('备注')}：</nobr></td>
+	                <td class="tbval"><nobr>{$saleData.订单备注}</nobr></td>
+	            </tr>
+	            <tr >
+	                <td class="tbkey"><nobr>{:L('物流状态')}：</nobr></td>
+	                <td class="tbval"><nobr>{:L($saleData['物流状态'])}</nobr></td>
+	            </tr>
+	            </if>
+	           <if condition="$saleData['快递公司'] neq '' && false">
+				<tr>
+					<td class="tbkey">{:L('快递公司')}</td>
+					<td class="tbval">{$saleData.快递公司}</td>
+				</tr>
+				<tr>
+					<td class="tbkey">{:L('快递查询')}：</td>
+					<td class="tbval">
+					<!--<if condition="$re eq ''">
+						<a href="http://www.kuaidi100.com/"  title="快递查询" target="_blank" >快递查询</a>
+						<else/>
+						<input class="button_text" type="button" value="{:L('查看物流')}" name="subbut"  id='subbut' onclick="alertcheck()" />
+						</if>-->
+						<input class="button_text" type="button" value="{:L('查看物流')}" name="subbut"  id='subbut' onclick="alertcheck()" />
+
+                </gt>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="tbkey" >{:L('快递单号')}：</td>
+					<td class="tbval" id="order">{$saleData.快递订单}</td>
+				</tr>
+				<tr>
+					<td class="tbkey">{:L('快递备注')}：</td>
+					<td class="tbval">{$saleData.快递备注}</td>
+				</tr>
+				</if>
+			</if>
+        </table>
+        
+        <if condition="$saleData['产品'] eq 1 && false">
+        <present name="productData">	
+        <table class="tablebg" id="table3">
+            <tr >
+                <th colspan="6">{:L('产品选购信息')}</th>
+            </tr>
+            <tr class="datafield">
+                <td >{:L('产品名称')}</td>
+                <td >{:L('数量')}</td>
+                <td >{:L('价格')}</td>
+                <if condition="$adminshow eq true">
+                <td >{:L('PV')}</td>
+                </if>
+                <td >{:L('总价')}</td>
+                <if condition="$adminshow eq true">
+                <td >{:L('总PV')}</td>
+                </if>
+            </tr >
+            <foreach name="productData" item="paydata">
+            <tr class="datalist">
+                <td >{$paydata['名称']}</td>
+                <td >{$paydata['数量']}</td>
+                <td >{$paydata['价格']}</td>
+                <if condition="$adminshow eq true">
+                <td >{$paydata['pv']}</td>
+                </if>
+                <td >{$paydata['总价']}</td>
+                <if condition="$adminshow eq true">
+                <td >{$paydata['总pv']}</td>
+                </if>
+            </tr>
+            </foreach>
+            <tr class="datalist">
+                <td colspan="3">{:L('汇总')}：</td>
+                <td >{$saleData.购物金额}</td>
+                <if condition="$adminshow eq true">
+                <td >{$saleData.购物pv}</td>
+                </if>
+            </tr>                
+        </table> 
+        </present>
+        </if>
+    
+        <table class="tablebg" id="table4">
+            <tr>
+                <td class="tdcenter">
+                    <input class="button_text" type="button" value="{:L('返回')}" onclick="history.back()"/> 
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="core_page"></div>
+</div>
+<!--是否显示确认框-->
+<link rel="stylesheet" href="__PUBLIC__/zxxbox/common.css" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/zxxbox/jquery.zxxbox.3.0.js"></script>
+<script type="text/javascript">
+function alertcheck(){	
+	var order	   = $('#order').text();
+	$.get('__CONTROLLER__/orderAjax',{'order':order},function(data){
+			eval("var json="+data);
+			var order_list = json.re;
+			if(json.status == 1){
+				var alertstr ='<table class="tablebg" style="margin-top:0;"  >'; 	
+				alertstr+='<tr><td  style="width:100px;">{:L("订单号")}</td><td >'+ {$saleData['快递订单']} +'</td></tr>';
+				for(i=0;i<order_list.length;i++){
+					alertstr+='<tr><td  align="left">'+ order_list[i].time +'</td><td >'+order_list[i].context+'</td></tr>';
+				}  
+				alertstr+='</table>';
+				$.zxxbox.remind(alertstr, function(){
+			        
+			    },{
+			        title: "物流信息"	
+			    });
+			    }else{
+			    	var alertstr ='<table class="tablebg" style="margin-top:0;"  >'; 	
+					alertstr+='<tr><td  style="width:100px;">{:L("查询地址")}</td><td ><a href="http://www.kuaidi100.com/"  title="查询地址" target="_blank" >http://www.kuaidi100.com/</a></td></tr>';
+					alertstr+='</table>';
+					$.zxxbox.remind(alertstr, function(){
+				        
+				    },{
+				        title: "查询地址"
+				    });
+			    }
+	});
+
+
+
+}
+</script>

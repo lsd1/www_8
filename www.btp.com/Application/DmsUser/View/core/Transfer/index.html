@@ -1,0 +1,458 @@
+<load href="__PUBLIC__/layer/layer.js" />
+<div class="core_main FunBank" id="give">
+	<div class="core_title">
+    	<span class="core_title_con"><span>{:L('当前位置')}</span>：{:L($nowtitle)}</span>
+        <span class="core_title_edit"></span>
+    </div>
+    <div class="core_con">
+    	<form action="__MODULE__/Transfer/giveSave" method="post" id="giveform">
+        <table class="tablebg">
+             <tr>
+                <td class="tbkey">{:L('转账选择')}：</td>
+                <td class="tbval">
+	                <span>
+		                <select name="giveTo" onchange="giveType(this.options[this.options.selectedIndex].value)" id="giveTo">
+                            <if condition="count($bankdata) gt 1">
+                                <option selected>{:L('请选择转账货币')}</option>
+                            </if>
+		                    <foreach name="bankdata" item="giveTodata" key='key'>
+                                <option value="{$key}">{:L($giveTodata['title'])}</option>
+		                    </foreach>
+		                </select>
+	                </span>
+                </td>
+            </tr>
+            <tr id='fbank'>
+                <td class="tbkey">{:L('转出账户')}：</td>
+                <td class="tbval">
+                	<span id='f_bank'></span>
+                </td>
+            </tr>
+            <tr id='zhye'>
+                <td class="tbkey">{:L('账户余额')}：</td>
+                <td class="tbval">
+                	<span id='balance'></span>
+                </td>
+            </tr>
+            <tr id='tbank'>
+                <td class="tbkey">{:L('转入账户')}：</td>
+                <td class="tbval">
+                	<span id='t_bank'></span>
+                </td>
+            </tr>
+            <tr id="totype">
+                <td class="tbkey">{:L('转账类型')}：</td>
+                <td class="tbval">
+	                <span>
+		                <select id='seltype' name="giveTypes" onchange="giveCh(this.options[this.options.selectedIndex].value)">
+		                   <option value="wu">{:L('请选择转账类型')}</option>
+		                </select>
+	                </span>
+                </td>
+            </tr>
+            <tr id='netrule'>
+                <td class="tbkey">{:L('网络限定')}：</td>
+                <td class="tbval">
+                	<span id='net_rule'></span>
+                </td>
+            </tr>
+            <tr id="hideuserid">
+                <td class="tbkey">{:L('转入人编号')}：</td>
+	                <td class="tbval">
+	                	<span>
+	                		<input type="text" name="userid" id="userid" value="" onkeyup="getid(this)" onchange="getid(this)" autocomplete="off"/>
+	                	</span>
+	                	<span id='giveidname'></span>
+	                </td>
+            </tr>
+            <tr >
+                <td class="tbkey">{:L('转账金额')}：</td>
+                <td class="tbval">
+                	<span>
+                		<input type="text" value="" name="givesum" id='givesum'/>
+                	</span>
+                    <span id="giveMoneyInt1"></span>
+                </td>
+            </tr>
+	        <tr>
+	          <td class="tbkey"><span>{:L('手续费')}</span>(<span id='givetax'></span>%)：</td>
+	          <td class="tbval">
+	          	<span id="tax">0</span><span id="tax_convert" style="color:red;"></span>
+	          </td>
+	        </tr>
+            <tr >
+                <td class="tbkey">{:L('备注')}：</td>
+                <td class="tbval"><span><input type="text" value="" name="memo" /></span></td>
+            </tr>
+
+            <if condition="($giveMoneyPass2 eq 1)">
+            <tr >
+            	<td class="tbkey">{:L('二级密码')}：</td>
+            	<td class="tbval"><span><input type="password" autocomplete="off" value="" name="pass2" /></span></td>
+            </tr>
+            </if>
+          	<if condition="($giveMoneyPass3 eq 1)">
+          	<tr>
+            	<td class="tbkey">{:L('三级密码')}：</td>
+            	<td class="tbval"><span><input type="password" autocomplete="off" value="" name="pass3" /></span></td>
+          	</tr>
+          	</if>
+          	<!--短信验证-->
+          	<if condition="adminshow('smsSwitch')">
+          	<tr style="display:none" id="SmsVerfy">
+            	<td class="tbkey">{:L('短信验证码')}：</td>
+            	<td class="tbval"><input name="giveSmsVerfy" type="text" id="giveSmsVerfy" >
+            		<if condition="isset($smsif_arr['text'])">
+                    <input style="margin-left:10px" type="button" id="sendMess" class="send-msg" value="{:L('获取短信')}" onclick="first_verify()" />
+                    </if>
+        			<if condition="isset($smsif_arr['audio'])">
+        			<input style="margin-left:10px" type="button" id="sendAudio" class="send-msg" value="{:L('获取语音')}" onclick="first_verify()" />
+        			</if>
+            	</td>
+          	</tr>
+          	</if>
+          	<tr>
+            	<td colspan="2"><input class="button_text  button-150" type="button" id="subbut" value="{:L('提交')}" name="but" onclick="alertcheck();" />
+            	</td>
+          	</tr>
+        </table>
+        </form>
+    </div>
+    <div class="core_page"></div>
+</div>
+<!--更改选择转账货币触发事件-->
+<script type="text/javascript">
+$(function(){
+	var givethis=document.getElementById('giveTo');
+	giveType(givethis.options[givethis.options.selectedIndex].value);
+});
+
+function giveType(id)
+{
+	var giveToid = id;
+	if(giveToid === '请选择转账货币') return;
+	$.post('__MODULE__/Transfer/giveType',{giveToid:giveToid},function(data){
+		try
+		{
+			eval("var json="+data);
+			if(json.status == 1)
+			{
+				$('#seltype').val('wu');
+				$('#givesum').attr("value",'');
+				$("#tax").html("0");
+				$("#fbank").show();
+				$("#tbank").show();
+				$("#zhye").show();
+				$("#seltype").empty(); // 清空select里的内容
+				var bank = json.bank;
+				for(var x in bank){
+					switch (x){
+						case 'balance' :
+							$('#balance').html(bank[x]);
+							break;
+						case 'bank' :
+							$('#f_bank').html(bank[x]);
+							break;
+						case 'tobank' :
+							$('#t_bank').html(bank[x]);
+							break;
+
+						case 'nets' :
+							if(bank[x] != '无' && bank['toyou'] == 1){
+								$("#netrule").show();
+								$('#net_rule').html(bank[x]);
+							}else{
+								$("#netrule").hide();
+							}
+							break;
+
+						case "tome" :
+							if(bank[x]==1)
+							{
+								$('#hideuserid').hide();
+								$('#totype').show();
+								var option="<option id=me value='1'>{:L('转给自己')}</option>";
+								$("#seltype").append(option);
+							}else{
+								$('#me').hide();
+							}
+							break;
+
+						case 'toyou' :
+							if(bank[x]==1)
+							{
+								$('#hideuserid').show();
+								$('#totype').show();
+								var option="<option id=you selected value='2'>{:L('转给其他会员')}</option>";
+								$("#seltype").append(option);
+							}
+							break;
+
+						case "intnum" :
+							if(bank[x]>0)
+							{
+								$("#giveMoneyInt1").show();
+								$('#giveMoneyInt1').html('{:L("必须为")}'+bank[x]+'{:L("的整数倍")}');
+							}else{
+								$("#giveMoneyInt1").hide();
+							}
+							break;
+
+						case "tax" :
+							if(bank[x]>0)
+							{
+								$("#givetax").show();
+								$('#givetax').html(bank[x]);
+							}else{
+								$("#givetax").hide();
+							}
+							break;
+
+ 						case "giveMoneySmsSwitch" :
+ 							if(parseInt(bank[x]))
+ 							{
+ 								$("#SmsVerfy #sendMess").attr('zzid',bank.id);
+ 								$("#SmsVerfy #sendMess").attr('zztype',bank.bank);
+ 								$("#SmsVerfy #sendAudio").attr('zzid',bank.id);
+ 								$("#SmsVerfy #sendAudio").attr('zztype',bank.bank);
+ 								$("#SmsVerfy").show();
+ 							}else{
+ 								$("#SmsVerfy").hide();
+ 							}
+ 							break;
+					}
+				}
+			}else{
+				$("#totype").hide();
+				$("#fbank").hide();
+				$("#tbank").hide();
+				$("#netrule").hide();
+				$("#zhye").hide();
+				$("#giveMoneyInt1").hide();
+				$("#givetax").hide();
+			}
+		}
+		catch(e)
+		{
+			layer.alert(data, {title: '{:L("提示")}', btn: '{:L("确定")}'});
+            layer.alert('{:L("网络异常")}', {title: '{:L("提示")}', btn: '{:L("确定")}'});
+		}
+	});
+}
+</script>
+<!--如果选择只转入自己的货币那么转入人编号输入框不显示-->
+<script>
+	function giveCh(type)
+	{
+		if(type=='1')
+		{
+			$('#hideuserid').hide();
+			$('#netrule').hide();
+		}else{
+			var giveTypeId = $("#giveTo option:selected").val();
+			$.post('__MODULE__/Transfer/giveType',{giveToid:giveTypeId},function(data){
+				try
+				{
+					eval("var json="+data);
+					if(json.status == 1)
+					{
+						var bank = json.bank;
+						if(bank['nets'] != '无' && bank['toyou'] == 1){
+							$("#netrule").show();
+							$('#hideuserid').show();
+						}else{
+							$('#hideuserid').show();
+						}
+					}
+				}
+				catch(e)
+				{
+					layer.alert(data, {title: '{:L("提示")}', btn: '{:L("确定")}'});
+            		layer.alert('{:L("网络异常")}', {title: '{:L("提示")}', btn: '{:L("确定")}'});
+				}
+			});
+		}
+	}
+</script>
+<!--如果转账选择没有返回至则隐藏转账类型-->
+<script>
+	$("#totype").hide();
+	$("#fbank").hide();
+	$("#tbank").hide();
+	$("#zhye").hide();
+	$("#netrule").hide();
+</script>
+<!--对转入人编号进行验证-->
+<script type="text/javascript">
+var vd;
+function getid(e)
+{
+	clearTimeout(vd);
+    id=e.id;
+	vd = setTimeout("giveAjax('"+e.id+"')",600);
+}
+function giveAjax(id)
+{
+	var userid = $('#'+id).val();
+	$.post('__MODULE__/Transfer/giveAjax/',{userid:userid},function(data){
+		try
+		{
+			eval("var json="+data);
+			if( json.status == 0 )
+			{
+				$('#giveidname').html("{:L('编号不正确')}");
+			}
+			else
+			{
+				var userinfo = json.userinfo;
+				$('#giveidname').html(userinfo['姓名']);
+				//$('#giveidname').html('');
+			}
+		}
+		catch(e)
+		{
+			layer.alert(data, {title: '{:L("提示")}', btn: '{:L("确定")}'});
+            layer.alert('{:L("网络异常")}', {title: '{:L("提示")}', btn: '{:L("确定")}'});
+		}
+	});
+}
+</script>
+<!--手续费计算-->
+<script>
+    $("input[name='givesum']").keyup(function(){
+        var sum = $(this).val();
+        if(sum !="" && !isNaN(sum)){
+            var tax = sum * ($('#givetax').html()/100);
+            tax = tax.toFixed(2);
+           if(tax < parseFloat($('#leastComCharge').val())){
+                tax = parseFloat($('#leastComCharge').val());
+            }
+           if(tax > parseFloat($('#limitComCharge').val()) && $('#limitComCharge').val()!=0){
+                tax = parseFloat($('#limitComCharge').val());
+            }
+           $("#tax").html(tax);
+        }else{
+            $("#tax").html("0");
+        }
+    })
+</script>
+<script>
+  	var s=0;
+	function tijiao(){
+    	var ua = navigator.userAgent.toLowerCase();
+    	if(s!=1){
+    		s=1;
+    	}else{
+    		return false;
+    	}
+		if ((/firefox\/([\d.]+)/).test(ua)) { //判断火狐浏览器
+			$('#subbut').attr('disabled',true);
+			$('#subbut').val('{:L("正在提交,请等待")}...');
+			$('#giveform').submit();
+			$('#subbut').removeAttr('disabled');
+			$('#subbut').val('{:L("确定")}');
+		} else {
+			$('#subbut').attr('disabled',true);
+			$('#subbut').val('{:L("正在提交,请等待")}...');
+			$('#giveform').submit();
+			$('#subbut').removeAttr('disabled');
+			$('#subbut').val('{:L("确定")}');
+		}
+	}
+</script>
+
+<!-- 短信验证码 -->
+<if condition="adminshow('smsSwitch')">
+<script src="__PUBLIC__/js/sendsms.js"></script>
+<script src="__PUBLIC__/layer/layer.js"></script>
+<script>
+var characters = {title:"{:L('提示')}",determ:"{:L('确定')}",clickget:"{:L('点击获取')}",resend:"{:L('重新发送')}"};
+var type,zzid;
+var isaudio     = 0;
+var smsObj;
+
+function first_verify() {
+	if($(this).attr("id") == "sendMess"){
+		smsObj = $("#sendMess");
+	}else{
+		smsObj = $("#sendAudio");
+	}
+	if("{$picVerify}" === "false"){
+		type = smsObj.attr('zztype')+'转账';
+		zzid = smsObj.attr('zzid');
+        time(smsObj);
+	}else{
+    layer.open({
+        type: 1,
+        title:'填写验证码',
+        skin: 'layui-layer-rim', //加上边框
+        area: ['300px', '200px'], //宽高
+        btn: ['确定'],
+        yes: function(index, layero){
+          //点击按钮之后，直接触发AJAX
+          var postval = $("#verifyss").val();
+          if(postval == ''){
+          	postval = '***';
+          }
+          $.ajax({
+            url:"__CONTROLLER__/verify_s/id/"+postval,
+            type:"GET",
+            dataType:"JSON",
+            data:postval,
+            success:function(data){
+                if( data.status == 0 )
+                {
+                    $('#msg').html(data.tip);
+                    var timenow = new Date().getTime();
+                    $('#qqsmsverifyImg').attr('src', '__CONTROLLER__/verifyImg/adv/1/' + timenow);
+                }
+                else
+                {
+					type = smsObj.attr('zztype')+'转账';
+					zzid = smsObj.attr('zzid');
+                    layer.close(index);     //关闭弹出层
+                    time(smsObj);
+                }
+            }
+            });
+        },
+        content: '<div style="margin:10px 75px 0 75px;"><input id="verifyss" maxlength="4" type="text" name="verifyss" value="">'+'<img id="qqsmsverifyImg" src="__CONTROLLER__/verifyImg" onClick="smsfreshVerify(this)" border="0" alt="点击刷新验证码" ><span id="msg" style="color:red"></span></div>',
+    });
+    }
+}
+function smsfreshVerify() {
+    //重载验证
+    var timenow = new Date().getTime();
+    if (type) {
+        $('#qqsmsverifyImg').attr('src', '__CONTROLLER__/verifyImg/adv/1/' + timenow);
+    } else {
+        $('#qqsmsverifyImg').attr('src', '__CONTROLLER__/verifyImg/' + timenow);
+    }
+}
+</script>
+</if>
+<!-- 短信验证码 -->
+<script type="text/javascript" src="__PUBLIC__/zxxbox/jquery.zxxbox.3.0.js"></script>
+<script type="text/javascript">
+function alertcheck(){
+    var alertstr ='<table class="tablebg" style="margin-top:0;">';
+        alertstr+='<tr><td class="tbkey" style="padding-right:5px;">'+"{:L('转账选择')}"+'</td>'
+        alertstr+='<td class="tbval">'+$("#giveTo option:selected").text()+'</td></tr>';
+        alertstr+='<tr><td class="tbkey" style="padding-right:5px;">'+"{:L('转入人编号')}"+'</td>'
+        alertstr+='<td class="tbval">'+$("#userid").val()+'</td></tr>';
+        alertstr+='<tr><td class="tbkey" style="padding-right:5px;">'+"{:L('转账金额')}"+'</td>'
+        alertstr+='<td class="tbval">'+$("#givesum").val()+'</td></tr>';
+    alertstr+='<tr><td colspan="2" class="tbval" style="text-align:center;">{:L("一旦转账，将不能修改，确定请点击确认")}</td></tr>';
+    alertstr+='</table>';
+    $.zxxbox.ask(alertstr, function(){
+        $('#giveform').submit();
+        $('#submit').attr('disabled','true');
+        $.zxxbox.hide();
+    }, null, {
+        title: "{:L('友情提示')}",
+        fix: true
+    });
+
+
+}
+</script>

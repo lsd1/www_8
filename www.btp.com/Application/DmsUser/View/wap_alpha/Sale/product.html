@@ -1,0 +1,127 @@
+<div class="content-block-title">{:L($sale->productName.'选购')}</div>
+<php>
+$i = 1;
+$ii = 1;
+</php>
+<div class="buttons-row">
+    <foreach name="productArr" item="product">
+    <a href="#productCategory{$i++}" class="tab-link button <if condition='$i eq 2'>active</if>">{:L($key)}</a>
+    </foreach>
+</div>
+<div class="tabs product">
+    <foreach name="productArr" item="product" key="fenlei">
+    <div id="productCategory{$ii++}" class="tab <if condition='$ii eq 2'>active</if>">
+        <div class="list-block media-list">
+            <ul class="info-list">
+                <volist name="product" id="vo">
+                <li class="item-content">
+                    <div class="item-media">
+                        <php>
+	                    //查看该产品是否存在套餐
+	                       $nums = M($proobj->name.'套餐')->where(array('产品id'=>$vo['id']))->count();
+	                       if($nums>0){
+	                    </php>
+	                    <a target="_blank" href="__CONTROLLER__/showProtaocan:{$proobj:xpath}/proid/{$vo.id}">
+	                    <php>}else{</php>
+	                    <a target="_blank" href="__CONTROLLER__/showProinfo:{$proobj:xpath}/id/{$vo.id}">
+	                    <php>}</php>
+                        <if condition="empty($vo['图片'])">
+                            <img class="thumb" src="__TMPL__Public/img/product.png">
+                        <else />
+                            <img class="thumb" src="{$vo.图片}">
+                        </if>
+                        </a>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                            <div class="item-title">
+			                    <php>
+		                       	if($nums>0){
+			                    </php>
+			                    <a target="_self" href="__CONTROLLER__/showProtaocan:{$proobj:xpath}/proid/{$vo.id}">{:L($vo['名称'])}({:L('套餐详情')})</a>
+			                    <php>}else{</php>
+			                    <a target="_self" href="__CONTROLLER__/showProinfo:{$proobj:xpath}/id/{$vo.id}">{:L($vo['名称'])}</a>
+			                    <php>}</php>
+                            </div>
+                        </div>
+                        <div class="item-subtitle">
+                            <div class="pull-left">{:L('价格')}：￥<span class="js-price">{$vo[$sale:productMoney]}</span></div>
+                            <div class="pull-right">{:L('库存')}：<span class="js-num">{$vo.可订购数量}</span></div>
+                        </div>
+                        <div class="item-bottom">
+                            <div class="item-info pull-left">{:L('购买数量')}：</div>
+                            <ul class="product-num pull-left">
+                                <li><span class="minus">-</span></li>
+                                <li class="num-box"><input class="num-value" type="number" name="productNum[{$vo.id}]" productId="{$vo.id}" productImg="{$vo.图片}" productFl="{$fenlei}" productName="{$vo.名称}" productMoney="{$vo[$sale:productMoney]}" productPv="{$vo.pv}" productWeight="{$vo.重量}" productNum="{$vo.可订购数量}" value="0"></li>
+                                <li><span class="plus">+</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+    </foreach>
+</div>
+<div class="content-block-title">
+    <span class="pull-left">{:L('总数量')}：<span class="num-sum"></span></span>
+    <span class="pull-right">{:L('总金额')}：￥<span class="money-sum"></span></span>
+    &nbsp;&nbsp;&nbsp;&nbsp;<div id="state_productCountMoney" class="state_" style="color:red;"></div>
+</div>
+
+<if condition="($logistic eq true) or ($zkbool eq true)"><script src="__PUBLIC__/js/cal.js"></script></if>
+<script>
+
+    //初始化
+    getSum();
+
+    //数值计算
+    $('.product-num .plus').click(function () {
+        var numValue = $(this).parents('.product-num').find('.num-value').val();
+        var jsNum = parseInt($('.js-num').html());
+        if (numValue < jsNum) {
+            numValue++;
+            $(this).parents('.product-num').find('.num-value').val(numValue);
+        }
+        getSum();
+    });
+    $('.product-num .minus').click(function () {
+        var numValue = $(this).parents('.product-num').find('.num-value').val();
+        if (numValue > 0) {
+            numValue--;
+            $(this).parents('.product-num').find('.num-value').val(numValue);
+        }
+        getSum();
+    });
+    $('.product-num .num-value').keyup(function () {
+    	var num = $(this).val();
+    	num.replace(/\./,"");
+    	$(this).val("");
+    	$(this).val(num);
+    	getSum();
+    });
+    //总计算
+    function getSum() {
+    	var num = 0;
+        var sumNum = 0;
+        var sumValue = 0;
+        var input = $('.num-value');
+
+        $.each(input, function (index, value) {
+			if(!isNaN(parseInt(value.value))){
+				num = parseInt(value.value);
+			}
+            sumNum += num;
+            sumValue += num * parseFloat(value.getAttribute('productMoney'));
+        });
+
+        $('.num-sum').html(sumNum);
+        $('.money-sum').html(sumValue.toFixed(2));
+    }
+
+  	<if condition="($logistic eq true) or ($zkbool eq true)">
+		user_getTotalzf('{$sale:name}','Sale');
+	</if>
+</script>
+

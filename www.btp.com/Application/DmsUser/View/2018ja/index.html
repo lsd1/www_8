@@ -1,0 +1,118 @@
+<include file="Public:header" />
+    	<div class="floor floor-1 clearfloat">
+           <div class="block">
+               <div class="inner">
+                   <div class="title">{:L("会员编号")}</div>
+                   <div class="img-wrapper">
+                       <img src="__TMPL__Public/images/icon-4.png" alt="" class="thumb">
+                   </div>
+                   <div class="tips">
+                       <span class="color_y">{:USER_NAME}</span>
+                   </div>
+               </div>
+           </div>
+           <foreach name="userlevel" item="lv" key="key">
+           <if condition="$key eq L('级差级别') and  $lv.byname neq L('暂无')">
+           <div class="block">
+               <div class="inner">
+                   <div class="title">{:L('会员级别')}</div>
+                   <div class="img-wrapper">
+                       <img src="__TMPL__Public/images/icon-5.png" alt="" class="thumb">
+                   </div>
+                   <div class="tips">
+                       <span class="color_r">{$lv.byname}</span>
+                   </div>
+               </div>
+           </div>
+           </if>
+           <if condition="$show_hy eq 1 and $key eq L('会员级别')">
+           <div class="block">
+               <div class="inner">
+                   <div class="title">{:L('会员级别')}</div>
+                   <div class="img-wrapper">
+                       <img src="__TMPL__Public/images/icon-5.png" alt="" class="thumb">
+                   </div>
+                   <div class="tips">
+                       <span class="color_r">{$lv.byname}</span>
+                   </div>
+               </div>
+           </div>
+           </if>
+		   </foreach>
+           <div class="block">
+               <div class="inner">
+                   <div class="title">{:L('注册时间')}</div>
+                   <div class="img-wrapper">
+                       <img src="__TMPL__Public/images/icon-6.png" alt="" class="thumb">
+                   </div>
+                   <div class="tips">
+                       <span class="color_lb">{$userinfo.注册时间|date='Y-m-d H:i:s',###}</span>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="floor floor-2 clearfloat">
+       		<php>$i=0;</php>
+       		<foreach name="funbank" item="fun_bank" key="key">
+       		<php>$i++;</php>
+       		<div class="block">
+			   <div class="inner">
+			       <a herf="__MODULE__/FunBank/index:{$fun_bank['xpath']}" class="title">{$fun_bank.name}</a>
+			       <div class="btm btm{$i}">
+			           <div class="left">
+			               <span>100</span>
+			               <span>90</span>
+			               <span>80</span>
+			               <span>70</span>
+			               <span>60</span>
+			               <span>50</span>
+			               <span>40</span>
+			               <span>30</span>
+			               <span>20</span>
+			               <span>10</span>
+			               <span>0</span>
+			           </div>
+			           <div class="right">
+                    <div class="ri">
+                      <img src="__TMPL__Public/images/tab{$i}.png" alt="">
+                      <div class="nbs">{$fun_bank.num}</div>
+                    </div> 
+			           </div>
+			       </div>
+			   </div>
+			</div>
+			</foreach>
+       </div>
+       <div class="floor floor-3 clearfloat">
+           <div class="title">{:L('系统公告')}</div>
+           <if condition="count($notice) elt 0">
+           <div class="isEmpty">{:L('亲爱的会员')}{:USER_NAME}，{:L('目前暂无系统公告')}。</div>
+           </if>
+           <ul class="notice-list">
+           	<if condition="count($notice) gt 0">
+           	<volist name="notice" id="vo">
+		    <li class="list-item">
+			   <div class="lb">
+			       <img src="__TMPL__Public/images/icon-7.png" alt="">
+			   </div>
+			   <div class="cons">
+			      <a href="__MODULE__/User/showNotice/id/{$vo.id}">
+			          <div class="inner-title">{$vo['标题']}</div>
+			          <div class="inner-date">{$vo.创建时间|date='Y-m-d',###}</div>
+			          <div class="inner-txt">{$vo['内容']}</div>
+			      </a>
+			   </div>
+			</li>
+			</volist>
+			<else/>
+			<li class="list-item listisEmpty">
+			<div class="lb">
+			<img src="__TMPL__Public/images/icon-7.png" alt="">
+			</div>
+			<div class="cons">{:L('暂无公告')}</div>
+			</li>
+            </if>
+           </ul>
+       </div>
+    </div>
+<include file="Public:footer" />

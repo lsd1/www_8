@@ -1,0 +1,30 @@
+<php>
+$nowtitle = L("查看邮件");
+</php>
+<include file="Public:header" />
+<div class="content notice">
+	<div class="content-padded">
+		<div class="text-head">
+			<h1 class="text-title">{$list.标题}</h1>
+			<div class="sub-info">{:L('发件时间')}：{$list.发送时间|date="Y-m-d H:i:s",###}</div>
+            <div class="sub-info">{:L('收件人')}：{$list.收件人}</div>
+		</div>
+		<div class="text-content">
+			{:htmlspecialchars_decode($list['内容'])}
+		</div>
+        <eq name="list.状态" value="2">
+        <div class="text-head">
+            <div class="sub-info">{:L('回复时间')}：{$list.回复时间|date="Y-m-d H:i:s",###}</div>
+        </div>
+        <div class="text-content">
+            <strong>{:L('回复内容')}</strong>：{$list.回复内容}
+        </div>
+        </eq>
+
+	</div>
+	<p>
+		<a class="button button-fill button-big button-warning back">{:L('返回')}</a>
+	</p>
+</div>
+<include file="Public:footer" />
+

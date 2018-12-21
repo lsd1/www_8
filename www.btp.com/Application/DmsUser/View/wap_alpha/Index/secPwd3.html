@@ -1,0 +1,30 @@
+<php>
+$nowtitle="三级密码确认";
+</php>
+<include file="Public:header" />
+<div class="content">
+    <!-- 这里是页面内容区 -->
+    <div class="content-block-title">
+        {:L('三级密码确认')}
+    </div>
+
+    <div class="list-block">
+        <form name="form1" method="post" action="__CONTROLLER__/seconfirm3/returnUrl/{:urlencode($_GET['returnUrl'])}">
+            <ul>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">{:L('三级密码')}：</div>
+                        <div class="item-input"><input name="pwd1" type="password" id="oldpwd2" placeholder="{:L('请输入三级密码')}"></div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="content-padded">
+                <button class="button button-big button-warning button-fill" type="submit">{:L('确定')}</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+<include file="Public:footer" />
+

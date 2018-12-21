@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta name="renderer" content="webkit">
+    <title>{:L("会员中心")}</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/reset.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <script src="__PUBLIC__/jquery-1.x.min.js"></script>
+    <script src="__TMPL__Public/js/basic.js"></script>
+	<script>
+		var queren = '{:L("确认")}';
+			var	quxiao = '{:L("取消")}';
+            $(function () {
+                //判断当前方法是哪一个 对其进行显
+                var data = '{$menu_jsons}';
+                var action = '{$now_action}';
+                var model = '{$now_model}';
+                var title = '';
+
+                data_arr = {};
+                data_arr = eval('(' + data + ')');
+                i = 1;
+                j = 1;
+                for (var key in data_arr) {
+	//key 为资料管理 data_arr[key] 为一维数组 key 为一级菜单的标题
+                    i++;
+                    for (var key1 in data_arr[key]) {
+	//key1 为一维数组的元素 data_arr[key][key1]['model']为模型 data_arr[key][key1]['Action']为方法 data_arr[key][key1]['title']为二级菜单标题
+                        j++;
+                        if (data_arr[key][key1]['model'] == model && data_arr[key][key1]['action'] == action) {
+                            $('.active').removeClass('active');
+                            $('.nav-list' + i).addClass('active');
+                        }
+
+                    }
+                }
+            });
+	</script>
+    <style type="text/css">
+        #user-nav ul li a {
+            float: none;
+            display: block;
+            padding: 1px 15px;
+            color: #000;
+            text-decoration: none;
+        }
+        #user-nav ul li {
+            float: left;
+            list-style-type: none;
+            /*border-left: 1px solid #2e363f;*/
+            border-right: 1px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="side-bar">
+            <div class="logo-box">
+                <a href="__MODULE__/Index">
+                    <!--<img src="__TMPL__Public/img/logo.png" alt="logo">-->
+                    <h1><?php echo CONFIG('qtxsxg');?></h1>
+                </a>
+            </div>
+            <div class="user-box">
+                <div class="user-face">
+                    <a href="">
+                        <img src="__TMPL__Public/img/face.png" alt="face">
+                    </a>
+                </div>
+                <div class="user-info">
+                    <h2>{$userinfo.编号}</h2>
+                    <p>会员等级：<span>III</span></p>
+                    <p>账户状态：<span>正常</span></p>
+                </div>
+                <a class="home-page" href="__MODULE__/Index">首页</a>
+            </div>
+
+            <ul class="sidebar-menu">
+                <php>
+                $i = 2;
+                </php>
+                <foreach name="menu" item="vo" key="key">
+                <li class="nav-list nav-list{$i}">
+                    <span>
+                        <i class="icon{$i++}"></i>
+                        {$key}
+                    </span>
+                    <ul class="nav-child">
+                        <foreach name="vo" item="val">
+                        <li>
+                            <a href="__MODULE__/{$val.model}/{$val.action}">{$val.title} </a>
+                        </li>
+                        </if>
+                        </foreach>
+                    </ul>
+                </li>
+                </foreach>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="container-wrapper">
+                <div id="user-nav" class="welcome">
+                <ul class="nav1">
+                    __LANGLINK__
+                </ul>
+                </div>
+                <div class="user-link">
+                    <a href="">{:L('会员编号')}：{$userinfo.编号}</a>
+                    <a class="logout" href="__MODULE__/Public/logout">{:L('退出')}</a>
+                </div>
+                <ul class="container-nav">
+                    <li><a href="__MODULE__/Index">{:L('首页')}</a></li>
+                    <li><a href="__MODULE__/Sale/reg:sale_reg[1]">{:L('业务管理')}</a></li>
+                    <li><a href="__MODULE__/Net/disp:net_place">{:L('网络管理')}</a></li>
+                    <li><a href="__MODULE__/Tle/index:tle">{:L('财务管理')}</a></li>
+                    <li><a href="__MODULE__/Mail/index">{:L('信息管理')}</a></li>
+                </ul>

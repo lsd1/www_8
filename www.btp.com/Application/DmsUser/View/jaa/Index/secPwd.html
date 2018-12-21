@@ -1,0 +1,70 @@
+<include file="Public:header"/>
+</div>
+</div>
+<style>
+
+
+    .password-wrap{
+        position: fixed;
+        top: 180px;
+        left: 50%;
+    }
+    .pwd-img{
+        width:200px;
+        text-align:center;
+        padding-top:50px;
+        display:inline-block;
+    }
+    .pwd-text{
+        position: relative;
+        top: -20px;
+        width:280px;
+        height:150px;
+        margin:0;
+        letter-spacing: 0px;
+        display:inline-block;
+    }
+    .pwd-head{
+        display:block;
+        font-size:15px;
+    }
+    .btn-pwd{
+    height: 30px;
+    line-height: 20Px;
+    border-radius: 4px;
+    background-color: #ff0000;
+    cursor: pointer;
+    margin-left: 76px;
+    margin-top: 16px;
+    padding:5px 15px;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    color: white;
+    }
+</style>
+<div class="core_main Index" id="secPwd">
+	<div class="core_title">
+    	<span class="core_title_con">{:L('二级密码确认')}</span>
+	
+        <span class="core_title_edit"></span>
+    </div>
+    <div class="core_con">
+        <div class="password-wrap" style="">
+            <div class="pwd-img">
+        	<img src="__TMPL__Public/img/password.png" alt="">
+        	</div>
+            <div class='pwd-text'>
+        	<form name="form1" method="post" action="__CONTROLLER__/seconfirm/returnUrl/{:urlencode($_GET['returnUrl'])}" class="password-textss">
+        		<h2 class="password-head">{:L('二级密码确认')}</h2>
+        		<div class="passowrd-title">
+        			{:L('二级密码')}:
+        			<input type="password" class="password-confirm" name="pwd2" autocomplete="off" id="pwd2">
+        		</div>
+        		<button class="btn-pwd">{:L('确定')}</button>
+        	</form>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer"/>

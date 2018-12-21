@@ -1,0 +1,153 @@
+<div class="pageContent">
+	<form method="post" action="__CONTROLLER__/editSave/id/{$list.id}" class="pageForm required-validate" onsubmit="return validateCallback(this, langdialogAjaxDone);">
+	<input type="hidden" name="ajax" id="ajax" value="1"/>
+	<div layoutH="58">
+    <table width="95%" cellpadding="5" cellspacing="0" class="view_list">
+		<tr>
+            <td colspan="4" style="text-align:left;padding-left:20px"><b>语言标签处理</b></td>
+            <input type="hidden" id="id" value="{$list.id}"/>
+		</tr>
+		<tr>  
+			<td style="width:15%;text-align:right;">名称：</td>
+			<td style="width:30%;text-align:left;padding:10px 5px"><input type="text " name="name" id="name" class="required textInput" value="{$list.name}" size="45"/></td>
+		</tr>
+		<tr>  
+			<td style="width:15%;text-align:right;">语义：</td>
+			<td style="text-align:left;padding:10px 5px">
+				<input type="text" name="seman" id="seman" class="required textInput" value="{$list.name}" size="45"/>
+				<input type="button" id="translate" value="翻译" />
+			</td>
+		</tr>
+		<tr>  
+			<td style="width:15%;text-align:right;">调用位置：</td>
+			<td colspan="3" style="text-align:left;padding:10px 5px"><input type="text" name="loadfile" id="loadfile" class="required textInput" value="{$list.loadfile}" size="45"/></td>
+		</tr>
+		<foreach name="langss" item="name" key="lang">
+		<tr>
+			<td style="width:15%;text-align:right;">{$name}：</td>
+			<td colspan="3" style="text-align:left;padding:10px 5px"><input type="text" name="{$lang}"    id="{$lang}"    class="textInput"  value="{$list.$lang}" size="45"/>
+				<if condition="$lang neq 'zh-cn'">
+				<input type="button" id="{$lang}trans" onclick="synonym('{$lang}')" value="相近词" />
+				</if>
+			</td>
+		</tr>
+		</foreach>
+		<tr>
+			<td style="width:15%;text-align:right;">作用域：</td>
+			<td colspan="3" style="text-align:left;padding:10px 10px">
+				<div  id="global" style="border:1px solid #99bbe8;width:150px;padding:3px 5px;cursor:pointer"></div>
+				<div  id="group"  style="border:1px solid #99bbe8;width:150px;margin:5px 0;padding:3px 5px;cursor:pointer"></div>
+				<!--<div  id="module" style="border:1px solid #99bbe8;width:150px;padding:3px 5px;cursor:pointer"><div>-->
+			</td>
+		</tr>
+		<input type="hidden" name="file" id="file" value="{$list.file}"/>
+	</table>
+	</div>
+		<div class="formBar">
+			<ul>
+				<li>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit" id="sub1">保存</button></div></div>
+				</li>
+				<li>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit" id="sub2">保存并打开下一个</button></div></div>
+				</li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>
+<script>
+	function langdialogAjaxDone(json){
+		DWZ.ajaxDone(json);
+		if (json.statusCode == DWZ.statusCode.ok){
+			navTab.reload();
+			if(json.ajax == 1){
+				$.pdialog.closeCurrent();
+			}else if(json.ajax == 2){
+				var nextid = {$list.id}+1;
+				$.pdialog.reload('__CONTROLLER__/edit/id/'+nextid);				
+			}
+		}
+	}
+	
+	//作用域
+	var loadfile = $("#loadfile").val();
+	if(loadfile == '' || loadfile == null){
+		var global = '';
+		var group  = '';
+		//var module = '';
+	}else{
+		var global = 'common.php';
+		var group  = (loadfile.split('/'))[0].toLowerCase() +'.php';
+		//var module  = (loadfile.split('/'))[1].toLowerCase() +'.php';
+		//var group  = (loadfile.split('/'))[0] +'.php';
+		//var module = (loadfile.split('/'))[0] + '/' + (loadfile.split('/'))[1].toLowerCase() +'.php';
+		var at = (loadfile.split('/'))[0];
+	}
+	$("#global").html('公共 &nbsp;&nbsp;'+global).attr('at','Common');
+	$("#group" ).html('模块 &nbsp;&nbsp;'+group).attr('at',at);
+	//$("#module").html('控制器 &nbsp;&nbsp;'+module).attr('at',loadfile);
+	
+	//选择作用域,#module,#module
+	$("#global,#group").click(function(){
+		$("#global,#group").css('background','');
+		$(this).css('background','#99bbe8');
+		var val = $(this).attr('at');
+		//var val = val.split('&nbsp;&nbsp;')[1];
+		$("#file").val(val);
+	});
+	if($("#file").val() == global){
+		$("#global").css('background','#99bbe8');
+	}else if($("#file").val() == group){
+		$("#group").css('background','#99bbe8');
+	}/*else if($("#file").val() == module){
+		$("#module").css('background','#99bbe8');
+	}*/
+	
+	//翻译
+	$("#translate").click(function(){
+		var seman = $("#seman").val();
+		$.ajax({
+			url:'__CONTROLLER__/translate',
+			data:{seman:seman},
+			type:'get',
+			dataType:'json',
+			success:function(result){
+				if(result.statusCode === 0){
+					alertMsg.error(result.message);
+				}else{
+					$.each(result.data,function(k,v){
+						$("#"+k).val(v);
+					});
+					$("#zh-cn").val(seman);
+				}
+			}
+		})
+	});
+	
+	//相近词
+	function synonym(lang){
+		var seman = $("#seman").val();
+		var seman = encodeURIComponent(seman);
+		$.ajax({
+			url:'__CONTROLLER__/synonym/lang/'+lang,
+			dataType:'json',
+			success:function(to){
+				open('http://fanyi.baidu.com/translate?aldtype=16047&query=' + seman + '&keyfrom=baidu&smartresult=dict&lang=auto2'+to.data.transTo);
+			}
+		})
+	}
+	
+	//提交
+	$("#sub1").click(function(){
+		$("#ajax").val('1');
+	});
+	$("#sub2").click(function(){
+		$("#ajax").val('2');
+	});
+	
+	//模拟点击事件，默认为全局选项
+	$("#group").trigger("click")
+</script>

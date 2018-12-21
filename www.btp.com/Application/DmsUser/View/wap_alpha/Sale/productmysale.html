@@ -1,0 +1,79 @@
+<include file="Public:header" />
+<div class="content notice">
+	<if condition="count($data['list']) elt 0">
+	<h1>{:L('暂无数据')}</h1>
+	</if>
+
+	<foreach name='data.list' item='vo'>
+	<div class="card">
+		<div class="card-header">
+            <span>
+                {:L('订单类别')}: <span class="color-primary">{$vo[L('订单类别')]}</span>&nbsp;{:L('状态')}: <span class="color-primary">{$vo[L('订单状态')]}</span>
+            </span>
+		</div>
+		<div class="card-content">
+			<div class="row">
+				<div class="col-33">
+					<div class="card-content-inner text-center">
+						<span class="color-warning">
+                            <strong>{$vo[L('报单金额')]}</strong>
+							<span>{:L('报单金额(元)')}</span>
+						</span>
+					</div>
+				</div>
+				<div class="col-66">
+					<div class="card-content-inner">
+                        <div><span class="color-gray">{:L('实际付款')}：</span>{$vo[L('实付款')]}</div>
+						<div><span class="color-gray">{:L('付款时间')}：</span>{$vo[L('付款时间')]}</div>
+						<if condition="adminshow('baodan_wuliu')">
+						<div><span class="color-gray">{:L('物流状态')}：</span>{$vo[L('物流状态')]}</div>
+						</if>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="card-footer">
+            {$vo[L('操作')]}
+        </div>
+	</div>
+	</foreach>
+	<div class="pager">
+		<if condition="$data['nowPage'] neq 1">
+		<a href="{$data.firstRow}">&laquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&laquo;</a>
+		</if>
+
+		<a href="{$data.upRow}">&lt;</a>
+
+		<if condition="isset($data['rollPage'][-2])">
+		<a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][-1])">
+		<a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>
+		</if>
+
+		<a href="javascript:void(0)">{$data.nowPage}/{$data.totalPages}</a>
+
+		<if condition="isset($data['rollPage'][1])">
+		<a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][2])">
+		<a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>
+		</if>
+
+		<a href="{$data.downRow}">&gt;</a>
+
+		<if condition="$data['nowPage'] lt $data['totalPages']">
+		<a href="{$data.theEndRow}">&raquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&raquo;</a>
+		</if>  
+	</div>   
+</div>
+
+<include file="Public:footer" />
+
+

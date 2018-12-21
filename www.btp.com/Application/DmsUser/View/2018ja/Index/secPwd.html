@@ -1,0 +1,24 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__TMPL__Public/css/view.css">
+<div class="content">
+	<div class="local">{:L('当前位置')}：{:L('二级密码确认')}</div>
+	<div class="form-wrapper">
+		<div class="form-box">
+		<form name="form1" method="post" action="__CONTROLLER__/seconfirm/returnUrl/{:urlencode($_GET['returnUrl'])}">
+			<div class="left-block">
+				<img src="__TMPL__Public/images/icon-8.png" alt="">
+			</div>
+			<div class="right-block">
+				<div class="title">{:L('二级密码确认')}</div>
+				<div class="in">
+					<input type="password" class="input" name="pwd2" placeholder="{:L('请输入二级密码')}"> 
+				</div>
+			</div>
+			<div class="btn-wrapper">
+   				<input type="submit" class="btn-submit" value="{:L('提交')}">
+   			</div>
+		</form>
+		</div>
+	</div>
+</div>
+<include file="Public:footer" />

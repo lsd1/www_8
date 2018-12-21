@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{:CONFIG('SYSTEM_COMPANY')}</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="stylesheet" href="__TMPL__Public/dist/css/sm.css">
+        <link rel="stylesheet" href="__TMPL__Public/dist/css/sm-extend.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/ionicons.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/theme.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/app.css">
+        <script src="__TMPL__Public/js/zepto.js"></script>
+        <script>$.config={router: false}</script>
+
+    </head>
+    <body class="theme-blue">
+        <header class="bar bar-nav">
+            <h1 class="title">{:CONFIG('SYSTEM_COMPANY')}</h1>
+        </header>
+
+        <div class="content">
+            <h4>&nbsp;&nbsp;{:L('欢迎注册')}！</h4>
+            <if condition="C('LANG.USE') eq true">
+			<span style="font-size: 14px;color:#1E90FF;text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:L('界面语言')}&nbsp;
+                <select id="lang" onchange="changelang()">
+                	<option value="">{:L('请选择')}</option>
+                    <foreach name='langs' item='lang' key='key'>
+                    <option value="/l/{$key}">{$lang}&nbsp;&nbsp;</option>
+                    </foreach>
+                </select>
+            </span></if>
+            <div id="usereg" class="list-block Saleweb" style="<present name='regAgreement'>display:none</present>">
+                <form name="form1" method="post" action="__MODULE__/Saleweb/regSave:{$xpath}" id="form">
+                    <input type="hidden" name="temp1" value="haha"/>
+                    <input type="hidden" name='shifoutuiguang' value='1' /><input type="hidden" name="jumpUrl" value="{$jumpUrl}"/>
+                    <ul>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L($user->name.'编号')}：</div>
+                                <div class="item-input">
+                                    <if condition="($user:idEdit eq true) and ($user:idAutoEdit eq true)">
+                                    <input type="text" value="{$userid}" name="userid" id="userid"/>
+                                    <elseif condition="($user:idAutoEdit eq true)"/>
+                                    {$userid}
+                                    <else/>
+                                    <input type="text" value="" name="userid" id="userid"/>
+                                    </if>
+                                </div>
+                                <div class="item-msg" id="state_userid"><if condition="in_array('userid',$require)">*</if></div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L($levels->name)}：</div>
+                                <div class="item-input">
+                                    <select name='lv' id='lv' <if condition="$zkbool eq true">onChange="user_getTotalzf('{$sale:name}','Saleweb');"</if>>
+                                        <foreach name='levelsopt' item='level'>
+                                        <notempty name="maxlv">
+                                        <if condition="$level.lv elt $maxlv">
+                                        <option value="{$level.lv}">{$level.name}</option>
+                                        </if>
+                                        <else/>
+                                        <option value="{$level.lv}">{$level.name}</option>
+                                        </notempty>
+                                        </foreach>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <!--基本信息-->
+                        <if condition="in_array('name',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('姓名')}：</div>
+                                <div class="item-input"><input type="text" value="" name="name"></div>
+                                <div class="item-msg" id="state_name"><if condition="in_array('name',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('sex',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('性别')}：</div>
+                                <div class="item-input"><input type="radio" name="sex" value="男" checked>{:L('男')}&nbsp;&nbsp;<input type="radio" name="sex" value="女">{:L('女')}</div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('alias',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('昵称')}：</div>
+                                <div class="item-input"><input type="text" value="" name="alias"></div>
+                                <div class="item-msg" id="state_alias"><if condition="in_array('alias',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('id_card',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('证件号码')}：</div>
+                                <div class="item-input"><input type="text" value="" name="id_card"></div>
+                                <div class="item-msg" id="state_id_card"><if condition="in_array('id_card',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('email',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">Email：</div>
+                                <div class="item-input"><input type="text" value="" name="email"></div>
+                                <div class="item-msg" id="state_email"><if condition="in_array('email',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('qq',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">QQ：</div>
+                                <div class="item-input"><input type="text" value="" name="qq"></div>
+                                <div class="item-msg" id="state_qq"><if condition="in_array('qq',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('weixin',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">微信：</div>
+                                <div class="item-input"><input type="text" value="" name="weixin"></div>
+                                <div class="item-msg" id="state_weixin"><if condition="in_array('weixin',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('alipay',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">支付宝：</div>
+                                <div class="item-input"><input type="text" value="" name="alipay"></div>
+                                <div class="item-msg" id="state_alipay"><if condition="in_array('alipay',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('mobile',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('移动电话')}：</div>
+                                <div class="item-input"><input type="text" value="" name="mobile"></div>
+                                <div class="item-msg" id="state_mobile"><if condition="in_array('mobile',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="$haveuser eq true">
+                        <notempty name="fun_val">
+                        <foreach name="fun_val" item="fun" key="key">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{$key}：</div>
+                                <div class="item-input"><input type="text" name="{$fun}" value=""></div>
+                            </div>
+                        </li>
+                        </foreach>
+                        </notempty>
+                        </if>
+                        <if condition="($haveuser eq true)">
+                        <foreach name='nets' item='net'>
+                        <if condition="($net.type eq 'text')">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{$net.name}：</div>
+                                <div class="item-input">
+                                    <if condition="$net['name'] eq '推荐人编号'">
+                                    <span style="color:#000">{$net.value}</span>
+                                    <input type="hidden" value="{$net.value}" size="20" name="{$net.inputname}"  onkeyup="getInfo(this)" id="{$net.inputname}" autocomplete="off"/>
+                                    <else />
+                                    <input type="text" value="{$net.value}" size="20" name="{$net.inputname}"  onkeyup="getInfo(this)" id="{$net.inputname}" autocomplete="off"/>
+                                    </if>
+                                </div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="($net.type eq 'select')">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{$net.name}：</div>
+                                <div class="item-input">
+                                    <select name='{$net.inputname}'  otherpost='{$net.otherpost}' id="{$net.inputname}" onchange="getInfo(this)">
+                                        <foreach name='net.Region' item='Region'>
+                                        <option value='{$Region.name}'>{$Region.name}</option>
+                                        </foreach>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        </if>
+                        </foreach>
+                        </if>
+                        <!--所属商铺-->
+                        <notempty name="shop">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L($shop)}：</div>
+                                <div class="item-input">
+                                    <input type="text" value="" name="shop" onkeyup="getInfo(this)" id="shop" autocomplete="off">
+                                </div>
+                                <div class="item-msg" id="state_shop"><if condition="in_array('shop',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </notempty>
+                        {//单数}
+                        <if condition="($sale:setNumber eq true)">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('单数')}：</div>
+                                <div class="item-input"><input type="text" value="" name="setNumber"></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="($sale:setMoney eq true)">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('报单金额')}：</div>
+                                <div class="item-input"><input type="text" value="" size="20" name="setMoney"></div>
+                                <div class="item-msg" id="state_setMoney"><if condition="in_array('setMoney',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('area',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('国家')}：</div>
+                                <div class="item-input">
+                                    <select name="country" id="country_id">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="item-msg" id="state_country"><if condition="in_array('country',$require)">*</if></div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('省份')}：</div>
+                                <div class="item-input">
+                                    <select name="province" id="province_id" <if condition="$zkbool eq true">onChange="user_getTotalzf('{$sale:name}','Saleweb');"</if>>
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="item-msg" id="state_province"><if condition="in_array('province',$require)">*</if></div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('城市')}：</div>
+                                <div class="item-input">
+                                    <select name="city" id="city_id">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="item-msg" id="state_city"><if condition="in_array('city',$require)">*</if></div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('区县')}：</div>
+                                <div class="item-input">
+                                    <select name="county" id="county_id">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="item-msg" id="state_county"><if condition="in_array('county',$require)">*</if></div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('街道')}：</div>
+                                <div class="item-input">
+                                    <select name="town" id="town_id">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                                <div class="item-msg" id="state_town"><if condition="in_array('town',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('address',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('地址')}：</div>
+                                <div class="item-input"><input type="text"  value="" name="address"></div>
+                                <div class="item-msg" id="state_address"><if condition="in_array('address',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('reciver',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('收货人')}：</div>
+                                <div class="item-input"><input type="text" value="" name="reciver"></div>
+                                <div class="item-msg" id="state_reciver"><if condition="in_array('reciver',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('bank_apply_name',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('开户行')}：</div>
+                                <div class="item-input">
+                                    <select name="bank_apply_name" id="bank">
+                                        <option value="">{:L('请选择')}</option>
+                                        <foreach name="banklist" item="bank">
+                                        <option value="{$bank.开户行}">{$bank['开户行']}</option>
+                                        </foreach>
+                                    </select>
+                                </div>
+                                <div class="item-msg" id="state_bank_apply_name"><if condition="in_array('bank_apply_name',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('bank_card',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('银行卡号')}：</div>
+                                <div class="item-input">
+                                    <input type="text" value="" name="bank_card">
+                                </div>
+                                <div class="item-msg" id="state_bank_card"><if condition="in_array('bank_card',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('bank_name',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('开户名')}：</div>
+                                <div class="item-input"><input type="text" value="" name="bank_name"></div>
+                                <div class="item-msg" id="state_bank_name"><if condition="in_array('bank_name',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('bank_apply_addr',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('开户地址')}：</div>
+                                <div class="item-input"><input type="text" value="" name="bank_apply_addr"></div>
+                                <div class="item-msg" id="state_bank_apply_addr"><if condition="in_array('bank_apply_addr',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('pass1',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('一级密码')}：</div>
+                                <div class="item-input"><input type="password" autocomplete="off" value="" name="pass1"></div>
+                                <div class="item-msg" id="state_pass1"><if condition="in_array('pass1',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <if condition="in_array('pass1c',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('一级密码确认')}：</div>
+                                <div class="item-input"><input type="password" autocomplete="off" value="" name="pass1c"></div>
+                                <div class="item-msg" id="state_pass1c"><if condition="in_array('pass1c',$require)">*</if></div>
+                            </div>
+                        </li>                                   
+                        </if>
+                        <if condition="in_array('pass2',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('二级密码')}：</div>
+                                <div class="item-input"><input type="password" autocomplete="off" value="" name="pass2"></div>
+                                <div class="item-msg" id="state_pass2"><if condition="in_array('pass2',$require)">*</if></div>
+                            </div>
+                        </li>                                
+                        </if>
+                        <if condition="in_array('pass2c',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('二级密码确认')}：</div>
+                                <div class="item-input"><input type="password" autocomplete="off" value="" name="pass2c"></div>
+                                <div class="item-msg" id="state_pass2c"><if condition="in_array('pass2c',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        <eq name="pwd3Switch" value="true">
+                        <if condition="in_array('pass3',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('三级密码')}：</div>
+                                <div class="item-input"><input type="password" autocomplete="off" value="" name="pass3"></div>
+                                <div class="item-msg" id="state_pass3"><if condition="in_array('pass3',$require)">*</if></div>
+                            </div>
+                        </li> 
+                        </if>
+                        <if condition="in_array('pass3c',$show) eq true">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">{:L('三级密码确认')}：</div>
+                                <div class="item-input"><input type="password" autocomplete="off" value="" name="pass3c"></div>
+                                <div class="item-msg" id="state_pass3c"><if condition="in_array('pass3c',$require)">*</if></div>
+                            </div>
+                        </li>
+                        </if>
+                        </eq>
+                    </ul>
+                    <!--基本信息结束-->
+                    <present name="productArr"><include file="Sale:product" /></present>                        
+                    <p>
+                        <button type="submit" class="button button-fill button-big button-warning">{:L('确定')}</button>
+                    </p>
+
+                </form>
+            </div>
+            <present name='regAgreement'>
+            <div id="regAgreement" class="list-block">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-innerg">
+                            <div class="item-titleg">{:L('注册协议内容')}</div>
+                            <div class="item-afterg">
+                                {$regAgreement}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-innerg">
+                            <div class="item-titleg">
+                                <input class="button button-fill button-big button-warning" type="button" value="{:L('同意并注册')}" onclick="$('#regAgreement').hide();$('#usereg').show()">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            </present>
+        </div>
+
+        <script src="__TMPL__Public/dist/js/sm.js"></script>
+        <script src="__TMPL__Public/dist/js/sm-extend.js"></script>
+        <script src="__TMPL__Public/js/app.js"></script>
+        <script src="__PUBLIC__/jquery-2.x.min.js"></script>
+        <script src="__TMPL__Public/js/area_select.js"></script>
+        <script>
+        $$.area_default_show = true; //显示默认区域
+        $$.area_select_bind( 'country_id' , 'province_id' , 'city_id' , 'county_id','town_id' );
+        var vd;
+        var lastname;
+        function getInfo(e) {
+
+            var thisname=e.name;
+            if(lastname == thisname){
+
+                clearTimeout(vd);
+                vd = setTimeout("regAjax('"+e.id+"')",600);
+            }else{
+                regAjax(e.id);
+                lastname=thisname;
+            }
+        }
+        function regAjaxall() {
+            var arr={$jsrequire};
+            for(var i in arr)
+            {
+                $('#state_'+arr[i]).text("*");
+            }
+            //在FROM中的ONSUBMIT事件中执行此函数
+            //查询事件所属的FROM对象下边的所有表单
+
+            //遍历当前所有表单
+            //并且把表单全部提交到regAjax中校验，如果有返回内容，则执行返回内容，并返回false,如果内容为空，则返回TRUE
+            //var inputlist	= $("input");
+            var postdata	= {};
+            $("input").each(function(i,n){
+                    var postname	= n.name;
+                    var value  = n.value;
+                    postdata[postname]	= value;
+                    });
+            $("select").each(function(i,n){
+                    var postname	= n.name;
+                    var value  = n.value;
+                    postdata[postname]	= value;
+                    });
+            $.post('__MODULE__/Saleweb/regAjax:{$xpath}',postdata,function(data){
+                    if(!data)
+                    {
+                    $('#form').submit();
+                    }
+                    else
+                    {console.log(data);
+                    eval(data);
+                    return false;
+                    }
+                    });
+        }
+        function regAjax(name) {
+            var id			= $('#'+name).val();
+            var postname	= name;
+            var otherpost	= $('#'+name).attr('otherpost');
+            var postdata = {postname:name};
+            $("input").each(function(i,n){
+                    var postname	= n.name;
+                    var value  = n.value;
+                    postdata[postname]	= value;
+                    });
+            $("select").each(function(i,n){
+                    var postname	= n.name;
+                    var value  = n.value;
+                    postdata[postname]	= value;
+                    });
+            $.ajax({
+                url:"__APP__/DmsUser/Saleweb/regAjax:{$xpath}",
+                type:"POST",
+                data:postdata,
+                dataType:"script",
+                global:false,
+                success:function(data){
+                    data;
+                }  
+            });
+        }
+        function changelang(){
+			var url  = window.location.href;
+			var lang = document.getElementById('lang').value;
+			url = url.split('/',4);
+			url = url[0]+'/'+url[1]+'/'+url[2]+'/'+url[3];
+			window.history.pushState({},0,url+lang);
+			window.location.reload();
+		}
+        
+        </script>
+        <script src="__TMPL__Public/dist/js/sm.js"></script>
+        <script src="__TMPL__Public/dist/js/sm-extend.js"></script>
+        <script src="__TMPL__Public/js/app.js"></script>
+    </body>
+</html>

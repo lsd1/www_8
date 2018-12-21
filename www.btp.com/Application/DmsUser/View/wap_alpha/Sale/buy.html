@@ -1,0 +1,363 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__TMPL__Public/css/common.css">
+<link rel="stylesheet" href="__TMPL__Public/css/inner.css">
+<div class="content">
+	<div class="list-block" id="salereg">
+	<form name="form1" method="post" action="__MODULE__/Sale/buySave:__XPATH__" id="register" style="<present name='Buy_agreement'>display:none</present>">
+		<div class="form-group">
+			<div class="form-label">{:L('会员编号')}</div>
+			<div class="form-input">
+				<if condition="($sale:lockMe eq false)">
+					<input type="text" class="inner-input" value="" size="20" name="userid" id="userid">
+				<else/>
+					{$userinfo.编号}
+					<input type="hidden" class="inner-input" value="{$userinfo['编号']}" name="userid" id="userid">
+			   </if>
+			</div>
+		</div>
+		<if condition="$sale:accBank neq ''">
+			<foreach name="banks" item="bank">
+			<div class="form-group">
+				<div class="form-label">{:L($bank->byname)}{:L('余额')}</div>
+				<div class="form-input">
+					{:$userinfo[$bank->name]}
+				</div>
+			</div>
+			</foreach>
+		</if>
+		<if condition="$sale:setMoney eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('投资金额')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="setMoney">
+				</div>
+			</div>
+		</if>
+		<if condition="$sale:setNumber eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('单数')}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" name="setNumber">
+				</div>
+			</div>
+		</if>
+		<if condition="($sale:setMoney neq true) and ($sale:money gt 0)">
+			<div class="form-group">
+				<div class="form-label">{:L('所需金额')}</div>
+				<div class="form-input">
+					{$sale:money}
+				</div>
+			</div>
+		</if>
+		<notempty name="shop">
+			<div class="form-group">
+				<div class="form-label">{$shop}</div>
+				<div class="form-input">
+					<input type="text" class="inner-input" value="{$userinfo['服务中心编号']}" name="shop" id="shop">
+				</div>
+			</div>
+		</notempty>
+		<if condition="$sale:extra eq true ">
+			<div class="form-group">
+				<div class="form-label">{:L('物流信息')}</div>
+				<div class="form-input">
+				</div>
+			</div>
+			<if condition="adminshow('sale_sendtype') eq true">
+			<div class="form-group">
+				<div class="form-label">{:L('发货方式')}</div>
+				<div class="form-input">
+				<select name="sendtype">
+                            <option value="物流发货">{:L('物流发货')}</option>
+                            <option value="公司自提">{:L('公司自提')}</option>
+                            <option value="专卖店自提">{:L('专卖店自提')}</option>
+                        </select>
+				</div>
+			</div>
+			</if>
+			<div class="form-group">
+			<div class="form-label">{:L('发货方式')}</div>
+				<div class="form-input">
+				<select name="sendtype">
+                            <option value="物流发货">{:L('物流发货')}</option>
+                            <option value="公司自提">{:L('公司自提')}</option>
+                            <option value="专卖店自提">{:L('专卖店自提')}</option>
+                        </select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('国家')}</div>
+				<div class="form-input">
+					<select name="country" id="country_id">
+                        <option value="">{:L('请选择')}</option>
+                    </select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('省/州')}</div>
+				<div class="form-input">
+					<select name="province" id="province_id">
+                        <option value="">{:L('请选择')}</option>
+                    </select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('城市')}</div>
+				<div class="form-input">
+					<select name="province" id="province_id">
+                        <option value="">{:L('请选择')}</option>
+                    </select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('地区')}</div>
+				<div class="form-input">
+					<select name="province" id="province_id">
+                        <option value="">{:L('请选择')}</option>
+                    </select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('街道')}</div>
+				<div class="form-input">
+					<select name="province" id="province_id">
+                        <option value="">{:L('请选择')}</option>
+                    </select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('收货人')}</div>
+				<div class="form-input">
+					<input name="reciver" id="reciver" type="text" class="inner-input" value="{$userinfo.收货人}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('联系电话')}</div>
+				<div class="form-input">
+					<input name="mobile" id="mobile" type="text" class="inner-input" value="{$userinfo.移动电话}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">{:L('收货地址')}</div>
+				<div class="form-input">
+					<input name="address" id="address" type="text" class="inner-input" value="{$userinfo.地址}" placeholder="{:L('路况信息及门牌号等')}">
+				</div>
+			</div>
+		</if>
+		<present name="productArr">
+		<include file="product"/>
+		</present>
+		<present name="bankRatio" >
+        <div id='bankRatiotype' class="list-block" style="clear:both;margin:10px auto;padding: 0; margin-top:50px;">
+        	<php>$ratio=0;$p=false;</php>
+        	<foreach name='bankRatio' key="fkey" item="bankval">
+        	<php>
+        		$val=0+$bankval['maxval'];
+        		if($bankval['extra']==false){
+            		if(100>=$ratio && $val+$ratio>100){
+            			$val=100-$ratio;
+            		}
+            		$ratio+=$val;
+        		}
+        		if(strstr($bankval['maxval'],"%")){
+        			$p=true;
+        		}
+        	</php>
+        	<div class="form-group">
+				<div class="form-label">
+				<if condition="$bankval.name eq '激活币'" >
+                    <?php echo L(CONFIG('xgjhb')); ?>
+                </if>
+                <if condition="$bankval.name eq '积分'" >
+                    <?php echo L(CONFIG('xgmc')); ?>
+                </if>
+                </div>
+				<div class="form-input">
+					<div class="form-icon">
+						<if condition="$bankval['extra']">{$val}</if>
+						<if condition="$p">%</if>
+					</div>
+					<if condition="$bankval['extra']">
+						{$val}
+                    <else/>
+                        <if condition="$bankval.name eq '激活币'" >
+                        <input class="bankrate1 inner-input" name="accval[{$fkey}]" value="100" type="text"  onkeyup="javaScript:lastnum=(100-$(this).val());$('.bankrate2').val(lastnum.toFixed(2));"/>
+                        </if>
+                        <if condition="$bankval.name eq '积分'" >
+                        <input  class="bankrate2 inner-input" name="accval[{$fkey}]" value="0" type="text" onkeyup="javaScript:lastnum=(100-$(this).val());$('.bankrate1').val(lastnum.toFixed(2));"/>
+                        </if>
+                    </if>
+				</div>
+			</div>
+			<div class="form-tip">
+				<if condition="$bankval['extra']">{:L('支付额外金额')}</if><span id="money{$fkey}"></span>
+					<if condition="$p">{:L('支付时货币比率')}<else/>{:L('支付时货币金额')}</if>
+			</div>
+			<!-- <if condition="$bankval['extra']">{$val}{:L('支付额外金额')}</if><span id="money{$fkey}"></span>
+					<if condition="$p">%{:L('支付时货币比率')}<else/>{:L('支付时货币金额')}</if> -->
+			</foreach>
+        </div>
+        </present>
+        <div class="btn-wrapper">
+			<input id="subbut" class="button button-fill button-big button-warning" type="button" value="{:L('确定')}">
+		</div>
+	</form>
+	</div>
+	<present name='Buy_agreement'>
+	<div class="list-block" id="Buy_agreement">
+		<ul>
+			<li class="item-content">
+				<div class="item-innerg">
+					<div class="item-titleg">{:L('购物协议内容')}</div>
+					<div class="item-afterg">
+						{$Buy_agreement}
+					</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-innerg">
+					<div class="item-titleg">
+						<input class="button button-fill button-big button-warning" type="button" value="{:L('同意并购物')}" onclick="$('#Buy_agreement').hide();$('#register').show()">
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	</present>
+</div>
+
+<include file="Public:footer" />
+<if condition="($sale:extra eq true)">
+<script src="__PUBLIC__/jquery-1.x.min.js"></script>
+<script src="__TMPL__Public/js/area_select.js"></script>
+</if>
+<script>
+<if condition="($sale:extra eq true)">
+$$.area_default_show = true; //显示默认区域
+$$.area_default_country="{$userinfo['国家']}";
+$$.area_default_province="{$userinfo['省份']}";
+$$.area_default_city="{$userinfo['城市']}";
+$$.area_default_county="{$userinfo['地区']}";
+$$.area_default_town="{$userinfo['街道']}";
+$$.area_select_bind( 'country_id' , 'province_id' , 'city_id' , 'county_id','town_id' );
+</if>
+
+$(document).on('click','#subbut', function () {
+	<if condition="($sale:productName neq '')">
+		alertcheck();
+	<else/>
+		$('#register').submit();
+	</if>
+});
+
+<if condition="($sale:productName neq '')">
+//是否显示确认框
+function alertcheck(){
+    var productList = '';
+    var sumNum = 0;
+    var sumValue = 0;
+    if ($('.num-value').get(0)) {
+        $.each($('.num-value'), function (index, value) {
+            if (parseInt(value.value) > 0) {
+                var productimg = '';
+                sumNum += parseInt(value.value);
+                sumValue += parseInt(value.value) * parseInt(value.getAttribute('productMoney'));
+                console.log(value);
+
+                if (value.getAttribute('productImg')) {
+                    productimg = value.getAttribute('productImg');
+                } else {
+                    productimg = '__TMPL__Public/img/product.png';
+                }
+                productList += '<li>'+
+                                    '<div class="item-content">'+
+                                        '<div class="item-media">'+
+                                            '<img src="'+productimg+'" style="width:2.2rem;">'+
+                                        '</div>'+
+                                        '<div class="item-inner">'+
+                                            '<div class="item-title-row">'+
+                                                '<div class="item-title">'+value.getAttribute('productname')+'<small>（{:L('数量')}:'+value.value+'）</small></div>'+
+                                                '<div class="item-after">{:L('单价')}：'+value.getAttribute('productmoney')+'</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</li>';
+
+                }
+        });
+        if (sumNum > 0) {
+            productList += '<li class="item-content">'+
+                              '<div class="item-inner">'+
+                                  '<div class="item-title">{:L("总数量")}：'+sumNum+'</div>'+
+                                  '<div class="item-after"><strong class="color-danger">{:L("总金额")}：￥'+sumValue+'</strong></div>'+
+                              '</div>'+
+                          '</li>';
+        } else  {
+            productList = '<li class="item-content">'+
+                              '<div class="item-inner">'+
+                                  '<div class="item-title"><strong class="color-danger">{:L("请选择商品")}</strong></div>'+
+                              '</div>'+
+                          '</li>';
+        }
+    }
+
+
+    /*物流*/
+    if( {$wuliu} == 1 ){
+	<if condition="($sale:extra eq true)">
+    productList += '<li class="item-content">'+
+                       '<div class="item-inner">'+
+                           '<div>{:L("收货地址")}：'+
+                               '<span class="color-gray">' + $("#country_id").val()+$("#province_id").val()+$("#city_id").val()+$("#county_id").val()+$("#town_id").val()+$("#address").val() + '</span></div>'+
+                       '</div>'+
+                   '</li>'+
+                   '<li class="item-content">'+
+                       '<div class="item-inner">'+
+                           '<div class="item-title">{:L("收货人")}</div>'+
+                           '<div class="item-after">' + $("#reciver").val() + '</div>'+
+                       '</div>'+
+                   '</li>'+
+                   '<li class="item-content">'+
+                       '<div class="item-inner">'+
+                           '<div class="item-title">{:L("联系电话")}</div>'+
+                           '<div class="item-after">' + $("#mobile").val() + '</div>'+
+                       '</div>'+
+                   '</li>'
+    </if>
+    }
+    productList += '<li class="item-content">'+
+                       '<div class="item-inner">'+
+                           '<div class="item-title"><strong class="color-danger">{:L("请确认升级信息，再点击确认")}</strong></div>' +
+                       '</div>'+
+                   '</li>';
+
+    var modal = $.modal({
+        title: '<strong>{:L("信息确认")}</strong>',
+        afterText:  '<div class="swiper-container" style="width: auto; margin:5px -15px -15px">'+
+                        '<div class="swiper-pagination"></div>'+
+                        '<div class="swiper-wrapper">'+
+                            '<div class="list-block">'+
+                                '<ul>' + productList + '</ul>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>',
+        buttons: [
+        {
+            text: "{:L('确定')}",
+            bold: true,
+            onClick: function () {
+                $('#register').submit();
+            }
+        },
+        {
+            text: "{:L('取消')}",
+            bold: true,
+            onClick: function () {
+                return false;
+            }
+        },
+        ]
+    });
+}
+</if>
+</script>

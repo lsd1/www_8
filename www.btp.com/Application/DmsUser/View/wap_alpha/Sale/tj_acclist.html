@@ -1,0 +1,113 @@
+<include file="Public:header" />
+<div class="content">
+	<if condition="count($data['list']) elt 0">
+	<h1>{:L('暂无数据')}</h1>
+	</if>
+
+	<foreach name='data.list' item='vo'>
+	<div class="list-block">
+		<ul>
+			<foreach name="vo" item="vo1">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{$key}：</div>
+					<div class="item-after">{$vo1}</div>
+				</div>
+			</li>
+			</foreach>
+		</ul>
+	</div>
+	<br>
+	</foreach>
+	<div class="pager">
+		<if condition="$data['nowPage'] neq 1">
+		<a href="{$data.firstRow}">&laquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&laquo;</a>
+		</if>
+
+		<a href="{$data.upRow}">&lt;</a>
+
+		<if condition="isset($data['rollPage'][-2])">
+		<a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][-1])">
+		<a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>
+		</if>
+
+		<a href="javascript:void(0)">{$data.nowPage}/{$data.totalPages}</a>
+
+		<if condition="isset($data['rollPage'][1])">
+		<a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][2])">
+		<a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>
+		</if>
+
+		<a href="{$data.downRow}">&gt;</a>
+
+		<if condition="$data['nowPage'] lt $data['totalPages']">
+		<a href="{$data.theEndRow}">&raquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&raquo;</a>
+		</if>  
+	</div>   
+</div>
+<include file="Public:footer" />
+
+
+<if condition="adminshow('confirmBox') && isset($data['list']) && $data['list']">
+<php>$field=$data['field'];array_pop($field);$list=$data['list'];foreach($list as $key=>$val){array_pop($val);$list[$key]=$val;}</php>
+<link rel="stylesheet" href="__PUBLIC__/zxxbox/common.css" type="text/css" />
+<script src="__PUBLIC__/layer/layer_mobile.js"></script>
+<script type="text/javascript">
+function acc_confirm(id,userid){
+    var alertstr ='<table style="margin-top:0;">';
+        alertstr+='<tr style="line-height:1.5rem;">';//"{:L('购买时间')}",
+        <foreach name="field" item="vo">
+        	if(contains(Array("{:L('编号')}","{:L('报单金额')}","{:L('购物金额')}","{:L('报单状态')}"),"{$vo}")){
+            alertstr+='<td style="width:4.07rem;border:1px #ccc solid;text-align:center;">{$vo}</td>';
+            }
+        </foreach>
+        alertstr+='</tr><tr style="line-height:1.5rem;">';
+        <foreach name="list" item="vo">
+        	if("{$vo[L('编号')]}" == userid) {  
+            <foreach name="vo" item="vo1">
+            	if(contains(Array("{:L('编号')}","{:L('报单金额')}","{:L('购物金额')}","{:L('报单状态')}"),"{$key}")){
+                alertstr+='<td style="border:1px #ccc solid;text-align:center;">{$vo.$key}</td>';
+                }
+            </foreach>
+            }
+        </foreach>
+        alertstr+='</tr>';         
+        alertstr+='<tr style="line-height:1.5rem;"><td colspan="5" class="tbval" style="border:1px #ccc solid;">&nbsp;&nbsp;{:L("购买时间")}: {$vo[L("购买时间")]}</td></tr>';
+        alertstr+='<tr style="line-height:1.5rem;"><td colspan="5" class="tbval" style="border:1px #ccc solid;text-align:center;">{:L("请确认订单信息，再点击确认")}</td></tr>';
+    
+        alertstr+='</table>';
+
+    //询问框
+	layer.open({
+		title:"{:L('订单审核')}"
+		,content: alertstr
+		,btn: [queren, quxiao]
+		,yes: function(index){
+		  location.href="__CONTROLLER__/tj_accok/id/"+id+"/userid/"+userid;
+		  layer.close(index);
+		}
+	});
+    
+ }
+function contains(arr, obj) {  
+    var i = arr.length;  
+    while (i--) {  
+        if (arr[i] === obj) {  
+            return true;  
+        }  
+    }  
+    return false;  
+}
+</script>
+</if>
+

@@ -1,0 +1,99 @@
+<script src="__PUBLIC__/js/yangcong.js"></script> <!-- 洋葱js文件 -->
+<script>
+function navTabAjaxDoneReload(json){
+	DWZ.ajaxDone(json);
+	//console.log(json);alert(json);
+	if (json.statusCode == DWZ.statusCode.ok){
+		if(json.type == 'yb'){
+			$.pdialog.closeCurrent();
+			navTab.reload(json.forwardUrl);
+		}else if(json.type == 'yc'){
+				$("#bind_from").hide();
+				$("#qrcode").show();
+				$("#bind_div").removeClass('pageContent').css('background','#e4ebf6');
+				yangcong('bind1');//洋葱函数
+		}
+	}else{
+		var $pagerForm = $("#pagerForm", navTab.getCurrentPanel());
+		var args = $pagerForm.size()>0 ? $pagerForm.serializeArray() : {}
+		navTabPageBreak(args, json.rel);
+	}
+}
+</script>
+<div id="bind_div" class="pageContent" style="height:100%;">
+	<p id="qrcode" style="text-align: center;display:none;"></p>
+	<form style="position:relative; height:100%;" id="bind_from" method="post" action="__CONTROLLER__/bind_check/id/{$managerid}"  class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDoneReload)">
+		<input type="hidden" name="callbackType" value="closeCurrent" />
+		<input type="hidden" name="navTabId" value="{:md5(__CONTROLLER__.'/edit')}"/>
+		<input type="hidden" name="forwardUrl" value="__CONTROLLER__/edit/id/{$managerid}"/>
+		<input type="hidden" id="bind_type" name="bind_type" value="yb"/>
+		<div class="tabs" currentindex="0" eventtype="click" style="height:100%;">
+			<div class="tabsHeader">
+				<div class="tabsHeaderContent">
+					<ul>
+						<li id="yb" class=""><a href="javascript:;"><span id="yb_span">yubi绑定</span></a></li>
+						<if condition="qr()">
+							<li id="yc" class="selected"><a href="javascript:;"><span id="yc_span">洋葱绑定</span></a></li>
+						</if>
+					</ul>
+				</div>
+			</div>
+			<div class="tabsContent" style="height:90.720218658447272%;">
+				<table id="yb_tb" cellpadding="5" cellspacing="5">
+					<tr>
+						<td style="text-align:right">备注名称：</td>
+						<td style="text-align:left">
+	                    	<input type="text"  id="yubiname" name='yubiname' value="" size='32'/>&nbsp;&nbsp;（标注当前yubikey码）
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right">有效天数：</td>
+						<td style="text-align:left">
+	                    	<input type="text"  id="yubidays" name='yubidays' value="0" size="8"/>&nbsp;天&nbsp;（天数为0或不填默认为无限，大于0的整数表示天数）
+						</td>
+					</tr>
+					<tr>
+						<td  style="text-align:right">输入key值：</td>
+						<td style="text-align:left;vertical-align: middle;height:30px;line-height:30px;" varalign="middle">
+	                    <input type="password" autocomplete="off"  id="newyubiopt" name='newyubiopt' value="" size='32'/>&nbsp;（光标移到输入框内，按下图操作）
+						</td>
+					</tr>
+					<tr>
+						<th  style="text-align:right">&nbsp;</th>
+						<td style="text-align:left;"><img src="__PUBLIC__/DmsSync/Common/images/yubiKey.jpg" width="300"/></td>
+					</tr>
+				</table>
+				<table id="yc_tb" cellpadding="5" cellspacing="5" style="margin-left:10px">
+					<tr>
+	                    <td style="text-align:right";>当前账号：</td><td><input type="text" name="account" readonly value="{$account}"/></td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">备注名称：</td><td><input type="text" class="textInput valid" name="name" placeholder="绑定记录中显示的名称"></td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">有效天数：</td><td><input type="text" name='ycdays' value="0"/></td><td><span>&nbsp;&nbsp;（默认0为永久,大于0的整数表示天数）</span></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="formBar" style="width:98.3%;position:absolute;left:0;bottom:0">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button id="submit" type="submit">添加绑定</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+
+
+<script >
+$(function(){
+
+	$('#yc_span').click(function(){
+		$("#bind_type").val('yc');
+	});
+	$('#yb_span').click(function(){
+		$("#bind_type").val('yb');
+	});
+
+});
+</script >

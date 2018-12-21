@@ -1,0 +1,58 @@
+<include file="Public:header" />
+<div class="content notice">
+	<form action="__MODULE__/FunBank/jftq_save" method="post"  id="register" >
+	<div class="list-block">
+		<ul>
+			<if condition="($bank:getMoneyBank eq 1) OR ($bank:getMoneyBank eq true)">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('提取金额')}：</div>
+					<div class="item-input"><input type="text" id="jftq_val" name="jftq_val" value="" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"></div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('钱包地址')}：</div>
+					<div class="item-input"><input type="text" id="bank_address" style="width:300px" name="bank_address" value=""></div>
+				</div>
+			</li>
+		</ul>
+		<p>
+        	<a class="button button-success button-big button-fill" id='subbut' onclick="tijiao()" href="#">{:L('确认')}</a>
+        	<a class="button button-success button-big button-fill" id='button' onclick="history.back();" href="#">{:L('返回')}</a>
+		</p>
+	</div>
+	{__TOKEN__}
+	</form>
+</div>
+<include file="Public:footer" />
+<script type="text/javascript">
+function tijiao(){
+	var mess = "";
+	if($('#jftq_val').val()=='' || $('#jftq_val').val()==null)
+	{
+		mess="{:L('请输入提取金额')}！<br/>"+mess;
+	}
+    if($('#bank_address').val()=='' || $('#bank_address').val()==null)
+    {
+        mess="{:L('请输入钱包地址')}！<br/>"+mess;
+    }
+	if(mess !=""){
+		layer.alert(mess, { title: "{:L('提示')}", btn: "{:L('确定')}"});
+		return false;
+	}
+	var ua = navigator.userAgent.toLowerCase();
+	var s;
+	if ((/firefox\/([\d.]+)/).test(ua)) { //判断火狐浏览器
+		$('#subbut').attr('disabled',true);
+		$('#subbut').val("{:L('正在提交,请等待...')}");
+		$('#register').submit();
+		$('#subbut').val("{:L('确认')}");
+		$('#subbut').attr('disabled',false);
+	} else {
+		$('#subbut').attr('disabled',true);
+		$('#subbut').val("{:L('正在提交,请等待...')}");
+		$('#register').submit();
+	}
+}
+</script>

@@ -1,0 +1,105 @@
+<include file="Public:header" />
+    <div class="content notice">
+	<if condition="count($data['list']) elt 0">
+	<h1>{:L('暂无数据')}</h1>
+	</if>
+	
+	<foreach name='data.list' item='name'>
+    <if condition="isset($name[L('奖金')])">
+    <div class="card">
+        <div class="card-header">
+            {:L('奖金')}: {$name[L('奖金')]}
+        </div>
+        <div class="card-content">
+        	<a href="__CONTROLLER__/prizeInfo:__XPATH__/id/{$name['id']}" target="_self">
+            <div class="row">
+                <!--<div class="col-33">
+                    <div class="card-content-inner text-center">
+                        <div class="color-warning">
+                            <strong>{$name[L('收入')]}</strong>
+                            <span>{:L('收入')}</span>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="col-66">
+                    <div class="card-content-inner">
+                    	<volist name="name" id="vo" offset="3" length='3'>
+                    		<div><span class="color-gray" style="display:inline-block; width:60%;">{:L($data['field'][$i+2])}：</span>{$vo}</div>
+                    	</volist>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        <div class="card-footer">
+            <a></a>
+            {$name[L('计算时间')]}
+        </div>
+    </div>
+    <else/>
+    <div class="card">
+        <div class="card-header">
+            <strong>{$name[0]}</strong>
+        </div>
+        <div class="card-content">
+            <div class="list-block">
+                <ul>
+                    <foreach name='name' key='k' item='v'>
+                        <php>if($k==0)continue;</php>
+                        <if condition="$v neq '&nbsp;'">
+		                    <li class="item-content">
+		                        <div class="item-inner">
+		                            <div class="item-title">{$data['field'][$k]}</div>
+		                            <if condition="$k lt 3">
+		                            <div class="item-after" style="color:#F60">{$v}</div>
+		                            <else />
+		                            <div class="item-after">{$v}</div>
+		                            </if>
+		                        </div>
+		                    </li>
+		                </if>
+                    </foreach>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </if>
+	</foreach>
+	<div class="pager">
+		<if condition="$data['nowPage'] neq 1">
+		<a href="{$data.firstRow}">&laquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&laquo;</a>
+		</if>
+
+		<a href="{$data.upRow}">&lt;</a>
+
+		<if condition="isset($data['rollPage'][-2])">
+		<a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][-1])">
+		<a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>
+		</if>
+
+		<a href="javascript:void(0)">{$data.nowPage}/{$data.totalPages}</a>
+
+		<if condition="isset($data['rollPage'][1])">
+		<a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][2])">
+		<a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>
+		</if>
+
+		<a href="{$data.downRow}">&gt;</a>
+
+		<if condition="$data['nowPage'] lt $data['totalPages']">
+		<a href="{$data.theEndRow}">&raquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&raquo;</a>
+		</if>
+	</div>
+</div>
+<include file="Public:footer" />
+

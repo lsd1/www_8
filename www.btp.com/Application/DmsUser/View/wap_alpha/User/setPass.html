@@ -1,0 +1,191 @@
+<include file="Public:header" />
+<div class="content">
+	<div class="list-block">
+		<form name="form1" method="post" action="__MODULE__/User/passSave">
+		<ul>
+			<eq name="pwd3Switch" value="false">
+			<li class="item-content"  style="padding-right: 0;">
+				<div class="item-inner">
+					<div class="item-title label">{:L('确认二级密码')}:</div>
+					<div class="item-input"><input name="oldpwd2" type="password" autocomplete="off" id="oldpwd2" placeholder="{:L('请输入二级密码')}"></div>
+				</div>
+			</li>
+			</eq>
+			<eq name="pwd3Switch" value="true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('确认三级密码')}:</div>
+					<div class="item-input"><input name="oldpwd2" type="password" autocomplete="off" id="oldpwd2" placeholder="{:L('请输入三级密码')}"></div>
+				</div>
+			</li>
+			</eq>
+
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('一级密码')}:</div>
+					<div class="item-input"><input name="pwd1" type="password" autocomplete="off" id="pwd1" placeholder="{:L('至少6位')}"></div>
+				</div>
+			 </li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('确认一级密码')}:</div>
+					<div class="item-input"><input name="repwd1" type="password" autocomplete="off" id="repwd1" placeholder="{:L('确认一级新密码')}"></div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('二级密码')}:</div>
+					<div class="item-input"><input name="pwd2" type="password" autocomplete="off" id="pwd2" placeholder="{:L('至少6位')}"></div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('确认二级密码')}:</div>
+					<div class="item-input"><input name="repwd2" type="password" autocomplete="off" id="repwd2" placeholder="{:L('确认二级新密码')}"></div>
+				</div>
+			</li>
+			<eq name="pwd3Switch" value="true">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('三级密码')}:</div>
+					<div class="item-input"><input name="pwd3" type="password" autocomplete="off" id="pwd3" placeholder="{:L('至少6位')}"></div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('确认三级密码')}:</div>
+					<div class="item-input"><input name="repwd3" type="password" autocomplete="off" id="repwd3" placeholder="{:L('确认三级新密码')}"></div>
+				</div>
+			</li>
+			</eq>
+			<if condition="adminshow('smsSwitch') && $verificateSwitch eq 1 && $verificatesmsContent neq ''">
+			 <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('短信验证码')}:</div>
+					<div class="item-input">
+						<div class="row">
+							<div class="col-50">
+								<input name="repwdSms" type="text" id="repwdSms" placeholder="{:L('短信验证码')}" maxlength="6"/>
+							</div>
+							<div class="col-50">
+                    			<input class="button button-sms button-fill" type="button" id="sendMess" value="{:L('点击获取')}" />
+                    		</div>
+                        </div>
+                    </div>
+				</div>
+			</li>
+			</if>
+			<eq name="changePwdmailSwitchyanzheng" value="1">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('邮件验证码')}:</div>
+					<div class="item-input"><input name="repwdMail" type="text" id="repwdMail" placeholder="{:L('邮件验证码')}"><input style="margin-left:10px" type="button" id="sendMailMess" value="{:L('点击获取')}" /></div>
+				</div>
+			</li>
+			</eq>
+			<if condition="(adminshow('googleAuthSwitch') && CONFIG('altPwdgaSwitch'))">
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('动态验证码')}:</div>
+					<div class="item-input"><input name="googleAuthVerfy" type="text" id="googleAuthVerfy" placeholder="{:L('动态验证码')}"></div>
+				</div>
+			</li>
+			</if>
+		</ul>		
+		<div class="content-padded">
+		    <button class="button button-big button-warning button-fill" type="submit">{:L('确定')}</button>
+		</div>
+		</form>
+	</div>
+</div>
+<include file="Public:footer" />
+<script>
+// 短信验证码 旧版本
+/*
+var wait=300;
+var sta = true;
+function time(o) {
+    if(sta == true){
+        var content = '{$verificatesmsContent}';
+        if(content==""){
+        	return false;
+        }
+        $.post('__URL__/sendSmsVerify',{type:'修改密码',content: content},function(data){
+            
+            eval('var data='+data);
+            if(data.status == 1){
+                $.modal({text: "{:L('发送成功!')}",buttons: [{text: "{:L('确定')}"}]});
+            }else{
+                wait=0;
+                $.modal({text: "{:L('发送失败!')}",buttons: [{text: "{:L('确定')}"}]});
+            }
+        });
+        sta = false;
+    }
+    if (wait == 0) {
+      o.removeAttribute("disabled");      
+      o.value="{:L('点击获取')}";
+      wait = 300;
+      sta = true;
+    } else {
+      o.setAttribute("disabled", true);
+      o.value="{:L('重新发送')}(" + wait + ")";
+      wait--;
+      setTimeout(function() {
+        time(o)
+      },
+      1000)
+    }
+  }
+  if($("#sendMess").length>0)
+  document.getElementById("sendMess").onclick=function(){time(this);}
+*/
+// 邮件验证码
+var mwait=300;
+var msta = true;
+function mtime(o) {
+    if(msta == true){
+        var content = '{$changePwdmailContentyanzheng}';
+        $.post('__URL__/sendMailVerify',{type:'修改密码',content: content},function(data){
+            
+            eval('var data='+data);
+            if(data.status == 1){
+                $.modal({text: "{:L('发送成功!')}",buttons: [{text: "{:L('确定')}"}]});
+            }else{
+                mwait=0;
+                $.modal({text: "{:L('发送失败!')}",buttons: [{text: "{:L('确定')}"}]});
+            }
+        });
+        msta = false;
+    }
+    if (mwait == 0) {
+      o.removeAttribute("disabled");      
+      o.value="{:L('点击获取')}";
+      mwait = 300;
+      msta = true;
+    } else {
+      o.setAttribute("disabled", true);
+      o.value="{:L('重新发送')}(" + mwait + ")";
+      mwait--;
+      setTimeout(function() {
+        mtime(o)
+      },
+      1000)
+    }
+  }
+  if($("#sendMailMess").length>0)
+  document.getElementById("sendMailMess").onclick=function(){mtime(this);}
+</script>
+
+<!-- 短信验证码 -->
+<if condition="adminshow('smsSwitch') && Config('verificatesmsSwitch') eq 1 && Config('verificatesmsContent') neq ''">
+<script src="__PUBLIC__/js/sendsms_mobile.js"></script>
+<script src="__PUBLIC__/layer/layer_mobile.js"></script>
+
+<script>
+var	characters	= {title:"{:L('提示')}",determ:"{:L('确定')}",clickget:"{:L('点击获取')}",resend:"{:L('重新发送')}"};
+var type		= '修改密码';
+$("#sendMess").click(function(){ time(this); });
+</script>
+</if>
+<!-- 短信验证码 -->

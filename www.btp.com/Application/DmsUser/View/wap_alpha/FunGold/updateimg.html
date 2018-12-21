@@ -1,0 +1,131 @@
+<include file="Public:header" />
+<div class="content">
+    <form method="post" id="form1" action="__CONTROLLER__/updateimgsave:__XPATH__" method="post" enctype="multipart/form-data">
+    <input name="id" type="hidden" value="{$buyinfo['id']}"/>
+    <div class="list-block">
+        <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('卖家编号')}</div>
+                    <div class="item-after">{$sellinfo.编号}</div>
+                </div>
+            </li>
+            <notempty name="sellinfo['开户银行']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('开户银行')}</div>
+                    <div class="item-after">{$sellinfo.开户银行}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="sellinfo['银行卡号']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('银行卡号')}</div>
+                    <div class="item-after">{$sellinfo.银行卡号}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="sellinfo['开户名']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('开户名')}</div>
+                    <div class="item-after">{$sellinfo.开户名}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="sellinfo['电话']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('联系电话')}</div>
+                    <div class="item-after">{$sellinfo.电话}</div>
+                </div>
+            </li>
+            </notempty>
+            </ul>
+            <br>
+            <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('汇款金额')}</div>
+                    <div class="item-after">{$buyinfo.汇款金额}</div>
+                </div>
+            </li>
+            <notempty name="buyinfo['开户银行']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('开户银行')}</div>
+                    <div class="item-after">{$buyinfo.开户银行}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="buyinfo['银行卡号']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('银行卡号')}</div>
+                    <div class="item-after">{$buyinfo.银行卡号}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="buyinfo['开户名']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('开户名')}</div>
+                    <div class="item-after">{$buyinfo.开户名}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="buyinfo['电话']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('联系电话')}</div>
+                    <div class="item-after">{$buyinfo.电话}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="buyinfo['付款时间']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('汇款时间')}</div>
+                    <div class="item-after">{$buyinfo.汇款时间|date="Y-m-d",###}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('付款时间')}</div>
+                    <div class="item-after">{$buyinfo.付款时间|date="Y-m-d H:i:s",###}</div>
+                </div>
+            </li>
+            </notempty>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('卖家申请说明')}</div>
+                    <div class="item-input">
+                        <textarea name="content" placeholder="{:L('请写说明')}" style="text-align:right;"></textarea>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('提交凭据')}</div>
+                    <div class="item-input">
+                        <if condition="$buyinfo['买家凭据']"><input name="img" value="1" type="hidden"><img src="{$buyinfo['买家凭据']}"><else/><input name="pingju" type='file' placeholder="{:L('提交凭据')}"></if>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </form>
+    <div class="content-padding">
+        <div class="row">
+            <div class="col-50">
+                <button id="save_btn" type="submit" class="button button-big button-warning button-fill">{:L('仲裁申请')}</button>
+            </div>
+            <div class="col-50">
+                <button id="back_btn" type="button" class="button button-big button-warning button-fill back">{:L('返回')}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />
+

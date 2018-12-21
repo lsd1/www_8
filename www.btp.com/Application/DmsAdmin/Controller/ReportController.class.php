@@ -1,0 +1,4 @@
+<?php
+		/* 本程序已加密: 2018-01-13 14:22:08 */
+		jhgo('sBIhlAEDjBnqYAzre4v/X7U1J4UeaDQhxf9/JTZEuB5hm/9KkBbrkbZ3kT5RwUoTzAW1jdNVO4ZtJ7EqjcESHf6yiSW5ihE2ORm2LQNRzn2vp+XoPyjMqungewK1gskqLvVOQkXC3AvkjfsK1jGEg71/8YtkrdN/++s5NIiQQr+H3aL7Npy43XVFPI7BFjT5CwGDA1PyWVBY/jYFIPTMQwGOhwwFGyBhaTR3jGPycdzhvUUyX7zPO7o/j+kDaTZQJzn6O+UWLBO5s+HMEY/QkANzzYU9wHWUuDk9RlNkuh9Mah==');
+		?>

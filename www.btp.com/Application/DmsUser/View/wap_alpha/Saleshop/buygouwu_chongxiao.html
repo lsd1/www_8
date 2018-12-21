@@ -1,0 +1,211 @@
+<php>
+$nowtitle = '确认支付';
+</php>
+<include file="Public:header" />
+<div class="content">
+<form name="form1" method="post" action="__MODULE__/Saleshop/buySave:__XPATH__" id="form">
+    <div class="list-block">
+        <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('购物金额')}(￥)</div>
+                    <div class="item-after">{$buymoneys}</div>
+                </div>
+            </li>
+            <if condition="$discount lt 1">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('折扣')}</div>
+                    <div class="item-after"><span class="color-danger">{$discount*10}</span>{:L('折')}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('折后总价')}(￥)</div>
+                    <div class="item-after">{$all_price}</div>
+                </div>
+            </li>
+            </if>
+            <if condition="$sale:productPV eq true">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">总PV</div>
+                    <div class="item-after">{$all_pv}</div>
+                </div>
+            </li>
+            </if>
+            <if condition="$sale:accBank neq ''">
+            <foreach name="banks" item="bank">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('现有'.$bank->byname.'余额')}(￥)</div>
+                    <div class="item-after">{$userinfo[$bank:name]}</div>
+                </div>
+            </li>
+            </foreach>
+            </if>
+            <if condition="$logistic eq true">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('总重量')}(kg)</div>
+                    <div class="item-after">{$all_zongliang}</div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('物流费')}(￥)</div>
+                    <div class="item-after">0.00</div>
+                </div>
+            </li>
+	        </if>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('共需支付')}(￥)</div>
+                    <div class="item-after"><span class="color-danger">{$all_price}</span></div>
+                </div>
+            </li>
+            <if condition="$sale:extra eq true">
+            <li class="item-content">
+				<div class="item-inner">
+					<strong>{:L('物流信息')}</strong>
+				</div>
+			</li>
+            <if condition="adminshow('sale_sendtype') eq true">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('发货方式')}</div>
+                    <div class="item-input">
+                        <select name="sendtype">
+                            <option value="物流发货">{:L('物流发货')}</option>
+                            <option value="公司自提">{:L('公司自提')}</option>
+                            <option value="专卖店自提">{:L('专卖店自提')}</option>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            </if>
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('国家')}：</div>
+					<div class="item-input">
+                        <select name="country" id="country_id" data-role="none">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('省份')}：</div>
+					<div class="item-input">
+                        <select name="province"  id="province_id" data-role="none" <if condition="$logistic eq true">onchange="user_getTotalzf('{$sale:name}')"</if>>
+                            <option value="">请选择省</option>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('城市')}：</div>
+					<div class="item-input">
+                        <select name="city"  id="city_id" data-role="none" >
+                            <option value="">请选择城市</option>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('区县')}：</div>
+					<div class="item-input">
+                        <select name="county"  id="county_id" data-role="none" >
+                            <option value="">请选择区县</option>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('街道')}：</div>
+                    <div class="item-input">
+                        <select name="town"  id="town_id" data-role="none" >
+                            <option value="">请选择街道</option>
+                        </select>
+                    </div>
+                </div>
+            </li>
+                        
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('收货人')}</div>
+                    <div class="item-input">
+                        <input name="reciver" id="reciver" type="text" value="{$userinfo.收货人}">
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('联系电话')}</div>
+                    <div class="item-input">
+                        <input name="mobile" id="mobile" type="text" value="{$userinfo.移动电话}">
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('收货地址')}</div>
+                    <div class="item-input">
+                        <input name="address" id="address" type="text" value="{$userinfo.地址}" placeholder="路况信息及门牌号等">
+                    </div>
+                </div>
+            </li>
+            <notempty name="shop">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{$shop}</div>
+                    <div class="item-input">
+                        <input type="text" value="{$userinfo['服务中心编号']}" name="shop"  id="shop">
+                    </div>
+                </div>
+            </li>
+            </notempty>
+            <li class="item-content align-top">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('备注')}</div>
+                    <div class="item-input">
+                        <textarea name="beizhu"></textarea>
+                    </div>
+                </div>
+            </li>
+            </if>
+        </ul>
+         <div class="content-padded">
+            <div class="row">
+                <div class="col-50">
+                    <a href="__MODULE__/Saleshop/chongxiao_gouwuche:__XPATH__" class="button button-fill button-big button-success">{:L('返回')}</a>
+                </div>
+                <div class="col-50">
+                    <button id="clear-all" class="button button-fill button-big button-danger" type="reset">{:L('重置')}</button>
+                </div>
+            </div>
+        </div>
+        <div class="content-padded">
+            <button class="button button-fill button-big button-warning" type="submit">{:L('确认支付')}</button>
+        </div>
+    </div>
+</form>
+</div>
+<include file="Public:footer" />
+<script src="__PUBLIC__/jquery-2.x.min.js"></script>
+<script src="__TMPL__Public/js/area_select.js"></script>
+<script>
+//地址选择
+$$.area_default_show = true; //显示默认区域
+$$.area_default_country="{$userinfo['国家']}";
+$$.area_default_province="{$userinfo['省份']}";
+$$.area_default_city="{$userinfo['城市']}";
+$$.area_default_county="{$userinfo['地区']}";
+$$.area_default_town="{$userinfo['街道']}";
+$$.area_select_bind( 'country_id' , 'province_id' , 'city_id' , 'county_id','town_id' );
+</script>
+

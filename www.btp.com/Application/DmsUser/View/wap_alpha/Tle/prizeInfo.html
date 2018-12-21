@@ -1,0 +1,31 @@
+<php>
+$nowtitle = $prizedata['list'][0][L('计算时间')];
+</php>
+<include file="Public:header" />
+<div class="content notice" style="padding-bottom:1rem;">
+<div class="card">
+	<div class="card-heard" style="margin:0.5rem 0;padding: 0.5rem 0.5rem;border-bottom:1px solid #F60;font-size: 0.85rem;">
+    <volist name="prizedata['list'][0]" id="prize" offset="1" length="2">
+        <span style="display:inline-block;width:26%;text-align:right;">{:L($key)}：</span>
+        <strong style="display:inline-block;width:22%;color:#F60;font-size: 1.0rem;">{$prize}</strong>
+    </volist>
+    </div>
+    
+    <div class="card-content" style="margin:1rem 0;padding: 0 1rem;line-height: 1.6;font-size: 0.9rem;">
+    <volist name="prizedata['list'][0]" id="prize" offset="3">
+    	<div>
+    	<span style="display:inline-block;width:7%;">&nbsp;</span>
+    	<div style="display:inline-block;width:90%;border-bottom:1px solid #eee;">
+    	
+        <span style="display:inline-block;width:65%;">{:L($key)}：</span>
+        <span style="display:inline-block;width:25%;text-align:right;">{$prize}</span>
+        </div>
+        </div>
+    </volist>
+    </div>
+    <div style="border-top:1px solid #EEE;">&nbsp;</div>
+</div>
+<span class="button button-fill button-big button-warning go-back" onClick="history.go(-1);">{:L('返回')}</span>
+</div>
+<include file="Public:footer" />
+

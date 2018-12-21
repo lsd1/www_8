@@ -1,0 +1,41 @@
+
+
+.btn{
+border: 1px solid transparent;
+line-height: 20px;
+padding: 10px 20px;
+font-size: 20px;
+border-radius: .25rem;
+cursor:pointer;
+}
+.btn-primary{color:#fff;background-color:#ffc130;border-color:#ffc130} .btn-primary:hover{color:#89522a;}
+
+
+.btn-ok{color:#fff;background-color:#8dce16;border-color:#8dce16}.btn-ok:hover{color:#89522a;}
+
+
+.btn-group{position:relative;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:middle}
+
+
+.modal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1050;display:none;overflow:hidden;outline:0}
+
+
+.col-md-9{
+	display: inline-block;
+	width: 64%;
+}
+
+
+.col-md-3{
+	padding-right:15%;
+	position: relative;
+	float: right;
+min-height: 30px;
+}
+
+.row{
+	margin: 15px 0;
+}
+.btn-upload{
+	display: inline-block;
+}

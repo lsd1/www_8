@@ -1,0 +1,23 @@
+<div class="core_main Index" id="secPwd">
+	<div class="core_title">
+    	<span class="core_title_con">{:L('二级密码确认')}</span>
+	
+        <span class="core_title_edit"></span>
+    </div>
+    <div class="core_con">
+    	<form name="form1" method="post" action="__CONTROLLER__/seconfirm/returnUrl/{:urlencode($_GET['returnUrl'])}">
+          <table class="tablebg">
+            <TR>
+              <TD class="tbkey">{:L('二级密码')}：</TD>
+              <TD class="tbval"><input name="pwd2" type="password" autocomplete="off" id="pwd2"></TD>
+            </TR>
+            <TR>
+              <TD colspan="2">
+                <input class="button_text button-150" type="submit"  id="but" value="{:L('确定')}" name="but"/>
+              </TD>
+            </TR>
+          </table>
+        </form>
+    </div>
+    <div class="core_page"></div>
+</div>

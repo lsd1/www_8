@@ -1,0 +1,155 @@
+<include file="Public:header" />
+<div class="content">
+    <div class="list-block">
+        <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title"><strong>{:L('卖家编号')}</strong></div>
+                    <div class="item-after"><eq name="hang_type" value="1">{$sellinfo.编号}<else/>{$sellinfo.卖家编号}</eq></div>
+                </div>
+            </li>
+            <notempty name="sellinfo['开户银行']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('开户银行')}</div>
+                    <div class="item-after">{$sellinfo.开户银行}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="sellinfo['银行卡号']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('银行卡号')}</div>
+                    <div class="item-after">{$sellinfo.银行卡号}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="sellinfo['开户名']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('开户名')}</div>
+                    <div class="item-after">{$sellinfo.开户名}</div>
+                </div>
+            </li>
+            </notempty>
+            <notempty name="sellinfo['电话']">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{:L('联系电话')}</div>
+                    <div class="item-after">{$sellinfo.电话}</div>
+                </div>
+            </li>
+            </notempty>
+        </ul>
+    </div>
+    </br>
+    <div class="list-block">
+    <form method="post" id="form1" action="">
+    	<input name="id" type="hidden" value="{$buyinfo['id']}">
+        <notempty name="sellInput">
+        <ul>
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title"><strong>{:L('填写汇款信息')}</strong></div>
+                </div>
+            </li>
+            <if condition="in_array('开户银行',$sellInput)">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('开户银行')}</div>
+                    <div class="item-input">
+                        <if condition="in_array('开户银行',$epsellInput) || $user['开户银行']==''">
+                        <input type="text" id="bank" name="bank"value="{$user.开户银行}">
+				        <else/>
+					    {$user.开户银行}<input type="hidden" id="bank" name="bank" value="{$user.开户银行}">
+                        </if>
+                    </div>
+                </div>
+            </li>
+            </if>
+            <if condition="in_array('银行卡号',$sellInput)">
+            <li class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('银行卡号')}</div>
+                    <div class="item-input">
+                        <if condition="in_array('银行卡号',$epsellInput) || $user['银行卡号']==''">
+                        <input type="text" id="zhanghao" name="zhanghao" value="{$user.银行卡号}">
+                        <else/>
+                        {$user.银行卡号}
+                        <input type="hidden" id="zhanghao" name="zhanghao" value="{$user.银行卡号}">
+                        </if>
+                    </div>
+                </div>
+            </li>
+            </if>
+            <if condition="in_array('开户名',$sellInput)">
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('开户名')}</div>
+                    <div class="item-input">
+                        <if condition="in_array('开户名',$epsellInput) || $user['开户名']==''">
+                        <input type="text" id="huzhu" name="huzhu" value="{$user.开户名}">
+                        <else/>
+                        {$user.开户名}
+                        <input type="hidden" id="huzhu" name="huzhu" value="{$user.开户名}">
+                    </if>
+                    </div>
+                </div>
+            </div>
+	        </if>
+            <if condition="in_array('联系电话',$sellInput)">
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('联系电话')}</div>
+                    <div class="item-input">
+                        <if condition="in_array('联系电话',$epsellInput) || $user['移动电话']==''">
+                        <input type="text" id="mobile" name="mobile" value="{$user.移动电话}">
+				        <else/>
+					    {$user.移动电话}<input type="hidden" id="mobile" name="mobile" value="{$user.移动电话}">
+				        </if>
+                    </div>
+                </div>
+            </div>
+            </if>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('汇款金额')}</div>
+                    <div class="item-input">
+                        {$buyinfo['数量']*$buyinfo['单价']}
+                        <input type="hidden" name="money" id="money" value="{$buyinfo['数量']*$buyinfo['单价']}">
+                    </div>
+                </div>
+            </div>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">{:L('汇款时间')}</div>
+                    <div class="item-input">
+                        <input type="text" name="remtime" readonly="true" title="点击选择汇款时间" id="giveTime">
+                    </div>
+                </div>
+            </div>
+        </ul>
+        </notempty>
+        <div class="content-padding">
+            <div class="row">
+                <div class="col-50">
+                    <button id="rem_btn" class="button button-big button-warning button-fill " type="button" onclick="remsave();" >{:L('确定汇款')}</button>
+                </div>
+                <div class="col-50">
+                    <button class="button button-big button-warning button-fill goback" type="button">{:L('返回')}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+<include file="Public:footer" />
+<script>
+    $('#giveTime').datetimePicker();
+	function remsave(){
+		$("#rem_btn").attr({"disabled":"disabled"});
+		var url="__CONTROLLER__/remsave:__XPATH__";
+		$("#form1").attr("action",url);
+		$('#form1').submit();
+	}
+</script>

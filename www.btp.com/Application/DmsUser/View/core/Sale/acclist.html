@@ -1,0 +1,95 @@
+<div class="core_main Sale" id="acclist">
+	<div class="core_title">
+    	<span class="core_title_con"><span>{:L('当前位置')}</span>：{$nowtitle}</span>
+    </div>
+    <div class="core_con">
+        <table class="tablebg">
+            <TR class="datafield">
+                <foreach name="data.field" item="vo">
+                <TH ><nobr>{$vo}</nobr></TH>
+                </foreach>
+            </TR>
+            <foreach name="data.list" item="vo">
+            <TR class="datalist">
+                <foreach name="vo" item="vo1">
+                <TD ><nobr>{$vo.$key}</nobr></TD>
+                </foreach>
+            </TR>
+            </foreach>
+        </table>
+    </div>
+    <div class="core_page">
+    <span>{:L('共')} {$data.count} {:L('条记录')} {$data.nowPage}/{$data.totalPages}{:L('页')} &nbsp;</span>
+    <if condition="$data['nowPage'] neq 1">
+    <a href="{$data.firstRow}">{:L('首页')}</a>&nbsp;&nbsp;
+    <else/><span>{:L('首页')}&nbsp;&nbsp;</span>
+    </if>
+    <a href="{$data.upRow}">{:L('上一页')}</a>&nbsp;&nbsp;
+    <if condition="isset($data['rollPage'][-2])">
+    <a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>&nbsp;&nbsp;
+    </if>
+    <if condition="isset($data['rollPage'][-1])">
+    <a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>&nbsp;&nbsp;
+    </if>
+    {$data.nowPage}&nbsp;&nbsp;
+    <if condition="isset($data['rollPage'][1])">
+    <a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>&nbsp;&nbsp;
+    </if>
+    <if condition="isset($data['rollPage'][2])">
+    <a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>&nbsp;&nbsp;
+    </if>
+    <a href="{$data.downRow}">{:L('下一页')}</a>&nbsp;&nbsp;
+    <if condition="$data['nowPage'] lt $data['totalPages']">
+    <a href="{$data.theEndRow}">{:L('尾页')}</a>
+    <else/><span>{:L('尾页')}</span>
+    </if>  
+    </div>
+    
+</div>
+ <if condition="adminshow('confirmBox') && isset($data['list']) && $data['list']">
+ <php>$field=$data['field'];array_pop($field);$list=$data['list'];foreach($list as $key=>$val){array_pop($val);$list[$key]=$val;}</php>
+ <link rel="stylesheet" href="__PUBLIC__/zxxbox/common.css" type="text/css" />
+ <script type="text/javascript" src="__PUBLIC__/zxxbox/jquery.zxxbox.3.0.js"></script>
+ <script type="text/javascript">
+ function acc_confirm(id,userid){
+    var alertstr ='<table class="tablebg" style="margin-top:0;">';
+        alertstr+='<tr>';
+        <foreach name="field" item="vo">
+        	if(contains(Array("{:L('编号')}","{:L('购买时间')}","{:L('报单金额')}","{:L('购物金额')}","{:L('报单状态')}"),"{$vo}")){
+            alertstr+='<td>{$vo}</td>';
+            }
+         </foreach>
+         alertstr+='</tr><tr>';
+        <foreach name="list" item="vo">
+        	if("{$vo[L('编号')]}" == userid) {  
+            <foreach name="vo" item="vo1">
+            	if(contains(Array("{:L('编号')}","{:L('购买时间')}","{:L('报单金额')}","{:L('购物金额')}","{:L('报单状态')}"),"{$key}")){
+                alertstr+='<td>{$vo.$key}</td>';
+                }
+            </foreach>
+            }
+         </foreach>
+         alertstr+='</tr>';         
+        alertstr+='<tr><td colspan="10" class="tbval" style="text-align:center;">{:L("请确认订单信息，再点击确认")}</td></tr>';      
+    
+        alertstr+='</table>';
+    $.zxxbox.ask(alertstr, function(){
+        location.href="__CONTROLLER__/tj_accok/id/"+id+"/userid/"+userid;
+        $.zxxbox.hide();
+    }, null, {
+        title: "{:L('订单审核')}",
+        fix: true
+    });
+ }
+ function contains(arr, obj) {  
+    var i = arr.length;  
+    while (i--) {  
+        if (arr[i] === obj) {  
+            return true;  
+        }  
+    }  
+    return false;  
+}
+ </script>
+ </if>
+

@@ -1,0 +1,259 @@
+<include file="Public:header" />
+<div class="content notice">
+		<form method="post" id="form1" action="">
+		<div class="list-block">
+			<ul>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{$funbank[$gold:bankName]['name']} {:L('余额')}：</div>
+						<div class="item-input">{$funbank[$gold:bankName]['num']}</div>
+					</div>
+				</li>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('挂单类型')}：</div>
+						<div class="item-input">
+						<select id='seltype' name="hangtype">
+			               <option value="1">{:L('卖出')}</option>
+			               <option value="2">{:L('买入')}</option>
+			            </select>
+						</div>
+					</div>
+				</li>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('价格')}：</div>
+						<div class="item-input">
+						<if condition="$gold:rmbMax - $gold:rmbMin eq 0">
+							<if condition="$gold:rmbMin eq 0">
+								<input type="text" id="price" value="{$gold:rmbMin}" name="price" style="width:160px;"/>
+							<else/>
+								{$gold:rmbMin}
+								<input type="hidden" id="price" value="{$gold:rmbMin}" name="price" />
+							</if>
+						<else/>
+							<input type="text" id="price" value="{$gold:rmbMin}" name="price" style="width:160px;"/>
+						</if>
+						</div>
+					</div>
+				</li>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('数量')}：</div>
+						<div class="item-input">
+							<if condition="$gold:numSelect eq ''">
+							<input type="text" id="num" name="num" style="width:160px;"/>
+							<else/>
+							<select name="num">
+							<option value=""/>请选择
+							<foreach name="numSelect" item="numval">
+							<option value="{$numval}"/>{$numval}
+							</foreach>
+							</select>
+							</if>
+						</div>
+					</div>
+				</li>
+			  	<notempty name="sellInput">
+		        <if condition="in_array('开户银行',$sellInput)">
+				<li class="item-content hang_fun">
+					<div class="item-inner">
+						<div class="item-title label">{:L('开户银行')}：</div>
+						<div class="item-input">
+						<if condition="in_array('开户银行',$epsellInput) || $user['开户银行']==''">
+							<input type="text" id="bank" name="bank" style="width:160px;" value="{$user.开户银行}"/>&nbsp;<span class="form_notice">*</span>
+						<else/>
+							{$user.开户银行}<input type="hidden" id="bank" name="bank" style="width:160px;" value="{$user.开户银行}"/>
+						</if>
+						  </div>
+					  </div>
+				 </li>
+	          </if>
+	          <if condition="in_array('银行卡号',$sellInput)">
+			  <li class="item-content hang_fun">
+					<div class="item-inner">
+						<div class="item-title label">{:L('银行卡号')}：</div>
+						<div class="item-input">
+						<if condition="in_array('银行卡号',$epsellInput) || $user['银行卡号']==''">
+							<input type="text" id="zhanghao" name="zhanghao" style="width:160px;" value="{$user.银行卡号}"/>&nbsp;<span class="form_notice">*</span>
+						<else/>{$user.银行卡号}
+							<input type="hidden" id="zhanghao" name="zhanghao" style="width:160px;" value="{$user.银行卡号}"/>
+						</if>
+					   </div>
+				   </div>
+			  </li>
+	          </if>
+	          <if condition="in_array('开户名',$sellInput)">
+			  <li class="item-content hang_fun">
+					<div class="item-inner">
+						<div class="item-title label">{:L('开户名')}：</div>
+						<div class="item-input">
+						<if condition="in_array('开户名',$epsellInput) || $user['开户名']==''">
+							<input type="text" id="huzhu" name="huzhu" style="width:160px;" value="{$user.开户名}"/>&nbsp;<span class="form_notice">*</span>
+						<else/>
+							{$user.开户名}<input type="hidden" id="huzhu" name="huzhu" style="width:160px;" value="{$user.开户名}"/>
+						</if>
+					   </div>
+				   </div>
+			  </li>
+	          </if>
+	          <if condition="in_array('联系电话',$sellInput)">
+			  <li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('联系电话')}：</div>
+						<div class="item-input">
+						<if condition="in_array('联系电话',$epsellInput) || $user['移动电话']==''">
+							<input type="text" id="mobile" name="mobile" style="width:160px;" value="{$user.移动电话}"/>&nbsp;<span class="form_notice">*</span>
+						<else/>
+							{$user.移动电话}<input type="hidden" id="mobile" name="mobile" style="width:160px;" value="{$user.移动电话}"/>
+						</if>
+					   </div>
+				   </div>
+			  </li>
+	          </if>
+	          </notempty>
+          
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('二级密码')}：</div>
+						<div class="item-input">
+						<input type="password" autocomplete="off" style="width:160px;" value="" id="pass2" name="pass2" />
+						&nbsp;<span class="form_notice">*</span>
+						</div>
+					</div>
+				</li>
+			 <php>
+			  	$xinyu=$user[$gold->name.'信誉'];$creditStyle="";
+			  	
+			  	for($i=1;$xinyu>=$i;$i++){
+			  		$creditStyle.="<img style='display:inline;' src='".$gold->creditStyle."'/>";
+			  	}
+			  </php>
+			  <if condition="$gold:creditStyle neq ''">
+			  <gt name="xinyu" value="0">
+			  <li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('当前'.$gold->name.'信誉')}：</div>
+						<div class="item-input">
+						{$creditStyle}
+						</div>
+					</div>
+				</li>
+			  </gt>
+			  </if>
+
+			</ul>
+			  <if condition="$gold:creditStyle neq ''">
+				  <elt name="xinyu" value="0">
+				  <p style="text-align:center;">{:L('抱歉，您的信誉值太低了...')}</p>
+				  <else/>
+		          <p><a class="button button-success button-big button-fill" id='sell_btn' onclick="sell1()" href="#">{:L('确认挂出')}</a></p>
+		          </elt>
+	          <else/>
+	          	<p><a class="button button-success button-big button-fill" id='sell_btn' onclick="sell1()" href="#">{:L('确认挂出')}</a></p>
+			  </if>
+			  
+		</div>
+		</form>
+		<div class="content-block-title">
+			{:L('挂单记录')}
+		</div>
+		<if condition="count($data['list']) elt 0">
+		<h1>{:L('暂无数据')}</h1>
+		</if>
+		
+		
+		<foreach name='data.list' item='name'>
+        <div class="card">
+            <div class="card-header">
+                <small>
+                    {:L('时间')}: <span class="color-primary">{$name[L('时间')]}</span>
+                    &nbsp;{:L('挂单类型')}: <span class="color-primary">{$name[L('挂单类型')]}</span>
+                </small>
+            </div>
+            <div class="card-content">
+                <div class="row">
+                    <div class="col-33">
+                        <div class="card-content-inner text-center">
+                            <a href="###" class="color-warning">
+                                <strong>{$name[L('数量')]}</strong>
+                                <span>{:L('数量')}</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-66">
+                        <div class="card-content-inner">
+                            <div><span class="color-gray">{:L('剩余数量')}：</span>{$name[L('剩余数量')]}</div>
+                            <div><span class="color-gray">{:L('成交中数量')}：</span>{$name[L('成交中数量')]}</div>
+                            <div><span class="color-gray">{:L('已成交数量')}：</span>{$name[L('已成交数量')]}</div>
+                            <div><span class="color-gray">{:L('单价')}：</span>{$name[L('单价')]}</div>
+                            <div><span class="color-gray">{:L('总额')}：</span>{$name[L('总额')]}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                {$name[L('操作')]}
+            </div>
+        </div>
+		</foreach>
+
+		<div class="pager">
+			<if condition="$data['nowPage'] neq 1">
+			<a href="{$data.firstRow}">&laquo;</a>
+			<else/>
+			<a href="javascript:void(0)">&laquo;</a>
+			</if>
+
+			<a href="{$data.upRow}">&lt;</a>
+
+			<if condition="isset($data['rollPage'][-2])">
+			<a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>
+			</if>
+
+			<if condition="isset($data['rollPage'][-1])">
+			<a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>
+			</if>
+
+			<a href="javascript:void(0)">{$data.nowPage}/{$data.totalPages}</a>
+
+			<if condition="isset($data['rollPage'][1])">
+			<a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>
+			</if>
+
+			<if condition="isset($data['rollPage'][2])">
+			<a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>
+			</if>
+
+			<a href="{$data.downRow}">&gt;</a>
+
+			<if condition="$data['nowPage'] lt $data['totalPages']">
+			<a href="{$data.theEndRow}">&raquo;</a>
+			<else/>
+			<a href="javascript:void(0)">&raquo;</a>
+			</if>
+		</div>
+	</div>
+</div>
+<script language="javascript">
+	function sell1(){
+		$("#sell_btn").attr("disabled","disabled");
+		var url="__CONTROLLER__/hangsave:__XPATH__";
+		$("#form1").attr("action",url);
+		$('#form1').submit();
+		$("#sell_btn").moveAttr("disabled");
+	}
+
+	$('#seltype').bind('change',function (){
+		var val = $('#seltype').val();//选中的值
+		if(val == '1'){
+			$('.hang_fun').show();
+		}else{
+			$('.hang_fun').hide();
+		}
+	});
+
+
+</script>
+<include file="Public:footer" />
+

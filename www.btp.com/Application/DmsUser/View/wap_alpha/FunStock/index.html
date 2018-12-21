@@ -1,0 +1,188 @@
+<include file="Public:header" />
+<div class="content core_main Fun_stock" id="index">
+<div class="core_con">
+<!--
+<div class="widgetcontent" style="width:100%;margin-top:10px;">
+  <table class="tablebg" style="width:100%;">
+    <div style="text-align:center"><font style='font-size:18px;color:#000000'>{:L('欢迎访问'.$stockName.'交易大厅')}</font></div>
+    <TR class="datafield" style="height:256px">
+      <td width="100%" colspan="2" align="center"><div style="width:100%;padding-left:1px;height:265px;">
+          <div style="width:800px; height:265px;padding:5px">
+            <table id='rowset'>
+              <tfoot>
+                <tr>
+                <!--js自动获取下面2个值，最小最大-->
+                <!--
+                <input type="hidden" id="maxrate" value="{$maxprice}">
+                <input type="hidden" id="minrate" value="{$minprice}"><!--最小值请和getxml内对应-->
+                <!--
+                <php>$i=10;while($i>=0){</php>
+                	<th>{:($minprice+$addprice*$i)}</th>
+                <php>$i--;}</php>
+                </tr>
+              </tfoot>
+            </table>
+            <table id="data">
+              <tfoot>
+                <tr>
+				  <foreach name="list" item="v" key="key">
+	                 <th  title='{:date("Y-m-d",$list[$key]["时间"])}'>{:date("d",$list[$key]["时间"])}</th>
+	              </foreach>
+                </tr>
+              </tfoot>
+              <tbody>
+                <tr >
+				   <foreach name="list" item="vo" key="k">
+                  		<td>{$list[$k]['价格']}</td>
+	                </foreach>
+                </tr>
+              </tbody>
+            </table>
+            <div id="holder"></div>
+          </div>
+        </div></td>
+     </TR>
+  </table>
+</div>
+-->
+<!--
+<div class="widgetcontent" style="width:100%;margin-top:10px;">
+	<table width="100%" border="0" cellpadding="2" cellspacing="0"  class="tablebg">
+		<tr><td style="width:20%;text-align:center;"><table style="width:100%;">
+        	<tr>
+        		<td style="text-align:left;border:none;">{:L('今开')}：<span style="color:red;">12</span></td>
+        		<td style="text-align:left;border:none;">{:L('昨收')}：<span style="color:red;">32</span></td>
+        	</tr>
+        	<tr>
+        		<td style="text-align:left;border:none;">{:L('最高')}：<span style="color:red;">15</span></td>
+        		<td style="text-align:left;border:none;">{:L('最高')}：<span style="color:red;">15</span></td>
+        	</tr>
+        </table></td>
+     </tr>
+	 </table>
+</div>
+-->
+<div class="list-block">
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        {:L('今开')}：<span style="color:red;">{$MAXS}</span>
+        {:L('昨收')}：<span style="color:red;">{$MINE}</span>
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        {:L('最高')}：<span style="color:red;">{$MAXP}</span>
+        {:L('最高')}：<span style="color:red;">{$MINP}</span>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="list-block">
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        <div>{:L($tradeName)}：<span style="color:red;">{$trade}</span></div>
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        <div>{:L('当前价格')}：<span style="color:red;">{$price}</span></div>
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        <div>{:L('持有总数量')}：<span style="color:red;">{$stockTotal}</span></div>
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        <div>{:L('待出售数量')}：<span style="color:red;">{$stockTotal-$stockSale}</span></div>
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        <div>{:L('出售中数量')}：<span style="color:red;">{$stockSale}</span></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="list-block">
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        <if condition='$fun_stock:sellDisp eq false || $fun_stock:buyDisp eq false'>
+          <a href="__CONTROLLER__/trade:__XPATH__">
+          <span class="" style="width:100%; position:absolute; bottom:0; text-align:center;color:red; line-height:45px" title="点击查看">
+            <if condition="$fun_stock:buyDisp eq false">{:L('买入')}</if>&nbsp;&nbsp;<if condition="$fun_stock:buyDisp eq false">{:L('卖出')}</if>
+          </span>
+          </a>
+        </if>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="list-block">
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        <span class="core_title_con" style="width:100%; position:absolute; bottom:0; text-align:center;">{:L('买卖列表')}</span>
+      </div>
+    </li>
+  </ul>
+  <foreach name="lists" item="list">
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        {:L('类型')}: <span class="color-primary">{:L($list['类型'])}</span>
+                &nbsp;&nbsp;&nbsp;{:L('时间')}: <span class="color-primary">{$list.挂单时间|date="Y-m-d H:i:s",###}</span>
+      </div>
+    </li>
+  </ul>
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        <span class="color-gray">{:L('价格')}：</span>{:(number_format($list['挂单价'],$decimalLen))}
+            &nbsp;&nbsp;&nbsp;<span class="color-gray">{:L('挂单总量')}：</span>{$list.挂单总量}
+      </div>
+    </li>
+  </ul>
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        <span class="color-gray">{:L('已成交量')}：</span>{$list.成交量}
+            &nbsp;&nbsp;&nbsp;<span class="color-gray">{:L('剩余数量')}：</span>{$list.剩余量}
+      </div>
+    </li>
+  </ul>
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        <span class="color-gray">{:L('总价')}：</span>{:(number_format($list['挂单总量']*$list['挂单价'],$decimalLen))}
+            <span class="color-gray">{:L('状态')}：</span>{:L($list['状态'])}
+      </div>
+    </li>
+  </ul>
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        <span class="color-gray">{:L('操作')}：</span><if condition="($list['剩余量'] gt 0) AND ($list['状态'] eq 0) AND ($stockBuycancel eq true)"><a href="javascript:;" class="button_orange_c" onclick="laConfirm('__MODULE__/Fun_stock/stockcancel:__XPATH__/id/{$list.id}')"><button id="clear-all" type="button">{:L('撤销')}</button></a></if>
+      </div>
+    </li>
+  </ul>
+  </foreach>
+</div>
+  <div class="card-content">
+
+</div>
+</div>
+</div>
+</div>
+<include file="Public:footer" />
+<script>
+  function  laConfirm(url) {
+    $.modal({text: "{:L('您确定要撤销吗')}?",buttons: [{text: "{:L('确定')}",onClick: function(){
+        location.href = url;
+    }},{text: "{:L('取消')}"}]});
+  };
+</script>

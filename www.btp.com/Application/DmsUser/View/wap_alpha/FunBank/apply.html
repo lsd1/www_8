@@ -1,0 +1,58 @@
+<include file="Public:header" />
+<div class="content">
+	<form action="__MODULE__/FunBank/apply_save" method="post"  id="register" name='register' enctype="multipart/form-data">
+		<div class="list-block">
+			<ul>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('申请额度')}：</div>
+						<div class="item-input"><input type="text" id="apply_val" name="apply_val" value="" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"></div>
+					</div>
+				</li>
+				<li class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('凭证')}：</div>
+						<div class="item-input">
+							<a href="javascript:;" class="upload">{:L('选择图片')}
+			                    <input class="change" type="file" multiple="multiple" name="apply_img" />
+			                </a>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="content-block">
+				<div class="row">
+					<div class="col-50"><a class="button button-success button-big button-fill" id='subbut' onclick="tijiao()" href="#">{:L('确认')}</a></div>
+					<div class="col-50"><a class="button button-success button-big button-fill" id='button' onclick="history.back();" href="#">{:L('返回')}</a></div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<include file="Public:footer"/>
+<script type="text/javascript">
+function tijiao(){
+	var mess = "";
+	if($('#apply_val').val()=='' || $('#apply_val').val()==null)
+	{
+		mess="{:L('请输入额度')}！<br/>"+mess;
+	}
+	if(mess !=""){
+		layer.alert(mess, { title: "{:L('提示')}", btn: "{:L('确定')}"});
+		return false;
+	}
+	var ua = navigator.userAgent.toLowerCase();
+	var s;
+	if ((/firefox\/([\d.]+)/).test(ua)) { //判断火狐浏览器
+		$('#subbut').attr('disabled',true);
+		$('#subbut').val("{:L('正在提交,请等待...')}");
+		$('#register').submit();
+		$('#subbut').val("{:L('确认')}");
+		$('#subbut').attr('disabled',false);
+	} else {
+		$('#subbut').attr('disabled',true);
+		$('#subbut').val("{:L('正在提交,请等待...')}");
+		$('#register').submit();
+	}
+}
+</script>

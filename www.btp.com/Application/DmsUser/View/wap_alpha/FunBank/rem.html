@@ -1,0 +1,167 @@
+<php>
+function printStatus($status) {
+	if($status==0) {
+        $wei = L('未审核');
+		return $wei;
+	} else {
+        $yi = L('已审核');
+		return $yi;
+	}
+}
+</php>
+<include file="Public:header" />
+<div class="content notice">
+	<p>
+		<if condition="$is_huikuanimg">
+		<a href="__MODULE__/FunBank/add_rem">{:L('添加汇款通知')}</a>
+		<else/>
+		<a href="__MODULE__/FunBank/add_rem_two">{:L('添加汇款通知')}</a>
+		</if>
+	</p>
+    <foreach name='data.list' item='vo'>
+    <div class="card">
+        <div class="card-header">
+            {:L('状态')}: {:printStatus($vo['状态'])}
+            <if condition="($vo['状态'] neq 1)"><a href="javascript:laConfirm('__MODULE__/FunBank/rem_delete/id/{$vo.id}')">{:L('删除')}</a></if>
+        </div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                <div class="row">
+                    <div class="col-33 text-right">
+                        <span class="color-gray">{:L('金额')}：</span>
+                    </div>
+                    <div class="col-66">
+                        <span class="color-warning">
+                            {$vo.金额}
+                        </span>
+                    </div>
+                </div>
+                <if condition="$is_huikuanimg">
+                <div class="row">
+                    <div class="col-33 text-right">
+                        <span class="color-gray">{:L('汇入账户卡号')}：</span>
+                    </div>
+                    <div class="col-66">
+                        {$vo.汇入账户卡号}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-33 text-right">
+                        <span class="color-gray">{:L('汇入账户开户名')}：</span>
+                    </div>
+                    <div class="col-66">
+                        {$vo.汇入账户开户名}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-33 text-right">
+                        <span class="color-gray">{:L('汇入账户开户行')}：</span>
+                    </div>
+                    <div class="col-66">
+                        {$vo.汇入账户开户行}
+                    </div>
+                </div>
+                <else />
+                <div class="row">
+                    <div class="col-33 text-right">
+                        <span class="color-gray">{:L('汇入账户')}：</span>
+                    </div>
+                    <div class="col-66">
+                        {$vo.汇入账户}
+                    </div>
+                </div>
+                </if>
+                <div class="row">
+                    <div class="col-33 text-right">
+                        <span class="color-gray">{:L('开户银行')}：</span>
+                    </div>
+                    <div class="col-66">
+                        {$vo.开户银行}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-33 text-right">
+                        <span class="color-gray">{:L('银行卡号')}：</span>
+                    </div>
+                    <div class="col-66">
+                        {$vo.银行卡号}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-33 text-right">
+                        <span class="color-gray">{:L('开户名')}：</span>
+                    </div>
+                    <div class="col-66">
+                        {$vo.开户名}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            {:L('汇款时间')}：{:date('Y-m-d H:i:s',$vo['汇款时间'])}
+            <br>
+            {:L('备注')}：{$vo.备注}
+        </div>
+    </div>
+    </foreach>
+
+	<div class="pager">
+		<if condition="$data['nowPage'] neq 1">
+		<a href="{$data.firstRow}">&laquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&laquo;</a>
+		</if>
+
+		<a href="{$data.upRow}">&lt;</a>
+
+		<if condition="isset($data['rollPage'][-2])">
+		<a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][-1])">
+		<a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>
+		</if>
+
+		<a href="javascript:void(0)">{$data.nowPage}/{$data.totalPages}</a>
+
+		<if condition="isset($data['rollPage'][1])">
+		<a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][2])">
+		<a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>
+		</if>
+
+		<a href="{$data.downRow}">&gt;</a>
+
+		<if condition="$data['nowPage'] lt $data['totalPages']">
+		<a href="{$data.theEndRow}">&raquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&raquo;</a>
+		</if>
+	</div>
+</div>
+<include file="Public:footer" />
+<script>
+    function laConfirm(url) {
+        $.modal({
+            text: "{:L('确定要删除吗?')}",
+            buttons: [
+	            {
+	                text: "{:L('确定')}",
+	                onClick: function () {
+	                    window.location.href = url;
+	                }
+	            },
+	            {
+	            	text: "{:L('取消')}",
+	                onClick: function () {
+	                	window.location.href = "";
+	                }
+	            }
+	        ]
+        });
+    }
+</script>
+</div>
+

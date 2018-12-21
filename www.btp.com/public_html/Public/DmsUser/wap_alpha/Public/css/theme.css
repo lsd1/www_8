@@ -1,0 +1,235 @@
+@charset "utf-8";
+/* === Blue layout === */
+
+.theme-blue .bar:after,
+.bar.theme-blue:after {
+  background-color: #0392ec;
+}
+.theme-blue .bar .searchbar .searchbar-cancel {
+    color: #fff;
+}
+.theme-blue .picker-modal .bar .title {
+    color: #fff;
+}
+.theme-blue .picker-modal .button-link {
+    color: #fff;
+}
+.theme-blue .title {
+  color: #fff;
+}
+.theme-blue .bar .button .icon {
+    color: #fff;
+}
+.theme-blue .bar-nav,
+.bar-nav.theme-blue {
+  background-color: #3d4145;
+  color: #fff;
+}
+.theme-blue .bar-nav:before,
+.theme-blue .bar-tab:before,
+.bar-nav.theme-blue:before,
+.bar-tab.theme-blue:before {
+  background-color: #dfdfdf;
+}
+
+.theme-blue .picker-calendar-week-days {
+  color: #fff;
+  background-color: #131313;
+}
+.theme-blue .picker-modal.picker-modal-inline .picker-center-highlight:before {
+  background-color: #0392ec;
+}
+.theme-blue .picker-modal.picker-modal-inline .picker-center-highlight:after {
+  background-color: #0392ec;
+}
+.theme-blue .picker-modal.picker-modal-inline .picker-item.picker-selected {
+  color: #fff;
+}
+.theme-blue .picker-modal.picker-modal-inline .picker-calendar-week-days {
+  color: #fff;
+}
+.theme-blue .picker-modal.picker-modal-inline .picker-calendar-day {
+  color: #fff;
+}
+.theme-blue .picker-modal.picker-modal-inline .picker-calendar-day.picker-calendar-day-prev,
+.theme-blue .picker-modal.picker-modal-inline .picker-calendar-day.picker-calendar-day-next {
+  color: #777;
+}
+.theme-blue .picker-modal.picker-modal-inline .picker-calendar-day.picker-calendar-day-disabled {
+  color: #555;
+}
+.theme-blue .picker-modal.picker-modal-inline .picker-calendar-day.picker-calendar-day-today span {
+  background: #444;
+}
+.theme-blue .picker-modal.picker-modal-inline .picker-calendar-week-days:after,
+.theme-blue .picker-modal.picker-modal-inline .picker-calendar-row:after {
+  background-color: #0392ec;
+}
+.theme-blue .picker-modal.picker-modal-inline .toolbar ~ .picker-modal-inner .picker-calendar-months:before,
+.theme-blue .picker-modal.picker-modal-inline .picker-calendar-week-days ~ .picker-calendar-months:before {
+  background-color: #0392ec;
+}
+.theme-blue .photo-browser .navbar,
+.photo-browser.theme-blue .navbar,
+.theme-blue .view[data-page="photo-browser-slides"] .navbar,
+.view[data-page="photo-browser-slides"].theme-blue .navbar,
+.theme-blue .photo-browser .toolbar,
+.photo-browser.theme-blue .toolbar,
+.theme-blue .view[data-page="photo-browser-slides"] .toolbar,
+.view[data-page="photo-browser-slides"].theme-blue .toolbar {
+  background: rgba(19, 19, 19, 0.95);
+}
+.theme-blue .tabbar a:not(.active) {
+  color: #fff;
+}
+.theme-blue .content-block-title {
+    font-size: 1rem;
+}
+.theme-blue .content-block,
+.content-block.theme-blue {
+  color: #333;
+}
+.theme-blue .content-block-inner {
+  background: #1c1d1f;
+  color: #ddd;
+}
+.theme-blue .content-block-inner:before {
+  background-color: #393939;
+}
+.theme-blue .content-block-inner:after {
+  background-color: #393939;
+}
+.theme-blue .swipeout-actions-left a,
+.theme-blue .swipeout-actions-right a {
+  background-color: #444;
+}
+.theme-blue .item-after {
+  color: #bbb;
+}
+.theme-blue .item-link.list-button:after {
+  background-color: #393939;
+}
+.theme-blue .list-block-label {
+  color: #bbb;
+}
+.theme-blue .item-divider,
+.theme-blue .list-group-title {
+  background: #1a1a1a;
+  color: #bbb;
+}
+.theme-blue .item-divider:before,
+.theme-blue .list-group-title:before {
+  background-color: #393939;
+}
+
+/*确认信息*/
+.container-bag {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 101;
+}
+.container-cont {
+    min-width: 60%;
+    -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: #fff;
+      border-radius: 6px;
+      padding: 20px 26px;
+}
+.content-esc {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    font-size: 22px;
+    line-height: 20px;
+    text-align: center;
+    color: #999;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #eee;
+}
+.content-list {
+    font-size: 14px;
+    line-height: 28px;
+    color: #000;
+}
+.list-left {
+    width: 98px;
+    text-align: right;
+    float: left;
+}
+.list-right {
+    margin-left: 98px;
+    color: #000;
+}
+.list-right span {
+    margin-left: 16px;
+}
+.content-buttom {
+    width: 100%;
+    border-radius: 4px;
+    height: 36px;
+    margin: 10px auto 0;
+    background: #ff6600;
+}
+.content-buttom .s_btn {
+    height: 100%;
+    width: 100%;
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.content-buttom:hover {
+    background: #e55d02;
+}
+
+
+.button-warning.button-fill{
+  background: #4781ca !important;
+}
+
+.list-block li{
+  padding: 0 12px;
+}
+
+.btn-wrapper{
+    width: 100%;
+    height: auto;
+    margin-top: 18px;
+    box-sizing: border-box;
+    padding: 0 12px;
+}
+
+.btn-wrapper .btn-m{
+    display: block;
+    width: 100%;
+    height: 44px;
+    background: #4781ca;
+    border: none;
+    outline: none;
+    color: #fff;
+    text-align: center;
+    line-height: 44px;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+.popup .content .list-block li:last-child:after{
+  display: none;
+}
+
+.popup .content .list-block ul:after{
+  display: none;
+}

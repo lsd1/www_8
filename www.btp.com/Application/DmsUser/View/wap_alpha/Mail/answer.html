@@ -1,0 +1,41 @@
+<include file="Public:header" />
+<div class="content notice">
+    <form action="__MODULE__/Mail/answerSave" method="post">
+    <input name="id" value="{$list.id}" type="hidden">
+    <div class="list-block">
+		<ul>
+            <li>
+				<div class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">{:L('回复邮件')}</div>
+						<div class="item-input">{$list.标题}</div>
+					</div>
+				</div>
+			</li>
+			<li class="align-top">
+				<div class="item-content">
+					<div class="item-inner">
+						<div class="item-title label">内容</div>
+						<div class="item-input">
+							<textarea id="#answerContent" name="answerContent" placeholder="邮件内容..."></textarea>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<p>
+		<button class="button button-fill button-big button-warning submit" type="submit">{:L('发表回复')}</button>
+	</p>
+	</form>
+</div>
+
+<include file="Public:footer" />
+<script type="text/javascript">
+// $(function(){
+// KindEditor.create($("#answerContent"), {
+// 	allowFileManager : true,
+// 	afterBlur: function(){this.sync();}
+// });
+// })
+</script>

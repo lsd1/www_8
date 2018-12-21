@@ -1,0 +1,43 @@
+<include file="Public:header" />
+<div class="content" id="tradedetail">
+	<foreach name="infos" item="info">
+		<div class="list-block">
+	        <ul>
+	            <li class="item-content">
+	                <div class="item-inner">
+	                    <div class="item-title"><strong>{:L('交易编号')}</strong></div>
+	                    <div class="item-after">{$info.name}</div>
+	                </div>
+	            </li>
+	            <li class="item-content">
+	                <div class="item-inner">
+	                    <div class="item-title">{:L('交易数量')}</div>
+	                    <div class="item-after">{$info.num}</div>
+	                </div>
+	            </li>
+	            <li class="item-content">
+	                <div class="item-inner">
+	                    <div class="item-title">{:L('交易价格')}</div>
+	                    <div class="item-after">{$info.price}</div>
+	                </div>
+	            </li>
+	            <li class="item-content">
+	                <div class="item-inner">
+	                    <div class="item-title">{:L('交易金额')}</div>
+	                    <div class="item-after">{$info.money}</div>
+	                </div>
+	            </li>
+	            <li class="item-content">
+	                <div class="item-inner">
+	                    <div class="item-title">{:L('交易时间')}</div>
+	                    <div class="item-after">{$info.time|date="Y-m-d H:i:s",###}</div>
+	                </div>
+	            </li>
+	        </ul>
+	    </div>
+	</foreach>
+	<div class="content-padded">
+		<div class="button button-big button-warning button-fill goback">{:L('返回')}</div>
+	</div>
+</div>
+<include file="Public:footer" />

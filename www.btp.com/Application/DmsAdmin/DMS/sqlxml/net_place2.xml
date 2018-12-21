@@ -1,0 +1,22 @@
+<table name='{$this->name}' engine="InnoDB">
+<field name="id"       type="int(11)" auto_increment="1" primary="1" />
+<field name='序号'     type="int(11)" default="0"/>
+<field name='userid'   type="char(32)" default=""/>
+<field name='编号'     type="varchar(50)" default=""/>
+<field name='上级id' type="char(32)" default=""/>
+<field name='位置' type="varchar(50)" default=""/>
+<field name='进网时间' type="varchar(50)" default=""/>
+<field name='层数' type="int(11)"  default='0'/>
+<field name='计算' type="int(11)"  default='0'/>
+<foreach name="{$this->getBranch()}" item="vo">
+	<field name='{$vo}区'  type='int(11)' default='0'/>
+</foreach>
+</table>
+<table name='{$this->name}网体' engine="InnoDB">
+	<field name='userid'    type='char(32)'/>
+	<field name='parentid'  type='char(32)'/>
+	<field name='layer'     type='int'/>
+	<field name='region'  type='char(1)'/>
+	<field name='INDEX (`userid`)' type="KEY"/>
+	<field name='INDEX (`parentid`)' type="KEY"/>
+</table>

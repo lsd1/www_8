@@ -1,0 +1,55 @@
+<include file="Public:header" />
+<div class="content">
+	<div class="list-block">
+		<ul>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('用户编号')}：</div>
+					<div class="item-input">{$user.编号}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('姓名')}：</div>
+					<div class="item-input">{$user.姓名}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('会员级别')}：</div>
+					<div class="item-input">{$user.会员级别}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('注册时间')}：</div>
+					<div class="item-input">{$user.注册时间|date="Y-m-d H:i:s",###}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('推荐人')}：</div>
+					<div class="item-input">{$user.推荐_上级编号}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('接点人')}：</div>
+					<div class="item-input">{$user.管理_上级编号}</div>
+				</div>
+			</li>
+			<li class="item-content">
+				<div class="item-inner">
+					<div class="item-title label">{:L('位置')}：</div>
+					<div class="item-input">{$user.管理_位置}区</div>
+				</div>
+			</li>
+		</ul>
+		<div class="content-block">
+			<div class="row">
+				<div class="col-50"><a class="button button-success button-big button-fill" id='button' onclick="history.back();" href="#">{:L('返回')}</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>

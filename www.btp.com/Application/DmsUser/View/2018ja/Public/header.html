@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
+    <title>{:L("会员中心")}</title>
+    <meta content="" name="keywords"/>
+    <meta content="" name="description"/>
+    <link href="__TMPL__Public/fonts/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__Public/css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__Public/css/register.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__Public/css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="__TMPL__Public/css/index.css" rel="stylesheet" type="text/css"/>
+    <script src="__PUBLIC__/jquery-1.x.min.js"></script>
+    <script>
+		var queren = '{:L("确认")}';
+		var	quxiao = '{:L("取消")}';
+	</script>
+</head>
+<body>
+    <!-- header -->
+    <div class="header clearfloat">
+        <div class="language-wrapper clearfloat">
+           <a href="__MODULE__/Index/index/l/zh-cn" class="language-item">
+               <img src="__TMPL__Public/images/zh-cn.png" alt="" class="flag">
+               <span>中文</span>
+           </a>
+           <a href="__MODULE__/Index/index/l/en" class="language-item">
+               <img src="__TMPL__Public/images/en.png" alt="" class="flag">
+               <span>English</span>
+           </a>
+        </div>
+        <div class="info-wrapper">
+            <a href="__MODULE__/User/viewNotice" class="info-item">
+                <i class="iconfont">&#xe8c0;</i>
+                <span class="tips">{$today_notices_num}</span>
+            </a>
+            <a href="__MODULE__/Mail/index" class="info-item">
+                <i class="iconfont">&#xe61b;</i>
+                <span class="tips">{$mail_count}</span>
+            </a>
+            <a href="__MODULE__/Public/logout" class="info-item logout">[{:L('退出登录')}]</a>
+        </div>
+    </div>
+    <div class="container">
+       <div class="floor top-wrapper">
+           <div class="welcome">{:L("你好")},{:USER_NAME}</div>
+           <div class="login-time">{:L('欢迎使用，您的账号最近登陆时间为')} {$last_login_time}</div>
+       </div> 

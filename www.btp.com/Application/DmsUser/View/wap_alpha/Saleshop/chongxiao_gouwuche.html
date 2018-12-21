@@ -1,0 +1,157 @@
+<include file="Public:header" />
+<div class="content product">
+    <div class="list-block media-list">
+        <form name="form1" method="post" action="__MODULE__/Saleshop/buygouwu_chongxiao:__XPATH__" id="form">
+        <ul class="info-list">
+        <if condition="empty($list) eq false">
+            <volist name="list" id="vo">
+            <li class="item-content">
+                <div class="item-media">
+                    <a href="__CONTROLLER__/chanpinxiangxi:__XPATH__/id/{$vo.id}">
+                        <if condition="empty($vo['图片'])">
+                        <img class="thumb" src="__TMPL__Public/img/product.png">
+                        <else />
+                        <img class="thumb" src="{$vo.图片}">
+                        </if>
+                    </a>
+                </div>
+                <div class="item-inner">
+                    <div class="item-title-row">
+                        <div class="item-title">
+                            <span>{:L($vo['名称'])}</span>
+                        </div>
+                        <div class="pull-right">
+                            <a id="clear-one" class="button" data-role="{$vo.wuliuid}">{:L('移除')}</a>
+                        </div>
+                    </div>
+                    <div class="item-subtitle">
+                        <div class="pull-left">{:L('价格')}：￥<span class="js-price">{$vo[$sale:productMoney]}</span></div>
+                        <eq name="sale:productPV" value="true">
+                        <div class="pull-left">PV：<span>{$vo.pv}</span></div>
+                        </eq>
+                        <div class="pull-right">{:L('库存')}：<span class="js-num">{$vo.可订购数量}</span></div>
+                    </div>
+                    <div class="item-bottom">
+                        <div class="item-info pull-left">{:L('购买数量')}：</div>
+                        <ul class="product-num pull-left">
+                            <li><span class="minus">-</span></li>
+                            <li class="num-box"><input class="num-value" name="buynum[{$vo['wuliuid']}]" type="number" value="{$vo.buynum}"></li>
+                            <li><span class="plus">+</span></li>
+                        </ul>
+                    </div>
+                    <div class="item-bottom">
+                        {:L('小计')}：￥<strong><span id="sum-{$vo.id}" class="js-sum">{$vo.sum_price}</span></strong>
+                    </div>
+                </div>
+            </li>
+            </volist>
+            <li>
+            	<div class="item-totalsum">
+            		<div class="item-totalsumxx">
+            		<strong>{:L('汇总')}：</strong><span class="js-totalsum">0.00</span>
+            		</div>
+            	</div>
+            </li>
+        <else />
+        	<li>
+        		<div style="padding-top:5rem;height:18rem;text-align:center;font-size:1.2rem;color:#aaa;">
+        			{:L('购物车还是空的')}...
+        		</div>
+        	</li>
+        </if>
+        </ul>
+        <div class="content-padded">
+            <div class="row">
+        		<if condition="empty($list) eq false">
+                <div class="col-50">
+                    <a href="__MODULE__/Saleshop/buy_shop:__XPATH__" class="button button-fill button-big button-success">{:L('继续浏览商品')}</a>
+                </div>
+                <div class="col-50">
+                    <button id="clear-all" class="button button-fill button-big button-danger" type="button">{:L('清空购物车')}</button>
+                </div>
+                <else />
+	                <div class="col-100" style="bottom: 100px;">
+	                    <a href="__MODULE__/Saleshop/buy_shop:__XPATH__" class="button button-fill button-big button-success">{:L('浏览商品')}</a>
+	                </div>
+                </if>
+            </div>
+        </div>
+        <if condition="empty($list) eq false">
+        <div class="content-padded">
+            <button id="go-next" class="button button-fill button-big button-warning" type="submit">{:L('下一步')}</button>
+        </div>
+        </if>
+        </form>
+    </div>
+</div>
+<include file="Public:footer" />
+<script>
+    //数值计算
+    getTotal();
+    $('.product-num .plus').click(function () {
+        var numValue = $(this).parents('.product-num').find('.num-value').val();
+        var jsNum = parseInt($('.js-num').html());
+        if (numValue < jsNum) {
+            numValue++;
+            $(this).parents('.product-num').find('.num-value').val(numValue);
+        }
+        getSum($(this).parents('.item-inner'));
+    });
+    $('.product-num .minus').click(function () {
+        var numValue = $(this).parents('.product-num').find('.num-value').val();
+        if (numValue > 0) {
+            numValue--;
+            $(this).parents('.product-num').find('.num-value').val(numValue);
+        }
+        getSum($(this).parents('.item-inner'));
+    });
+    $('.product-num .num-value').keyup(function () {
+    	var num = $(this).val();
+    	num.replace(/\./,"");
+    	$(this).val("");
+    	$(this).val(num);
+    	getSum($(this).parents('.item-inner'));
+    });
+    $('.product-num .num-value').change(function () {
+    	var num = $(this).val();
+    	num.replace(/\./,"");
+    	if(num == ''){
+    		num = 0;
+    	}
+    	$(this).val("");
+    	$(this).val(num);
+    	getSum($(this).parents('.item-inner'));
+    });
+    function getSum(e) {
+        var price = parseFloat(e.find('.js-price').html());
+        var num = parseInt(e.find('.num-value').val());
+        var sum = parseFloat(price*num).toFixed(2);
+        var pid = e.find('.js-sum').attr("id");
+        $('#'+pid).html(sum);
+        getTotal();
+    }
+    function getTotal() {
+    	var total = 0;
+    	var sumMoney;
+    	sumMoney = $("span[id^='sum-']");
+    	for(var i=0;i<sumMoney.length && sumMoney[i];i++){
+    		total += parseFloat(sumMoney[i].innerText);
+    	}
+    	$('.js-totalsum').html("￥ "+total.toFixed(2));
+    }
+
+    //移除商品
+    $('#clear-one').on('click', function () {
+        _this = $(this);
+        $.modal({text: "{:L('您确定要移除该商品吗')}?",buttons: [{text: "{:L('确定')}",onClick: function(){
+            url = _this.attr("data-role");
+            location.href='__MODULE__/Saleshop/buygouwuchongxiao_del:__XPATH__/id/' + url;
+        }},{text: "{:L('取消')}"}]});
+    });
+    //清除购物车
+    $('#clear-all').on('click', function () {
+        $.modal({text: "{:L('您真的要清空购物车里的所有商品吗')}?",buttons: [{text: "{:L('确定')}",onClick: function(){
+            location.href = '__MODULE__/Saleshop/gouwuchechongxiao_del:__XPATH__';
+        }},{text: "{:L('取消')}"}]});
+    });
+</script>

@@ -1,0 +1,54 @@
+<include file="Public:header" />
+<h2 class="container-title">{:L('会员信息')}</h2>
+<ul class="info-box">
+	<li>
+		<img src="__TMPL__Public/img/user-name.png" alt="">
+		<div class="info-tip">
+			<p>{:L('会员编号')}：</p>
+			<p>{$userinfo.编号}</p>
+		</div>
+	</li>
+	<li>
+		<img src="__TMPL__Public/img/level1.png" alt="">
+		<div class="info-tip">
+			<foreach name="userlevel" item="lv" key="key">
+                <if condition="$key eq L('级差级别') and  $lv.byname neq L('暂无')">
+		            <p>{$key}：</p>
+                	<p>{$lv.byname}</p>
+                </if>
+                <if condition="$show_hy eq 1">
+                  <if condition="$key eq L('会员级别')">
+                    <p >{$key}：</p>
+                    <p >{$lv.byname}</p>
+                  </if>
+                </if>
+		    </foreach>
+		</div>
+	</li>
+	<li>
+		<img src="__TMPL__Public/img/reg-time.png" alt="">
+		<div class="info-tip">
+			<p>{:L('注册时间')}：</p>
+			<p>{$userinfo.注册时间|date='Y-m-d H:i:s',###}</p>
+		</div>
+	</li>
+</ul>
+<h2 class="container-title">{:L('账户总览')}</h2>
+<ul class="fund-box">
+	<foreach name="funbank" item="fun_bank" key="key">
+		<li>
+			<div class="fund-title">{$fun_bank.name}</div>
+			<div class="fund-info">
+				<img src="__TMPL__Public/img/fund-icon.png" alt="">
+				<p>{$fun_bank.num}</p>
+			</div>
+		</li>
+	</foreach>
+</ul>
+<h2 class="container-title">{:L('系统公告')}</h2>
+<div class="notice-box">
+    <volist name="notice" id="vo">
+    <div class="notice-list"><a href="__MODULE__/User/showNotice/id/{$vo.id}">{$vo.标题}</a></div>
+    </volist>
+</div>
+<include file="Public:footer" />

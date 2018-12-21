@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>{:L("会员中心")}</title>
+    <link rel="stylesheet" href="__TMPL__Public/fonts2/iconfont.css">
+<!--     <link rel="stylesheet" href="__TMPL__Public/css/common.css"> -->
+    <link rel="stylesheet" href="__TMPL__Public/css/index.css">
+    <link rel="stylesheet" href="__TMPL__Public/dist/css/sm.css">
+    <link rel="stylesheet" href="__TMPL__Public/dist/css/sm-extend.css">
+	<script src="__TMPL__Public/js/zepto.js"></script>
+</head>
+	<body>
+	<div class="header">
+		<div class="top">
+			<a href="__MODULE__/User/viewNotice" class="news">
+				<i class="iconfont">&#xe675;</i>
+				<span class="tip">{$today_notices_num}</span>
+			</a>
+			<div class="logo-wrapper">
+				<img src="__TMPL__Public/images/EB.png" class="thumb" alt="">
+			</div>
+			<a href="__MODULE__/Mail/index" class="mail">
+				<i class="iconfont">&#xe612;</i>
+				<span class="tip">{$mail_count}</span>
+			</a>
+		</div>
+		<div class="middle flex">
+			<div class="info">
+				<div class="f1 clearfix">
+					<div class="no">{:USER_NAME}</div>
+					<div class="degree">
+					<img src="__TMPL__Public/images/de.png" class="de" alt="">
+					<foreach name="userlevel" item="lv" key="k">
+					<if condition="$k eq L('级差级别') and  $lv.byname neq L('暂无')">
+						{$lv.byname}
+					</if>
+					<if condition="$show_hy eq 1">
+        				<if condition="$k eq L('会员级别')">
+        				{$lv.byname}
+        				</if>
+        			</if>
+				</foreach>
+        			</div>
+				</div>
+				<div class="f2">{$last_login_time}</div>
+			</div>
+			<div class="language-wrapper">
+				<div class="lan clearfix">
+					<img <if condition="cookie('think_language') eq en">src="__TMPL__Public/images/en.png"<else/>src="__TMPL__Public/images/zh-cn.png"</if> class="fg" alt="">
+					<span class="lt"><if condition="cookie('think_language') eq en">English<else/>中文</if></span>
+					<i class="iconfont">&#xe628;</i>
+				</div>
+				<div class="lan-menu">
+					<a href="__MODULE__/Index/index/l/zh-cn" class="clearfix border-bottom">
+						<img src="__TMPL__Public/images/zh-cn.png" class="fg" alt="">
+						<span class="lt">中文</span>
+					</a>
+					<a href="__MODULE__/Index/index/l/en" class="clearfix">
+						<img src="__TMPL__Public/images/en.png" class="fg" alt="">
+						<span class="lt">English</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="notice flex" style="color:#ffffff;height:55px;">
+			<i class="iconfont">&#xe61e;</i>
+			<if condition="count($notice) elt 0">
+           	<div class="isEmpty">{:L('亲爱的会员')}{:USER_NAME}，{:L('目前暂无系统公告')}。</div>
+           	<else/>
+           	<div class="isEmpty"><a href="__MODULE__/User/showNotice/id/{$notice[0]['id']}" class="flex-item nc">{$notice[0]['标题']}</a></div>
+           	</if>
+		</div>
+	</div>
+	<script>
+		$(".language-wrapper").on("click",function(){
+			if($(".lan").hasClass("active")){
+				$(".lan").removeClass("active");
+				$(".lan-menu").hide();
+			}else{
+				$(".lan").addClass("active");
+				$(".lan-menu").show();
+			}
+		});
+	</script>
+	<div class="content container">
+		<php>$i=0;</php>
+   		<foreach name="funbank" item="fun_bank" key="key">
+   		<php>$i++;</php>
+		<div class="block block_{$i}">
+			<div class="block-title">
+				<i class="iconfont color_{$i}">&#xe73a;</i>
+				<a href="__MODULE__/FunBank/index:{$fun_bank['xpath']}" class="link">{$fun_bank.name}</a>
+			</div>
+			<div class="block-con flex">
+				<div class="side">
+					<div class="num">100</div>
+					<div class="num">90</div>
+					<div class="num">80</div>
+					<div class="num">70</div>
+					<div class="num">60</div>
+					<div class="num">50</div>
+					<div class="num">40</div>
+					<div class="num">30</div>
+					<div class="num">20</div>
+					<div class="num">10</div>
+				</div>
+				<div class="img">
+					<img src="__TMPL__Public/images/tab{$i}.png" alt="">
+					<div class="pti">{$fun_bank.num}</div>
+				</div>
+			</div>
+		</div>
+		</foreach>
+	</div>
+		<php>
+		$iconfont=array('&#xe600;','&#xe607;','&#xe718;','&#xe61b;');
+		$i=0;
+		$bg = 1;
+		$pop = 0;
+		</php>
+		<nav class="bar bar-tab">
+			<a href="__MODULE__/Index/index" class="tab-item external pop-nav">
+				<i class="iconfont">&#xe884;</i>
+				<span class="tab-label">{:L('首页')}</span>
+			</a>
+			<present name="menu">
+	        <foreach name="menu" item="vo" key="key">
+	        <if condition='$i gt 0 and isset($iconfont[$i])'>
+	        <a class="tab-item external pop-nav" menu='{$i}' data-rol="{$bg++}">
+				<i class="iconfont">{$iconfont[$i]}</i>
+				<span class="tab-label">{:mb_substr($key,0,strlen($key),'utf-8');}</span>
+			</a>
+			</if>
+			<php>$i++;</php>
+	        </foreach>
+	        </present>
+			<a class="tab-item external pop-nav" menu='0' data-rol="0">
+                <i class="iconfont">&#xe600;</i>
+                <span class="tab-label">{:L('个人中心')}</span>
+            </a>
+		</nav>
+        <!--子菜单-->
+        <present name="menu">
+        <foreach name="menu" item="vo" key="key">
+        <div class="popup popup-{$pop++}">
+            <div class="inner-header">
+                <span class="inner-title">{$key}</span>
+                <a href="__MODULE__/Index/index" class="backto"><i class="iconfont">&#xe884;</i></a>
+                <a href="javascript:;" class="cls pop-close"><i class="iconfont">&#xe613;</i></a>
+            </div>
+            <div class="content">
+                <div class="list-block">
+                    <php>
+                    $bg = 0;
+                    </php>
+                    <ul>
+                        <foreach name="vo" item="val">
+                        	<li class="border-bottom">
+		                        <a class="menu-item" href="__MODULE__/{$val.model}/{$val.action}">
+		                            <i class="iconfont left-icon">&#xe611;</i>
+									<div class="flex-item">{$val.title}</div>
+									<i class="iconfont right-icon">&#xe628;</i>
+		                        </a>
+                        	</li>
+                        </foreach>
+                        <if condition="$val['model'] eq 'User'">
+                        <li class="border-bottom">
+                        	<a class="menu-item border-bottom" href="__MODULE__/Public/logout">
+                                <i class="iconfont left-icon">&#xe611;</i>
+                                <div class="flex-item">{:L('退出')}</div>
+                                <i class="iconfont right-icon">&#xe628;</i>
+                            </a>
+                        </li>
+                        </if>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </foreach>
+        </present>
+        <script src="__TMPL__Public/dist/js/sm.js"></script>
+        <script src="__TMPL__Public/dist/js/sm-extend.js"></script>
+        <script src="__TMPL__Public/js/app.js"></script>
+</body>
+</html>

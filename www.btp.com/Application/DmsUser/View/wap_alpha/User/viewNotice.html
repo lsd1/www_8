@@ -1,0 +1,69 @@
+<include file="Public:header" />
+<div class="content notice">
+    <if condition="count($data['list']) elt 0">
+	<h1>{:L('暂无公告')}</h1>
+	</if>
+	<foreach name='data.list' item='name'>
+	<div class="card">
+		<div class="card-header">
+			<!--<span class="color-gray">标题：</span>-->
+			{$name.标题}
+		</div>
+		<div class="card-content">
+			<div class="row">
+				<div class="col-33">
+					<div class="card-content-inner text-center">
+						<a href="__CONTROLLER__/showNotice/id/{$name.id}" class="color-warning">
+							<span class="icon ion-ios-eye"></span>
+							<small>{:L('查看')}</small>
+						</a>
+					</div>
+				</div>
+				<div class="col-66">
+					<div class="card-content-inner">
+						<p><span class="color-gray">{:L('操作')}：</span><a href="__CONTROLLER__/showNotice/id/{$name.id}">{:L('查看')}</a></p>
+						<p><span class="color-gray">{:L('创建时间')}：</span>{$name.创建时间|date='Y-m-d H:i:s',###}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</foreach>
+	<div class="pager">
+		<if condition="$data['nowPage'] neq 1">
+		<a href="{$data.firstRow}">&laquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&laquo;</a>
+		</if>
+
+		<a href="{$data.upRow}">&lt;</a>
+
+		<if condition="isset($data['rollPage'][-2])">
+		<a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][-1])">
+		<a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>
+		</if>
+
+		<a href="javascript:void(0)">{$data.nowPage}/{$data.totalPages}</a>
+
+		<if condition="isset($data['rollPage'][1])">
+		<a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][2])">
+		<a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>
+		</if>
+
+		<a href="{$data.downRow}">&gt;</a>
+
+		<if condition="$data['nowPage'] lt $data['totalPages']">
+		<a href="{$data.theEndRow}">&raquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&raquo;</a>
+		</if>  
+	</div> 
+</div>		
+<include file="Public:footer" />
+

@@ -1,0 +1,23 @@
+<php>
+$nowtitle = L('产品详情');
+</php>
+<include file="Public:header" />
+<div class="content">
+    <div class="content-block-title text-center">
+        <strong>{$list.名称}</strong>
+    </div>
+    <div class="content-padded">
+        <div class="text-center">
+            <img src="{$list.图片}" style="width:10rem;">
+        </div>
+        <p id="describe">
+            {:htmlspecialchars_decode($list['描述'])}
+        </p>
+        <p>
+	        <span class="button button-fill button-big button-warning go-back" onClick="history.go(-1);">{:L('返回')}</span>
+        </p>
+    </div>
+</div>
+<include file="Public:footer" />
+
+

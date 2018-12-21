@@ -1,0 +1,360 @@
+/** 通用CSS样式 **/
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: "微软雅黑";
+	_min-height: 1px;
+	list-style: none;
+}
+a, body, div, html, img, li, ul, dl, dt, dd {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+html, body {
+	margin: 0px auto;
+	height: auto;
+	min-width: 1360px;
+	overflow-x: auto;
+	overflow-y: auto;
+	background-color: #000103 !important;
+	font: 14px '微软雅黑', 'Helvetica Neue', Arial, \5b8b\4f53, 'Liberation Sans', FreeSans, sans-serif;
+}
+body {
+	overflow: hidden;
+	background-size: 100% 100%;
+	color: #333
+}
+a {
+	text-decoration: none !important;
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
+a:hover,
+a:focus {
+	color: #e74c3c;
+	text-decoration: underline;
+}
+a:focus {
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
+
+img {
+	color: transparent;
+	font-size: 12px;
+	-ms-interpolation-mode: bicubic;
+}
+ul, dl, dt, dd {
+	list-style: none;
+}
+
+i {
+	font-style: normal;
+}
+input {
+	font-family: 'Microsoft YaHei';
+	border: 0px;
+	outline: none;
+	vertical-align: middle;
+}
+input[type='text'] {
+	border: 1px solid #dcdcdc;
+	padding: 0px 5px;
+	font-size: 12px;
+	width: 130px;
+	color: #555;
+}
+input[type='password'] {
+	border: 1px solid #dcdcdc;
+	padding: 0px 5px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	width: 130px
+}
+input[type='submit'] {
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.w1200 {
+	width: 1200px;
+	margin: 0px auto;
+	height: auto;
+	overflow: hidden;
+}
+
+/*侧边导航*/
+/*侧边导航*/
+.in_top {
+	padding-top: 29px;
+	overflow: hidden;
+}
+.in_top .lange_lam {
+	float: right;
+	overflow: hidden;
+}
+.in_top .lange_lam .lang {
+	display: block;
+	float: left;
+	overflow: hidden;
+}
+.lang .navbar-nav {
+	overflow: hidden;
+}
+.lang .navbar-nav .dropdown {
+	padding: 10px 15px;
+	z-index: 10;
+	overflow: hidden;
+}
+.lang .navbar-nav .dropdown .dropdown-toggle:hover {
+	color: #E74C3C;
+}
+.lang .navbar-nav .dropdown .dropdown-toggle {
+	position: relative;
+	display: block;
+	font-size: 14px;
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+.caret_down {
+	padding-left: 5px;
+	overflow: hidden;
+}
+.lang .dropdown-menu {
+	position: absolute;
+	margin-top: 10px;
+	z-index: 1;
+	float: left;
+	min-width: 95px;
+	margin: 2px 0 0;
+	font-size: 14px;
+}
+.lang .dropdown-menu li {
+	width: 95px;
+	overflow: hidden;
+}
+.lang .dropdown-menu li > a {
+	display: block;
+	width: 95px;
+	overflow: hidden;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+	width: 16px;
+	height: 16px;
+	background-color: #767c7e;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(247, 245, 245, 0.15);
+	border-radius: 10px;
+	background-color: #959595;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(247, 245, 245, 0.15);
+	background-color: #767c7e;
+}
+
+/*查看留言*/
+.txt_in {
+	width: 235px !important;
+	border: none !important;
+	background: url(../img/in_bg.png) repeat;
+	font-size: 14px !important;
+	height: 38px;
+	float: left;
+	color: #fff;
+	overflow: hidden;
+}
+.sub_btn {
+	width: 116px;
+	height: 38px;
+	color: #fff;
+	line-height: 38px;
+	background-color: #ff6b6b;
+}
+/**************登录****************/
+.login_box {
+	background: url(../img/login_bg.jpg) no-repeat;
+	position: fixed;
+	background-size: 100% 100%;
+	height: 979px;
+	width: 100%;
+}
+.login_box .logo_log {
+	text-align: left;
+	margin: 0px auto;
+	width: 520px;
+	overflow: hidden;
+}
+.login_box .logo_log > a {
+	padding-top: 43px;
+	padding-bottom: 10px;
+	display: block;
+}
+.login_box .logo_log > a h1 {
+	font-size: 80px;
+	color: #fff;
+	text-align: center;
+}
+.login_box .box_cont {
+	overflow: hidden;
+	position: relative;
+	margin-top: 100px;
+}
+.login_box .box_cont .login_cont {
+	background: url(../img/login_box_bg.png) repeat;
+	width: 520px;
+	height: 412px;
+	margin: 0px auto;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_dl dt {
+	float: left;
+	width: 11%;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_dl dt > i {
+	display: block;
+	margin: 9px 0px;
+	height: 34px;
+	float: left;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_dl dt > i img {
+	padding: 6px 13px 15px 15px;
+}
+.login_box .box_cont .login_cont .log_dl dd {
+	float: left;
+	width: 89%;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_dl dd .txt_in {
+	float: left;
+	height: 54px;
+	background-color: #fff !important;
+	background-image: none;
+	font-size: 16px;
+	color: #333;
+	line-height: 54px;
+	border: none;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont p {
+	padding: 0px 30px;
+	margin: 0px auto;
+}
+.login_box .box_cont .login_cont .log_dl {
+	background-color: #fff;
+	height: 54px;
+	margin: 30px auto 22px auto;
+	border-radius: 3px;
+	width: 460px;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_yz {
+	height: 54px;
+	margin: 0px auto;
+	border-radius: 5px;
+	background-color: none;
+	background-image: none;
+	width: 460px;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_yz dt {
+	float: left;
+	width: 230px;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_yz dt .log_yz_input {
+	background-color: #fff;
+	height: 54px;
+	border-radius: 3px;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_yz dt .log_yz_input > i {
+	margin: 9px 0px;
+	height: 34px;
+	float: left;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_yz dt .log_yz_input > i img {
+	padding: 6px 13px 15px 15px;
+}
+.login_box .box_cont .login_cont .log_yz dt .txt_in_for {
+	float: left;
+	color: #333;
+	font-weight: 500;
+	width: 115px;
+	background-color: #fff;
+	background-image: none;
+	font-size: 16px;
+	height: 54px;
+	line-height: 54px;
+	border: none;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_yz dd {
+	float: right;
+	width: 220px;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_yz .huoqu {
+	display: block;
+	width: 220px;
+	height: 54px;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .log_yz .huoqu #verifyImg {
+	width: 220px;
+	height: 54px;
+}
+.login_box .box_cont .login_cont .sub_btn {
+	display: block;
+	width: 460px;
+	margin: 19px auto 19px;
+	border-radius: 5px;
+	height: 54px;
+	line-height: 54px;
+	background-color: #0068b7;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .sub_btn:hover {
+	background-color: #0068b7;
+}
+.login_box .box_cont .login_cont .for_box {
+	margin-top: 26px;
+	overflow: hidden;
+}
+.login_box .box_cont .login_cont .for_box .for_get {
+	display: block;
+	float: right;
+	overflow: hidden;
+}
+/**************登录****************/
+
+::-webkit-input-placeholder {/* WebKit browsers */
+	color: #333;
+}
+:-moz-placeholder {/* Mozilla Firefox 4 to 18 */
+	color: #333;
+}
+::-moz-placeholder {/* Mozilla Firefox 19+ */
+	color: #333;
+}
+:-ms-input-placeholder {/* Internet Explorer 10+ */
+	color: #333;
+}

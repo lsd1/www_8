@@ -1,0 +1,4 @@
+<table name='会员'>
+<field name='{$this->name}'  type="{$this->mode}" default="{$this->default}"/>
+<field name='INDEX (`{$this->name}`)' type="KEY"/>
+</table>

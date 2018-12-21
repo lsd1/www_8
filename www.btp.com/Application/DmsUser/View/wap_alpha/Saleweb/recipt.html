@@ -1,0 +1,22 @@
+<php>
+$nowtitle = L('注册成功');  //
+</php>
+<include file="Public:header" />
+<div class="content">
+	<div style="margin: 1rem 0 0 0.7rem ;">
+    	{:L('推广链接注册')}
+    </div>
+    <div style="margin: 0.2rem;padding:1rem 0 8rem;background-color:#FFF;text-align:center">
+	    <div>
+	    	 <img src="__PUBLIC__/Images/ExtJSicons/arrow/accept.png" style="display:inline"/>&nbsp;<span  style="display:inline-block;">{:L('恭喜，您已成功注册会员')}{$newuserid}。</span>
+	    </div>
+	    <div style="margin:1rem 0;text-align:center;font-size:0.8rem;">
+	        <notempty name="recipts">
+                <foreach name="recipts" item="vo" key='rkey'>
+                <a href="{$vo}"/>{:L($rkey)}</a>&nbsp;
+                </foreach>
+	        </notempty>
+	    </div>
+	</div>
+</div>
+<include file="Public:footer" />

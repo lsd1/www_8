@@ -1,0 +1,59 @@
+<include file="Public:header" />
+<div class="content fund-list notice">
+<div class="add"><a href="__MODULE__/FunBank/apply">{:L('添加购买申请')}</a></div>
+	<if condition="count($data['list']) elt 0">
+	<h1>{:L('暂无数据')}</h1>
+	</if>
+	<foreach name='data.list' item='name'>
+    <div class="card">
+        <div class="card-header">
+            {:L('编号')}: {:$name[L('编号')]}
+        </div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                <div><span class="color-gray">{:L('额度')}：</span>{:$name[L('额度')]}</div>
+                <div><span class="color-gray">{:L('状态')}：</span>{:$name[L('状态')]}</div>
+                <div><span class="color-gray">{:L('时间')}：</span>{:$name[L('时间')]}</div>
+            </div>
+        </div>
+    </div>
+	</foreach>
+
+	<div class="pager">
+		<if condition="$data['nowPage'] neq 1">
+		<a href="{$data.firstRow}">&laquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&laquo;</a>
+		</if>
+
+		<a href="{$data.upRow}">&lt;</a>
+
+		<if condition="isset($data['rollPage'][-2])">
+		<a href="{$data.rollPage.-2}">{$data['nowPage']-2}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][-1])">
+		<a href="{$data.rollPage.-1}">{$data['nowPage']-1}</a>
+		</if>
+
+		<a href="javascript:void(0)">{$data.nowPage}/{$data.totalPages}</a>
+
+		<if condition="isset($data['rollPage'][1])">
+		<a href="{$data.rollPage.1}">{$data['nowPage']+1}</a>
+		</if>
+
+		<if condition="isset($data['rollPage'][2])">
+		<a href="{$data.rollPage.2}">{$data['nowPage']+2}</a>
+		</if>
+
+		<a href="{$data.downRow}">&gt;</a>
+
+		<if condition="$data['nowPage'] lt $data['totalPages']">
+		<a href="{$data.theEndRow}">&raquo;</a>
+		<else/>
+		<a href="javascript:void(0)">&raquo;</a>
+		</if>
+	</div>
+</div>
+<include file="Public:footer" />
+
