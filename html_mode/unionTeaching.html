@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+</head>
+<script>
+    // px与rem单位的换算
+    (function () {
+        var clientWidth = document.documentElement.clientWidth;
+        clientWidth = clientWidth > 750 ? 750 : clientWidth;
+        document.documentElement.style.fontSize = clientWidth / 7.5 + 'px';
+    })();
+</script>
+<style>
+    html {
+        max-width: 750px;
+        margin: 0 auto;
+    }
+    body {
+        width: 94%;
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-direction:column;
+        flex-wrap: wrap;
+        margin: 3%;
+        font-family: sans-serif;
+    }
+    .center {
+       text-align: center;
+    }
+    .left {
+        text-align: left;
+    }
+    .right {
+        text-align: right;
+    }
+    .first-title {
+        font-weight: bold;
+        font-size: larger;
+        color: #2D2E38;
+    }
+    .second-title{
+        font-weight: bold;
+        font-size: large;
+        color: #2D2E38;
+    }
+    .item{
+        margin-top: .15rem;
+    }
+    .item-title {
+        margin-top: .15rem;
+        font-weight: bold;
+        font-size: medium;
+        color: #2D2E38;
+    }
+    .item-content{
+        margin-top: .2rem;
+        text-indent: .7rem;
+        color: #999;
+        font-size: 0.3rem;
+    }
+    .item-li{
+        margin-top: .2rem;
+        text-indent: 2rem;
+    }
+
+    img {
+        width: 100%;
+    }
+    .tip_img {
+        margin-top: .2rem;
+        border: 1px dotted grey;
+        font-size: large;
+    }
+    .tips{
+        position: absolute;
+        text-align: left;
+        color: red;
+        font-size: small;
+        border: 1px solid;
+        padding: .05rem;
+    }
+</style>
+<body>
+    <div class="first-title center">
+        Union Chain Club教學
+    </div>
+    <div class="item">
+        <div class="item-title">
+            一、關於下載安裝
+        </div>
+        <div class="item-content">
+            蘋果以及安卓系統手機均打開下載鏈接（由脈果兒放公佈下載鏈接為準），點擊Download，等待安裝完成後，安卓系統可直接使用。蘋果系統點擊設置-通用-設備管理後找到相應的APP設備用過允許證書後即可使用。
+            <img src="images/image042.png">
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            二、關於登錄
+        </div>
+        <div class="item-content">
+            打開APP後到登錄頁面進行登錄，原脈果兒APP用戶無需重新註冊，可直接使用原脈果兒APP賬號手機號和密碼即可登錄本APP。
+        </div>
+        <div class="tip_img">
+            <img src="images/image043.png">
+            <sapn class="tips" style="margin-top: -8.5rem;margin-left: 3.3rem;width: 3.4rem;">
+                輸入原脈果兒APP賬號手機號或者ID號以及密碼進行登錄
+            </sapn>
+        </div>
+        <div class="item-content">
+            若您忘記原脈果兒APP的密碼，可點擊忘記密碼進行找回。我們提供了兩種找回方式，原脈果兒APP用戶請使用手機找回。接收驗證碼後輸入設置新密碼。
+        </div>
+        <div class="tip_img">
+            <img src="images/image044.png">
+            <sapn class="tips" style="margin-top: -8.8rem; margin-left: 2rem;width: 3rem;">
+                脈果兒賬號未綁定郵箱時請選擇手機找回方式。
+            </sapn>
+        </div>
+        <div class="tip_img">
+            <img src="images/image045.png">
+            <sapn class="tips" style="margin-top: -10rem; margin-left: .9rem; width: 5rem;">
+                接受驗證碼前點擊左側按鈕選擇國家區號。接收驗證通過後點擊下一步設置賬戶新密碼
+            </sapn>
+        </div>
+
+        <div class="tip_img">
+            <img src="images/image046.png">
+            <sapn class="tips" style="margin-top: -9.7rem; margin-left: 1rem; width: 5rem;">
+                設置新密碼以及再次輸入新密碼進行確定
+            </sapn>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            三、關於註冊
+        </div>
+        <div class="item-content">
+            在登錄頁面中點擊最下方的註冊賬號進行註冊，本APP提供了兩種註冊方式：手機號註冊以及郵箱註冊，用戶接收驗證碼後設置密碼即可完成註冊。        </div>
+        <img src="images/image047.png">
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            四、關於轉賬
+        </div>
+        <div class="item-content">
+        </div>
+        <div class="tip_img">
+            <img src="images/image048.png">
+            <sapn class="tips" style="    margin-top: -6.6rem; margin-left: 1.1rem; width: 5rem;">
+                登錄到首頁後可點擊任一數字資產進行輸入轉出操作（一共五種資產），例如進入VSC幣種詳情頁
+            </sapn>
+        </div>
+
+        <div class="tip_img">
+            <img src="images/image049.png">
+            <sapn class="tips" style="    margin-top: -6rem; margin-left: .7rem; width: 6.18rem;">
+                這裡顯示用戶當前已在公鏈上的VSC資產，<br />
+                可上鏈的為被凍結狀態的VSC資產。<br />
+                下方地址為用戶在Union Chain Club 錢包中的地址。<br />
+                點擊轉出可向其他賬號地址進行轉賬資產；<br />
+                點擊轉出可向他人展示地址二維碼進行接收資產。
+            </sapn>
+        </div>
+
+        <div class="tip_img">
+            <img src="images/image050.png">
+            <sapn class="tips" style="margin-top: -10.5rem; margin-left: 3rem; width: 3.7rem;">
+                用戶在進行轉出時需要輸入:<br />
+                1、轉賬數量<br />
+                2、接收地址（建議點擊右上角按鈕掃描輸入，避免輸錯）<br />
+                3、備註文字（選填）<br />
+            </sapn>
+            <sapn class="tips" style="margin-top: -2.5rem; margin-left: .25rem; width: 6.5rem;">
+                輸入以上選項後用戶點擊確定時輸入驗證PIN碼，未設置PIN碼的用戶則需要先設置PIN碼。<br />
+                注意：原脈果兒用戶的PIN碼為脈果兒APP的二級密碼，用戶直接輸入原脈果兒APP的二級密碼即可完成驗證
+            </sapn>
+        </div>
+
+        <div class="tip_img">
+            <img src="images/image051.png">
+            <sapn class="tips" style="margin-top: -8rem; margin-left: 2rem;">
+                轉賬時需要驗證PIN碼
+            </sapn>
+        </div>
+
+        <div class="tip_img">
+            <img src="images/image052.png">
+            <sapn class="tips" style="margin-top: -5rem; margin-left: .25rem; width: 6.5rem;">
+                未設置PIN碼用戶可點擊我的-PIN碼管理進行設置PIN碼。PIN碼在APP中進行支付時均需要驗證，
+                請務必保存已設置的PIN碼，PIN碼不支持手機找回以及客服幫助找回，請各位用戶知悉
+            </sapn>
+        </div>
+
+        <div class="tip_img">
+            二维码地址
+            <img src="images/image053.png">
+            <sapn class="tips" style="margin-top: -3rem; margin-left: .8rem; width: 5.6rem;">
+                接收數字資產時建議向轉賬方出示此地址二維碼，方便快捷且可確保為地址和幣種正確。
+                注意：脈果兒用戶進行綁定積分上連的智能合約地址時確認掃描的地址為SVC的地址二維碼
+            </sapn>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            五、關於聯盟俱樂部
+        </div>
+        <div class="item-content"></div>
+        <div class="tip_img">
+            <img src="images/image054.png">
+            <sapn class="tips" style="margin-top: -9rem; margin-left: .8rem; width: 5.6rem;">
+                用戶點擊應用後可看到聯盟俱樂部和風氣梧桐兩個應用。點擊進入相應的模塊
+            </sapn>
+        </div>
+        <div class="tip_img">
+            <img src="images/image055.png">
+            <sapn class="tips" style="margin-top: -9rem; margin-left: .8rem; width: 5.6rem;">
+                進入聯盟俱樂部可看到聯盟分潤和聯盟勛章，獲得聯盟勛章需要交納一定的SVC數字資產。聯盟分潤為推薦分潤
+            </sapn>
+        </div>
+       
+    </div>
+    
+    <div class="item">
+        <div class="item-title">
+            六、關於遊戲
+        </div>
+        <div class="item-content"></div>
+        <div class="tip_img">
+            <img src="images/image056.png">
+            <sapn class="tips" style="margin-top: -11rem; margin-left: .8rem; width: 5.6rem;">
+                鳳棲梧桐的所有交易以及道具均使用金幣進行支付。用戶可使用SVC資產進行兌換。
+            </sapn>
+        </div>
+
+        <div class="tip_img">
+            <img src="images/image057.png">
+            <sapn class="tips" style="margin-top: -6rem; margin-left: .8rem; width: 5.6rem;">
+                兌換數量需要100的倍數，兌換後金幣立即到賬。
+            </sapn>
+        </div>
+    </div>
+</body>
+<script>
+    noWrap(['first-title']);
+    /**
+     * desc     防止标题换行
+     * params   className
+     * params type:string、object
+     */
+    function noWrap(ele) {
+        var eleArr = [],type = typeof ele;
+        if(type === "object"){
+            for (var i in ele){
+                eleArr.push(ele[i]);
+            }
+        }else if(type === "string"){
+            eleArr.push(ele);
+        }
+
+        for(var j = 0; j < eleArr.length; j++) {
+            var eleHandle = document.querySelector('.' + eleArr[j]),
+                eleStyle = window.getComputedStyle(eleHandle),
+                eleStyleFontSize = Number(eleStyle.fontSize.replace('px', '')),
+                eleContentLength= eleHandle.innerText.length,
+                eleRealWidth = eleStyleFontSize * eleContentLength,
+                eleWidth = eleStyle.width.replace('px', '');
+
+            if(eleRealWidth > eleWidth) {
+                eleHandle.style.fontSize = (eleWidth / (eleContentLength)) + 'px';
+            }
+        }
+    }
+</script>
+</html>

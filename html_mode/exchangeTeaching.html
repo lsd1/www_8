@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+</head>
+<script>
+    // px与rem单位的换算
+    (function () {
+        var clientWidth = document.documentElement.clientWidth;
+        clientWidth = clientWidth > 750 ? 750 : clientWidth;
+        document.documentElement.style.fontSize = clientWidth / 7.5 + 'px';
+    })();
+</script>
+<style>
+    html {
+        max-width: 750px;
+        margin: 0 auto;
+    }
+    body {
+        width: 94%;
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-direction:column;
+        flex-wrap: wrap;
+        margin: 3%;
+        font-family: sans-serif;
+    }
+    .center {
+       text-align: center;
+    }
+    .left {
+        text-align: left;
+    }
+    .right {
+        text-align: right;
+    }
+    .first-title {
+        font-weight: bold;
+        font-size: larger;
+        color: #2D2E38;
+    }
+    .second-title{
+        font-weight: bold;
+        font-size: large;
+        color: #2D2E38;
+    }
+    .item{
+        margin-top: .15rem;
+    }
+    .item-title {
+        margin-top: .15rem;
+        font-weight: bold;
+        font-size: medium;
+        color: #2D2E38;
+    }
+    .item-content{
+        margin-top: .2rem;
+        text-indent: .7rem;
+        color: #999;
+        font-size: 0.3rem;
+    }
+    .item-li{
+        margin-top: .2rem;
+        text-indent: 2rem;
+    }
+
+    img {
+        width: 100%;
+    }
+    .tip_img {
+        margin-top: .2rem;
+        border: 1px dotted grey;
+        font-size: large;
+    }
+    .tips{
+        position: absolute;
+        text-align: left;
+        color: red;
+        font-size: small;
+        border: 1px solid;
+        padding: .05rem;
+    }
+</style>
+<body>
+    <div class="first-title center">
+        交易平台教學（網頁端）
+    </div>
+    <div class="item">
+        <div class="item-title">
+            一、關於註冊登錄
+        </div>
+        <div class="tip_img">
+            <img src="images/image061.png">
+        </div>
+        <div class="item-content">
+                登錄交易所網站後點擊註冊按鈕，進入註冊頁面，用戶可使用手機號和郵箱進行註冊，原脈果兒APP的用戶需要重新註冊賬號，脈果兒賬號在此網頁無法進行登錄。
+        </div>
+
+        <div class="tip_img">
+            <img src="images/image062.png">
+        </div>
+        <div class="item-content">
+                註冊完成後使用註冊時填寫的手機號/郵箱和設置的密碼進行登錄。
+        </div>
+
+        <div class="tip_img">
+            <img src="images/image063.png">
+        </div>
+        <div class="item-content">
+            用戶第一次登錄成功後請前往個人中心進行身份認證、賬號設置以及賬號安全設置（設置資金密碼）。
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            二、關於賬戶安全設置
+        </div>
+        <div class="item-title">
+            身份認證
+        </div>
+        <div class="item-content">
+            身份認證是進行資金轉賬以及體現的基礎，目前提供的認證方式包括：身份證以及護照
+        </div>
+        <div class="tip_img">
+            <img src="images/image064.png">
+        </div>
+
+        <div class="item-title">
+                賬號設置
+        </div>
+        <div class="item-content">
+            用戶需要進行賬戶設置綁定銀行卡/支付寶/飛馬賬號賬號進行提現和充值
+        </div>
+        <div class="tip_img">
+            <img src="images/image065.png">
+        </div>
+
+        <div class="item-title">
+                賬號安全設置
+        </div>
+        <div class="item-content">
+            在這裡進行資金密碼的設置，資金密碼在進行交易時需要認證輸入
+        </div>
+        <div class="tip_img">
+            <img src="images/image066.png">
+        </div>
+        
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            三、關於資金管理
+        </div>
+        <div class="item-title">
+                資產管理
+        </div>
+        <div class="item-content">
+                1、充幣<br />
+                在資金管理中用戶可往交易所賬號中充數字資產幣種如：VSC、SVC、SVCD、MDT、MGC。
+                充值時需要在錢包APP（如Union Chain Club 和Me Wallet）轉出資產，並輸入交易所網站或APP的幣種地址進行轉賬。轉賬成功後交易所平台會收到轉賬數量的幣。轉賬時請謹慎輸入地址或進行掃描地址。
+        </div>
+        <div class="tip_img">
+            <img src="images/image067.png">
+        </div>
+        <div class="item-content">
+            2、提幣<br />
+            提幣為向錢包APP（如Union Chain Club 和Me Wallet）提取數字資產。在提幣時需要選擇提幣地址，點擊箭頭所指的按鈕進行提幣地址管理。        
+        </div>
+        <div class="tip_img">
+            <img src="images/image068.png">
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            四、關於交易
+        </div>
+        <div class="item-content">
+            交易平台提供兩種交易方式：a、幣幣交易（用一種幣買另一種幣）；b、法幣交易（人民幣買入USDT以及USDT賣為人民幣），用戶點擊左側選擇交易幣種進行交易       
+        </div>
+        <div class="tip_img">
+            <img src="images/image069.png">
+        </div>
+        <div class="tip_img">
+            <img src="images/image070.png">
+        </div>
+        <div class="item-content">
+            幣幣交易分為：限價交易和市價交易       
+        </div>
+        <div class="tip_img">
+            <img src="images/image071.png">
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            五、關於提現
+        </div>
+        <div class="item-content">
+                法幣交易：可選擇購買或者出售USDT，出售則為兌現，可選擇的兌現方式為：支付寶、銀行卡以及飛馬錢包
+                用戶選擇出售賬戶中的USDT後可得到人民幣，用戶選擇提現。
+        </div>
+        <div class="tip_img">
+            <img src="images/image072.png">
+        </div>
+    </div>
+</body>
+<script>
+    noWrap(['first-title']);
+    /**
+     * desc     防止标题换行
+     * params   className
+     * params type:string、object
+     */
+    function noWrap(ele) {
+        var eleArr = [],type = typeof ele;
+        if(type === "object"){
+            for (var i in ele){
+                eleArr.push(ele[i]);
+            }
+        }else if(type === "string"){
+            eleArr.push(ele);
+        }
+
+        for(var j = 0; j < eleArr.length; j++) {
+            var eleHandle = document.querySelector('.' + eleArr[j]),
+                eleStyle = window.getComputedStyle(eleHandle),
+                eleStyleFontSize = Number(eleStyle.fontSize.replace('px', '')),
+                eleContentLength= eleHandle.innerText.length,
+                eleRealWidth = eleStyleFontSize * eleContentLength,
+                eleWidth = eleStyle.width.replace('px', '');
+
+            if(eleRealWidth > eleWidth) {
+                eleHandle.style.fontSize = (eleWidth / (eleContentLength)) + 'px';
+            }
+        }
+    }
+</script>
+</html>
