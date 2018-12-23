@@ -29,13 +29,25 @@ export default function PayManner({payInfo}){
                   </div>
                 }
                 {/**微信 **/}
-              {payInfo.wechatPay&&
+              {/* {payInfo.wechatPay&&
                  <div className="flex-box  flex-alignItem mt-md">
                     <Icon type="zhifubao" style={{color:'#24af41',fontSize:22}} />
                       <span className="label opacity-5">{intl.get('GLOBAL_WECHAT')}</span>
                       {payInfo.realName}  {payInfo.wechatPay.aliNo}  ({intl.get('GLOBAL_WECHAT')})  
                       <Popover placement="bottomLeft"  content={<div><img style={{width:210,height:210}} src={payInfo.wechatPay.qrCodeUrl} alt="" /></div>} trigger="click">
                     <span className="ml-sm pointer"><img style={{width:16,height:16}} src={payInfo.wechatPay.qrCodeUrl} alt="" /></span>
+                  </Popover>
+                </div>
+              } */}
+
+              {/**飞马钱包 **/}
+              {payInfo.fmpay&&
+                 <div className="flex-box  flex-alignItem mt-md">
+                    <Icon type="fm" style={{color:'#24af41',fontSize:22}} />
+                      <span className="label opacity-5">{intl.get('GLOBAL_FM')}</span>
+                      {payInfo.realName}  {payInfo.fmpay.fmNo}  ({intl.get('GLOBAL_FM')})  
+                      <Popover placement="bottomLeft"  content={<div><img style={{width:210,height:210}} src={payInfo.fmpay.qrFmUrl} alt="" /></div>} trigger="click">
+                    <span className="ml-sm pointer"><img style={{width:16,height:16}} src={payInfo.fmpay.qrFmUrl} alt="" /></span>
                   </Popover>
                 </div>
               }

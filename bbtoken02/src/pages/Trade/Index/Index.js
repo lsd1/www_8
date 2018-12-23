@@ -61,8 +61,8 @@ const CreateForm = Form.create()(props => {
                       <Option value="">{intl.get('GLOBAL_ALLPAY_MANAGER')}</Option>
                       {/* <Option value="微信">{intl.get('GLOBAL_WECHAT')}</Option> */}
                       <Option value="支付宝">{intl.get('GLOBAL_ALIPAY')}</Option>
+                      <Option value="飞马钱包">{intl.get('GLOBAL_FM')}</Option>
                       <Option value="银联">{intl.get('GLOBAL_PAY')}</Option>
-                      <Option value="飞马">{intl.get('GLOBAL_FM')}</Option>
                 </Select>
               )}
             </FormItem>

@@ -21,11 +21,17 @@ export default function PayIcon({ name,small=false}) {
           {small &&<span className="mr-sm fz-sm gray">{intl.get('GLOBAL_ALIPAY')}{intl.get('GLOBAL_PAYMENT')}</span>}
           
         </Fragment>)}
-     {name.includes('微信')&&(
+     {/* {name.includes('微信')&&(
      	<Fragment>
           <Icon className="payways-icon"  style={{color:'#24af41',fontSize:22}} type="weixin-copy" />
           {small &&<span className="mr-sm fz-sm gray">{intl.get('GLOBAL_WECHAT')}{intl.get('GLOBAL_PAYMENT')}</span>}
           
+        </Fragment>)} */}
+
+        {name.includes('飞马钱包')&&(
+     	<Fragment>
+          <Icon className="payways-icon"  style={{color:'#24af41',fontSize:22}} type="weixin-copy" />
+          {small &&<span className="mr-sm fz-sm gray">{intl.get('GLOBAL_FM')}{intl.get('GLOBAL_PAYMENT')}</span>}
         </Fragment>)}
      
     </Fragment>);

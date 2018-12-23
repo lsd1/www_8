@@ -72,7 +72,7 @@ const CreateForm = Form.create()(props => {
                       {/*<Option value={1}>PalPal支付</Option>*/}
                       <Option value={2}>{intl.get('GLOBAL_BANK')}</Option>
                       <Option value={3}>{intl.get('GLOBAL_ALIPAY')}</Option>
-                      {/* <Option value={4}>{intl.get('GLOBAL_WECHAT')}</Option> */}
+                      <Option value={4}>{intl.get('GLOBAL_WECHAT')}</Option>
                       <Option value={5}>{intl.get('GLOBAL_FM')}</Option>
                 </Select>
               )}
@@ -284,8 +284,8 @@ class Setting extends PureComponent {
         let paydata = {};
         let qrCodeUrl = [];
         if (type === 2) {
-            paydata = userPayment[{ 2: 'bankInfo', 3: 'alipay', 4: 'wechatPay', 5: 'fmPay' }[state]];
-            paydata.qrCodeUrl=paydata.qrCodeUrl || paydata.qrWeCodeUrl;
+            paydata = userPayment[{ 2: 'bankInfo', 3: 'alipay', 4: 'wechatPay', 5: 'fmpay' }[state]];
+            paydata.qrCodeUrl=paydata.qrCodeUrl || paydata.qrWeCodeUrl || paydata.qrFmUrl;
             qrCodeUrl = paydata.qrCodeUrl ? [{ uid: '-1', url: paydata.qrCodeUrl}] : [];
         }
         this.setState({
@@ -341,7 +341,6 @@ class Setting extends PureComponent {
                             history.go(-1);
                           }
                         });
-
                     }
                 }
             });
@@ -378,26 +377,6 @@ class Setting extends PureComponent {
     render() {
         const { visible, status, payInfo } = this.state;
         const { user: { userPayment } } = this.props;
-        // const { user: { userPayment } } = {
-        //     user:{
-        //         userPayment:{
-        //             "realName" : "刘思东",
-        //             "bankVerified" : 0,
-        //             "aliVerified" : 1,
-        //             "wechatVerified" : 0,
-        //             "fmVerified" : 0,
-        //             "bankInfo" : null,
-        //             "alipay" : {
-        //             "aliNo" : "13613040011",
-        //             "qrCodeUrl" : "http://maiguoer-game.oss-cn-hongkong.aliyuncs.com/2018/12/20/a6460f1a-2fce-40e7-a17c-3bfb0214dc30.png"
-        //             },
-        //             "wechatPay" : null,
-        //             "fmPay" : null,
-        //             "memberLevel" : 1
-        //         }
-        //     }
-        // };
-        console.log(userPayment);
         const handleEdit = {
             selectChange: this.selectHandle,
             handleCancel: this.handleCancel,
@@ -474,15 +453,15 @@ class Setting extends PureComponent {
                               <Icon  className="icon fz-lg ml-md wx-icon" type="weixin-copy" />
                               <p className="declare ml-xs fz-xs opacity-5">{intl.get('GLOBAL_FM')}</p>
                               <p className="info fz-xs">
-                               {userPayment.fmPay&&(
+                               {userPayment.fmpay&&(
                                   <Fragment>
                                     <span className="mr-sm">{userPayment.realName}</span>
-                                    <span className="mr-sm">{userPayment.fmPay.fmNo}</span>
+                                    <span className="mr-sm">{userPayment.fmpay.fmNo}</span>
                                     <span className="mr-sm">{intl.get('GLOBAL_FM')}</span>
                                   </Fragment>)} 
                               </p>
                               <div className="btn flex-box flex-end">
-                                 <p className="yellow pointer" onClick={()=>this.showModal(5,userPayment.fmPay?2:1)}>{userPayment.fmPay?intl.get('USERADV_EDIT'):intl.get('USERINFO_BINDING')}</p>
+                                 <p className="yellow pointer" onClick={()=>this.showModal(5,userPayment.fmpay?2:1)}>{userPayment.fmpay?intl.get('USERADV_EDIT'):intl.get('USERINFO_BINDING')}</p>
                               </div>
                             </div>
                          </div>
@@ -500,7 +479,6 @@ class Setting extends PureComponent {
                      </Modal>
                  </article>
             </Layout>
-
         );
     }
 }

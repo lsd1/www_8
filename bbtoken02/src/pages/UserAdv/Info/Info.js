@@ -154,6 +154,14 @@ class Index extends PureComponent {
             quota:'1000-5000 CNY',
             num: 20000,
             status:0
+        },{
+            no: '3',
+            createTime:'2015-2-2',
+            type:'飞马钱包',
+            name: '张三',
+            quota:'1000-5000 CNY',
+            num: 20000,
+            status:0
         }];
 
 

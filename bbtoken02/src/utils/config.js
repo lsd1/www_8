@@ -7,6 +7,7 @@
 const globalData = {
     //userInfo: null,
      //url:"http://27.155.88.94:8888",  //测试环境
+     //url:"http://192.168.0.111:6001",  //测试环境
      //url:'http://192.168.0.161:1024',
      //url:'http://192.168.2.101:1024',
      url: "https://api.bdaex.io",  //正式环境

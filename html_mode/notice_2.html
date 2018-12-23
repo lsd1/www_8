@@ -5,26 +5,13 @@
     <title></title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
 </head>
-<script>
-    // px与rem单位的换算
-    (function () {
-        var clientWidth = document.documentElement.clientWidth;
-        clientWidth = clientWidth > 750 ? 750 : clientWidth;
-        document.documentElement.style.fontSize = clientWidth / 7.5 + 'px';
-    })();
-</script>
 <style>
-    html {
-        max-width: 750px;
-        margin: 0 auto;
-    }
     body {
-        width: 94%;
         display: -webkit-flex; /* Safari */
         display: flex;
         flex-direction:column;
         flex-wrap: wrap;
-        margin: 3%;
+        margin: 1.5rem;
         font-family: sans-serif;
     }
     .center {
@@ -47,181 +34,54 @@
         color: #2D2E38;
     }
     .item{
-        margin-top: .15rem;
+        margin-top: .5rem;
     }
-    .item-title {
-        margin-top: .15rem;
+    .item-title{
+        margin-top: .5rem;
         font-weight: bold;
         font-size: medium;
         color: #2D2E38;
     }
     .item-content{
         margin-top: .2rem;
-        text-indent: .7rem;
+        text-indent: 2rem;
         color: #999;
-        font-size: 0.3rem;
     }
     .item-li{
         margin-top: .2rem;
         text-indent: 2rem;
     }
-
-    img {
-        width: 100%;
-    }
-    .tip_img {
-        margin-top: .2rem;
-        border: 1px dotted grey;
-        font-size: large;
-    }
-    .tips{
-        position: absolute;
-        text-align: left;
-        color: red;
-        font-size: small;
-        border: 1px solid;
-        padding: .05rem;
-    }
 </style>
 <body>
     <div class="first-title center">
-        Me Wallet教學
+        说明
     </div>
     <div class="item">
         <div class="item-title">
-            一、關於下載安裝
-        </div>
-        <div class="item-content">
-            蘋果以及安卓系統手機均打開下載鏈接（由脈果兒放公佈下載鏈接為準），點擊Download，等待安裝完成後，安卓系統可直接使用。蘋果系統點擊設置-通用-設備管理後找到相應的APP設備用過允許證書後即可使用。
-            <img src="images/image001.png">
+            1、用户从脉果儿凤栖梧桐同步的VSC的资产由于数量过大，系统需要时间做转化，暂不支持上链，具体允许上链时间请以系统公布为准。
         </div>
     </div>
 
     <div class="item">
         <div class="item-title">
-            二、關於登錄
-        </div>
-        <div class="item-content">
-            打開APP後到登錄頁面進行登錄，原脈果兒APP用戶無需重新註冊，可直接使用原脈果兒APP賬號手機號和密碼即可登錄本APP。
-        </div>
-        <div class="tip_img">
-            <img src="images/image004.png">
-            <sapn class="tips" style="margin-top: -8.5rem;margin-left: 3.3rem;width: 3.4rem;">
-                輸入原脈果兒APP賬號手機號或者ID號以及密碼進行登錄
-            </sapn>
-        </div>
-        <div class="item-content">
-            若您忘記原脈果兒APP的密碼，可點擊忘記密碼進行找回。我們提供了兩種找回方式，原脈果兒APP用戶請使用手機找回。接收驗證碼後輸入設置新密碼。
-        </div>
-        <div class="tip_img">
-            <img src="images/image007.png">
-            <sapn class="tips" style="margin-top: -8.8rem; margin-left: 2rem;width: 3rem;">
-                脈果兒賬號未綁定郵箱時請選擇手機找回方式。
-            </sapn>
-        </div>
-        <div class="tip_img">
-            <img src="images/image010.png">
-            <sapn class="tips" style="margin-top: -9.4rem; margin-left: .9rem; width: 5rem;">
-                接受驗證碼前點擊左側按鈕選擇國家區號。接收驗證通過後點擊下一步設置賬戶新密碼
-            </sapn>
-        </div>
-
-        <div class="tip_img">
-            <img src="images/image013.png">
-            <sapn class="tips" style="margin-top: -9.7rem; margin-left: 1rem; width: 5rem;">
-                設置新密碼以及再次輸入新密碼進行確定
-            </sapn>
+            2、用户已拥有的VSC将全部保留在账户中。
         </div>
     </div>
 
     <div class="item">
         <div class="item-title">
-            三、關於註冊
-        </div>
-        <div class="item-content">
-            在登錄頁面中點擊最下方的註冊賬號進行註冊，本APP提供了兩種註冊方式：手機號註冊以及郵箱註冊，用戶接收驗證碼後設置密碼即可完成註冊。        </div>
-        <img src="images/image015.png">
-    </div>
-
-    <div class="item">
-        <div class="item-title">
-            四、關於資產
-        </div>
-        <div class="item-content">
-            資產說明：在Me Wallet APP中我方公司同步了脈果兒用戶的SVC，SVCD，MDT以及MGC資產。
-        </div>
-        <div class="tip_img">
-            <img src="images/image018.png">
-            <sapn class="tips" style="    margin-top: -2.6rem; margin-left: .1rem; width: 5rem;">
-                Me Wallet中展示的資產有五種:<br />
-                1、VSC<br />
-                2、SVC（原脈果兒APP用戶共享禮券）<br />
-                3、SVCD（原脈果兒APP用戶共享積分）<br />
-                4、MDT（原脈果兒APP用戶持有兌換券）<br />
-                5、MGC
-            </sapn>
+            3、上链后的VSC支持转出或者交易。
         </div>
     </div>
 
     <div class="item">
         <div class="item-title">
-            五、關於轉賬
-        </div>
-        <div class="item-content">
-            資產說明：在Me Wallet APP中我方公司同步了脈果兒用戶的SVC，SVCD，MDT以及MGC資產。
-            登錄後可點擊任一數字資產進行輸入轉出操作，例如進入SVCD幣種詳情頁
-        </div>
-        <div class="tip_img">
-            <img src="images/image021.png">
-            <sapn class="tips" style="    margin-top: -6rem; margin-left: .25rem; width: 6.4rem;">
-                页面显示的数字为用戶當前已在公鏈上的SVCD資產，<br />
-                資產下方链接為用戶在Me Wallet錢包中的地址。<br />
-                點擊轉出可向其他賬號地址進行轉賬資產。<br />
-                點擊轉出可向他人展示地址二維碼進行接收資產。
-            </sapn>
-        </div>
-
-        <div class="tip_img">
-            <img src="images/image025.png">
-            <sapn class="tips" style="margin-top: -10.5rem; margin-left: 3rem; width: 3.7rem;">
-                用戶在進行轉出時需要輸入:<br />
-                1、轉賬數量<br />
-                2、接收地址（建議點擊右上角按鈕掃描輸入，避免輸錯）<br />
-                3、備註文字（選填）<br />
-            </sapn>
-            <sapn class="tips" style="margin-top: -2.5rem; margin-left: .25rem; width: 6.5rem;">
-                輸入以上選項後用戶點擊確定時輸入驗證PIN碼，未設置PIN碼的用戶則需要先設置PIN碼。<br />
-                注意：原脈果兒用戶的PIN碼為脈果兒APP的二級密碼，用戶直接輸入原脈果兒APP的二級密碼即可完成驗證
-            </sapn>
-        </div>
-
-        <div class="tip_img">
-            <img src="images/image028.png">
-            <sapn class="tips" style="margin-top: -8rem; margin-left: 2rem;">
-                轉賬時需要驗證PIN碼
-            </sapn>
-        </div>
-
-        <div class="tip_img">
-            <img src="images/image031.png">
-            <sapn class="tips" style="margin-top: -5rem; margin-left: .25rem; width: 6.5rem;">
-                未設置PIN碼用戶可點擊我的-PIN碼管理進行設置PIN碼。PIN碼在APP中進行支付時均需要驗證，
-                請務必保存已設置的PIN碼，PIN碼不支持手機找回以及客服幫助找回，請各位用戶知悉
-            </sapn>
-        </div>
-
-        <div class="tip_img">
-            二维码地址
-            <img src="images/image032.png">
-            <sapn class="tips" style="margin-top: -3rem; margin-left: .8rem; width: 5.6rem;">
-                接收數字資產時建議向轉賬方出示此地址二維碼，方便快捷且可確保為地址和幣種正確。
-                注意：脈果兒用戶進行綁定積分上連的智能合約地址時確認掃描的地址為SVC的地址二維碼
-            </sapn>
+            4、允许上链后系统将会通知所有用户，请耐心等待。
         </div>
     </div>
 </body>
 <script>
-    noWrap(['first-title']);
+    noWrap(['second-title', 'first-title']);
     /**
      * desc     防止标题换行
      * params   className

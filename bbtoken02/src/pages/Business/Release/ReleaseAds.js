@@ -450,7 +450,8 @@ class Release extends PureComponent {
                               })(
                                   <CheckboxGroup>
                                      <Checkbox value="支付宝" disabled={!userPayment.alipay}>{intl.get('GLOBAL_ALIPAY')}</Checkbox>
-                                     <Checkbox value="微信" disabled={!userPayment.wechatPay}>{intl.get('GLOBAL_WECHAT')}</Checkbox>
+                                     <Checkbox value="飞马钱包" disabled={!userPayment.fmpay}>{intl.get('GLOBAL_FM')}</Checkbox>
+                                     {/* <Checkbox value="微信" disabled={!userPayment.wechatPay}>{intl.get('GLOBAL_WECHAT')}</Checkbox> */}
                                      <Checkbox value="银联" disabled={!userPayment.bankInfo}>{intl.get('GLOBAL_PAY')}</Checkbox>
                                   </CheckboxGroup>
                               )}
