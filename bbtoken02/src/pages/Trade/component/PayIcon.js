@@ -7,6 +7,12 @@
 import React, { Fragment } from 'react';
 import { Icon } from 'antd';
 import intl from 'react-intl-universal';
+
+
+// const FmIcon = Icon.createFromIconfontCN({
+//   scriptUrl: '//at.alicdn.com/t/font_983523_znnorq202f.js', // 在 iconfont.cn 上生成
+// });
+
 export default function PayIcon({ name,small=false}) {
   return  (<Fragment> 
      {name.includes('银联')&&(
@@ -30,9 +36,9 @@ export default function PayIcon({ name,small=false}) {
 
         {name.includes('飞马钱包')&&(
      	<Fragment>
-          <Icon className="payways-icon"  style={{color:'#24af41',fontSize:22}} type="weixin-copy" />
+          {/* <Icon type="fm" className="payways-icon" style={{color:'red',fontSize:22}} /> */}
           {small &&<span className="mr-sm fz-sm gray">{intl.get('GLOBAL_FM')}{intl.get('GLOBAL_PAYMENT')}</span>}
-        </Fragment>)}
+      </Fragment>)}
      
     </Fragment>);
 }

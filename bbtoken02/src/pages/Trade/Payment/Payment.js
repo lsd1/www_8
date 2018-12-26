@@ -65,23 +65,23 @@ class Payment extends PureComponent {
                                 this.editStatus(info.status, orderId);
                             });
                             //聊天消息变化消息
-                            // this.stompClient.subscribe(`/user/${data.myId}/${orderId}`, (datas) => {
-                            //     const info = JSON.parse(datas.body);
-                            //     dispatch({
-                            //       type:'order/fetchSavaMessage',
-                            //       payload:{
-                            //           type:0,
-                            //           data:{
-                            //               ...info
-                            //           }
-                            //       },
-                            //       callback:()=>{
-                            //            setTimeout(()=>{
-                            //               this.chatRef.current.scrollTop=this.chatRef.current.scrollHeight;
-                            //            },0);
-                            //       }
-                            //   });
-                            // });
+                            this.stompClient.subscribe(`/user/${data.myId}/${orderId}`, (datas) => {
+                                const info = JSON.parse(datas.body);
+                                dispatch({
+                                  type:'order/fetchSavaMessage',
+                                  payload:{
+                                      type:0,
+                                      data:{
+                                          ...info
+                                      }
+                                  },
+                                  callback:()=>{
+                                       setTimeout(()=>{
+                                          this.chatRef.current.scrollTop=this.chatRef.current.scrollHeight;
+                                       },0);
+                                  }
+                              });
+                            });
 
                         });
                     }
@@ -91,23 +91,21 @@ class Payment extends PureComponent {
                     this.countdown(data);
                 }
             }
-        }),
-        // dispatch({
-        //      type:'order/fetchSavaMessage',
-        //       payload:{
-        //         orderId:orderId,
-        //         Page:1,
-        //         type:1
-        //       },
-        //       callback:()=>{
+        }),dispatch({
+             type:'order/fetchSavaMessage',
+              payload:{
+                orderId:orderId,
+                Page:1,
+                type:1
+              },
+              callback:()=>{
                 
-        //            this.chatRef.current.scrollTop=this.chatRef.current.scrollHeight;
+                   this.chatRef.current.scrollTop=this.chatRef.current.scrollHeight;
                
                 
 
-        //       }
-        // })
-    ]);
+              }
+        })]);
 
         
     }
@@ -176,22 +174,22 @@ class Payment extends PureComponent {
             };
             
             this.stompClient.send("/app/message/chat", {}, JSON.stringify(jsonParam));
-            // dispatch({
-            //     type:'order/fetchSavaMessage',
-            //     payload:{
-            //         type:0,
-            //         data:{
-            //             ...jsonParam,
-            //             sendTimeStr:dayjs().format('YYYY-MM-DD HH:mm')
-            //         }
-            //     },
-            //     callback:()=>{
-            //          this.mess.current.input.value='';
-            //          setTimeout(()=>{
-            //             this.chatRef.current.scrollTop=this.chatRef.current.scrollHeight;
-            //          },0);
-            //     }
-            // });
+            dispatch({
+                type:'order/fetchSavaMessage',
+                payload:{
+                    type:0,
+                    data:{
+                        ...jsonParam,
+                        sendTimeStr:dayjs().format('YYYY-MM-DD HH:mm')
+                    }
+                },
+                callback:()=>{
+                     this.mess.current.input.value='';
+                     setTimeout(()=>{
+                        this.chatRef.current.scrollTop=this.chatRef.current.scrollHeight;
+                     },0);
+                }
+            });
         }else{
             message.error(intl.get('TRADE_MESS_EMPTY'));
         }
@@ -222,7 +220,7 @@ class Payment extends PureComponent {
                         
                         </div>
                     </section>
-                    {/* <section className="payment-right flex-item">
+                    <section className="payment-right flex-item">
                          <div className="chat-top flex-box flex-alignItem">
                            <div className="flex-box">
                                <div className="avatar">{orderInfo.otherSide &&orderInfo.otherSide.charAt(0)}</div>
@@ -274,7 +272,7 @@ class Payment extends PureComponent {
                                  <Icon className="pointer" style={{fontSize:20}}  type="link" />
                                </div>
                          </div>
-                    </section> */}
+                    </section>
                   </div>
             </Layout>
         );
