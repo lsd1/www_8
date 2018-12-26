@@ -43,7 +43,7 @@ export default function PayManner({payInfo}){
               {/**飞马钱包 **/}
               {payInfo.fmpay&&
                  <div className="flex-box  flex-alignItem mt-md">
-                    <Icon type="fm" style={{color:'#24af41',fontSize:22}} />
+                    <Icon type="fm" style={{color:'#f5222d',fontSize:22}} />
                       <span className="label opacity-5">{intl.get('GLOBAL_FM')}</span>
                       {payInfo.realName}  {payInfo.fmpay.fmNo}  ({intl.get('GLOBAL_FM')})  
                       <Popover placement="bottomLeft"  content={<div><img style={{width:210,height:210}} src={payInfo.fmpay.qrFmUrl} alt="" /></div>} trigger="click">

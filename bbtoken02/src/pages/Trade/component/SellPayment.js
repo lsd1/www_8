@@ -156,7 +156,7 @@ class SellPayment extends PureComponent {
                {/** 支付中**/}
                {orderInfo.status===1&&
                (<Button disabled className="sell-btn"  size="large">
-                     <span >{intl.get('TRADE_DESC_14')}</span><Icon type="ellipsis"  className="green fz-lg" />  
+                     <span >{intl.get('TRADE_DESC_14')}</span><Icon type="ellipsis"  className="green fz-lg" />
                 </Button>)}
 
                 {orderInfo.status===0&&(
@@ -169,7 +169,7 @@ class SellPayment extends PureComponent {
                   <p className="ml-md">{intl.get('TRADE_DESC_4')}</p>
                 </div>
               )}
-               
+
                 {orderInfo.status===3&&(
                   <div className="mt-sm mb-lg flex-box flex-alignItem fz-xs">
                   <Icon type="check-circle" className="green" style={{fontSize:62}} />

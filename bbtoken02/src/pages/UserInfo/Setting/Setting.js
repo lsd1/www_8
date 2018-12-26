@@ -450,7 +450,7 @@ class Setting extends PureComponent {
                             </div> */}
 
                             <div className="setting-item flex-box flex-alignItem">
-                              <Icon  className="icon fz-lg ml-md wx-icon" type="weixin-copy" />
+                              <Icon  className="icon fz-lg ml-md fm-icon" type="fm" />
                               <p className="declare ml-xs fz-xs opacity-5">{intl.get('GLOBAL_FM')}</p>
                               <p className="info fz-xs">
                                {userPayment.fmpay&&(
