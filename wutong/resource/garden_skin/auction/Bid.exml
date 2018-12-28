@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="bid" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="bid" left="0" right="0" top="0" bottom="0">
+		<e:Image source="auction_json.auc_bj" scale9Grid="45,18,659,555" anchorOffsetY="0" top="0" bottom="0" left="0" right="0"/>
+		<e:Group id="auc_top" height="90" anchorOffsetY="0" left="0" right="0" top="0">
+		<e:Image source="auction_json.auc_top" scaleX="1" scaleY="1" scale9Grid="185,11,497,68" left="0" right="0" top="-4"/>
+		<e:Image id="btn_go_back" source="auction_json.auc_return" scaleX="1" scaleY="1" left="33" verticalCenter="-7"/>
+			<e:Image left="202" verticalCenter="-5" source="{data.bid.head_img}"/>
+		</e:Group>
+		<e:Group width="654" height="717" anchorOffsetX="0" anchorOffsetY="0" top="90" horizontalCenter="0">
+			<e:Image x="44" y="34" scaleX="1" scaleY="1" source="{data.bid.detail}"/>
+			<e:Group id="gender_group" width="200" height="50" x="353" y="55">
+				<e:Image id="gender" source="" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+				<e:Label id="g_text" text="" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="26" textAlign="center" verticalAlign="middle" horizontalCenter="25" verticalCenter="0"/>
+			</e:Group>
+
+
+			<e:Image id="ph_img" x="385" y="156" source="" anchorOffsetX="0" width="136" anchorOffsetY="0" height="185"/>
+			<e:Label text="{data.bid.num}" x="44" y="174" fontFamily="PingFang SC" size="24" textColor="0xa07b49"/>
+			<e:Label text="{data.bid.have}" x="48" y="592" fontFamily="PingFang SC" size="24" textColor="0xA07B49"/>
+			<e:Label y="644" fontFamily="PingFang SC" size="24" textColor="0xA07B49" left="44" text="{data.bid.down}"/>
+			<e:Label text="{data.bid.high_bid}" x="43" y="263" fontFamily="PingFang SC" size="24" textColor="0xA07B49"/>
+			<e:Label text="{data.bid.high_bidder}" x="44" y="346" fontFamily="PingFang SC" size="24" textColor="0xA07B49"/>
+			<e:Label id="ph_num" text="" x="130" y="174" fontFamily="PingFang SC" textColor="0x3c2405" size="24"/>
+			<e:Label id="high_price" text="" x="186" y="263" fontFamily="PingFang SC" textColor="0x3C2405" size="24"/>
+			<e:Label id="high_price_name" text="" x="158" y="346" fontFamily="PingFang SC" textColor="0x3C2405" size="24"/>
+			<e:Label id="has_mgb" text="" x="142" y="592" fontFamily="PingFang SC" size="24" textColor="0xf95403"/>
+			<e:Label id="count_down" text="00:00:00" x="161" y="644" fontFamily="PingFang SC" textColor="0x3C2405" size="24"/>
+			<e:Group id="incre_pri" width="513" height="56" x="48" y="504" anchorOffsetX="0" anchorOffsetY="0">
+				<e:Image source="auction_json.auc_fra" x="0" y="0"/>
+				<e:Label id="bid_text" width="193" height="56" text="" x="17" y="0" anchorOffsetX="0" textAlign="left" verticalAlign="middle" textColor="0xf95403" fontFamily="PingFang SC" size="32"/>
+				<e:Group id="btn_add" width="130" height="56" x="216" y="-2">
+					<e:Image source="auction_json.auc_btn1" x="0" y="0" scaleX="1" scaleY="1"/>
+					<e:Label id="percentage" text="" x="18" y="18" textColor="0xffe5b8" fontFamily="PingFang-SC-Medium" size="24"/>
+				</e:Group>
+				<e:Group id="btn_go_pay" width="170" height="65" x="354" y="-2">
+					<e:Image source="auction_json.auc_btn" y="0" x="0" scaleX="1" scaleY="1"/>
+					<e:Label textColor="0xFFE5B8" fontFamily="PingFang-SC-Medium" size="30" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="-3" text="{data.bid.bidding}"/>
+				</e:Group>
+
+			</e:Group>
+			<e:Group id="status_group" width="140" height="55" x="417" y="601" anchorOffsetY="0" visible="false">
+				<e:Image id="status_img" source="auction_json.auc_success" y="0" x="0"/>
+				<e:Label id="status_text" text="出价成功" x="30" y="3" fontFamily="PingFang-SC-Bold" size="20" textColor="0xF76005"/>
+			</e:Group>
+			<e:Rect width="532" height="2" x="59" y="695" fillColor="0xd9b078" strokeColor="0xd9b078"/>
+			<e:Image source="auction_json.ty" x="389" y="360"/>
+		</e:Group>
+		<e:Group width="654" height="469" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="5" top="828">
+
+			<e:Image source="" y="24" x="0"/>
+			<e:Group width="654" height="41" y="119" anchorOffsetY="0" anchorOffsetX="0" horizontalCenter="0">
+				<e:Label text="{data.bid.auction_price}" y="0" fontFamily="PingFang-SC-Medium" size="24" textColor="0xa07b49" left="0"/>
+				<e:Label text="{data.bid.bidders}" y="0" fontFamily="PingFang-SC-Medium" size="24" textColor="0xA07B49" horizontalCenter="0"/>
+				<e:Label text="{data.bid.auction_time}" y="0" fontFamily="PingFang-SC-Medium" size="24" textColor="0xA07B49" right="0"/>
+				<e:Group id="bid_list" height="252" y="42" anchorOffsetX="0" anchorOffsetY="0" width="654" horizontalCenter="0"/>
+			</e:Group>
+
+		</e:Group>
+	</e:Group>
+	<e:Group id="tip" top="0" bottom="0" left="0" right="0" visible="false">
+		<e:Rect top="0" bottom="0" left="0" right="0" fillAlpha="0.5"/>
+		<e:Group width="592" height="388" anchorOffsetY="0" verticalCenter="0" horizontalCenter="5">
+			<e:Image source="wutong_json.frame_green_1" left="0" right="0" top="0" bottom="0" scale9Grid="112,80,329,77"/>
+			<e:Image id="btn_close" source="wutong_json.delete" x="535" y="-13" scaleX="1" scaleY="1"/>
+			<e:Label text="{data.bid.network_error}" y="100" anchorOffsetX="0" width="211" anchorOffsetY="0" height="113" textColor="0x3c2405" fontFamily="PingFang-SC-Medium" textAlign="center" horizontalCenter="0"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

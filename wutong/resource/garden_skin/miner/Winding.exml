@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="winding" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="winding" width="592" height="662" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="wind_close" source="wutong_json.delete" horizontalCenter="265" x="578" y="40" scaleX="1" scaleY="1" width="62" height="62"/>
+		<e:Image source="{data.winding.winding_img}" y="21" horizontalCenter="0"/>
+		<e:Label text="{data.winding.enter_the_number}" x="80" y="146" fontFamily="PingFang-SC-Medium" textColor="0x3C2405"/>
+		<e:Group width="424" height="58" x="84" y="203">
+		<e:Image source="auction_json.auc_fra" x="0" y="0" anchorOffsetX="0" width="424" anchorOffsetY="0" height="58" scale9Grid="8,8,326,40" scaleX="1" scaleY="1"/>
+		<e:EditableText id="winding_num" width="401" height="58" text="" x="20" y="0" verticalAlign="middle" anchorOffsetX="0" textColor="0x3C2405" fontFamily="PingFang-SC-Medium"/>
+		</e:Group>
+		<e:Group width="421" height="192" y="284" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-3.5">
+		<e:Label text="{data.winding.winding_instructions}" x="0" y="0" fontFamily="PingFang-SC-Medium" textColor="0x3C2405"/>
+		<e:Label id="the_1" text="1、" x="0" y="46" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetY="0" height="63" anchorOffsetX="0" width="393" scaleX="1" scaleY="1"/>
+		<e:Label id="the_2" text="" x="0" y="116" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetY="0" height="63" anchorOffsetX="0" width="393" scaleX="1" scaleY="1"/>
+		</e:Group>
+		<e:Group id="btn_push_winding" y="513" scaleX="1" scaleY="1" horizontalCenter="0" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label id="iKnow1" fontFamily="Microsoft YaHei" horizontalCenter="0" verticalCenter="-1" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.winding.submit}"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="wait_wind" width="592" height="522" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_wait" source="wutong_json.delete" horizontalCenter="265" x="578" y="40" scaleX="1" scaleY="1" width="62" height="62"/>
+		<e:Image source="{data.winding.winding_img}" y="21" horizontalCenter="0"/>
+		<e:Label text="{data.winding.about_to_open}" y="218" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetY="0" height="63" anchorOffsetX="0" width="461" scaleX="1" scaleY="1" horizontalCenter="0" textAlign="center"/>
+		<e:Group id="btn_success" scaleX="1" scaleY="1" horizontalCenter="0" width="170" height="65" bottom="100">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="Microsoft YaHei" horizontalCenter="0" verticalCenter="-1" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.winding.confirm}"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="confirm_wind" width="592" height="522" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_confirm" source="wutong_json.delete" horizontalCenter="265" x="578" y="40" scaleX="1" scaleY="1" width="62" height="62"/>
+		<e:Image source="{data.winding.winding_img}" y="21" horizontalCenter="0"/>
+		<e:Label id="the_wallet" text="" y="212" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetY="0" height="63" anchorOffsetX="0" width="402" scaleX="1" scaleY="1" horizontalCenter="0"/>
+		<e:Group id="btn_confirm" scaleX="1" scaleY="1" horizontalCenter="0" width="170" height="65" bottom="100">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="Microsoft YaHei" horizontalCenter="0" verticalCenter="-1" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.winding.confirm}"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

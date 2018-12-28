@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="goodsIntro" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="props" width="630" height="601" anchorOffsetY="0" anchorOffsetX="0" verticalCenter="-39.5" horizontalCenter="0">
+		<e:Image anchorOffsetY="0" scaleX="1" scaleY="1" top="0" bottom="0" source="wutong_json.tips_panel" left="0" right="0" scale9Grid="62,117,499,154"/>
+		<e:Image y="18" horizontalCenter="0" source="{data.goodsIntro.wupin}"/>
+		<e:Image id="btn_close" source="wutong_json.delete" horizontalCenter="284" y="40" width="62" height="62"/>
+		<e:Group id="group_tool_img" width="110" height="110" anchorOffsetX="0" anchorOffsetY="0" y="140" horizontalCenter="-1">
+		<e:Image id="use_prop_bg" scaleX="1" scaleY="1" horizontalCenter="0" width="110" height="110" source="auction_json.baidikuang"/>
+		<e:Image id="use_prop_img" scaleX="1" scaleY="1" source="" top="22" horizontalCenter="0"/>
+		</e:Group>
+		<e:Label id="goods_name" text="" fontFamily="PingFang-SC-Medium" size="30" textColor="0xfc3d02" scaleX="1" scaleY="1" horizontalCenter="0" y="280"/>
+		<e:Group id="intro_group" width="520" y="338" anchorOffsetX="0" horizontalCenter="1" anchorOffsetY="0">
+
+		<e:Group id="goods_intro" width="427" horizontalCenter="0"/>
+			<e:Group id="egg_num_group" width="420" horizontalCenter="-3" bottom="0">
+				<e:Label y="8" anchorOffsetY="0" height="28" anchorOffsetX="0" width="73" fontFamily="PingFang SC" size="24" x="12.5" scaleX="1" scaleY="1" text="{data.propsIntro.egg_num_title}" textColor="0xa07b49"/>
+				<e:Label id="egg_num" text="" y="10" anchorOffsetY="0" height="28" anchorOffsetX="0" width="214" fontFamily="PingFang SC" size="24" x="89" scaleX="1" scaleY="1" textColor="0xa07b49"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="group_btn" width="543" anchorOffsetX="0" anchorOffsetY="0" height="61" horizontalCenter="0.5" bottom="80">
+		<e:Group id="btn_use_tool" width="166" height="60" anchorOffsetX="0" horizontalCenter="-99" x="22" scaleX="1" scaleY="1" top="0">
+			<e:Image source="wutong_json.btn_green" top="0" bottom="0" horizontalCenter="0"/>
+			<e:Label id="btn_use_text" fontFamily="PingFang-SC-Medium" size="30" anchorOffsetX="0" textAlign="center" verticalAlign="middle" verticalCenter="-3" textColor="0xFFE5B8" horizontalCenter="0" text="{data.goodsIntro.use}"/>
+		</e:Group>
+		<e:Group id="btn_buy_tool" width="166" height="60" anchorOffsetX="0" horizontalCenter="110" x="372" scaleX="1" scaleY="1" top="0">
+			<e:Image top="0" bottom="0" source="wutong_json.btn_green" horizontalCenter="0"/>
+			<e:Label id="buy" fontFamily="PingFang-SC-Medium" size="30" anchorOffsetX="0" textAlign="center" verticalAlign="middle" verticalCenter="-3" textColor="0xFFE5B8" horizontalCenter="0" text="{data.goodsIntro.pay}"/>
+		</e:Group>
+			<e:Group id="btn_use_tool_1" width="166" height="60" anchorOffsetX="0" scaleX="1" scaleY="1" top="0" y="-534" horizontalCenter="0">
+				<e:Image source="wutong_json.btn_green" top="0" bottom="0" horizontalCenter="0"/>
+				<e:Label id="btn_use_text1" fontFamily="PingFang-SC-Medium" size="30" anchorOffsetX="0" textAlign="center" verticalAlign="middle" verticalCenter="-3" textColor="0xFFE5B8" horizontalCenter="0" text="{data.goodsIntro.use}"/>
+			</e:Group>
+		</e:Group>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="emailSkin" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group_email" width="630" height="956" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0">
+		<e:Image scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" source="wutong_json.tips_panel" scale9Grid="50,192,491,13"/>
+		<e:Image x="266" y="17" source="wutong_json.mail_cn"/>
+		<e:Image id="btn_close_email" source="wutong_json.delete" right="0" top="39" width="60" height="60"/>
+		<e:Group id="email_tool" width="530" height="790" x="50" y="103" anchorOffsetY="0">
+		</e:Group>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="working" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group_working" left="0" right="0" top="0" bottom="0">
+		<e:Image source="minerV1_json.minerBG" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0"/>
+		<e:Group id="btn_return" width="180" height="80" y="50" anchorOffsetY="0" scaleX="1" scaleY="1" left="13">
+		<e:Image source="minerV1_json.fh_2x" x="12" y="9" scaleX="1" scaleY="1"/>
+		<e:Label text="{data.working.back}" x="74" y="23" size="34" fontFamily="PingFang-SC-Bold"/>
+		</e:Group>
+		<e:Group id="rule" width="84" height="42" y="68" anchorOffsetY="0" anchorOffsetX="0" scaleX="1" scaleY="1" right="0">
+		<e:Image source="minerV1_json.-_bj_2x" x="0" y="0"/>
+		<e:Image source="minerV1_json.-_2x" x="24" y="6"/>
+		</e:Group>
+		<e:Group id="hp_group" width="272" height="53" y="125" scaleX="1" scaleY="1" right="0">
+		<e:Image source="{data.working.hp_img}" x="0" y="0" scaleX="1" scaleY="1"/>
+		<e:Label id="hp_txt" text="" fontFamily="PingFang-SC-Heavy" size="25" textColor="0x2F1F10" bold="true" horizontalCenter="43" verticalCenter="0"/>
+		</e:Group>
+		<e:Group id="spd_group" width="272" height="53" y="195" scaleX="1" scaleY="1" right="0">
+		<e:Image source="{data.working.spd_img}" x="0" y="0" scaleX="1" scaleY="1"/>
+		<e:Label id="spd_txt" text="" fontFamily="PingFang-SC-Heavy" size="25" textColor="0x2F1F10" bold="true" horizontalCenter="43" verticalCenter="0"/>
+		</e:Group>
+		<e:Group id="gain_group" width="272" height="53" y="265" scaleX="1" scaleY="1" right="-1">
+			<e:Image x="0" y="0" scaleX="1" scaleY="1" source="{data.working.gainbg_img}"/>
+			<e:Label id="gain_txt" text="" fontFamily="PingFang-SC-Heavy" size="25" textColor="0x2F1F10" bold="true" horizontalCenter="43.5" verticalCenter="-2"/>
+		</e:Group>
+		<e:Group id="status_tip" width="397" height="110" y="318" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" horizontalCenter="16.5">
+		<e:Image id="status_img" x="0" y="0" scaleX="1" scaleY="1" source=""/>
+		<e:Label id="status_discrip" text="" x="101" y="25" fontFamily="PingFang-SC-Medium" scaleX="1" scaleY="1"/>
+			<e:Label id="status_txt" text="" x="103" y="63" fontFamily="PingFang SC" size="22" textColor="0x000000"/>
+		</e:Group>
+		<e:Group id="nav" width="700" height="142" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" bottom="20" left="0">
+		<e:Image id="equips" source="{data.working.equips_img}" x="19" y="14" scaleX="1" scaleY="1"/>
+		<e:Image id="minerTools" source="{data.working.thetools_img}" x="153" y="23" scaleX="1" scaleY="1"/>
+		<e:Image id="theGoods" source="{data.working.thegoods_img}" x="280.5" y="27" scaleX="1" scaleY="1"/>
+		<e:Image id="records" source="{data.working.records_img}" x="410" y="29" scaleX="1" scaleY="1"/>
+			<e:Image id="chara" x="518" y="23" scaleX="1" scaleY="1" source="{data.working.chara_img}"/>
+
+		</e:Group>
+		<e:Rect id="full_mask" top="0" bottom="0" left="0" right="0" fillAlpha="0.4" visible="false"/>
+		<e:Group id="group_adren" horizontalCenter="50" verticalCenter="90" locked="true"/>
+		<e:Group id="group_miner" anchorOffsetY="0" horizontalCenter="50" verticalCenter="90" locked="true">
+		</e:Group>
+		<e:Group id="group_basket" y="980" right="147" locked="true"/>
+		<e:Image id="basket" source="minerV1_json.kl_2x" y="990" anchorOffsetX="0" width="208" anchorOffsetY="0" height="180" right="43" visible="false"/>
+		<e:Image id="miner_status" source="minerV1_json.status_1" horizontalCenter="166" verticalCenter="-138" locked="true" visible="false"/>
+
+		<e:Group id="group_tips" width="617" height="430" horizontalCenter="0" verticalCenter="0" visible="false">
+			<e:Image source="wutong_json.tips_panel" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" scale9Grid="53,94,511,43"/>
+			<e:Image horizontalCenter="0" top="22" source="{data.tips.panel_head}"/>
+
+			<e:Label id="tips_text" text="" anchorOffsetX="0" width="473" anchorOffsetY="0" height="198" fontFamily="Microsoft YaHei" size="30" lineSpacing="25" verticalCenter="-10" y="133" scaleX="1" scaleY="1" horizontalCenter="0" verticalAlign="middle" textAlign="center" textColor="0x3c2405"/>
+			<e:Group id="tips_close" width="175" height="61" y="310" scaleX="1" scaleY="1" horizontalCenter="0">
+				<e:Image source="wutong_json.btn_green_1" scaleX="1" scaleY="1" width="175" height="69" horizontalCenter="0" verticalCenter="4"/>
+				<e:Label id="ok" text="{data.workingTs.ok}" fontFamily="Microsoft YaHei" horizontalCenter="0" verticalCenter="-1" verticalAlign="middle" textAlign="center" textColor="0xffe5b8"/>
+			</e:Group>
+			<e:Group id="to_wallet" width="175" height="61" y="310" scaleX="1" scaleY="1" horizontalCenter="124" visible="false">
+				<e:Image source="wutong_json.btn_green_1" scaleX="1" scaleY="1" width="175" height="69" horizontalCenter="0" verticalCenter="4"/>
+				<e:Label id="toWallet" text="{data.workingTs.toWallet}" fontFamily="Microsoft YaHei" horizontalCenter="0" verticalCenter="-1" verticalAlign="middle" textAlign="center" textColor="0xffe5b8"/>
+			</e:Group>
+		</e:Group>
+		
+	</e:Group>
+</e:Skin>

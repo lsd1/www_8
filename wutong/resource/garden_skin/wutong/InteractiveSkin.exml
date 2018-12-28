@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="interactive" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+
+	<e:Group id="group_interactive" anchorOffsetY="0" anchorOffsetX="0" width="656" height="1056" verticalCenter="0" horizontalCenter="0">
+		<e:Image anchorOffsetY="0" source="wutong_json.tips_panel" top="0" bottom="0" left="0" right="0" scale9Grid="114,140,350,59"/>
+		<e:Image id="btn_close" source="wutong_json.delete" right="0" top="45" width="62" height="62"/>
+		<e:Image id="head_img" horizontalCenter="0" top="14" source="{data.interactive.head_img}"/>
+
+		<e:Group id="group_list" width="570" height="860" anchorOffsetY="0" bottom="89" anchorOffsetX="0" horizontalCenter="0"/>
+	</e:Group>
+</e:Skin>

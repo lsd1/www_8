@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="notices" width="750" height="1334"  xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect id="full_mask" fillAlpha="0.5" left="0" right="0" top="0" bottom="0" visible="false"/>
+    <e:Group id="group_notices" width="617" height="414" horizontalCenter="0" verticalCenter="0" visible="false">
+			<e:Image source="wutong_json.tips_panel" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" scale9Grid="53,94,511,43"/>
+			<e:Image horizontalCenter="0" top="22" source="{data.tips.panel_head}"/>
+
+		<e:Label id="notices_text" text="" anchorOffsetX="0" width="524" anchorOffsetY="0" height="198" fontFamily="Microsoft YaHei" size="30" lineSpacing="25" verticalCenter="-10" y="133" scaleX="1" scaleY="1" horizontalCenter="0" verticalAlign="middle" textAlign="center" textColor="0x8b2b00"/>
+		<e:Group id="notices_close" width="175" height="61" y="310" scaleX="1" scaleY="1" horizontalCenter="1">
+			<e:Image source="wutong_json.btn_green_1" scaleX="1" scaleY="1" width="175" height="69" horizontalCenter="0" verticalCenter="4"/>
+			<e:Label id="iKnow" text="{data.notices.iKnow}" fontFamily="Microsoft YaHei" horizontalCenter="0" verticalCenter="-1" verticalAlign="middle" textAlign="center" textColor="0xffe5b8"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="group_mc" width="617" height="481" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" visible="false">
+		<e:Image source="wutong_json.frame_green_1" left="0" right="0" top="0" bottom="0" scale9Grid="199,82,155,71"/>
+		<e:Group id="the_group" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="-50"/>
+		<e:Group id="notices_confrim" width="175" height="61" y="358" scaleX="1" scaleY="1" horizontalCenter="1" locked="true">
+			<e:Image source="wutong_json.btn_green_1" scaleX="1" scaleY="1" width="175" height="69" horizontalCenter="0" verticalCenter="4"/>
+			<e:Label id="iKnow0" text="{data.notices.iKnow}" fontFamily="Microsoft YaHei" horizontalCenter="0" verticalCenter="-1" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

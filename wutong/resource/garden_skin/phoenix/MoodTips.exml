@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="moodTips" width="590" height="597" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<w:Config id="1639659a377"/>
+	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Image source="wutong_json.frame_green_1" scale9Grid="91,63,406,119" width="590" x="0" height="584" bottom="0" y="13" scaleX="1" scaleY="1"/>
+		<e:Label text="0" x="102" y="417" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="绝望" x="210" y="417" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="1h" x="340" y="417" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="5min" x="448" y="417" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Image id="mood_tips_close" source="wutong_json.delete" right="0" top="0" x="534" y="0" scaleX="1" scaleY="1"/>
+		<e:Group id="mood_tips_confirm" y="485" width="166" height="63" horizontalCenter="0">
+			<e:Image source="wutong_json.btn_green_1" top="0" bottom="0" left="0" right="0"/>
+			<e:Label text="确认" verticalAlign="middle" textAlign="center" textColor="0xffe5b8" verticalCenter="-3" horizontalCenter="0"/>
+		</e:Group>
+		<e:Group horizontalCenter="0" top="93" anchorOffsetX="0" width="503">
+			<e:Image source="auction_json.tm_k_2x" scaleX="1" scaleY="1" top="0" left="0" right="0" bottom="0"/>
+			<e:Label text="心情指数" x="24" textColor="0xa07b49" size="24" verticalCenter="0" fontFamily="PingFang SC"/>
+			<e:Label text="心情" x="164" size="24" verticalCenter="0" textColor="0xa07b49" fontFamily="PingFang SC"/>
+			<e:Label text="每消耗1心情值所需时间" x="257" size="18" verticalCenter="0.5" textColor="0xa07b49" anchorOffsetY="0" height="37" anchorOffsetX="0" width="101" fontFamily="PingFang SC"/>
+			<e:Label text="每消耗1生命值所需时间" textColor="0xA07B49" size="18" verticalCenter="0.5" anchorOffsetY="0" height="37" anchorOffsetX="0" width="101" fontFamily="PingFang SC" right="24"/>
+		</e:Group>
+		<e:Label text="80-100" x="83" y="174" textColor="0x3c2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="非常好" x="198" y="174" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="6h" x="340" y="174" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="30min" x="442" y="174" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="60-79" x="87" y="236" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="一般" x="209" y="236" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="2h" x="340" y="236" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="10min" x="442" y="236" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="30-59" x="87" y="298" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="差" x="222" y="300" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="1.5h" x="335" y="300" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="8min" x="448" y="300" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="1-29" x="93" y="362" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="极差" x="209" y="362" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="1.2h" x="335" y="362" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+		<e:Label text="6min" x="448" y="363" textColor="0x3C2405" size="24" fontFamily="PingFang SC" verticalAlign="middle" textAlign="center"/>
+	</e:Group>
+</e:Skin>

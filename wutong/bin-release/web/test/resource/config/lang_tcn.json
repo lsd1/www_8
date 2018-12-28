@@ -1,0 +1,652 @@
+{
+    "emailInstr": {
+        "panel_title": "郵箱",
+        "btn_pick_lab": "領取"
+    },
+    "emailSkin": {
+        "panel_title": "郵箱"
+    },
+    "empty": {
+        "empty_text": ""
+    },
+    "friendNew": {
+        "more_text": "更多"
+    },
+    "goPayGB": {
+        "notEnough": "支付失敗！",
+        "wait": "確定",
+        "go": "前往"
+    },
+    "index": {
+        "interact":"wutong_json.tools_tcn",
+        "goods": "wutong_json.goods_tcn",
+        "email": "wutong_json.emali_tcn",
+        "tran": "transaction_json.transac_tcn",
+        "auction": "wutong_json.auction_tcn",
+        "miner": "wutong_json.miner_c_tcn",
+        "gold":"transaction_json.gold_tcn",
+        "cantSteal": "保護狀態，不可偷取",
+        "lastNews": "最新動態",
+        "confirm": "確認",
+        "justWait": "稍後",
+        "shared": "金幣",
+        "mgb": "金幣",
+        "open": "minerV1_json.open_tcn",
+        "open_later": "稍後開通",
+        "open_now": "立即開通",
+        "go": "前往"
+    },
+    "interactive": {
+        "head_img": "wutong_json.hudong_tcn",
+        "panel_title": "互動"
+    },
+    "newDynamic": {
+        "head_img": "wutong_json.zxdt_tcn",
+        "news": "最新動態"
+    },
+    "otherGarden": {
+        "cantSteal": "保護狀態，不可偷取",
+        "news": "最新動態"
+    },
+    "propsIntro": {
+        "intro_name": "wutong_json.wupin_tcn",
+        "btn_use_text": "使用",
+        "buy": "購買",
+        "btn_con_text": "確認",
+        "btn_hatch":"孵化",
+        "egg_num_title":"編號：",
+        "egg_m_title":"母親:",
+        "egg_f_title":"父親:",
+        "egg_status_title":"狀態:",
+        "egg_sex_title":"性別:",
+        "price_units":"金幣/个"
+    },
+    "propsStatus": {
+        "use": "使用",
+        "nowHas":"目前擁有："
+    },
+    "staAndDyn": {
+        "panel_title": "wutong_json.wutongimg_tcn",
+        "sta_text": "梧桐果成熟",
+        "dyn_text": "梧桐樹動態"
+    },
+    "tips": {
+        "panel_head": "minerV1_json.prompt_tcn",
+        "iKnow": "知道了"
+    },
+    "notices": {
+        "panel_title": "通知",
+        "iKnow": "知道了"
+    },
+    "toolsSkin": {
+        "head_img": "wutong_json.wupin_tcn",
+        "panel_title": "物品",
+        "no_egg":"暫無鳳凰蛋"
+    },
+    "secondPassWord": {
+        "panel_title": "驗證PIN碼",
+        "tips": "請輸入6位數PIN碼"
+    },
+    "usePay": {
+        "confirm": "確認"
+    },
+    "emailTs": {
+        "no_mail": "暫無郵件！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "emailInsterTs": {
+        "already_received": "已領取",
+        "received": "領取",
+        "received_success": "領取成功",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "fruitListTs": {
+        "is_flower": "正在開花",
+        "being_fru": "正在結果",
+        "already_mature": "已經成熟"
+    },
+    "indexTs": {
+        "open_success": "恭喜您成功開通了梧桐樹！",
+        "harvest": "恭喜妳收獲",
+        "wutong": "個梧桐果！",
+        "life_val": "生命值！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "interactiveTs": {
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "newDynamicTs": {
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "otherGardenTs": {
+        "only_master": "只有主人才可以除蟲哦！",
+        "snatch": "恭喜妳搶到了",
+        "wutong": "個梧桐果！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "propsIntroTs": {
+        "not_enough": "道具數量不足！",
+        "network_error": "網絡錯誤！請重新嘗試！",
+        "hatch_1":"孵化",
+        "hatch_2":"重生"
+    },
+    "propsStatusTs": {
+        "not_enough": "道具數量不足！",
+        "life_val": "生命值！",
+        "network_error": "網絡錯誤！請重新嘗試！",
+        "full": "我吃飽了！"
+    },
+    "scrollerDynamicTs": {
+        "no_more": "沒有更多了！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "scrollerEmailTs": {
+        "no_more": "沒有更多了！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "scrollerFruitTs": {
+        "no_more": "沒有更多了！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "scrollerInteractiveTs": {
+        "no_more": "沒有更多了！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "scrollerNewsTs": {
+        "no_more": "沒有更多了！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "staAndDynTs": {
+        "no_fertilizer": "妳還沒有施肥呢！",
+        "no_dynamic": "暫無動態~",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "toolsTs": {
+        "network_error": "網絡錯誤！請重新嘗試！",
+        "tree": "梧桐樹",
+        "bird":"鳳凰",
+        "egg":"鳳凰蛋"
+    },
+    "usePayTs": {
+        "go_pay": "是否前往購買？",
+        "if_spend": "是否花費",
+        "to_go_pay": "金幣購買?",
+        "geb_go_pay": "金幣購買？",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "auctionBanner":{
+        "auc_time": "拍賣時間:"
+    },
+    "auctionResultCount": {
+        "the_next_time": "下壹輪開始倒計時",
+        "Auc_results": "拍賣結果"
+    },
+    "bid": {
+        "head_img": "auction_json.bid_tcn",
+        "detail":"auction_json.detail_tcn",
+        "num": "編號：",
+        "high_bid": "最高出價：",
+        "high_bidder": "出價者：",
+        "bidding": "出價",
+        "have": "擁有：",
+        "down": "倒計時：",
+        "auction_price": "競拍價格",
+        "bidders": "競拍人",
+        "auction_time": "競拍時間",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "birthTip": {
+        "confirm": "確認"
+    },
+    "creation": {
+        "img_head": "auction_json.auc_creation_tcn",
+        "rule": "規則",
+        "crea_time": "創世限時",
+        "my_auc": "我的拍賣"
+    },
+    "creationList": {
+        "num":"編號：",
+        "life_limit": "生命上限：",
+        "starting_price": "起拍價：",
+        "high_bid": "最高價：",
+        "bid": "出價",
+        "bid_again": "再次出價",
+        "down": "倒計時：",
+        "leading": "領 先"
+    },
+    "getAutionItem": {
+        "getEgg": "get_egg_tcn_png",
+        "receive": "領取"
+    },
+    "myAuction": {
+        "head_img": "auction_json.auc_my_auc_tcn",
+        "bid_record": "出價記錄",
+        "crea_time": "創世限時",
+        "my_auc": "我的拍賣"
+    },
+    "myBidMoneyList": {
+        "num":"編號：",
+        "life_limit": "生命上限：",
+        "price": "價格：",
+        "sorce": "來源：",
+        "tack_back":"取回",
+        "continue_bid":"繼續出價",
+        "high_bid": "最高價："
+    },
+    "minerAppo": {
+        "yuyue": "miner_reser_tcn_png",
+        "miner_img":"miner_bg_hm_tcn_png",
+        "yuyue_tip": "tip_txt_reser_tcn_png",
+        "appo_time": "預約時間",
+        "reser_pay": "預約支付",
+        "confirm": "確認"
+    },
+    "bidTs": {
+        "incer": "加價",
+        "no_shared": "金幣不足！"
+    },
+    "cteationTs": {
+        "pay_shared": "請預先繳納保證金",
+        "margin": "保證金將在拍賣結束後退還。",
+        "pay_success": "繳納成功！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "creationListTs": {
+        "network_error": "網絡錯誤！請重新嘗試！"
+    }
+    ,
+    "getAutionItemTs": {
+        "recei_success": "領取成功！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "myAuctionTs": {
+        "no_bid": "暫無出價記錄！",
+        "no_shelv": "暫無上架記錄！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "myBidMoneyListTs": {
+        "network_error": "網絡錯誤！請重新嘗試！",
+        "reco_success": "取回成功",
+        "f_auc": "拍賣失敗",
+        "high_bid": "最高價：",
+        "final_price": "成交價：",
+        "success_auc": "拍賣成功"
+    },
+    "scrollerBidMoneyTs": {
+        "no_more": "沒有更多了！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "minerAppoTs": {
+        "to": "至",
+        "booking_miner": "您正在預約脈金幣礦新遊戲，為確保您的預約成功。",
+        "need_pay": "需要支付",
+        "shared_worth": "金幣！",
+        "success_booking": "您已經成功預約脈金幣礦。新功能即將推出，敬請期待！",
+        "no_repeat_again": "您已經成功預約脈金幣礦。請勿重復預約",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "shelfDetailInfo": {
+        "img_head": "transaction_json.shelf_set_tcn",
+        "detail": "auction_json.detail_tcn",
+        "num":"編號：",
+        "life": "生命值：",
+        "price": "上架價格：",
+        "shared_value": "金幣",
+        "now_shelves": "立即上架",
+        "price_description": "上架價格必須大於0且為整數",
+        "confirm": "確定",
+        "wt_friut": "梧桐果",
+        "name": "名稱：",
+        "effect": "作用：",
+        "shelves_num": "上架數量：",
+        "current_price": "當前數量：",
+        "unit_price": "上架單價：",
+        "shelf_num": "金幣/個",
+        "goods_price": "商品總價",
+        "shared_value": "金幣",
+        "than_zero": "商品總價必須大於零且為整數",
+        "head_fee": "手續費"
+    },
+    "shelfDetailInfoTs": {
+        "shared_value": "金幣",
+        "fees": "手續費",
+        "enter_price": "請輸入價格！",
+        "success":"恭喜您，上架成功！",
+        "network_error": "網絡錯誤！請重新嘗試！",
+        "one": "個",
+        "number_fruit": "梧桐果數量不足！",
+        "please_fruit": "請輸入梧桐果數量"
+    },
+    "shelfDetail": {
+        "img_head":"transaction_json.select_tcn"
+    },
+    "shelfDetailList":{
+        "num":"編號：",
+        "life_limit": "生命上限：",
+        "sell": "賣出"
+    },
+    "shelfDetailListTs": {
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "myBuyHistoryList": {
+        "num":"編號：",
+        "life_limit": "生命上限：",
+        "life": "生命值：",
+        "price": "價格:",
+        "successful": "購買成功"
+    },
+    "myShelfHistoryList": {
+        "num":"編號：",
+        "life_limit": "生命上限：",
+        "price": "價格:",
+        "drop_off": "下架"
+    },
+    "myTransaction": {
+        "img_head":"transaction_json.my_tran_tcn",
+        "shelf": "上架",
+        "buy_history": "購買記錄",
+        "shelf_record": "上架記錄",
+        "exchange": "玩家集市",
+        "my_transaction": "我的記錄",
+        "dete": "確認",
+        "cancel": "取消",
+        "remove_props":"是否下架該商品?"
+    },
+    "transaction": {
+        "img_head": "transaction_json.exchange_tcn",
+        "type":"類型",
+        "algebra": "代數",
+        "sorting": "排序",
+        "exchange": "玩家集市",
+        "my_transaction": "我的記錄"
+    },
+    "transactionList": {
+        "num":"編號：",
+        "life_limit": "生命值：",
+        "price": "價格:",
+        "buy": "購買"
+    },
+    "shelfDetailTs": {
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "myTransactionTs": {
+        "network_error": "網絡錯誤！請重新嘗試！",
+        "no_shelves": "暫無上架記錄",
+        "no_pay":"沒有購買記錄",
+        "succ_left": "下架成功！"
+    },
+    "myShelfHistoryListTs": {
+        "drop_off": "已下架",
+        "already_sold": "已賣出",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "scrollerShelfDetailTs": {
+        "no_more": "沒有更多了！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "scrollerMyBuyHistoryTs":{
+        "no_more": "沒有更多了！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "scrollerMyShelfHistoryTs":{
+        "no_more": "沒有更多了！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "scrollerTransactionTs": {
+        "no_more": "沒有更多了！",
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "transactionTs": {
+        "network_error": "網絡錯誤！請重新嘗試！",
+        "no_history": "暫無商品!"
+    },
+    "transactionListTs": {
+        "network_error": "網絡錯誤！請重新嘗試！"
+    },
+    "detailTs": {
+        "page_title":"auction_json.fh_wz_2x",
+        "lifeTitle": "auction_json.life_tcn",
+        "nick_name":"昵稱：",
+        "ph_num":"編號:",
+        "ph_m_title":"父親:",
+        "ph_w_title":"母親:",
+        "ph_from_title":"來源:",
+        "ph_from":"創世鳳凰",
+        "ph_detail":"auction_json.detail_tcn",
+        "ph_log":"auction_json.record_tcn"
+    },
+    "auctionRule":{
+        "img_head":"auction_json.auction_rule_tcn",
+        "got_it": "知道了"
+    },
+    "binding": {
+        "enter_adder": "請輸入正確的錢包地址！",
+        "heat_img": "minerV1_json.open_tcn",
+        "binding_img": "minerV1_json.binding_tcn",
+        "status_txt":"您已經成功預約礦工，現只需綁定VSC錢包即可開始遊戲。",
+        "confirm": "確定",
+        "goBand": "去綁定",
+        "downWoller": "下載錢包",
+        "theLink": "輸入地址，請確保字母大小寫無誤",
+        "binding": "確認綁定",
+        "bindingSuccess": "綁定成功，現在可以去上鏈了！",
+        "startGame": "開始遊戲",
+        "enter_link": "請輸入錢包地址",
+        "unfortunately": "很遺憾由於您尚未預約礦工，需要等待下壹個版本後方可參與礦工遊戲。",
+        "successfully": "上鏈需要綁定外部錢包地址，綁定時請確認錢包地址準確無誤。",
+        "wallet_instruc": "VSC錢包說明",
+        "po_Mine":"1.寶礦遊戲必須綁定VSC錢包，未綁定則無法上鏈。",
+        "regular_digital": "2.VSC為平臺提供的正規數字貨幣交易平臺，請放心下載。",
+        "iOS_and_Android": "3.支持IOS和安卓下載，請在瀏覽器中下載。",
+        "go_download":"去下載"
+    },
+    "changeLink": {
+        "change_img": "minerV1_json.change_tcn",
+        "address_mobile": "您正在申請變更錢包地址，需要驗證您的手機號碼",
+        "enter_code": "請輸入驗證碼",
+        "get_code": "獲取驗證碼",
+        "submit": "提交",
+        "bind_VSC": "您的礦工收益需要綁定VSC錢包  您可變更壹個VSC錢包地址",
+        "enter_VSC" : "輸入VSC錢包地址",
+        "change": "變更",
+        "determine": "確定",
+        "sms_has":"短信已發送！",
+        "you_have": "您正在申請變更VSC錢包地址，需要收取手續費",
+        "the_money": "金幣，請確認！",
+        "pay_succe": "支付成功，新的VSC錢包地址是",
+        "faild": "支付失敗，VSC錢包尚未變更。"
+    },
+    "equips": {
+        "using":"minerV1_json.using_tcn",
+        "service":"minerV1_json.service_tcn",
+        "rise": "minerV1_json.rise_tcn",
+        "equip": "minerV1_json.equip_tcn",
+        "durability": "耐久度：",
+        "length": "剩余時長：",
+        "reduce": "降低消耗：",
+        "determine": "確定",
+        "pay": "立即支付",
+        "houer": "小時",
+        "does": "是否花費",
+        "sharedValue": "金幣維修初始裝備？",
+        "congratulations": "恭喜妳維修成功，裝備已恢復嶄新狀態。",
+        "stay_tuned":"功能開發中，敬請期待！"
+    },
+    "goodsIntro": {
+        "pay": "購買",
+        "use": "使用",
+        "wupin": "wutong_json.wupin_tcn",
+        "shared_num": "金幣/個",
+        "mge_num": "金幣/個"
+    },
+    "minerGoods": {
+        "miner": "寶礦",
+        "eggs": "鳳凰蛋",
+        "no_egg": "暫無鳳凰蛋，點擊前往購買！"
+    },
+    "homeTips": {
+        "minerDont": "礦工尚未擁有工具無法挖礦，是否花費",
+        "toBuy": "金幣購買初始工具？",
+        "gain": "礦工已擁有工具，可以開始挖礦，請註意礦工體力值，體力值為0時無法工作，可食用物品獲得體力。",
+        "buyNow": "立即購買",
+        "goBuy": "前往購買"
+    },
+    "minerRule": {
+        "determine": "確定",
+        "pulse": "",
+        "rules": "minerV1_json.rules_tcn"
+    },
+    "minerTools": {
+        "using":"minerV1_json.using_tcn",
+        "service":"minerV1_json.service_tcn",
+        "rise":"minerV1_json.rise_tcn",
+        "tool":"minerV1_json.tool_tcn",
+        "durability":"耐久度：",
+        "length":"剩余時長：",
+        "kylength": "可用時長",
+        "improve":"提升效率：",
+        "determine": "確定",
+        "pay": "支付",
+        "does":"是否花費",
+        "shared":"金幣維修",
+        "upgarde": "是否花費",
+        "sharedUp": "金幣將",
+        "to": "升級到",
+        "congratulations":"恭喜妳維修成功，工具已恢復嶄新狀態。",
+        "up_success": "恭喜您，升級成功！",
+        "Stay":"功能開發中，敬請期待！"
+    },
+    "records": {
+        "props_use": "物品使用",
+        "my_income": "我的收益",
+        "recording": "minerV1_json.recording_tcn",
+        "no_use": "暫無使用記錄！",
+        "no_charge": "暫無收益記錄！"
+    },
+    "scrollerRecordsIncome": {
+        "winding": "上鏈",
+        "changeVSC": "變更VSC錢包",
+        "current": "當前收益",
+        "cumulative": "累計收益:",
+        "stay_tuned": "VSC錢包即將開放，敬請期待",
+        "exchange_vsc": "兌換VSC"
+    },
+    "guidance": {
+        "bg": "gui_bg_tcn",
+        "no1": "gui_spd_tcn",
+        "no2": "gui_basket_tcn",
+        "no3": "gui_equips_tcn",
+        "no4": "gui_goods_tcn",
+        "no5": "gui_tools_tcn",
+        "no6": "gui_recode_tcn"
+    },
+    "winding":{
+        "enter_the_number":"請輸入上鏈數量：",
+        "winding_img": "minerV1_json.winding_tcn",
+        "winding_instructions": "上鏈說明：",
+        "submit":"提交",
+        "about_to_open":"外部錢包即將開放，請耐心等待。",
+        "confirm": "確定",
+        "lowest":"1、最低：",
+        "chain": "2、上鏈礦工費",
+        "aVSC": "VSC",
+        "number_of_windings": "請輸入足夠的上鏈數量!",
+        "wallet_address": "您當前上鏈錢包地址為",
+        "confirm_it": ",請確認無誤。"
+    },
+    "differentCloose": {
+        "algebraList": ["零代創世","壹代","二代","三代","四代","五代","六代","七代","八代","九代","十代"],
+        "typeList": ["全部","鳳凰","鳳凰蛋","梧桐果"],
+        "sortingList": ["最近上架","價格由低到高"]
+    },
+    "working":{
+        "back":"返回",
+        "hp_img":"minerV1_json.hp_tcn",
+        "spd_img":"minerV1_json.spd_tcn",
+        "equips_img":"minerV1_json.equips_tcn",
+        "thetools_img":"minerV1_json.thetools_tcn",
+        "thegoods_img":"minerV1_json.thegoods_tcn",
+        "records_img":"minerV1_json.records_tcn",
+        "chara_img": "chara_tcn_png",
+        "gainbg_img": "gainbg_tcn_png"
+    },
+    "workingTs":{
+        "miner_work":"妳的礦工已開始工作！",
+        "miner_hungry":"體力殆盡。",
+        "eat_foods":"可使用食物恢復體力！",
+        "miner_injured":"礦工已受傷。",
+        "miner_inefficient_1":"消耗加倍，效率減半！",
+        "miner_tool_broken":"工具已損壞。",
+        "miner_work_stop":"暫停工作，請及時維修",
+        "miner_equipment_broken":"裝備已損壞。",
+        "miner_inefficient_2":"消耗增加，請及時維修!",
+        "earning_tips":"個VSC已放至記錄-我的收益中。",
+        "toWallet":"前往錢包",
+        "ok":"好的",
+        "not_arrived": "領取時間未到！"
+    },
+    "gainContent": {
+        "theText": "以下數字為根據用戶身份的不同而區分的算力增益倍數：",
+        "ph_bird": "鳳凰擁有者",
+        "fruit":"果兒令用戶",
+        "basic_user": "基礎用戶",
+        "alliance_maker": "聯盟創客",
+        "member": "聯盟商戶成員",
+        "miner_skin": "皮膚增益",
+        "invite": "推薦增益",
+        "gain_png": "gain_tcn_png"
+    },
+    "rename": {
+        "num": "編號：",
+        "name": "昵稱：",
+        "startChange": "開始改名",
+        "changeName": "修改昵稱",
+        "nomore": "不超過6個中文或12個英文",
+        "doU" : "是否使用壹張改名卡修改昵稱？",
+        "later": "稍後",
+        "confrim": "確認",
+        "num_out": "字數超出",
+        "special": "不支持特殊字符",
+        "renamed": "改名成功！"
+    },
+    "extract": {
+        "head_img": "exchangeVSC_tcn_png"
+    },
+    "character": {
+        "replace": "replace_tcn_png",
+        "discription": "discription_tcn_png",
+        "introduction": "介紹",
+        "dete": "確認",
+        "buy": "購買",
+        "tips_1st": "人物皮膚可為礦工增加魅力增益，提供礦工收益。",
+        "tips_2nd": "皮膚會因為礦工工作而產生磨損，請註意及時維修。",
+        "tips_3rd": "人物皮膚在鳳棲梧桐後期可產生其他收益，敬請期待。",
+        "tips_4th": "人物皮膚在破損後停止產生礦工增益，購買之日起30天後破損，請及時維修。",
+        "chara_gain": "魅力增益：",
+        "durability": "耐久度：",
+        "price": "價格：",
+        "buy_succ": "購買成功！"
+    },
+    "common":{
+        "keyboard_title": "驗證PIN碼",
+        "keyboard_tips": "請輸入6位數字PIN碼",
+        "keyboard_empty": "清空",
+        "keyboard_del": "刪除"
+        },
+    "goldCoin":{
+        "exchange_head": "transaction_json.exchange_coin_cn",
+        "gold_head": "transaction_json.gold_text_cn",
+        "amount": "總量",
+        "confirm": "確定",
+        "confirm_exchange": "兌換",
+        "enter_tips": "請輸入兌換數量：",
+        "input_svc": "SVC",
+        "input_gold": "金幣",
+        "exchange_ratio": "兌換比例",
+        "svc_empyt": "請輸入svc數量!",
+        "exchange_success":"兌換成功！",
+        "no_log": "暫無記錄",
+        "exchange_tips": "兌換數量應為100的倍數。",
+        "not_enough_svc": "SVC不足！"
+    }
+}

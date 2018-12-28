@@ -1,0 +1,650 @@
+{
+    "emailInstr": {
+        "panel_title": "邮箱",
+        "btn_pick_lab": "领取"
+    },
+    "emailSkin": {
+        "panel_title": "邮箱"
+    },
+    "empty": {
+        "empty_text": ""
+    },
+    "friendNew": {
+        "more_text": "更多"
+    },
+    "goPayGB": {
+        "notEnough": "支付失败！",
+        "wait": "确定",
+        "go": "前往"
+    },
+    "index": {
+        "interact":"wutong_json.tools_cn",
+        "goods": "wutong_json.goods_cn",
+        "email": "wutong_json.emali_cn",
+        "tran": "transaction_json.transac_cn",
+        "auction": "wutong_json.auction_cn",
+        "miner": "wutong_json.miner_c_cn",
+        "gold":"transaction_json.gold_cn",
+        "cantSteal": "保护状态，不可偷取",
+        "lastNews": "最新动态",
+        "confirm": "确认",
+        "justWait": "稍后",
+        "shared": "金币",
+        "mgb": "金币",
+        "open": "minerV1_json.open_cn",
+        "open_later": "稍后开通",
+        "open_now": "立即开通",
+        "go": "前往"
+    },
+    "interactive": {
+        "head_img": "wutong_json.hudong_cn",
+        "panel_title": "互动"
+    },
+    "newDynamic": {
+        "head_img": "wutong_json.zxdt_cn",
+        "news": "最新动态"
+    },
+    "otherGarden": {
+        "cantSteal": "保护状态，不可偷取",
+        "news": "最新动态"
+    },
+    "propsIntro": {
+        "intro_name": "wutong_json.wupin_cn",
+        "btn_use_text": "使用",
+        "buy": "购买",
+        "btn_con_text": "确认",
+        "btn_hatch":"孵化",
+        "egg_num_title":"编号：",
+        "egg_m_title":"母亲:",
+        "egg_f_title":"父亲:",
+        "egg_status_title":"状态:",
+        "egg_sex_title":"性别:",
+        "price_units":"金币/个"
+    },
+    "propsStatus": {
+        "use": "使用",
+        "nowHas":"目前拥有："
+    },
+    "staAndDyn": {
+        "panel_title": "wutong_json.wutongimg_cn",
+        "sta_text": "梧桐果成熟",
+        "dyn_text": "梧桐树动态"
+    },
+    "tips": {
+        "panel_head": "minerV1_json.prompt_cn",
+        "iKnow": "知道了"
+    },
+    "notices": {
+        "panel_title": "通知",
+        "iKnow": "知道了"
+    },
+    "toolsSkin": {
+        "head_img": "wutong_json.wupin_cn",
+        "panel_title": "物品",
+        "no_egg":"暂无凤凰蛋"
+    },
+    "secondPassWord": {
+        "panel_title": "验证PIN码",
+        "tips": "请输入6位数PIN码"
+    },
+    "usePay": {
+        "confirm": "确认"
+    },
+    "emailTs": {
+        "no_mail": "暂无邮件！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "emailInsterTs": {
+        "already_received": "已领取",
+        "received": "领取",
+        "received_success": "领取成功",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "fruitListTs": {
+        "is_flower": "正在开花",
+        "being_fru": "正在结果",
+        "already_mature": "已经成熟"
+    },
+    "indexTs": {
+        "open_success": "恭喜您成功开通了梧桐树！",
+        "harvest": "恭喜你收获",
+        "wutong": "个梧桐果！",
+        "life_val": "生命值！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "interactiveTs": {
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "newDynamicTs": {
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "otherGardenTs": {
+        "only_master": "只有主人才可以除虫哦！",
+        "snatch": "恭喜你抢到了",
+        "wutong": "个梧桐果！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "propsIntroTs": {
+        "not_enough": "道具数量不足！",
+        "network_error": "网络错误！请重新尝试！",
+        "hatch_1":"孵化",
+        "hatch_2":"重生"
+    },
+    "propsStatusTs": {
+        "not_enough": "道具数量不足！",
+        "life_val": "生命值！",
+        "network_error": "网络错误！请重新尝试！",
+        "full": "我吃饱了！"
+    },
+    "scrollerDynamicTs": {
+        "no_more": "没有更多了！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "scrollerEmailTs": {
+        "no_more": "没有更多了！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "scrollerFruitTs": {
+        "no_more": "没有更多了！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "scrollerInteractiveTs": {
+        "no_more": "没有更多了！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "scrollerNewsTs": {
+        "no_more": "没有更多了！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "staAndDynTs": {
+        "no_fertilizer": "你还没有施肥呢！",
+        "no_dynamic": "暂无动态~",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "toolsTs": {
+        "network_error": "网络错误！请重新尝试！",
+        "tree": "梧桐树",
+        "bird":"凤凰",
+        "egg":"凤凰蛋"
+    },
+    "usePayTs": {
+        "go_pay": "是否前往购买？",
+        "if_spend": "是否花费",
+        "to_go_pay": "金币购买?",
+        "geb_go_pay": "金币购买？",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "auctionBanner":{
+        "auc_time": "拍卖时间:"
+    },
+    "auctionResultCount": {
+        "the_next_time": "下一轮开始倒计时",
+        "Auc_results": "拍卖结果"
+    },
+    "bid": {
+        "head_img": "auction_json.bid_cn",
+        "detail":"auction_json.detail_cn",
+        "num": "编号：",
+        "high_bid": "最高出价：",
+        "high_bidder": "出价者：",
+        "bidding": "出价",
+        "have": "拥有：",
+        "down": "倒计时：",
+        "auction_price": "竞拍价格",
+        "bidders": "竞拍人",
+        "auction_time": "竞拍时间",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "birthTip": {
+        "confirm": "确认"
+    },
+    "creation": {
+        "img_head": "auction_json.auc_creation_cn",
+        "rule": "规则",
+        "crea_time": "创世限时",
+        "my_auc": "我的拍卖"
+    },
+    "creationList": {
+        "num":"编号：",
+        "life_limit": "生命上限：",
+        "starting_price": "起拍价：",
+        "high_bid": "最高价：",
+        "bid": "出价",
+        "bid_again": "再次出价",
+        "down": "倒计时：",
+        "leading": "领 先"
+    },
+    "getAutionItem": {
+        "getEgg": "get_egg_cn_png",
+        "receive": "领取"
+    },
+    "myAuction": {
+        "head_img": "auction_json.auc_my_auc_cn",
+        "bid_record": "出价记录",
+        "crea_time": "创世限时",
+        "my_auc": "我的拍卖"
+    },
+    "myBidMoneyList": {
+        "num":"编号：",
+        "life_limit": "生命上限：",
+        "price": "价格：",
+        "sorce": "来源：",
+        "tack_back":"取回",
+        "continue_bid":"继续出价",
+        "high_bid": "最高价："
+    },
+    "minerAppo": {
+        "yuyue": "miner_reser_cn_png",
+        "miner_img":"miner_bg_hm_cn_png",
+        "yuyue_tip": "tip_txt_reser_cn_png",
+        "appo_time": "预约时间",
+        "reser_pay": "预约支付",
+        "confirm": "确认"
+    },
+    "bidTs": {
+        "incer": "加价",
+        "no_shared": "金币不足！"
+    },
+    "creationTs": {
+        "pay_shared": "请预先缴纳保证金",
+        "margin": "保证金将在拍卖结束后退还。",
+        "pay_success": "缴纳成功！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "creationListTs": {
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "getAutionItemTs": {
+        "recei_success": "领取成功！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "myAuctionTs": {
+        "no_bid": "暂无出价记录！",
+        "no_shelv": "暂无上架记录！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "myBidMoneyListTs": {
+        "network_error": "网络错误！请重新尝试！",
+        "reco_success": "取回成功",
+        "f_auc": "拍卖失败",
+        "high_bid": "最高价：",
+        "final_price": "成交价：",
+        "success_auc": "拍卖成功"
+    },
+    "scrollerBidMoneyTs": {
+        "no_more": "没有更多了！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "minerAppoTs": {
+        "to": "至",
+        "booking_miner": "您正在预约脉金币矿新游戏，为确保您的预约成功。",
+        "need_pay": "需要支付",
+        "shared_worth": "金币！",
+        "success_booking": "您已经成功预约脉金币矿。新功能即将推出，敬请期待！",
+        "no_repeat_again": "您已经成功预约脉金币矿。请勿重复预约",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "shelfDetailInfo": {
+        "img_head": "transaction_json.shelf_set_cn",
+        "detail": "auction_json.detail_cn",
+        "num":"编号：",
+        "life": "生命值：",
+        "price": "上架价格：",
+        "shared_value": "金币",
+        "now_shelves": "立即上架",
+        "price_description": "上架价格必须大于0且为整数",
+        "confirm": "确定",
+        "wt_friut": "梧桐果",
+        "name": "名称：",
+        "effect": "作用：",
+        "shelves_num": "上架数量：",
+        "current_price": "当前数量：",
+        "unit_price": "上架单价：",
+        "shelf_num": "金币/个",
+        "goods_price": "商品总价",
+        "than_zero": "商品总价必须大于零且为整数",
+        "head_fee": "手续费"
+    },
+    "shelfDetailInfoTs": {
+        "shared_value": "金币",
+        "fees": "手续费",
+        "enter_price": "请输入价格！",
+        "success":"恭喜您，上架成功！",
+        "network_error": "网络错误！请重新尝试！",
+        "one": "个",
+        "number_fruit": "梧桐果数量不足！",
+        "please_fruit": "请输入梧桐果数量"
+    },
+    "shelfDetail": {
+        "img_head":"transaction_json.select_cn"
+    },
+    "shelfDetailList":{
+        "num":"编号：",
+        "life_limit": "生命上限：",
+        "sell": "卖出"
+    },
+    "shelfDetailListTs": {
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "myBuyHistoryList": {
+        "num":"编号：",
+        "life_limit": "生命上限：",
+        "life": "生命值：",
+        "price": "价格:",
+        "successful": "购买成功"
+    },
+    "myShelfHistoryList": {
+        "num":"编号：",
+        "life_limit": "生命上限：",
+        "price": "价格:",
+        "drop_off": "下架"
+    },
+    "myTransaction": {
+        "img_head":"transaction_json.my_tran_cn",
+        "shelf": "上架",
+        "buy_history": "购买记录",
+        "shelf_record": "上架记录",
+        "exchange": "玩家集市",
+        "my_transaction": "我的记录",
+        "dete": "确认",
+        "cancel": "取消",
+        "remove_props":"是否下架该商品?"
+    },
+    "transaction": {
+        "img_head": "transaction_json.exchange_cn",
+        "type":"类型",
+        "algebra": "代数",
+        "sorting": "排序",
+        "exchange": "玩家集市",
+        "my_transaction": "我的记录"
+    },
+    "transactionList": {
+        "num":"编号：",
+        "life_limit": "生命值：",
+        "price": "价格:",
+        "buy": "购买"
+    },
+    "shelfDetailTs": {
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "myTransactionTs": {
+        "network_error": "网络错误！请重新尝试！",
+        "no_shelves": "暂无上架记录",
+        "no_pay":"没有购买记录",
+        "succ_left": "下架成功！"
+    },
+    "myShelfHistoryListTs": {
+        "drop_off": "已下架",
+        "already_sold": "已卖出",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "scrollerShelfDetailTs": {
+        "no_more": "没有更多了！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "scrollerMyBuyHistoryTs":{
+        "no_more": "没有更多了！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "scrollerMyShelfHistoryTs":{
+        "no_more": "没有更多了！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "scrollerTransactionTs": {
+        "no_more": "没有更多了！",
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "transactionTs": {
+        "network_error": "网络错误！请重新尝试！",
+        "no_history": "暂无商品!"
+    },
+    "transactionListTs": {
+        "network_error": "网络错误！请重新尝试！"
+    },
+    "detailTs": {
+        "page_title":"auction_json.fh_wz_2x",
+        "lifeTitle": "auction_json.life_cn",
+        "nick_name":"昵称：",
+        "ph_num":"编号:",
+        "ph_m_title":"父亲:",
+        "ph_w_title":"母亲:",
+        "ph_from_title":"来源:",
+        "ph_from":"创世凤凰",
+        "ph_detail":"auction_json.detail_cn",
+        "ph_log":"auction_json.record_cn"
+    },
+    "auctionRule":{
+        "img_head":"auction_json.auction_rule_cn",
+        "got_it": "知道了"
+    },
+    "binding": {
+        "enter_adder": "请输入正确的钱包地址！",
+        "heat_img": "minerV1_json.open_cn",
+        "binding_img": "minerV1_json.binding_cn",
+        "status_txt":"您已经成功预约矿工，现只需绑定VSC钱包即可开始游戏。",
+        "confirm": "确定",
+        "goBand": "去绑定",
+        "downWoller": "下载钱包",
+        "theLink": "输入地址，请确保字母大小写无误",
+        "binding": "确认绑定",
+        "bindingSuccess": "绑定成功，现在可以去上链了！",
+        "startGame": "开始游戏",
+        "enter_link": "请输入钱包地址",
+        "unfortunately": "很遗憾由于您尚未预约矿工，需要等待下一个版本后方可参与矿工游戏。",
+        "successfully": "上链需要绑定外部钱包地址，绑定时请确认钱包地址准确无误。",
+        "wallet_instruc": "VSC钱包说明",
+        "po_Mine":"1.宝矿游戏必须绑定VSC钱包，未绑定则无法上链。",
+        "regular_digital": "2.VSC为平台提供的正规数字货币交易平台，请放心下载。",
+        "iOS_and_Android": "3.支持IOS和安卓下载，请在浏览器中下载。",
+        "go_download":"去下载"
+    },
+    "changeLink": {
+        "change_img": "minerV1_json.change_cn",
+        "address_mobile": "您正在申请变更钱包地址，需要验证您的手机号码",
+        "enter_code": "请输入验证码",
+        "get_code": "获取验证码",
+        "submit": "提交",
+        "bind_VSC": "您的矿工收益需要绑定VSC钱包  您可变更一个VSC钱包地址",
+        "enter_VSC" : "输入VSC钱包地址",
+        "change": "变更",
+        "determine": "确定",
+        "sms_has":"短信已发送！",
+        "you_have": "您正在申请变更VSC钱包地址，需要收取手续费",
+        "the_money": "金币，请确认！",
+        "pay_succe": "支付成功，新的VSC钱包地址是",
+        "faild": "支付失败，VSC钱包尚未变更。"
+    },
+    "equips": {
+        "using":"minerV1_json.using_cn",
+        "service":"minerV1_json.service_cn",
+        "rise": "minerV1_json.rise_cn",
+        "equip": "minerV1_json.equip_cn",
+        "durability": "耐久度：",
+        "length": "剩余时长：",
+        "reduce": "降低消耗：",
+        "determine": "确定",
+        "pay": "立即支付",
+        "houer": "小时",
+        "does": "是否花费",
+        "sharedValue": "金币维修初始装备？",
+        "congratulations": "恭喜你维修成功，装备已恢复崭新状态。",
+        "stay_tuned":"功能开发中，敬请期待！"
+    },
+    "goodsIntro": {
+        "pay": "购买",
+        "use": "使用",
+        "wupin": "wutong_json.wupin_cn",
+        "shared_num": "金币/个",
+        "mge_num": "金币/个"
+    },
+    "minerGoods": {
+        "miner": "宝矿",
+        "eggs": "凤凰蛋",
+        "no_egg": "暂无凤凰蛋，点击前往购买！"
+    },
+    "homeTips": {
+        "minerDont": "矿工尚未拥有工具无法挖矿，是否花费",
+        "toBuy": "金币购买初始工具？",
+        "gain": "矿工已拥有工具，可以开始挖矿，请注意矿工体力值，体力值为0时无法工作，可食用物品获得体力。",
+        "buyNow": "立即购买",
+        "goBuy": "前往购买"
+    },
+    "minerRule": {
+        "determine": "确定",
+        "pulse": "",
+        "rules": "minerV1_json.rules_cn"
+    },
+    "minerTools": {
+        "using":"minerV1_json.using_cn",
+        "service":"minerV1_json.service_cn",
+        "rise":"minerV1_json.rise_cn",
+        "tool":"minerV1_json.tool_cn",
+        "durability":"耐久度：",
+        "length":"剩余时长：",
+        "kylength": "可用时长",
+        "improve":"提升效率：",
+        "determine": "确定",
+        "pay": "支付",
+        "does":"是否花费",
+        "shared":"金币维修",
+        "upgarde": "是否花费",
+        "sharedUp": "金币将",
+        "to": "升级到",
+        "congratulations":"恭喜你维修成功，工具已恢复崭新状态。",
+        "up_success": "恭喜您，升级成功！",
+        "Stay":"功能开发中，敬请期待！"
+    },
+    "records": {
+        "props_use": "物品使用",
+        "my_income": "我的收益",
+        "recording": "minerV1_json.recording_cn",
+        "no_use": "暂无使用记录！",
+        "no_charge": "暂无收益记录！"
+    },
+    "scrollerRecordsIncome": {
+        "winding": "上链",
+        "changeVSC": "变更VSC钱包",
+        "current": "当前收益",
+        "cumulative": "累计收益:",
+        "stay_tuned": "VSC钱包即将开放，敬请期待",
+        "exchange_vsc": "兑换VSC"
+    },
+    "guidance": {
+        "bg": "gui_bg_cn",
+        "no1": "gui_spd_cn",
+        "no2": "gui_basket_cn",
+        "no3": "gui_equips_cn",
+        "no4": "gui_goods_cn",
+        "no5": "gui_tools_cn",
+        "no6": "gui_recode_cn"
+    },
+    "winding":{
+        "enter_the_number":"请输入上链数量：",
+        "winding_img": "minerV1_json.winding_cn",
+        "winding_instructions": "上链说明：",
+        "submit":"提交",
+        "about_to_open":"外部钱包即将开放，请耐心等待。",
+        "confirm": "确定",
+        "lowest":"1、最低：",
+        "chain": "2、上链矿工费",
+        "aVSC": "VSC",
+        "number_of_windings": "请输入足够的上链数量!",
+        "wallet_address": "您当前上链钱包地址为",
+        "confirm_it": ",请确认无误。"
+    },
+    "differentCloose": {
+        "algebraList": ["零代创世","一代","二代","三代","四代","五代","六代","七代","八代","九代","十代"],
+        "typeList": ["全部","凤凰","凤凰蛋","梧桐果"],
+        "sortingList": ["最近上架","价格由低到高"]
+    },
+    "working":{
+        "back":"返回",
+        "hp_img":"minerV1_json.hp_cn",
+        "spd_img":"minerV1_json.spd_cn",
+        "equips_img":"minerV1_json.equips_cn",
+        "thetools_img":"minerV1_json.thetools_cn",
+        "thegoods_img":"minerV1_json.thegoods_cn",
+        "records_img":"minerV1_json.records_cn",
+        "chara_img": "chara_cn_png",
+        "gainbg_img": "gainbg_cn_png"
+    },
+    "workingTs":{
+        "miner_work":"你的矿工已开始工作！",
+        "miner_hungry":"体力殆尽。",
+        "eat_foods":"可使用食物恢复体力！",
+        "miner_injured":"矿工已受伤。",
+        "miner_inefficient_1":"消耗加倍，效率减半！",
+        "miner_tool_broken":"工具已损坏。",
+        "miner_work_stop":"暂停工作，请及时维修",
+        "miner_equipment_broken":"装备已损坏。",
+        "miner_inefficient_2":"消耗增加，请及时维修!",
+        "earning_tips":"个VSC已放至记录-我的收益中。",
+        "toWallet":"前往钱包",
+        "ok":"好的",
+        "not_arrived": "领取时间未到！"
+    },
+    "gainContent": {
+        "theText": "以下数字为根据用户身份的不同而区分的算力增益倍数：",
+        "ph_bird": "凤凰拥有者",
+        "fruit":"果儿令用户",
+        "basic_user": "基础用户",
+        "alliance_maker": "联盟创客",
+        "member": "联盟商户成员",
+        "miner_skin": "皮肤增益",
+        "invite": "推荐增益",
+        "gain_png": "gain_cn_png"
+    },
+    "rename": {
+        "num": "编号：",
+        "name": "昵称：",
+        "startChange": "开始改名",
+        "changeName": "修改昵称",
+        "nomore": "不超过6个中文或12个英文",
+        "doU" : "是否使用一张改名卡修改昵称？",
+        "later": "稍后",
+        "confrim": "确认",
+        "num_out": "字数超出",
+        "special": "不支持特殊字符",
+        "renamed": "改名成功！"
+    },
+    "extract": {
+        "head_img": "exchangeVSC_cn_png"
+    },
+    "character": {
+        "replace": "replace_cn_png",
+        "discription": "discription_cn_png",
+        "introduction": "介绍",
+        "dete": "确认",
+        "buy": "购买",
+        "tips_1st": "人物皮肤可为矿工增加魅力增益，提供矿工收益。",
+        "tips_2nd": "皮肤会因为矿工工作而产生磨损，请注意及时维修。",
+        "tips_3rd": "人物皮肤在凤栖梧桐后期可产生其他收益，敬请期待。",
+        "tips_4th": "人物皮肤在破损后停止产生矿工增益，购买之日起30天后破损，请及时维修。",
+        "chara_gain": "魅力增益：",
+        "durability": "耐久度：",
+        "price": "价格：",
+        "buy_succ": "购买成功！"
+    },
+    "common":{
+        "keyboard_title": "验证PIN码",
+        "keyboard_tips": "请输入6位数字PIN码",
+        "keyboard_empty": "清空",
+        "keyboard_del": "删除"
+    },
+    "goldCoin":{
+        "exchange_head": "transaction_json.exchange_coin_cn",
+        "gold_head": "transaction_json.gold_text_cn",
+        "amount": "总量",
+        "confirm": "确定",        
+        "confirm_exchange": "兑换",        
+        "enter_tips": "请输入兑换数量：",
+        "input_svc": "SVC",
+        "input_gold": "金币",
+        "exchange_ratio": "兑换比例",
+        "svc_empyt":"请输入svc数量!",
+        "exchange_success":"兑换成功！",
+        "no_log": "暂无记录",
+        "exchange_tips": "兑换数量应为100的倍数。",
+        "not_enough_svc": "SVC不足！"
+    }
+}

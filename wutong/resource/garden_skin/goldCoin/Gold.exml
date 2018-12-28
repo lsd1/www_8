@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="gold" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="gold_group" left="0" right="0" top="0" bottom="0">
+        <e:Image source="auction_json.auc_bj" anchorOffsetY="0" top="0" bottom="0" left="0" right="0" scale9Grid="45,18,659,555"/>
+        <e:Group id="exchange_top" anchorOffsetY="0" top="0" left="0" right="0" height="82">
+			<e:Image source="auction_json.auc_top" scaleX="1" scaleY="1" scale9Grid="185,11,497,68" left="0" right="0" top="-4"/>
+            <e:Image id="head_img" horizontalCenter="-106" y="23" source="{data.goldCoin.gold_head}"/>
+			<e:Group id="goBack" width="150" height="78" anchorOffsetY="0" left="0" top="0">
+				<e:Image source="auction_json.auc_return" scaleX="1" scaleY="1" horizontalCenter="-6" verticalCenter="-2"/>
+			</e:Group>
+        </e:Group>
+		<e:Label id="goldAmount" text="0" y="144" fontFamily="PingFang-SC-Bold" textColor="0xf76005" size="48" textAlign="center" verticalAlign="middle" horizontalCenter="0"/>
+		<e:Label text="{data.goldCoin.amount}" y="212" fontFamily="PingFang-SC-Medium" textColor="0x3c2405" verticalAlign="middle" textAlign="center" horizontalCenter="0"/>
+		<e:Group id="confirmExchange" width="600" height="100" anchorOffsetY="0" bottom="50" horizontalCenter="0">
+			<e:Image source="auction_json.auc_btn" width="645" height="109" horizontalCenter="0.5" y="-0.52"/>
+			<e:Label text="{data.goldCoin.confirm_exchange}" textColor="0xffe5b8" fontFamily="PingFang-SC-Medium" verticalCenter="0" verticalAlign="middle" textAlign="center" horizontalCenter="0"/>
+		</e:Group>
+		<e:Group id="goldLog" width="690" height="850" horizontalCenter="0" verticalCenter="18"/>
+	
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,278 @@
+{
+	"groups": [
+		{
+			"keys": "bg_d_png,bg_e_png,bg_n_png,wutong_json",
+			"name": "loading"
+		},
+		{
+			"keys": "config_json,description_json,lang_cn_json,lang_en_json,transaction_json,yinying_png,adrenaline_ske_dbbin,adrenaline_tex_json,adrenaline_tex_png,rename_cn_png,rename_en_png,wtg_bag_png,wtg_smart_png,chara_cn_png,chara_en_png,discription_cn_png,discription_en_png,gain_cn_png,gain_en_png,gainbg_cn_png,gainbg_en_png,jt_2x_png,minerV1_json,replace_cn_png,replace_en_png,wenhao_png,lang_tcn_json,bg_d_png,bg_e_png,bg_n_png,auction_json",
+			"name": "wutong"
+		}
+	],
+	"resources": [
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "default.res.json",
+			"type": "json",
+			"name": "default.res_json"
+		},
+		{
+			"url": "config/config.json",
+			"type": "json",
+			"name": "config_json"
+		},
+		{
+			"url": "config/lang_cn.json",
+			"type": "json",
+			"name": "lang_cn_json"
+		},
+		{
+			"url": "config/lang_en.json",
+			"type": "json",
+			"name": "lang_en_json"
+		},
+		{
+			"url": "assets/style.css",
+			"type": "bin",
+			"name": "style_css"
+		},
+		{
+			"url": "assets/transactionV1.0/transaction.json",
+			"type": "sheet",
+			"name": "transaction_json",
+			"subkeys": "exchange_cn,exchange_coin_cn,exchange_coin_tcn,exchange_en,exchange_tcn,gold_cn,gold_en,gold_tcn,gold_text_cn,gold_text_en,gold_text_tcn,my_tran_cn,my_tran_en,my_tran_tcn,select_cn,select_en,select_tcn,shelf_set_cn,shelf_set_en,shelf_set_tcn,tran_goly,tran_play,transac_cn,transac_en,transac_tcn"
+		},
+		{
+			"url": "assets/wutongV1.1/yinying.png",
+			"type": "image",
+			"name": "yinying_png"
+		},
+		{
+			"url": "assets/wutongV1.0/bg_d.png",
+			"type": "image",
+			"name": "bg_d_png"
+		},
+		{
+			"url": "assets/wutongV1.0/bg_e.png",
+			"type": "image",
+			"name": "bg_e_png"
+		},
+		{
+			"url": "assets/wutongV1.0/bg_n.png",
+			"type": "image",
+			"name": "bg_n_png"
+		},
+		{
+			"url": "assets/wutongV1.0/wutong.json",
+			"type": "sheet",
+			"name": "wutong_json",
+			"subkeys": "Insecticide,LV1,LV10,LV2,LV3,LV4,LV5,LV6,LV7,LV8,LV9,auction_cn,auction_en,auction_tcn,btn_add_1,btn_close,btn_green,btn_green_1,btn_red,btn_return,btn_sub_1,btn_yellow,come,countdown,cover,cover_1,delete,emali_cn,emali_en,emali_tcn,farem_white_1,farem_white_2,farem_white_3,farem_white_head,flower,frame_green_1,frame_white_gray,fruit_1,fruit_2,fruit_green,fruit_m_10_d,fruit_min,ganmao_cn,ganmao_en,ganmao_tcn,gold,goods_cn,goods_en,goods_tcn,green_lighting,hudong_cn,hudong_en,hudong_tcn,icon_gray_1,icon_gray_2,jinshi_cn,jinshi_en,jinshi_tcn,load_bar,lvyou_cn,lvyou_en,lvyou_tcn,mail_cn,mail_en,mail_tcn,miner_c_cn,miner_c_en,miner_c_tcn,pay_low,pay_ok,pick,ripener,sun,tips_panel,tools_cn,tools_en,tools_tcn,topwater,tran_cn,tran_en,tran_tcn,tree_10_d,undercolor,water ,water_1,worm,wupin_cn,wupin_en,wupin_tcn,wutongimg_cn,wutongimg_en,wutongimg_tcn,youxi_cn,youxi_en,youxi_tcn,zxdt_cn,zxdt_en,zxdt_tcn"
+		},
+		{
+			"url": "mc/adrenaline_ske.dbbin",
+			"type": "bin",
+			"name": "adrenaline_ske_dbbin"
+		},
+		{
+			"url": "mc/adrenaline_tex.png",
+			"type": "image",
+			"name": "adrenaline_tex_png"
+		},
+		{
+			"url": "mc/rename_cn.png",
+			"type": "image",
+			"name": "rename_cn_png"
+		},
+		{
+			"url": "mc/rename_en.png",
+			"type": "image",
+			"name": "rename_en_png"
+		},
+		{
+			"url": "mc/wtg_bag.png",
+			"type": "image",
+			"name": "wtg_bag_png"
+		},
+		{
+			"url": "mc/wtg_smart.png",
+			"type": "image",
+			"name": "wtg_smart_png"
+		},
+		{
+			"url": "mc/adrenaline_tex.json",
+			"type": "json",
+			"name": "adrenaline_tex_json"
+		},
+		{
+			"url": "assets/minerV1.1/chara_cn.png",
+			"type": "image",
+			"name": "chara_cn_png"
+		},
+		{
+			"url": "assets/minerV1.1/chara_en.png",
+			"type": "image",
+			"name": "chara_en_png"
+		},
+		{
+			"url": "assets/minerV1.1/discription_cn.png",
+			"type": "image",
+			"name": "discription_cn_png"
+		},
+		{
+			"url": "assets/minerV1.1/discription_en.png",
+			"type": "image",
+			"name": "discription_en_png"
+		},
+		{
+			"url": "assets/minerV1.1/gain_cn.png",
+			"type": "image",
+			"name": "gain_cn_png"
+		},
+		{
+			"url": "assets/minerV1.1/gain_en.png",
+			"type": "image",
+			"name": "gain_en_png"
+		},
+		{
+			"url": "assets/minerV1.1/gainbg_cn.png",
+			"type": "image",
+			"name": "gainbg_cn_png"
+		},
+		{
+			"url": "assets/minerV1.1/gainbg_en.png",
+			"type": "image",
+			"name": "gainbg_en_png"
+		},
+		{
+			"url": "assets/minerV1.1/jt_2x.png",
+			"type": "image",
+			"name": "jt_2x_png"
+		},
+		{
+			"url": "assets/minerV1.1/replace_cn.png",
+			"type": "image",
+			"name": "replace_cn_png"
+		},
+		{
+			"url": "assets/minerV1.1/replace_en.png",
+			"type": "image",
+			"name": "replace_en_png"
+		},
+		{
+			"url": "assets/minerV1.1/wenhao.png",
+			"type": "image",
+			"name": "wenhao_png"
+		},
+		{
+			"url": "assets/minerV1.1/minerV1.json",
+			"type": "sheet",
+			"name": "minerV1_json",
+			"subkeys": "-_2x,-_bj_2x,0,1,2,3,4,5,6,7,8,9,a_n_2x,b2,binding_cn,binding_en,binding_tcn,birdEgg,burger,change_cn,change_en,change_tcn,chicken,clz_dk_2x,clz_jwj _2x,csrw_2x,db_2x,db_bj_2x,dhs_d_2x,dk_2x,dk_2x (2),equip_cn,equip_en,equip_name_1_cn,equip_name_1_en,equip_name_1_tcn,equip_name_2_cn,equip_name_2_en,equip_name_2_tcn,equip_name_3_cn,equip_name_3_en,equip_name_3_tcn,equip_name_4_cn,equip_name_4_en,equip_name_4_tcn,equip_pic_1,equip_pic_2,equip_pic_3,equip_pic_4,equip_tcn,equips_cn,equips_en,equips_tcn,f_h_2x,fh_2x,fruit,gang,gdx_2x,hp_cn,hp_en,hp_tcn,hsd_2x,jt_2x,juice,jwj_dk_2x,kgss_2x,kl_2x,lbl_d_2x,medical,minerBG,open_cn,open_en,open_tcn,prompt_cn,prompt_en,prompt_tcn,recording_cn,recording_en,recording_tcn,records_cn,records_en,records_tcn,rise_cn,rise_en,rise_tcn,rules_cn,rules_en,rules_tcn,service_cn,service_en,service_tcn,spd_cn,spd_en,spd_tcn,sr_2x,st_2x,st_2x (2),status_1,status_2,status_3,status_4,thegoods_cn,thegoods_en,thegoods_tcn,thetools_cn,thetools_en,thetools_tcn,tool_cn,tool_en,tool_name_1_cn,tool_name_1_en,tool_name_1_tcn,tool_name_2_cn,tool_name_2_en,tool_name_2_tcn,tool_name_3_cn,tool_name_3_en,tool_name_3_tcn,tool_name_4_cn,tool_name_4_en,tool_name_4_tcn,tool_pic_1,tool_pic__2,tool_pic__3,tool_pic__4,tool_tcn,using_cn,using_en,using_tcn,winding_cn,winding_en,winding_tcn,wkts_2x,wsy_2x,wy_2x,xz_c_2x"
+		},
+		{
+			"url": "config/lang_tcn.json",
+			"type": "json",
+			"name": "lang_tcn_json"
+		},
+		{
+			"url": "assets/minerV1.0/miner_bg.png",
+			"type": "image",
+			"name": "miner_bg_png"
+		},
+		{
+			"url": "assets/minerV1.0/miner_bg_hm_cn.png",
+			"type": "image",
+			"name": "miner_bg_hm_cn_png"
+		},
+		{
+			"url": "assets/minerV1.0/miner_bg_hm_en.png",
+			"type": "image",
+			"name": "miner_bg_hm_en_png"
+		},
+		{
+			"url": "assets/minerV1.0/miner_bg_hm_tcn.png",
+			"type": "image",
+			"name": "miner_bg_hm_tcn_png"
+		},
+		{
+			"url": "assets/minerV1.0/miner_reser_cn.png",
+			"type": "image",
+			"name": "miner_reser_cn_png"
+		},
+		{
+			"url": "assets/minerV1.0/miner_reser_en.png",
+			"type": "image",
+			"name": "miner_reser_en_png"
+		},
+		{
+			"url": "assets/minerV1.0/miner_reser_tcn.png",
+			"type": "image",
+			"name": "miner_reser_tcn_png"
+		},
+		{
+			"url": "assets/minerV1.0/tip_txt_mine_cn.png",
+			"type": "image",
+			"name": "tip_txt_mine_cn_png"
+		},
+		{
+			"url": "assets/minerV1.0/tip_txt_mine_en.png",
+			"type": "image",
+			"name": "tip_txt_mine_en_png"
+		},
+		{
+			"url": "assets/minerV1.0/tip_txt_mine_tcn.png",
+			"type": "image",
+			"name": "tip_txt_mine_tcn_png"
+		},
+		{
+			"url": "assets/minerV1.0/tip_txt_reser_cn.png",
+			"type": "image",
+			"name": "tip_txt_reser_cn_png"
+		},
+		{
+			"url": "assets/minerV1.0/tip_txt_reser_en.png",
+			"type": "image",
+			"name": "tip_txt_reser_en_png"
+		},
+		{
+			"url": "assets/minerV1.0/tip_txt_reser_tcn.png",
+			"type": "image",
+			"name": "tip_txt_reser_tcn_png"
+		},
+		{
+			"url": "assets/minerV1.1/chara_tcn.png",
+			"type": "image",
+			"name": "chara_tcn_png"
+		},
+		{
+			"url": "assets/minerV1.1/discription_tcn.png",
+			"type": "image",
+			"name": "discription_tcn_png"
+		},
+		{
+			"url": "assets/minerV1.1/gain_tcn.png",
+			"type": "image",
+			"name": "gain_tcn_png"
+		},
+		{
+			"url": "assets/minerV1.1/gainbg_tcn.png",
+			"type": "image",
+			"name": "gainbg_tcn_png"
+		},
+		{
+			"url": "assets/minerV1.1/replace_tcn.png",
+			"type": "image",
+			"name": "replace_tcn_png"
+		},
+		{
+			"url": "assets/wutongV1.1/auction.json",
+			"type": "sheet",
+			"name": "auction_json",
+			"subkeys": "auc_banner,auc_bj,auc_bottom,auc_bottom_icon,auc_btn,auc_btn1,auc_creation_cn,auc_creation_en,auc_creation_tcn,auc_curr_col,auc_curr_pag,auc_cz,auc_down,auc_fra,auc_jinb,auc_list_cn,auc_list_en,auc_list_tcn,auc_lose,auc_m,auc_my_auc_cn,auc_my_auc_en,auc_my_auc_tcn,auc_n_m,auc_n_u,auc_n_w,auc_nav_four,auc_nav_tow,auc_pay_deal_cn,auc_pay_deal_en,auc_pay_deal_tcn,auc_return,auc_success,auc_sz,auc_top,auc_w,auc_z_m,auc_z_u,auc_z_w,auction_rule_cn,auction_rule_en,auction_rule_tcn,baidikuang,bid_cn,bid_en,bid_tcn,bj_2x,chart,csd_2x,csd_l_2x,detail_cn,detail_en,detail_tcn,email_type_1,email_type_2,email_type_3,email_type_4,email_type_5,farem_white_1,farem_white_1new,farem_white_3,farem_white_3new,fh_wz_2x,get_egg_cn,get_egg_en,get_egg_tcn,life_cn,life_en,life_tcn,lyz_yw_cn,lyz_yw_en,lyz_yw_tcn,nav_bj,nav_icon,nav_list,ph_e_u,ph_f_m,ph_f_w,phoenix,record_cn,record_en,record_tcn,shutiao,smt_d_2x,smt_h_2x,time_down_list,tm_k_2x,ty,xq_2x"
+		}
+	]
+}

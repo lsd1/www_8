@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="minerGoodList" width="110" height="180" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="toolsList" width="110" height="180" anchorOffsetY="0" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0">
+		<e:Image id="image_bg" source="wutong_json.frame_white_gray" verticalCenter="-35" horizontalCenter="-1" width="110" height="110"/>
+		<e:Image id="list_image" source="" anchorOffsetY="0" top="11" anchorOffsetX="0" horizontalCenter="0"/>
+		<e:Label id="list_num" text="" fontFamily="Arial" textColor="0x5E4609" size="18" verticalCenter="4" horizontalCenter="-1"/>
+		<e:Group id="list_btn" width="125" height="45" verticalCenter="66" anchorOffsetY="0" horizontalCenter="0">
+		<e:Image source="wutong_json.btn_green_1" scaleX="1" scaleY="1" scale9Grid="13,6,85,29" verticalCenter="0" height="54" left="0" right="0"/>
+		<e:Label id="list_name" text="" anchorOffsetX="0" anchorOffsetY="0" fontFamily="PingFang-SC-Medium" size="24" scaleX="1" scaleY="1" textColor="0xFFE5B8" textAlign="center" verticalAlign="middle" verticalCenter="-2" left="0" right="0"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

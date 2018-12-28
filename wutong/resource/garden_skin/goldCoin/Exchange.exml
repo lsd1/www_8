@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="goldCoin" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="exchange" left="0" right="0" top="0" bottom="0">
+        <e:Image source="auction_json.auc_bj" anchorOffsetY="0" top="0" bottom="0" left="0" right="0" scale9Grid="45,18,659,555"/>
+        <e:Group id="exchange_top" anchorOffsetY="0" top="0" left="0" right="0" height="82">
+			<e:Image source="auction_json.auc_top" scaleX="1" scaleY="1" scale9Grid="185,11,497,68" left="0" right="0" top="-4"/>
+            <e:Image id="head_img" horizontalCenter="-106" y="23" source="{data.goldCoin.exchange_head}"/>
+			<e:Group id="goBack" width="150" height="78" anchorOffsetY="0" left="0" top="0">
+				<e:Image source="auction_json.auc_return" scaleX="1" scaleY="1" horizontalCenter="-6" verticalCenter="-2"/>
+			</e:Group>
+        </e:Group>
+		<e:Label text="{data.goldCoin.enter_tips}" x="69" y="197" textColor="0x3c2405" fontFamily="PingFang-SC-Medium"/>
+
+		
+
+
+
+		<e:Label text="{data.goldCoin.input_gold}" x="81" y="433" textColor="0x3c2405" fontFamily="PingFang-SC-Medium"/>
+		<e:Label id="gold_inp" width="300" height="49.67" x="260" y="414" anchorOffsetY="0" size="48" fontFamily="PingFang-SC-Bold" textColor="0xf76005" verticalAlign="middle" restrict="0-9." text="0"/>
+    	<e:Label text="{data.goldCoin.exchange_ratio}" x="81" y="512" fontFamily="PingFang-SC-Medium" textColor="0xa07b49" anchorOffsetX="0" width="230"/>
+		<e:Label x="81" y="589" fontFamily="PingFang-SC-Medium" textColor="0xA07B49" anchorOffsetX="0" width="618" text="{data.goldCoin.exchange_tips}"/>
+		<e:Rect width="590" height="2" y="358.66" anchorOffsetX="0" anchorOffsetY="0" fillColor="0xd9b078" horizontalCenter="0"/>
+		<e:Rect width="590" height="2" y="479.66" anchorOffsetX="0" anchorOffsetY="0" fillColor="0xd9b078" horizontalCenter="0"/>
+		<e:Label id="change_ratio" text="0.00" x="368"  y="512" fontFamily="PingFang-SC-Medium" textColor="0xa07b49" anchorOffsetX="0" width="88"/>
+		<e:Label text="1 :" x="327" y="512" fontFamily="PingFang-SC-Medium" textColor="0xA07B49" anchorOffsetX="0" width="39"/>
+		<e:Group id="confirm" width="600" height="100" anchorOffsetY="0" horizontalCenter="0" bottom="50">
+			<e:Image source="auction_json.auc_btn" width="645" height="109" horizontalCenter="0" y="1"/>
+			<e:Label text="{data.goldCoin.confirm}" textColor="0xffe5b8" fontFamily="PingFang-SC-Medium" verticalCenter="0" verticalAlign="middle" textAlign="center" horizontalCenter="0"/>
+		</e:Group>
+		<e:Group width="626" height="98" x="72" y="284" anchorOffsetY="0" anchorOffsetX="0">
+			<e:Label text="{data.goldCoin.input_svc}" x="9" textColor="0x3c2405" fontFamily="PingFang-SC-Medium" scaleX="1" scaleY="1" verticalCenter="0"/>
+			<e:Label id="svc_inp" width="300" height="57.66" x="179" anchorOffsetY="0" textColor="0xf76005" text="0" verticalAlign="middle" size="48" fontFamily="PingFang-SC-Bold" scaleX="1" scaleY="1" verticalCenter="0"/>
+			<e:Button id="add" label="" width="50" height="50" scaleX="1" scaleY="1" right="32" verticalCenter="0">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="wutong_json.btn_add_1"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Button id="del" label="" width="50" height="50" scaleX="1" scaleY="1" verticalCenter="0" right="115">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="wutong_json.btn_sub_1"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+		</e:Group>
+	
+	</e:Group>
+</e:Skin>

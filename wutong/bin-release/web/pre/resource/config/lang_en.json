@@ -1,0 +1,642 @@
+{
+    "emailInstr": {
+        "panel_title": "Mailbox",
+        "btn_pick_lab": "Receive"
+    },
+    "emailSkin": {
+        "panel_title": "Mailbox"
+    },
+    "empty": {
+        "empty_text": ""
+    },
+    "friendNew": {
+        "more_text": "More"
+    },
+    "goPayGB": {
+        "notEnough": "Payment failed!",
+        "wait": "Determine",
+        "go": "Go"
+    },
+    "index": {
+        "interact":"wutong_json.tools_en",
+        "goods": "wutong_json.goods_en",
+        "email": "wutong_json.emali_en",
+        "tran": "transaction_json.transac_en",
+        "auction": "wutong_json.auction_en",
+        "miner": "wutong_json.miner_c_en",
+        "gold":"transaction_json.gold_en",
+        "cantSteal": "Protection Status, Cannot Steal!",
+        "lastNews": "Latest News",
+        "confirm": "Ok",
+        "justWait": "later",
+        "shared": "Gold",
+        "mgb": "Gold",
+        "open": "minerV1_json.open_en",
+        "open_later": "Open later",
+        "open_now": "open right now",
+        "go": "go"
+    },
+    "interactive": {
+        "head_img": "wutong_json.hudong_en",
+        "panel_title": "Interactive"
+    },
+    "newDynamic": {
+        "head_img": "wutong_json.zxdt_en",
+        "news": "News"
+    },
+    "otherGarden": {
+        "cantSteal": "Protection Status, Cannot Steal!",
+        "News": "Latest News"
+    },
+    "propsIntro": {
+        "intro_name": "wutong_json.wupin_en",
+        "btn_use_text": "Use",
+        "buy": "Buy",
+        "btn_con_text": "Ok",
+        "btn_hatch":"hatch",
+        "egg_num_title":"number:",
+        "egg_m_title":"mother:",
+        "egg_f_title":"father:",
+        "egg_status_title":"status:",
+        "egg_sex_title":"sex:",
+        "price_units":"Gold/one"
+    },
+    "propsStatus": {
+        "use": "Use",
+        "nowHas":"remaining amount"
+    },
+    "staAndDyn": {
+        "panel_title": "wutong_json.wutongimg_en",
+        "sta_text": "Indus fruit mature",
+        "dyn_text": "Indus tree dynamic"
+    },
+    "tips": {
+        "panel_head": "minerV1_json.prompt_en",
+        "iKnow": "I know"
+    },
+    "notices": {
+        "panel_title": "Notice",
+        "iKnow": "I know"
+    },
+    "toolsSkin": {
+        "head_img": "wutong_json.wupin_en",
+        "panel_title": "Articles",
+        "no_egg":"No Phoenix Eggs"
+    },
+    "secondPassWord": {
+        "panel_title": "Verify secondary password",
+        "tips": "Please enter 6-digit secondary password"
+    },
+    "usePay": {
+        "confirm": "Ok"
+    },
+    "emailTs": {
+        "no_mail": "No emails!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "emailInsterTs": {
+        "already_received": "Received",
+        "received": "Receive",
+        "received_success": "Received success",
+        "network_error": "Network Error! Please try again!"
+    },
+    "fruitListTs": {
+        "is_flower": "Flowering",
+        "being_fru": "Is fruiting",
+        "already_mature": "The fruit is ripe"
+    },
+    "indexTs": {
+        "open_success": "Congratulations on your successful opening of the indus!",
+        "harvest": "Congratulations on your harvest of",
+        "wutong": "the indus fruits！",
+        "life_val": "points of experience!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "interactiveTs": {
+        "network_error": "Network Error! Please try again!"
+    },
+    "newDynamicTs": {
+        "network_error": "Network Error! Please try again!"
+    },
+    "otherGardenTs": {
+        "only_master": "Only the main talent can eliminate insects!",
+        "snatch": "Congratulations on grabbing",
+        "wutong": "the indus fruits！",
+        "network_error": "Network Error! Please try again!"
+    },
+    "propsIntroTs": {
+        "not_enough": "The number of items is not enough!",
+        "network_error": "Network Error! Please try again!",
+        "hatch_1":"Hatch",
+        "hatch_2":"Rebirth"
+    },
+    "propsStatusTs": {
+        "not_enough": "The number of items is not enough!",
+        "life_val": "points of experience!",
+        "network_error": "Network Error! Please try again!",
+        "full": "I'm full！"
+    },
+    "scrollerDynamicTs": {
+        "no_more": "No more!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "scrollerEmailTs": {
+        "no_more": "No more!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "scrollerFruitTs": {
+        "no_more": "No more!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "scrollerInteractiveTs": {
+        "no_more": "No more!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "scrollerNewsTs": {
+        "no_more": "No more!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "staAndDynTs": {
+        "no_fertilizer": "You haven't applied fertilizer yet!",
+        "no_dynamic": "No dynamic~",
+        "network_error": "Network Error! Please try again!"
+    },
+    "toolsTs": {
+        "network_error": "Network Error! Please try again!",
+        "tree": "Indus tree",
+        "bird":"Phenix",
+        "egg":"Phenix egg"
+    },
+    "usePayTs": {
+        "go_pay": "Whether to go to buy?",
+        "if_spend": "Does it cost ",
+        "to_go_pay": " Gold to buy?",
+        "geb_go_pay": " Gold to buy?",
+        "network_error": "Network Error! Please try again!"
+    },
+    "auctionBanner":{
+        "auc_time": "Auction Time:"
+    },
+    "auctionResultCount": {
+        "the_next_time": "The next round starts counting down",
+        "Auc_results": "Auction results"
+    },
+    "bid": {
+        "head_img": "auction_json.bid_en",
+        "detail":"auction_json.detail_en",
+        "num": "Numbering:",
+        "high_bid": "Highest Bid:",
+        "high_bidder": "Highest Bidder:",
+        "bidding": "Bid",
+        "have": "Have:",
+        "down": "Countdown:",
+        "auction_price": "Auction price",
+        "bidders": "Bidders",
+        "auction_time": "Auction time",
+        "network_error": "Network Error! Please try again!"
+    },
+    "birthTip": {
+        "confirm": "OK"
+    },
+    "creation": {
+        "img_head": "auction_json.auc_creation_en",
+        "rule": "Rule",
+        "crea_time": "Creation Time Limit",
+        "my_auc": "My Auction"
+    },
+    "creationList": {
+        "num":"Numbering:",
+        "life_limit": "Life Limit:",
+        "starting_price": "Starting Price:",
+        "high_bid": "Highest Bidder:",
+        "bid": "Bid",
+        "down": "Countdown:",
+        "bid_again": "Bid Again",
+        "leading": "Leading"
+    },
+    "getAutionItem": {
+        "getEgg": "get_egg_en_png",
+        "receive": "Receive"
+    },
+    "myAuction": {
+        "head_img": "auction_json.auc_my_auc_en",
+        "bid_record": "Bid Record",
+        "crea_time": "Creation Time Limit",
+        "my_auc": "My Auction"
+    },
+    "myBidMoneyList": {
+        "num":"Numbering:",
+        "life_limit": "Life Limit:",
+        "price": "Price",
+        "sorce": "Source：",
+        "tack_back":"Tack Back",
+        "continue_bid":"Continue Bidding",
+        "high_bid": "Highest price:"
+    },
+    "minerAppo": {
+         "yuyue": "miner_reser_en_png",
+        "miner_img":"miner_bg_hm_en_png",
+        "yuyue_tip": "tip_txt_reser_en_png",
+        "appo_time": "Appointment Time",
+        "reser_pay": "Reservation pay",
+        "confirm": "OK"
+    },
+    "bidTs": {
+        "incer": "Increase",
+        "no_shared": "Gold is not enough!"
+    },
+    "creationTs": {
+        "pay_shared": "Please pay",
+        "margin": "The deposit will be refunded after the auction.",
+        "pay_success": "Pay success!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "creationListTs": {
+        "network_error": "Network Error! Please try again!"
+    },
+    "getAutionItemTs": {
+        "recei_success": "Receive success!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "myAuctionTs": {
+        "no_bid": "No bid history!",
+        "no_shelv": "No shelves record!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "myBidMoneyListTs": {
+        "network_error": "Network Error! Please try again!",
+        "reco_success": "Successful recovery",
+        "f_auc": "Auction failed",
+        "high_bid": "Highest Bidder:",
+        "final_price": "Final Price:",
+        "success_auc": "Successful auction"
+    },
+    "scrollerBidMoneyTs": {
+        "no_more": "No more!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "minerAppoTs": {
+        "to": "to",
+        "booking_miner": "You are booking a new game for MGR miners to ensure that your appointment is successful.",
+        "need_pay": "Need to pay",
+        "shared_worth": "shares worth",
+        "success_booking": "You have successfully booked an MGR miner. New features are coming soon, so stay tuned!",
+        "no_repeat_again": "You have successfully booked an MGR miner. Do not repeat appointments!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "shelfDetailInfo": {
+        "img_head": "transaction_json.shelf_set_en",
+        "detail": "auction_json.detail_en",
+        "num":"Numbering:",
+        "life": "life：",
+        "price": "price",
+        "shared_value": " Gold ",
+        "now_shelves": "Immediately shelves",
+        "price_description": "The price must be greater than 0 and it is an integer",
+        "confirm": "Confirm",
+        "wt_friut": "Wutong Fruit",
+        "name": "name:",
+        "effect": "effect:",
+        "shelves_num": "Number of shelves:",
+        "current_price": "Current quantity:",
+        "unit_price": "Unit price:",
+        "shelf_num": " Gold/one",
+        "goods_price": "Total price of goods",
+        "than_zero": "The total price of the item must be greater than zero and an integer",
+        "head_fee": "Handling fee"
+    },
+    "shelfDetailInfoTs": {
+        "shared_value": "Gold",
+        "fees": "Fees",
+        "enter_price": "Please enter the price!",
+        "success":"Congratulations, success!",
+        "network_error": "Network Error! Please try again!",
+        "one": "one",
+        "number_fruit": "The number of sycamore fruit is insufficient!",
+        "please_fruit": "Please enter the number of sycamore fruit"
+    },
+    "shelfDetail": {
+        "img_head":"transaction_json.select_en"
+    },
+    "shelfDetailList":{
+        "num":"Numbering:",
+        "life_limit": "Life Limit:",
+        "sell": "Sell"
+    },
+    "shelfDetailListTs": {
+        "network_error": "Network Error! Please try again!"
+    },
+    "myBuyHistoryList": {
+        "num":"Numbering:",
+        "life_limit": "Life Limit:",
+        "life": "Life value:",
+        "price": "Price:",
+        "successful": "Purchase Success"
+    },
+    "myShelfHistoryList": {
+        "num":"Numbering:",
+        "life_limit": "Life Limit:",
+        "price": "Price:",
+        "drop_off": "Drop off"
+    },
+    "myTransaction": {
+        "img_head":"transaction_json.my_tran_en",
+        "shelf": "Shelf",
+        "buy_history": "Purchase History",
+        "shelf_record": "Shelf Record",
+        "exchange": "Player Market",
+        "my_transaction": "My Record",
+        "dete": "Confirm",
+        "cancel": "Cancel",
+        "remove_props":"Whether to remove the product?"
+    },
+    "myTransactionTs": {
+        "network_error": "Network Error! Please try again!",
+        "no_shelves": "No shelves",
+        "no_pay":"No purchase record",
+        "succ_left": "Successfully left！"
+    },
+    "transaction": {
+        "img_head": "transaction_json.exchange_en",
+        "type":"Type",
+        "algebra": "Algebra",
+        "sorting": "Sorting",
+        "exchange": "Player Market",
+        "my_transaction": "My Record"
+    },
+    "transactionList": {
+        "num":"Numbering:",
+        "life_limit": "Life Value:",
+        "price": "Price",
+        "buy": "Buy"
+    },
+    "shelfDetailTs": {
+        "network_error": "Network Error! Please try again!"
+    },
+    "myShelfHistoryListTs": {
+        "drop_off": "Drop Off",
+        "already_sold": "Already Sold",
+        "network_error": "Network Error! Please try again!"
+    },
+    "scrollerShelfDetailTs": {
+        "no_more": "No more!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "scrollerMyShelfHistoryTs":{
+        "no_more": "No more!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "scrollerTransactionTs": {
+        "no_more": "No more!",
+        "network_error": "Network Error! Please try again!"
+    },
+    "transactionTs": {
+        "no_more": "No more!",
+        "no_history": "No products!"
+    },
+    "transactionListTs": {
+        "network_error": "Network Error! Please try again!"
+    },
+    "detailTs": {
+        "page_title":"auction_json.fh_wz_2x",
+        "lifeTitle":"auction_json.life_en",
+        "nick_name":"nickname:",
+        "ph_num":"Number:",
+        "ph_m_title": "Father:",
+        "ph_w_title": "Mother:",
+        "ph_from_title": "Source:",
+        "ph_from": "Creation Phoenix",
+        "ph_detail":"auction_json.detail_en",
+        "ph_log":"auction_json.record_en"
+    },
+    "auctionRule":{
+        "img_head":"auction_json.auction_rule_en",
+         "got_it": "Got it"
+    },
+    "binding": {
+        "enter_adder": "Please enter the correct wallet address!",
+        "heat_img": "minerV1_json.open_en",
+        "binding_img": "minerV1_json.binding_en",
+        "status_txt":"You have successfully booked a miner, now you only need to bind the VSC wallet to start the game.",
+        "confirm": "confirm",
+        "goBand": "GoToBind",
+        "downWoller": "DownloadWallet",
+        "theLink": "Enter the address, please make sure the letter is not correct.",
+        "binding": "Confirm Binding",
+        "bindingSuccess": "The binding is successful, now you can go online!",
+        "startGame": "Start the game",
+        "enter_link": "Please enter the wallet address",
+        "unfortunately": "Unfortunately, since you don't reserve a miner, you need to wait for the next version to participate in the miners game.",
+        "successfully": "The external wallet address needs to be bound to the uplink. Please confirm that the wallet address is correct when binding.",
+        "wallet_instruc": "VSC wallet instructions",
+        "po_Mine":"1. The Po Mine game must be bound to the VSC wallet and unbound without being bound.",
+        "regular_digital": "2. VSC is a regular digital currency trading platform for the Pulse Fruit Platform. Please feel free to download it.",
+        "iOS_and_Android": "3. Support IOS and Android download, please download it in the browser.",
+        "go_download":"go download"
+    },
+    "changeLink": {
+        "change_img": "minerV1_json.change_en",
+        "address_mobile": "You are applying to change your wallet address and need to verify your mobile number",
+        "enter_code": "please enter verification code",
+        "get_code": "get verification code",
+        "submit": "submit",
+        "bind_VSC": "Your miner's income needs to be tied to the VSC wallet. You can change the VSC wallet address.",
+        "enter_VSC" : "Enter VSC wallet address",
+        "change": "change",
+        "determine": "determine",
+        "sms_has":"SMS has been sent!",
+        "you_have": "You are applying to change the VSC wallet address, you need to charge a fee of ",
+        "the_money": "the gold, please confirm!",
+        "pay_succe": "Successful payment, the new VSC wallet address is",
+        "faild": "The payment failed and the VSC wallet has not changed."
+    },
+    "equips": {
+        "using":"minerV1_json.using_en",
+        "service":"minerV1_json.service_en",
+        "rise": "minerV1_json.rise_en",
+        "equip": "minerV1_json.equip_en",
+        "durability": "Durability:",
+        "length": "Remaining time",
+        "reduce": "Reduce consumption:",
+        "determine": "Determine",
+        "pay": "Pay immediately",
+        "houer": "Houer",
+        "does": "Does it cost ",
+        "sharedValue": " Gold to repair the initial equipment?",
+        "congratulations": "Congratulations on your successful repair and the equipment has been restored to a new state.",
+        "stay_tuned":"Stay tuned for feature development!'"
+    },
+    "goodsIntro": {
+        "pay": "GoPay",
+        "use": "Use",
+        "wupin": "wutong_json.wupin_en",
+        "shared_num": " Gold/one",
+        "mge_num": "Gold/one"
+    },
+    "minerGoods": {
+        "miner": "Miner",
+        "eggs": "Eggs",
+        "no_egg": "No Phoenix Eggs, click to buy!"
+    },
+    "homeTips": {
+        "minerDont": "Miners don't have the tools to mine, do they spend",
+        "toBuy": " Gold  to buy the initial tools?",
+        "gain": "The miners already have the tools to start mining. Please pay attention to the miners' physical strength. If the physical value is 0, they will not work, and the edible items will gain physical strength.",
+        "buyNow": "Buy Now",
+        "goBuy": "Go Buy"
+    },
+    "minerRule": {
+        "determine": "Determine",
+        "pulse": "Pulse fruit operation team",
+        "rules": "minerV1_json.rules_en"
+    },
+    "minerTools": {
+        "using":"minerV1_json.using_en",
+        "service":"minerV1_json.service_en",
+        "rise":"minerV1_json.rise_en",
+        "tool":"minerV1_json.tool_en",
+        "durability":"Durability:",
+        "length":"Remaining time:",
+        "kylength": "Available time",
+        "improve":"Improve efficiency:",
+        "determine": "Determine",
+        "pay": "Pay",
+        "does":"Does it cost ",
+        "shared":" Gold to repair",
+        "upgarde": "Whether it cost ",
+        "sharedUp": "the gold will be",
+        "to": "Upgrade to",
+        "congratulations":"Congratulations on your successful repair and the tool has been restored to a new state.",
+        "Stay":"Stay tuned for feature development!"
+    },
+    "records": {
+        "props_use": "Item use",
+        "my_income": "My income",
+        "recording": "minerV1_json.recording_en",
+        "no_use": "No use record!",
+        "no_charge": "No income record!"
+    },
+    "scrollerRecordsIncome": {
+        "winding": "Winding",
+        "changeVSC": "Change VSC wallet",
+        "current": "Current income",
+        "cumulative": "Cumulative income",
+        "stay_tuned": "VSC wallet is about to open, so stay tuned",
+        "exchange_vsc": "Exchange VSC"
+    },
+    "guidance": {
+        "bg": "gui_bg_en",
+        "no1": "gui_spd_en",
+        "no2": "gui_basket_en",
+        "no3": "gui_equips_en",
+        "no4": "gui_goods_en",
+        "no5": "gui_tools_en",
+        "no6": "gui_recode_en"
+    },
+    "winding":{
+        "enter_the_number":"Please enter the number of windings:",
+        "winding_img": "minerV1_json.winding_en",
+        "winding_instructions": "Winding instructions:",
+        "submit":"submit",
+        "about_to_open":"The external wallet is about to open, please be patient.",
+        "confirm": "confirm",
+        "lowest":"1, the lowest:",
+        "chain": "2, the chain miner fee",
+        "aVSC": "VSC",
+        "number_of_windings": "Please enter enough number of windings!",
+        "wallet_address": "Your current Winding Wallet address is",
+        "confirm_it": ", please confirm it."
+    },
+    "differentCloose":{
+        "algebraList": ["Zero generation creation","The first generation","The second generation","Third Generation","Fourth Generation","Fifth Generation","Sixth generation","Seventh generation","Eighth generation","The ninth generation","Tenth generation"],
+        "typeList": ["All Phoenix","Phoenix","Phoenix eggs","Wutong fruit"],
+        "sortingList": ["Recent time","Price from low to high"]
+    },
+    "working": {
+        "back": "back",
+        "hp_img": "minerV1_json.hp_en",
+        "spd_img": "minerV1_json.spd_en",
+        "equips_img":"minerV1_json.equips_en",
+        "thetools_img":"minerV1_json.thetools_en",
+        "thegoods_img":"minerV1_json.thegoods_en",
+        "records_img":"minerV1_json.records_en",
+        "chara_img": "chara_en_png",
+        "gainbg_img": "gainbg_en_png"
+    },
+    "workingTs": {
+        "miner_work": "Your miner has started working!",
+        "miner_hungry": "The miners are exhausted!",
+        "eat_foods": "Recover your energy with food!",
+        "miner_injured": "The miner is hurt!",
+        "miner_inefficient_1": "Double the consumption and halve the efficiency!",
+        "miner_tool_broken": "The tool is corrupt!",
+        "miner_work_stop": "Pause work, please repair in time",
+        "miner_equipment_broken": "The equipment is damaged!",
+        "miner_inefficient_2": "The consumption is increased, please repair it in time!",
+        "earning_tips": "VSC has been placed in the record - my income.",
+        "toWallet":"go to wallet",
+        "ok":"OK",
+        "not_arrived": "The collection time has not arrived!"
+    },
+    "gainContent": {
+        "theText": "The following numbers are the power gain multiples that are differentiated according to the user's identity：",
+        "ph_bird": "Phoenix owner",
+        "fruit":"Fruit owner",
+        "basic_user": "Basic user",
+        "alliance_maker": "Alliance maker",
+        "member": "Alliance merchant member",
+        "miner_skin": "Skin gain"
+    },
+    "rename": {
+        "num": "num:",
+        "name": "name: ",
+        "startChange": "Start changing name",
+        "changeName": "change username",
+        "nomore": "No more than 6 Chinese or 12 English",
+        "doU" : "Do you use a renamed card to modify your nickname?",
+        "later": "Later",
+        "confrim": "confirm",
+        "num_out": "The number of words is exceeded",
+        "special": "Special characters are not supported",
+        "renamed": "Renamed successfully!"
+    },
+    "extract": {
+        "head_img": "exchangeVSC_en_png"
+    },
+    "character": {
+        "replace": "replace_en_png",
+        "discription": "discription_en_png",
+        "introduction": "Introduction",
+        "dete": "Determine",
+        "buy": "Buy",
+        "tips_1st": "Skin can increase the charm gain for miners and provide benefits for miners.",
+        "tips_2nd": "Skin will wear and tear due to miner's work. Please pay attention to timely maintenance.",
+        "tips_3rd": "Skin can produce other benefits in the later stage of Phoenix Tree. Please look forward to it.",
+        "tips_4th": "Miner's gain is stopped after the skin is damaged. Damage occurs 30 days after the date of purchase. Please repair it in time.",
+        "chara_gain": "Charisma gain:",
+        "durability": "Durability:",
+        "price": "Price:",
+        "buy_succ": "Purchase success!"
+    },
+    "common": {
+        "keyboard_title": "verify the pin",
+        "keyboard_tips": "please enter 6-digit PIN code",
+        "keyboard_empty": "empty",
+        "keyboard_del": "delete"
+    },
+    "goldCoin":{
+        "exchange_head": "transaction_json.exchange_coin_cn",
+        "gold_head": "transaction_json.gold_text_cn",
+        "amount": "amount",
+        "confirm": "Yes",        
+        "confirm_exchange": "Exchange",        
+        "enter_tips": "Enter the exchange quantity:",
+        "input_svc": "SVC",
+        "input_gold": "Gold Coin",
+        "exchange_ratio": "Exchange ratio",
+        "svc_empyt":"Please enter the number of svc！",
+        "exchange_success": "Exchange success！",
+        "no_log": "No record",
+        "exchange_tips": "The amount of exchange should be a multiple of 100."
+    }
+}

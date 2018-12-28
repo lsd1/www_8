@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="changeNameCommit" width="590" height="461" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="wutong_json.frame_green_1" top="0" bottom="0" left="0" right="0" scale9Grid="100,61,394,127"/>
+	<e:Label text="设置昵称" y="85" anchorOffsetX="0" anchorOffsetY="0" verticalAlign="middle" textAlign="center" horizontalCenter="0.5" fontFamily="PingFang-SC-Medium" textColor="0x3c2405" bold="true"/>
+	<e:Label text="昵称：" y="190" anchorOffsetX="0" anchorOffsetY="0" verticalAlign="middle" textAlign="center" fontFamily="PingFang-SC-Medium" left="107" textColor="0x3c2405"/>
+
+    <e:Group id="commit" width="166" height="60" horizontalCenter="0" bottom="88">
+		<e:Image source="wutong_json.btn_green" left="0" right="0" top="0" bottom="0"/>
+		<e:Label text="提交" textAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="-3" fontFamily="PingFang-SC-Medium" textColor="0xFFE5B8"/>
+	</e:Group>
+	<e:EditableText id="new_name" text="" x="189" y="191" anchorOffsetX="0" width="305" fontFamily="PingFang-SC-Medium" textColor="0x3c2405" border="false" prompt="请输入新昵称"/>
+	<e:Label text="字数超出限制" x="173" y="230" textColor="0xea5300" size="24" fontFamily="PingFang-SC-Medium" visible="false"/>
+</e:Skin>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="index" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<w:Config id="1647dfd86d1"/>
+	<e:Image id="bg" source="bg_d_png" left="0" right="0" top="0" bottom="0" width="0" height="0"/>
+	<e:Group id="group_index"   anchorOffsetX="0" anchorOffsetY="0" top="0" bottom="0" left="1" right="-1">
+		<e:Group id="group_top" anchorOffsetX="0" anchorOffsetY="0" width="750" height="966" top="0" left="0">
+			<e:Group id="go_back" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="-377" width="78" height="78" left="12">
+				<e:Image source="wutong_json.btn_return" left="0" right="0" top="0" bottom="0"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="group_tree" anchorOffsetX="0" anchorOffsetY="0" width="750" height="744" horizontalCenter="0" verticalCenter="-77">
+			<e:Image id="ph_shadow" source="yinying_png" x="509" y="691" visible="false"/>
+			<e:Group horizontalCenter="0" bottom="0">
+				<e:Image id="tree" scaleX="1" scaleY="1" source="" horizontalCenter="0" x="257" top="0"/>
+				<e:Image id="fruit" scaleX="1" scaleY="1" source="" horizontalCenter="0" x="257" top="0"/>
+				<e:Group id="group_protect" width="200" height="48" anchorOffsetY="0" scaleX="1" scaleY="1" horizontalCenter="0" y="-150" visible="false">
+					<e:Rect width="145" height="40" fillColor="0xffffff" fillAlpha="0.18" ellipseWidth="80" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+					<e:Label id="protect_count" text="" size="23" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" textColor="0x3c2405"/>
+					<e:Label id="cantSteal" text="{data.index.cantSteal}" y="-33" horizontalCenter="0" size="22" fontFamily="Microsoft YaHei" textColor="0x3c2405"/>
+				</e:Group>
+				 <e:Group id="icon_tip" width="303" y="-230" height="30" horizontalCenter="0" visible="false">
+					<e:Image source="wutong_json.icon_gray_2" horizontalCenter="0" verticalCenter="0"/>
+					<e:Label id="icon_tip_text" text="" anchorOffsetX="0" width="303" anchorOffsetY="0" height="30" textAlign="center" verticalAlign="middle" size="18" fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="0"/>
+                 </e:Group>
+			</e:Group>
+
+
+			<e:Group id="group_ph" anchorOffsetY="0" anchorOffsetX="0" right="65" bottom="0">
+				<e:Group id="group_tips" x="-135" width="269" height="93" y="-360" visible="false">
+				<e:Image source="auction_json.chart" scale9Grid="43,31,187,12" top="0" bottom="0" left="0" right="0" anchorOffsetX="0"/>
+				<e:Label id="chart_content" anchorOffsetY="0" left="30" right="32" verticalCenter="-12" text="" textColor="0x140707" size="20"/>
+				</e:Group>
+				<e:Group id="group_mc" scaleX="1" scaleY="1" top="0" alpha="1"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="head_img_info" anchorOffsetX="0" anchorOffsetY="0" width="257" height="116" y="90" right="0" visible="false">
+			<e:Image source="wutong_json.farem_white_head" right="0" top="0" left="0" bottom="0"/>
+			<e:Label id="nickname" text="" fontFamily="PingFang-SC-Heavy" size="22" bold="true" width="150" verticalCenter="-31" textColor="0x3c2405" left="127" height="24"/>
+			<e:Rect width="124" height="24" anchorOffsetX="0" anchorOffsetY="0" ellipseWidth="30" ellipseHeight="50" horizontalCenter="59" verticalCenter="0" fillColor="0xc8c2af"/>
+			<e:Rect id="xp_bar" width="0" height="22" anchorOffsetX="0" ellipseWidth="30" ellipseHeight="50" verticalCenter="0" x="126" fillColor="0xf0ba00"/>
+			<e:Label id="xp_text" text="" anchorOffsetX="0" width="110" textAlign="center" verticalAlign="middle" fontFamily="PingFang-SC-Medium" size="18" horizontalCenter="57" verticalCenter="0"/>
+			<e:Label id="mature_count" text="" fontFamily="PingFang-SC-Medium" size="18" x="144" y="80" textColor="0xf0ba00"/>
+			<e:Image id="mature_img" source="wutong_json.fruit_min" horizontalCenter="0" verticalCenter="30" width="16" height="20"/>
+			<e:Group id="group_avatar" width="68" height="92" x="39" y="12">
+				<e:Image id="user_lv" scaleX="1" scaleY="1" top="0" bottom="0" left="0" right="0" source=""/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="group_news" bottom="0" left="0" right="0">
+			<e:Image anchorOffsetX="0" scaleX="1" scaleY="1" anchorOffsetY="0" left="0" right="0" top="0" bottom="0" source="wutong_json.farem_white_2"/>
+			<e:Group id="friends_news" height="138" anchorOffsetX="0" anchorOffsetY="0" bottom="0" horizontalCenter="0"/>
+			<e:Label id="lastNews" text="{data.index.lastNews}" anchorOffsetX="0" width="390" anchorOffsetY="0" height="61" textColor="0x000000" fontFamily="PingFang-SC-Bold" size="34" bold="true" left="45" top="99" verticalAlign="middle"/>
+			<e:Group id="nav" anchorOffsetX="0" anchorOffsetY="0" height="130" scaleX="1" scaleY="1" left="0" right="0" y="-8">
+				<!--<e:Image id="interact" top="0" source="{data.index.interact}" left="45"/>
+				<e:Image id="goods" left="145" top="0" source="{data.index.goods}"/>
+				<e:Image id="email" top="0" source="{data.index.email}" left="245"/>
+				<e:Image id="miner" source="{data.index.miner}" left="345" top="0"/>								
+				<e:Image id="tran" scaleX="1" scaleY="1" source="{data.index.tran}" left="445" top="0"/>
+				<e:Image id="auction" scaleX="1" scaleY="1" source="{data.index.auction}" left="545" top="0"/>-->
+			</e:Group>
+		</e:Group>
+
+		<e:Group id="success" height="486" anchorOffsetX="0" anchorOffsetY="0" width="630" verticalCenter="0" horizontalCenter="0" locked="true" visible="false">
+			<e:Image source="wutong_json.frame_green_1" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" scale9Grid="60,49,23,28"/>
+			<e:Button id="btn_close_success" label="" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="283" verticalCenter="-232" width="64" height="66">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="wutong_json.delete"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Group width="435" height="271" y="44" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0">
+				<e:Label id="conf_txt" text="" anchorOffsetX="0" anchorOffsetY="0" textColor="0x8b2b00" fontFamily="PingFang-SC-Medium" size="30" verticalCenter="61" lineSpacing="21" textAlign="center" verticalAlign="middle" x="217" y="187" scaleX="1" scaleY="1" horizontalCenter="1"/>
+				<e:Image source="wutong_json.pay_ok" y="18" horizontalCenter="0"/>
+			</e:Group>
+
+			<e:Group id="btn_dete_success" width="160" height="66" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="139">
+				<e:Image width="160" horizontalCenter="0" height="66" verticalCenter="0" source="wutong_json.btn_green"/>
+				<e:Label id="confirm" text="{data.index.confirm}" fontFamily="PingFang-SC-Medium" size="30" horizontalCenter="0" verticalCenter="-4" verticalAlign="middle" textAlign="center" textColor="0xffe5b8"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="confirm_open" width="630" height="486" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" locked="true" visible="false">
+			<e:Image top="0" left="0" right="0" bottom="0" width="0" height="0" source="wutong_json.tips_panel" scale9Grid="58,111,498,19"/>
+			<e:Button id="btn_close_open" label="" anchorOffsetY="0" horizontalCenter="280" verticalCenter="-165" width="70" height="68" anchorOffsetX="0">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="wutong_json.delete"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Group id="confirmTips"  anchorOffsetX="0" anchorOffsetY="0"    width="480" height="179"  verticalCenter="-35" horizontalCenter="0">
+				<e:Label text="请选择以下方式开通！" y="54" fontFamily="PingFang-SC-Medium" textColor="0x3c2405" horizontalCenter="0" textAlign="center"/>
+			</e:Group>
+			<e:Group id="btn_gb_confirm_open" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-159" verticalCenter="122" width="160" height="66">
+				<e:Image left="0" right="0" top="0" bottom="0" source="wutong_json.btn_green"/>
+				<e:Label id="justWait" fontFamily="PingFang-SC-Medium" size="30" horizontalCenter="0" verticalCenter="-4" textAlign="center" text="{data.index.mgb}" textColor="0xffe5b8"/>
+			</e:Group>
+			<e:Group id="btn_shared_confirm_open" horizontalCenter="147" verticalCenter="123" width="160" height="66">
+				<e:Image source="wutong_json.btn_green" left="0" right="0" top="0" bottom="0"/>
+				<e:Label fontFamily="PingFang-SC-Medium" size="30" horizontalCenter="0.5" verticalCenter="-4" textAlign="center" text="{data.index.shared}" textColor="0xffe5b8"/>
+			</e:Group>
+			<e:Image id="con_open" y="15" source="{data.index.open}" horizontalCenter="-3"/>
+		</e:Group>
+		<e:Group id="open_hint" width="630" height="510" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="1" horizontalCenter="0" visible="false" locked="true">
+			<e:Image anchorOffsetY="0" left="0" right="0" top="0" bottom="0" width="0" height="0" source="wutong_json.tips_panel" scale9Grid="48,182,494,42"/>
+			<e:Group id="activateTip"  anchorOffsetX="0" anchorOffsetY="0"  top="141" bottom="160" width="480" height="240" horizontalCenter="0">
+			</e:Group>
+			<e:Button id="btn_close_open_hint" label="" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="283" height="65" width="65" y="40">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="wutong_json.delete"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<e:Group id="btn_later_open_hint" width="160" height="66" left="82" bottom="72">
+				<e:Image top="0" bottom="0" left="0" right="0" source="wutong_json.btn_green"/>
+				<e:Label id="open_later" size="30" fontFamily="PingFang-SC-Medium" horizontalCenter="0" textAlign="center" verticalAlign="middle" verticalCenter="-4" text="{data.index.open_later}" textColor="0xffe5b8"/>
+			</e:Group>
+			<e:Group id="btn_up_open_hint" width="160" height="66" right="104" bottom="72">
+				<e:Image source="wutong_json.btn_green_1" left="0" right="0" top="0" bottom="0"/>
+				<e:Label id="open_now" text="{data.index.open_now}" size="30" fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="-4" textAlign="center" textColor="0xffe5b8"/>
+			</e:Group>
+			<e:Image id="open" y="15" source="{data.index.open}" horizontalCenter="-3"/>
+		</e:Group>
+		<e:Group id="fail" verticalCenter="0" width="630" height="486" horizontalCenter="0" locked="true" visible="false">
+			<e:Image source="wutong_json.frame_green_1" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" scale9Grid="62,53,19,21"/>
+			<e:Button id="btn_close_fail" label="" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="280" verticalCenter="-229" x="910" y="-31" scaleX="1" scaleY="1" width="70" height="70">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="wutong_json.delete"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+			</e:Button>
+			<e:Group id="mgCoin" anchorOffsetX="0" anchorOffsetY="0" width="480" height="240" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="-71">
+				<e:Image id="fail_img" source="wutong_json.pay_low" y="10" horizontalCenter="0"/>
+				<e:Label id="fail_txt" text="支付失败！" y="176" fontFamily="PingFang-SC-Medium" textColor="0x3c2405" horizontalCenter="0" textAlign="center"/>
+			</e:Group>
+			<e:Group id="btn_conf_fail" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" width="160" height="66" bottom="90" horizontalCenter="0">
+			<e:Image left="0" right="0" top="0" bottom="0" source="wutong_json.btn_green"/>
+			<e:Label fontFamily="PingFang-SC-Medium" size="30" horizontalCenter="0" verticalCenter="-4" textAlign="center" text="{data.index.confirm}" textColor="0xffe5b8"/>
+			</e:Group>
+
+		</e:Group>
+
+	</e:Group>
+</e:Skin>

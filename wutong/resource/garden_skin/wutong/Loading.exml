@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NewFile" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="bg_d_png" left="0" right="0" top="0" bottom="0" width="0" height="0"/>
+	<e:Group anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="-72">
+		<e:Image source="wutong_json.tree_10_d" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+		<e:Image source="wutong_json.fruit_m_10_d" scaleX="1" scaleY="1" horizontalCenter="-16" verticalCenter="-133"/>
+	</e:Group>
+	<e:Group left="0" right="0" anchorOffsetY="0" bottom="147" top="996">
+		<e:Rect right="0" left="0" top="0" bottom="0" fillColor="0x000000" fillAlpha="0.4"/>
+		<e:Image source="wutong_json.undercolor" horizontalCenter="0" verticalCenter="0"/>
+		<e:Group width="708" height="51" horizontalCenter="0" verticalCenter="0">
+			<e:Image id="prog_bar" source="wutong_json.load_bar" width="0" scaleX="1" scaleY="1" verticalCenter="0" left="118" anchorOffsetX="0"/>
+		</e:Group>
+		<e:Label text="Loading..." anchorOffsetX="0" width="162" anchorOffsetY="0" height="42" fontFamily="HXBNRBJ" size="34" italic="true" verticalCenter="0" horizontalCenter="-33"/>
+		<e:Label id="percent" text="" fontFamily="HXBNRBJ" size="34" height="42" verticalAlign="middle" textAlign="center" anchorOffsetX="0" width="120" horizontalCenter="84" verticalCenter="0" italic="true"/>
+	</e:Group>
+</e:Skin>

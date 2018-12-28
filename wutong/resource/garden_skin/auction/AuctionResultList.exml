@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="auctionResultList" width="680" height="460" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="auctionResultList" left="0" right="0" top="0" bottom="0" anchorOffsetX="0" anchorOffsetY="0" height="0">
+		<e:Group id="gender_group" width="200" height="50" x="52" y="32">
+		<e:Image id="gender" source="" scaleX="1" scaleY="1" horizontalCenter="0" bottom="0"/>
+		<e:Label id="g_text" text="" y="12" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="26" textAlign="center" verticalAlign="middle" horizontalCenter="0"/>
+		</e:Group>
+		<e:Image id="ph_img" scaleX="0.8" scaleY="0.8" source="" horizontalCenter="-189" bottom="108"/>
+		<e:Label y="96" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="337" text="{langData.shelfDetailList.num}"/>
+		<e:Label y="165" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="337" text="{langData.shelfDetailList.life_limit}"/>
+		<e:Label y="235" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="340" text="{langData.creationList.high_bid}"/>
+		<e:Label id="ph_num" x="424" y="96" textColor="0x3C2405" fontFamily="PingFang SC" size="24" text=""/>
+		<e:Label id="ph_xp" x="457" y="165" textColor="0x3C2405" fontFamily="PingFang SC" size="24" text=""/>
+		<e:Label id="high_price" text="" y="230" fontFamily="PingFang SC" size="34" textColor="0xF76005" left="437"/>
+		<e:Rect height="1" fillColor="0xD9B078" strokeColor="0xD9B078" horizontalCenter="0" width="600" verticalCenter="195"/>
+	</e:Group>
+</e:Skin>

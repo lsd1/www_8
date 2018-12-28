@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="auctionRule" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect left="0" right="0" top="0" bottom="0" fillAlpha="0.3"/>
+	<e:Group width="590" height="1066" horizontalCenter="0" verticalCenter="-10" anchorOffsetY="0">
+		<e:Image source="wutong_json.tips_panel" left="0" right="0" top="-20" bottom="-24" scale9Grid="65,109,462,164" anchorOffsetY="0"/>
+		<e:Image id="img_head" y="1" horizontalCenter="0" source="{langData.auctionRule.img_head}"/>
+		<e:Group id="rule_content" width="474" height="771" y="115" anchorOffsetY="0" anchorOffsetX="0" horizontalCenter="0">
+		<e:Group id="btn_know" anchorOffsetY="0" horizontalCenter="0" y="829" width="170">
+			<e:Image source="wutong_json.btn_green" top="0" bottom="0" width="170" horizontalCenter="0"/>
+			<e:Label text="{langData.auctionRule.got_it}" textColor="0xffe5b8" horizontalCenter="0" verticalCenter="-3"/>
+		</e:Group>
+		</e:Group>
+	</e:Group>
+</e:Skin>

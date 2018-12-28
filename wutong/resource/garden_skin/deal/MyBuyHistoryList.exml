@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="myBidHistoryList" width="680" height="460" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="myBidMoneyList" left="0" right="0" top="0" bottom="0" anchorOffsetX="0" anchorOffsetY="0" locked="true" visible="false">
+		<e:Group id="gender_group" width="200" height="50" x="53" y="32">
+			<e:Image id="gender" scaleX="1" scaleY="1" horizontalCenter="0" source="" verticalCenter="0"/>
+			<e:Label id="g_text" text="" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="26" textAlign="center" verticalAlign="middle" horizontalCenter="1" verticalCenter="0"/>
+		</e:Group>
+
+		<e:Image id="ph_img" x="61" scaleX="0.8" scaleY="0.8" source="" top="130"/>
+		<e:Label y="33" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="327" text="{langData.myShelfHistoryList.num}"/>
+		<e:Label id="life_txt" y="113" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="329" text=""/>
+		<e:Label y="190" textColor="0xA07B49" fontFamily="PingFang SC" size="24" text="{langData.myBuyHistoryList.price}" left="330"/>
+
+		<e:Label id="ph_num" text="xxxxx" y="31" textColor="0x3C2405" fontFamily="PingFang SC" size="24" left="426"/>
+		<e:Label id="ph_xp" text="555" y="112" textColor="0x3C2405" fontFamily="PingFang SC" size="24" left="468"/>
+		<e:Label id="ph_host" text="" y="185" fontFamily="PingFang SC" size="34" textColor="0xf76005" left="421"/>
+
+		<e:Group id="status_group" width="140" height="55" x="329" y="282" anchorOffsetY="0">
+			<e:Image id="status_img" source="auction_json.auc_success" y="0" x="0"/>
+			<e:Label id="status_text" y="3" fontFamily="PingFang-SC-Bold" size="18" textColor="0xF76005" horizontalCenter="0.5" text="{langData.myBuyHistoryList.successful}"/>
+		</e:Group>
+
+
+		<e:Rect height="1" fillColor="0xD9B078" strokeColor="0xD9B078" width="600" horizontalCenter="0" verticalCenter="218"/>
+		<e:Group width="281" height="40" x="329" y="379" anchorOffsetY="0" anchorOffsetX="0">
+			<e:Label id="shelf_time" text="05.25 14:25" x="15" y="10" textColor="0xA07B49" fontFamily="PingFang-SC-Bold" size="18"/>
+		</e:Group>
+
+
+	</e:Group>
+	<e:Group id="wt_group" left="0" right="0" top="0" bottom="0" anchorOffsetX="0" anchorOffsetY="0" visible="false">
+		<e:Group width="200" height="50" x="55" y="32">
+			<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" source="auction_json.auc_n_u"/>
+			<e:Label text="梧桐果" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="26" textAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="0"/>
+		</e:Group>
+		<e:Image x="80.8" scaleX="0.8" scaleY="0.8" top="136" source="wtg_smart_png"/>
+		<e:Label y="33" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="312" text="名称"/>
+		<e:Label y="113" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="312" text="数量"/>
+		<e:Label y="193" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="312" text="{langData.transactionList.price}"/>
+		<e:Label id="wt_name" text="梧桐果" y="31" textColor="0x3C2405" fontFamily="PingFang SC" size="24" left="400"/>
+		<e:Label id="wt_num" text="1000" y="112" textColor="0x3C2405" fontFamily="PingFang SC" size="24" left="400"/>
+		<e:Label id="wt_price" text="" y="188" fontFamily="PingFang SC" size="34" textColor="0xF76005" left="400"/>
+		<e:Group width="140" height="55" x="329" y="282" anchorOffsetY="0">
+		<e:Image source="auction_json.auc_success" y="0" x="0"/>
+		<e:Label y="3" fontFamily="PingFang-SC-Bold" size="18" textColor="0xF76005" horizontalCenter="0.5" text="{langData.myBuyHistoryList.successful}"/>
+		</e:Group>
+		<e:Rect height="1" fillColor="0xD9B078" strokeColor="0xD9B078" width="600" horizontalCenter="0" verticalCenter="218"/>
+		<e:Group width="281" height="40" x="329" y="379" anchorOffsetY="0" anchorOffsetX="0">
+		<e:Label id="wt_shelf_time" text="05.25 14:25" x="15" y="10" textColor="0xA07B49" fontFamily="PingFang-SC-Bold" size="18"/>
+		</e:Group>
+	</e:Group>
+
+</e:Skin>

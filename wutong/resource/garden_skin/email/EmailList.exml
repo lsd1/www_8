@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="emailList" width="530" height="180" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group_email_list" width="530" height="180" anchorOffsetX="0" verticalCenter="0" horizontalCenter="0">
+		<e:Image id="e_icon" anchorOffsetY="0" height="70" anchorOffsetX="0" width="70" left="24" bottom="33" source=""/>
+		<e:Label id="e_title" text="" textColor="0x3C2405" bold="true" size="30" fontFamily="PingFang-SC-Bold" verticalCenter="-56" textAlign="left" left="130"/>
+		<e:Label id="e_time" text="" fontFamily="PingFang-SC-Bold" size="24" right="9" top="19" textColor="0x3C2405"/>
+		<e:Rect left="0" right="0" verticalCenter="86" height="2" fillColor="0xbb9f93" strokeColor="0xbb9f93"/>
+		<e:Label id="e_content" text="" textColor="0x3C2405" size="24" fontFamily="PingFang-SC-Medium" anchorOffsetX="0" width="386" anchorOffsetY="0" height="90" verticalAlign="justify" horizontalCenter="58" verticalCenter="27" lineSpacing="26"/>
+	</e:Group>
+</e:Skin>

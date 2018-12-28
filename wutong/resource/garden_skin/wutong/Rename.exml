@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="rename" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="rename_group" width="592" height="942.57" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" left="0" right="0" top="0" bottom="0" scale9Grid="139,138,334,100"/>
+		<e:Image id="btn_close_rename" source="wutong_json.delete" horizontalCenter="266" verticalCenter="-401.285" width="60" height="60"/>
+		<e:Image source="rename_cn_png" y="14.35" horizontalCenter="1.5"/>
+		<e:Group id="gender_group" width="200" height="50" y="129.08" horizontalCenter="0">
+			<e:Image id="g_gender" source="" horizontalCenter="0" verticalCenter="0"/>
+			<e:Label id="g_text" text="" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="26" textAlign="center" verticalAlign="middle" horizontalCenter="10.5" verticalCenter="0"/>
+		</e:Group>
+		<e:Image id="ph_img" y="204.08" horizontalCenter="47" source=""/>
+		<e:Group width="377.27" height="118.97" y="570.14" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-31.5">
+			<e:Label text="{data.rename.num}" y="18" fontFamily="PingFang SC" textColor="0xa07b49" right="281.27"/>
+			<e:Label id="ph_num" text="" y="18" fontFamily="PingFang SC" textColor="0x3c2405" left="92"/>
+			<e:Label text="{data.rename.name}" y="73.49" fontFamily="PingFang SC" textColor="0xA07B49" right="285.27"/>
+			<e:Label id="ph_name" text="" y="72.35" fontFamily="PingFang SC" textColor="0x3C2405" left="90"/>
+		</e:Group>
+		<e:Label id="descrip_txt" text="" y="700.72" textColor="0xa07b49" size="24" width="440" horizontalCenter="0" lineSpacing="15"/>
+		<e:Group id="btn_rename" width="160" height="66" anchorOffsetX="0" bottom="70" horizontalCenter="0">
+			<e:Image source="wutong_json.btn_green" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0"/>
+			<e:Label id="confirm" size="30" horizontalCenter="0" verticalCenter="-2" textColor="0xFFE5B8" text="{data.rename.startChange}"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="enter_group" width="630" height="500" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" visible="false">
+		<e:Image top="0" bottom="0" left="0" right="0" source="wutong_json.tips_panel" scale9Grid="61,108,531,37" anchorOffsetY="0"/>
+		<e:Image y="16" horizontalCenter="0" source="rename_cn_png"/>
+		<e:Image id="btn_close_enter" source="wutong_json.delete" horizontalCenter="285" verticalCenter="-178" width="60" height="60"/>
+		<e:Group id="btn_enter_confim" width="160" height="66" anchorOffsetX="0" horizontalCenter="0" verticalCenter="156">
+		<e:Image source="wutong_json.btn_green" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0"/>
+		<e:Label text="{data.usePay.confirm}" size="30" horizontalCenter="0" verticalCenter="0" textColor="0xFFE5B8"/>
+		</e:Group>
+		<e:Label text="{data.rename.changeName}" y="147" fontFamily="PingFang-SC-Medium" textColor="0x3c2405" horizontalCenter="0"/>
+		<e:Group width="446" height="118" y="213" anchorOffsetY="0" anchorOffsetX="0" horizontalCenter="0">
+			<e:Label text="{data.rename.name}" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" scaleX="1" scaleY="1" left="0" y="7"/>
+			<e:Label id="status_txt" text="" fontFamily="PingFang-SC-Medium" scaleX="1" scaleY="1" left="85" y="59" x="10" textColor="0xea5300" size="24"/>
+			<e:Rect width="340" height="1" x="84" y="38" fillColor="0x3c2405"/>
+			<e:EditableText id="name_txt" width="354" height="41" text="" x="85" y="0" anchorOffsetY="0" anchorOffsetX="0" textColor="0x3c2405" fontFamily="PingFang-SC-Medium" size="30" verticalAlign="middle" promptColor="0xa07b49" prompt="{data.rename.nomore}"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="tip_group" width="630" height="423" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" visible="false">
+		<e:Image top="0" bottom="0" left="0" right="0" source="wutong_json.tips_panel" scale9Grid="61,108,531,37" anchorOffsetY="0"/>
+		<e:Image y="16" horizontalCenter="0" source="rename_cn_png"/>
+		<e:Label text="{data.rename.doU}" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" scaleX="1" scaleY="1" y="172" horizontalCenter="0"/>
+		<e:Image id="btn_close_tip" source="wutong_json.delete" horizontalCenter="285" verticalCenter="-139.5" width="60" height="60"/>
+		<e:Group id="btn_tip_later" width="160" height="66" anchorOffsetX="0" horizontalCenter="-131" verticalCenter="108.5">
+		<e:Image source="wutong_json.btn_green" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0"/>
+		<e:Label size="30" horizontalCenter="0" verticalCenter="-2" textColor="0xFFE5B8" text="{data.rename.later}"/>
+		</e:Group>
+		<e:Group id="btn_tip_success" width="160" height="66" anchorOffsetX="0" horizontalCenter="114" verticalCenter="108.5">
+			<e:Image source="wutong_json.btn_green" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0"/>
+			<e:Label size="30" horizontalCenter="0" verticalCenter="-3" textColor="0xFFE5B8" text="{data.rename.confrim}"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

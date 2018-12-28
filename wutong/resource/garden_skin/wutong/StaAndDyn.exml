@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="staAndDyn" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<w:Config id="1631534a3dd"/>
+	<e:Group id="tree" width="630" height="1016" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0">
+		<e:Image source="wutong_json.tips_panel" left="0" right="0" top="0" bottom="0" scale9Grid="58,126,500,12"/>
+		<e:Image y="23" source="{data.staAndDyn.panel_title}" horizontalCenter="0"/>
+		<e:Image id="btn_close_tree" source="wutong_json.delete" x="568" y="41" width="62" height="62"/>
+
+		<e:Group id="fruit" width="158" height="76" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-131" verticalCenter="-372">
+			<e:Label id="sta_text" text="{data.staAndDyn.sta_text}" size="30" fontFamily="PingFang-SC-Heavy" anchorOffsetX="0" bold="true" verticalCenter="0" horizontalCenter="0" textColor="0x3c2405"/>
+			<e:Rect id="sta_rect" height="10" fillColor="0x3C2405" left="0" right="0" ellipseWidth="10" verticalCenter="33"/>
+		</e:Group>
+		<e:Group id="dynamic" width="158" height="76" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="131" verticalCenter="-372">
+			<e:Label id="dyn_text" text="{data.staAndDyn.dyn_text}" textColor="0x3C2405" size="30" fontFamily="PingFang-SC-Heavy" anchorOffsetX="0" verticalCenter="0" horizontalCenter="0"/>
+			<e:Rect id="dyn_rect" height="10" fillColor="0x3C2405" left="0" right="0" ellipseWidth="10" verticalCenter="33" visible="false"/>
+		</e:Group>
+		<e:Group id="content_list" width="505" height="725" anchorOffsetX="0" anchorOffsetY="0" y="202" scaleX="1" scaleY="1" horizontalCenter="0">
+		</e:Group>
+	</e:Group>
+</e:Skin>

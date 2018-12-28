@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="binding" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="binding" width="592" height="527" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image id="head_img" y="21" horizontalCenter="0" source="{data.binding.heat_img}"/>
+		<e:Label id="status_txt" text="{data.binding.status_txt}" y="170" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" left="87" right="75"/>
+		<e:Group id="btn_success" y="366" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65" visible="false">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="1.5" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.binding.confirm}"/>
+		</e:Group>
+		<e:Group id="btn_goBinding" y="366" scaleX="1" scaleY="1" horizontalCenter="-107" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="1.5" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.binding.goBand}"/>
+		</e:Group>
+		<e:Group id="btn_down" y="366" scaleX="1" scaleY="1" horizontalCenter="113" width="170" height="65">
+			<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+			<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="1.5" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.binding.downWoller}"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="goto_group" width="592" height="527" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_goto" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image y="21" horizontalCenter="0" source="{data.binding.binding_img}"/>
+		<e:Label text="{data.binding.theLink}" y="160" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" left="103" right="103"/>
+		<e:Group width="440" height="66" y="280" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0">
+			<e:Rect width="440" height="2" x="0" y="66" fillColor="0xb1834e"/>
+			<e:Image source="minerV1_json.sr_2x" x="11" y="23"/>
+			<e:EditableText id="adderss" height="66" text="" y="2" anchorOffsetX="0" anchorOffsetY="0" verticalAlign="middle" textAlign="left" size="24" fontFamily="PingFang-SC-Medium" textColor="0xb1834e" left="56" right="13"/>
+		</e:Group>
+		<e:Group id="btn_binding" y="366" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="1.5" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.binding.binding}"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="binding_status" width="592" height="464" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_status" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image y="21" horizontalCenter="0" source="{data.binding.binding_img}"/>
+		<e:Label id="directions" text="{data.binding.bindingSuccess}" y="170" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" left="87" right="75"/>
+		<e:Group id="btn_goPlay" y="335" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="1.5" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.binding.startGame}"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="down_group" width="592" height="585" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_down" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image y="21" horizontalCenter="0" source="{data.binding.binding_img}"/>
+		<e:Label text="{data.binding.wallet_instruc}" y="125" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" left="88" right="74"/>
+		<e:Label text="{data.binding.po_Mine}" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" left="88" right="74" top="172"/>
+		<e:Label fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" left="91" right="71" text="{data.binding.regular_digital}" top="245"/>
+		<e:Label text="{data.binding.iOS_and_Android}" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" left="91" right="71" top="344"/>
+		<e:Group id="btn_down_group" scaleX="1" scaleY="1" horizontalCenter="0" width="170" height="65" bottom="62">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="1.5" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.binding.go_download}"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="minerAppo" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="miner_appo" left="0" right="0" top="0" bottom="0">
+		<e:Image scaleX="1" scaleY="1" left="0" right="0" top="75" bottom="0" source="miner_bg_png" scale9Grid="51,0,658,1203"/>
+		<e:Group id="auc_top" height="90" anchorOffsetY="0" left="0" right="0" top="0" x="0" y="0" scaleX="1" scaleY="1">
+			<e:Image source="auction_json.auc_top" scaleX="1" scaleY="1" scale9Grid="185,11,497,68" left="0" right="0" top="-4"/>
+			<e:Image id="btn_go_back" source="auction_json.auc_return" scaleX="1" scaleY="1" left="33" verticalCenter="-7"/>
+			<e:Image id="yuyue" left="202" verticalCenter="-5" source="{langData.minerAppo.yuyue}"/>
+		</e:Group>
+		<e:Group width="456" height="90" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="78" bottom="232">
+			<e:Label textColor="0xe6ba81" size="30" fontFamily="PingFang SC" right="0" top="0" text="{langData.minerAppo.appo_time}"/>
+			<e:Label id="res_time" text="" fontFamily="PingFang SC" textColor="0xe6ba81" size="30" right="0" top="50"/>
+		</e:Group>
+		<e:Group width="635" height="718" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="5" verticalCenter="-84">
+			<e:Image id="miner_img" x="0" y="0" source="{langData.minerAppo.miner_img}"/>
+			<e:Group id="mc_box" width="390" height="348" anchorOffsetX="0" anchorOffsetY="0" right="0" verticalCenter="214" x="265" y="416" scaleX="1" scaleY="1"/>
+		</e:Group>
+	</e:Group>
+	<e:Rect id="full_mask" fillAlpha="0.5" left="0" right="0" top="0" bottom="0" visible="false"/>
+	<e:Group id="tip" width="592" height="460" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" left="0" right="0" top="0" bottom="0" scale9Grid="136,137,322,84"/>
+		<e:Image id="btn_close" source="wutong_json.delete" x="536" y="42"/>
+		<e:Image id="yuyue_tip" y="25" source="tip_txt_reser_cn_png" horizontalCenter="0.5"/>
+		<e:Group width="450" height="186" x="70" y="103">
+			<e:Label id="reser_txt" text="" x="0" y="0" anchorOffsetX="0" width="450" anchorOffsetY="0" height="95" fontFamily="PingFang SC" textColor="0x3c2405" lineSpacing="20" scaleX="1" scaleY="1"/>
+			<e:Label id="appo_txt" text="" x="0" y="97" textColor="0xfc3d02" fontFamily="PingFang SC"/>
+		</e:Group>
+		<e:Group id="btn_go_appo" width="170" height="65" horizontalCenter="0" bottom="43" visible="false">
+			<e:Image source="wutong_json.btn_green" x="0" y="0"/>
+			<e:Label text="{langData.minerAppo.reser_pay}" y="18" textColor="0xffe5b8" fontFamily="PingFang-SC-Medium" horizontalCenter="-1"/>
+		</e:Group>
+		<e:Group id="btn_success" width="170" height="65" horizontalCenter="0" bottom="43" visible="false">
+			<e:Image source="wutong_json.btn_green" x="0" y="0"/>
+			<e:Label text="{langData.minerAppo.confirm}" y="17" textColor="0xFFE5B8" fontFamily="PingFang-SC-Medium" horizontalCenter="0"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

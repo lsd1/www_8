@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="Ext" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="extract" left="0" right="0" top="0" bottom="0">
+		<e:Image source="auction_json.auc_bj" scale9Grid="45,18,659,555" anchorOffsetY="0" top="0" bottom="0" left="0" right="0"/>
+		<e:Group id="auc_top" anchorOffsetY="0" top="0" left="0" right="0" height="82">
+		<e:Image source="auction_json.auc_top" scaleX="1" scaleY="1" top="-5" left="0" right="0" bottom="-3" scale9Grid="178,11,479,68"/>
+		<e:Image y="23" left="199" source="exchangeVSC_cn_png"/>
+		<e:Group id="btn_go_back" width="150" height="78" anchorOffsetY="0" left="0" top="0">
+			<e:Image source="auction_json.auc_return" scaleX="1" scaleY="1" horizontalCenter="-6" verticalCenter="-2"/>
+		</e:Group>
+		</e:Group>
+		<e:Group width="651" height="434" x="44" y="111" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Group width="651" height="90" y="11" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" x="6" scaleX="1" scaleY="1">
+				<e:Label text="VSC总数量" fontFamily="PingFang-SC-Medium" textColor="0x3c2405" verticalCenter="0" left="20"/>
+				<e:Label text="100000" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" verticalCenter="0" left="222"/>
+				<e:Rect height="2" anchorOffsetX="0" bottom="0" left="0" right="0" fillColor="0xd9b078"/>
+			</e:Group>
+			<e:Group width="651" height="90" y="101" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" x="6" scaleX="1" scaleY="1">
+				<e:Label text="当前可兑换" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" verticalCenter="0" left="20"/>
+				<e:Label text="100000" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" verticalCenter="0" left="222"/>
+				<e:Label text="总VSC的10%" fontFamily="PingFang-SC-Medium" verticalCenter="0" textColor="0xb1834e" right="0"/>
+				<e:Rect height="2" anchorOffsetX="0" bottom="0" left="0" right="0" fillColor="0xD9B078"/>
+			</e:Group>
+			<e:Group width="651" height="90" y="191" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" x="6" scaleX="1" scaleY="1">
+				<e:Label text="请输入份数" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" verticalCenter="0" left="20"/>
+				<e:Rect height="2" anchorOffsetX="0" bottom="0" left="0" right="0" fillColor="0xD9B078"/>
+				<e:EditableText id="num_input" width="300" height="60" text="" verticalCenter="0" verticalAlign="middle" left="222" textColor="0x3c2405" strokeColor="0x000000" prompt="100VSC为1份" promptColor="0xb1834e"/>
+			</e:Group>
+			<e:Group width="651" height="134" y="281" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" x="6" scaleX="1" scaleY="1">
+				<e:Label text="文交所账户" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" verticalCenter="-20" left="20"/>
+				<e:Label text="脉果儿实名" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" verticalCenter="25" y="82" scaleX="1" scaleY="1" left="20"/>
+				<e:Label text="6545351" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" verticalCenter="-20" left="222"/>
+				<e:Label text="特朗普" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" verticalCenter="25" stroke="" left="222"/>
+				<e:Rect height="2" anchorOffsetX="0" bottom="0" left="0" right="0" fillColor="0xD9B078"/>
+			</e:Group>
+		</e:Group>
+	</e:Group>
+	<e:Group id="exchange" width="610" height="110" horizontalCenter="0" x="35" scaleX="1" scaleY="1" bottom="330">
+		<e:Image source="minerV1_json.a_n_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+		<e:Label fontFamily="PingFang-SC-Medium" textColor="0xFFE5B8" horizontalCenter="0" verticalCenter="-4" text="申请"/>
+	</e:Group>
+</e:Skin>

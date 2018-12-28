@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="differentList" width="660" height="74" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="diffList" width="660" height="74" x="0" y="0" anchorOffsetY="0">
+		<e:Label id="diff_txt" text="{data}" fontFamily="PingFang-SC-Medium" size="24" textColor="0x3C2405" horizontalCenter="-1" x="306" scaleX="1" scaleY="1" verticalCenter="0" bold="false"/>
+		<e:Image id="diff_cur" source="auction_json.nav_icon" x="8" scaleX="1" scaleY="1" top="0" bottom="0" visible="false"/>
+	</e:Group>
+</e:Skin>
