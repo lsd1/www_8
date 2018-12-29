@@ -1,14 +1,14 @@
 CACHE MANIFEST
-#2018-12-28-1545970057
+#2018-12-29-1546077066
 CACHE:
 ./js/assetsmanager.min_74d9c0de.js
-./js/default.thm_8dac981c.js
+./js/default.thm_494648ee.js
 ./js/dragonBones.min_6252b9c4.js
 ./js/egret.min_3271047f.js
 ./js/egret.web.min_8fd2b4de.js
 ./js/eui.min_22447123.js
 ./js/game.min_45aa06f6.js
-./js/main.min_b2e914af.js
+./js/main.min_2bf7c4b3.js
 ./js/md5.min_cea845a1.js
 ./js/picker.min_2d48f1e6.js
 ./js/promise.min_83a6a5d.js

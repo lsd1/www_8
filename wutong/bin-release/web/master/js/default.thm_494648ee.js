@@ -2576,6 +2576,310 @@
 		return t;
 	};
 	return scrollerCreation;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/email/EmailInstr.exml'] = window.emailInstr = (function (_super) {
+	__extends(emailInstr, _super);
+	function emailInstr() {
+		_super.call(this);
+		this.skinParts = ["panel_title","btn_close_instr","title","datatime","datatime_1","email_img","group_img","content","email_instr"];
+		
+		this.height = 1334;
+		this.width = 750;
+		this.elementsContent = [this.email_instr_i()];
+	}
+	var _proto = emailInstr.prototype;
+
+	_proto.email_instr_i = function () {
+		var t = new eui.Group();
+		this.email_instr = t;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.height = 956;
+		t.horizontalCenter = 0;
+		t.verticalCenter = 0;
+		t.width = 630;
+		t.elementsContent = [this._Image1_i(),this.panel_title_i(),this.btn_close_instr_i(),this.title_i(),this.datatime_i(),this.datatime_1_i(),this.content_i()];
+		return t;
+	};
+	_proto._Image1_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.scale9Grid = new egret.Rectangle(88,127,399,119);
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "wutong_json.tips_panel";
+		t.top = 0;
+		return t;
+	};
+	_proto.panel_title_i = function () {
+		var t = new eui.Image();
+		this.panel_title = t;
+		t.horizontalCenter = 0;
+		t.source = "wutong_json.mail_cn";
+		t.top = 14;
+		return t;
+	};
+	_proto.btn_close_instr_i = function () {
+		var t = new eui.Image();
+		this.btn_close_instr = t;
+		t.height = 62;
+		t.horizontalCenter = 286;
+		t.source = "wutong_json.delete";
+		t.verticalCenter = -408;
+		t.width = 62;
+		return t;
+	};
+	_proto.title_i = function () {
+		var t = new eui.Label();
+		this.title = t;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.bold = true;
+		t.fontFamily = "PingFang-SC-Bold";
+		t.horizontalCenter = -102;
+		t.size = 30;
+		t.text = "";
+		t.textAlign = "left";
+		t.textColor = 0x3c2405;
+		t.verticalAlign = "middle";
+		t.verticalCenter = -330;
+		t.width = 271;
+		return t;
+	};
+	_proto.datatime_i = function () {
+		var t = new eui.Label();
+		this.datatime = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.right = 76;
+		t.size = 24;
+		t.text = "";
+		t.textColor = 0x3c2405;
+		t.verticalAlign = "middle";
+		t.verticalCenter = -336;
+		return t;
+	};
+	_proto.datatime_1_i = function () {
+		var t = new eui.Label();
+		this.datatime_1 = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.right = 76;
+		t.size = 24;
+		t.text = "";
+		t.textColor = 0x3c2405;
+		t.verticalAlign = "middle";
+		t.verticalCenter = -309;
+		return t;
+	};
+	_proto.content_i = function () {
+		var t = new eui.Group();
+		this.content = t;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.horizontalCenter = 0;
+		t.top = 200;
+		t.width = 480;
+		t.elementsContent = [this.group_img_i()];
+		return t;
+	};
+	_proto.group_img_i = function () {
+		var t = new eui.Group();
+		this.group_img = t;
+		t.anchorOffsetY = 0;
+		t.horizontalCenter = 0;
+		t.width = 480;
+		t.y = 0;
+		t.elementsContent = [this.email_img_i()];
+		return t;
+	};
+	_proto.email_img_i = function () {
+		var t = new eui.Image();
+		this.email_img = t;
+		t.bottom = 0;
+		t.height = 270;
+		t.left = 0;
+		t.right = 0;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "";
+		t.top = 0;
+		return t;
+	};
+	return emailInstr;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/email/EmailList.exml'] = window.emailList = (function (_super) {
+	__extends(emailList, _super);
+	function emailList() {
+		_super.call(this);
+		this.skinParts = ["e_icon","e_title","e_time","e_content","group_email_list"];
+		
+		this.height = 180;
+		this.width = 530;
+		this.elementsContent = [this.group_email_list_i()];
+	}
+	var _proto = emailList.prototype;
+
+	_proto.group_email_list_i = function () {
+		var t = new eui.Group();
+		this.group_email_list = t;
+		t.anchorOffsetX = 0;
+		t.height = 180;
+		t.horizontalCenter = 0;
+		t.verticalCenter = 0;
+		t.width = 530;
+		t.elementsContent = [this.e_icon_i(),this.e_title_i(),this.e_time_i(),this._Rect1_i(),this.e_content_i()];
+		return t;
+	};
+	_proto.e_icon_i = function () {
+		var t = new eui.Image();
+		this.e_icon = t;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.bottom = 33;
+		t.height = 70;
+		t.left = 24;
+		t.source = "";
+		t.width = 70;
+		return t;
+	};
+	_proto.e_title_i = function () {
+		var t = new eui.Label();
+		this.e_title = t;
+		t.bold = true;
+		t.fontFamily = "PingFang-SC-Bold";
+		t.left = 130;
+		t.size = 30;
+		t.text = "";
+		t.textAlign = "left";
+		t.textColor = 0x3C2405;
+		t.verticalCenter = -56;
+		return t;
+	};
+	_proto.e_time_i = function () {
+		var t = new eui.Label();
+		this.e_time = t;
+		t.fontFamily = "PingFang-SC-Bold";
+		t.right = 9;
+		t.size = 24;
+		t.text = "";
+		t.textColor = 0x3C2405;
+		t.top = 19;
+		return t;
+	};
+	_proto._Rect1_i = function () {
+		var t = new eui.Rect();
+		t.fillColor = 0xbb9f93;
+		t.height = 2;
+		t.left = 0;
+		t.right = 0;
+		t.strokeColor = 0xbb9f93;
+		t.verticalCenter = 86;
+		return t;
+	};
+	_proto.e_content_i = function () {
+		var t = new eui.Label();
+		this.e_content = t;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.height = 90;
+		t.horizontalCenter = 58;
+		t.lineSpacing = 26;
+		t.size = 24;
+		t.text = "";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "justify";
+		t.verticalCenter = 27;
+		t.width = 386;
+		return t;
+	};
+	return emailList;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/email/EmailSkin.exml'] = window.emailSkin = (function (_super) {
+	__extends(emailSkin, _super);
+	function emailSkin() {
+		_super.call(this);
+		this.skinParts = ["btn_close_email","email_tool","group_email"];
+		
+		this.height = 1334;
+		this.width = 750;
+		this.elementsContent = [this.group_email_i()];
+	}
+	var _proto = emailSkin.prototype;
+
+	_proto.group_email_i = function () {
+		var t = new eui.Group();
+		this.group_email = t;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.height = 956;
+		t.horizontalCenter = 0;
+		t.verticalCenter = 0;
+		t.width = 630;
+		t.elementsContent = [this._Image1_i(),this._Image2_i(),this.btn_close_email_i(),this.email_tool_i()];
+		return t;
+	};
+	_proto._Image1_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.scale9Grid = new egret.Rectangle(50,192,491,13);
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "wutong_json.tips_panel";
+		t.top = 0;
+		return t;
+	};
+	_proto._Image2_i = function () {
+		var t = new eui.Image();
+		t.source = "wutong_json.mail_cn";
+		t.x = 266;
+		t.y = 17;
+		return t;
+	};
+	_proto.btn_close_email_i = function () {
+		var t = new eui.Image();
+		this.btn_close_email = t;
+		t.height = 60;
+		t.right = 0;
+		t.source = "wutong_json.delete";
+		t.top = 39;
+		t.width = 60;
+		return t;
+	};
+	_proto.email_tool_i = function () {
+		var t = new eui.Group();
+		this.email_tool = t;
+		t.anchorOffsetY = 0;
+		t.height = 790;
+		t.width = 530;
+		t.x = 50;
+		t.y = 103;
+		return t;
+	};
+	return emailSkin;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/email/ScrollerEmail.exml'] = window.scrollerEmail = (function (_super) {
+	__extends(scrollerEmail, _super);
+	function scrollerEmail() {
+		_super.call(this);
+		this.skinParts = ["scroller_email"];
+		
+		this.height = 790;
+		this.width = 530;
+		this.elementsContent = [this.scroller_email_i()];
+	}
+	var _proto = scrollerEmail.prototype;
+
+	_proto.scroller_email_i = function () {
+		var t = new eui.Scroller();
+		this.scroller_email = t;
+		t.anchorOffsetY = 0;
+		t.height = 790;
+		t.width = 530;
+		t.x = 0;
+		t.y = 0;
+		return t;
+	};
+	return scrollerEmail;
 })(eui.Skin);generateEUI.paths['resource/garden_skin/deal/MyBuyHistoryList.exml'] = window.myBidHistoryList = (function (_super) {
 	__extends(myBidHistoryList, _super);
 	function myBidHistoryList() {
@@ -6148,1944 +6452,6 @@
 		return t;
 	};
 	return transactionList;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/email/EmailInstr.exml'] = window.emailInstr = (function (_super) {
-	__extends(emailInstr, _super);
-	function emailInstr() {
-		_super.call(this);
-		this.skinParts = ["panel_title","btn_close_instr","title","datatime","datatime_1","email_img","group_img","content","email_instr"];
-		
-		this.height = 1334;
-		this.width = 750;
-		this.elementsContent = [this.email_instr_i()];
-	}
-	var _proto = emailInstr.prototype;
-
-	_proto.email_instr_i = function () {
-		var t = new eui.Group();
-		this.email_instr = t;
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.height = 956;
-		t.horizontalCenter = 0;
-		t.verticalCenter = 0;
-		t.width = 630;
-		t.elementsContent = [this._Image1_i(),this.panel_title_i(),this.btn_close_instr_i(),this.title_i(),this.datatime_i(),this.datatime_1_i(),this.content_i()];
-		return t;
-	};
-	_proto._Image1_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.scale9Grid = new egret.Rectangle(88,127,399,119);
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "wutong_json.tips_panel";
-		t.top = 0;
-		return t;
-	};
-	_proto.panel_title_i = function () {
-		var t = new eui.Image();
-		this.panel_title = t;
-		t.horizontalCenter = 0;
-		t.source = "wutong_json.mail_cn";
-		t.top = 14;
-		return t;
-	};
-	_proto.btn_close_instr_i = function () {
-		var t = new eui.Image();
-		this.btn_close_instr = t;
-		t.height = 62;
-		t.horizontalCenter = 286;
-		t.source = "wutong_json.delete";
-		t.verticalCenter = -408;
-		t.width = 62;
-		return t;
-	};
-	_proto.title_i = function () {
-		var t = new eui.Label();
-		this.title = t;
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.bold = true;
-		t.fontFamily = "PingFang-SC-Bold";
-		t.horizontalCenter = -102;
-		t.size = 30;
-		t.text = "";
-		t.textAlign = "left";
-		t.textColor = 0x3c2405;
-		t.verticalAlign = "middle";
-		t.verticalCenter = -330;
-		t.width = 271;
-		return t;
-	};
-	_proto.datatime_i = function () {
-		var t = new eui.Label();
-		this.datatime = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.right = 76;
-		t.size = 24;
-		t.text = "";
-		t.textColor = 0x3c2405;
-		t.verticalAlign = "middle";
-		t.verticalCenter = -336;
-		return t;
-	};
-	_proto.datatime_1_i = function () {
-		var t = new eui.Label();
-		this.datatime_1 = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.right = 76;
-		t.size = 24;
-		t.text = "";
-		t.textColor = 0x3c2405;
-		t.verticalAlign = "middle";
-		t.verticalCenter = -309;
-		return t;
-	};
-	_proto.content_i = function () {
-		var t = new eui.Group();
-		this.content = t;
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.horizontalCenter = 0;
-		t.top = 200;
-		t.width = 480;
-		t.elementsContent = [this.group_img_i()];
-		return t;
-	};
-	_proto.group_img_i = function () {
-		var t = new eui.Group();
-		this.group_img = t;
-		t.anchorOffsetY = 0;
-		t.horizontalCenter = 0;
-		t.width = 480;
-		t.y = 0;
-		t.elementsContent = [this.email_img_i()];
-		return t;
-	};
-	_proto.email_img_i = function () {
-		var t = new eui.Image();
-		this.email_img = t;
-		t.bottom = 0;
-		t.height = 270;
-		t.left = 0;
-		t.right = 0;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "";
-		t.top = 0;
-		return t;
-	};
-	return emailInstr;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/email/EmailList.exml'] = window.emailList = (function (_super) {
-	__extends(emailList, _super);
-	function emailList() {
-		_super.call(this);
-		this.skinParts = ["e_icon","e_title","e_time","e_content","group_email_list"];
-		
-		this.height = 180;
-		this.width = 530;
-		this.elementsContent = [this.group_email_list_i()];
-	}
-	var _proto = emailList.prototype;
-
-	_proto.group_email_list_i = function () {
-		var t = new eui.Group();
-		this.group_email_list = t;
-		t.anchorOffsetX = 0;
-		t.height = 180;
-		t.horizontalCenter = 0;
-		t.verticalCenter = 0;
-		t.width = 530;
-		t.elementsContent = [this.e_icon_i(),this.e_title_i(),this.e_time_i(),this._Rect1_i(),this.e_content_i()];
-		return t;
-	};
-	_proto.e_icon_i = function () {
-		var t = new eui.Image();
-		this.e_icon = t;
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.bottom = 33;
-		t.height = 70;
-		t.left = 24;
-		t.source = "";
-		t.width = 70;
-		return t;
-	};
-	_proto.e_title_i = function () {
-		var t = new eui.Label();
-		this.e_title = t;
-		t.bold = true;
-		t.fontFamily = "PingFang-SC-Bold";
-		t.left = 130;
-		t.size = 30;
-		t.text = "";
-		t.textAlign = "left";
-		t.textColor = 0x3C2405;
-		t.verticalCenter = -56;
-		return t;
-	};
-	_proto.e_time_i = function () {
-		var t = new eui.Label();
-		this.e_time = t;
-		t.fontFamily = "PingFang-SC-Bold";
-		t.right = 9;
-		t.size = 24;
-		t.text = "";
-		t.textColor = 0x3C2405;
-		t.top = 19;
-		return t;
-	};
-	_proto._Rect1_i = function () {
-		var t = new eui.Rect();
-		t.fillColor = 0xbb9f93;
-		t.height = 2;
-		t.left = 0;
-		t.right = 0;
-		t.strokeColor = 0xbb9f93;
-		t.verticalCenter = 86;
-		return t;
-	};
-	_proto.e_content_i = function () {
-		var t = new eui.Label();
-		this.e_content = t;
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.height = 90;
-		t.horizontalCenter = 58;
-		t.lineSpacing = 26;
-		t.size = 24;
-		t.text = "";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "justify";
-		t.verticalCenter = 27;
-		t.width = 386;
-		return t;
-	};
-	return emailList;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/email/EmailSkin.exml'] = window.emailSkin = (function (_super) {
-	__extends(emailSkin, _super);
-	function emailSkin() {
-		_super.call(this);
-		this.skinParts = ["btn_close_email","email_tool","group_email"];
-		
-		this.height = 1334;
-		this.width = 750;
-		this.elementsContent = [this.group_email_i()];
-	}
-	var _proto = emailSkin.prototype;
-
-	_proto.group_email_i = function () {
-		var t = new eui.Group();
-		this.group_email = t;
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.height = 956;
-		t.horizontalCenter = 0;
-		t.verticalCenter = 0;
-		t.width = 630;
-		t.elementsContent = [this._Image1_i(),this._Image2_i(),this.btn_close_email_i(),this.email_tool_i()];
-		return t;
-	};
-	_proto._Image1_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.scale9Grid = new egret.Rectangle(50,192,491,13);
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "wutong_json.tips_panel";
-		t.top = 0;
-		return t;
-	};
-	_proto._Image2_i = function () {
-		var t = new eui.Image();
-		t.source = "wutong_json.mail_cn";
-		t.x = 266;
-		t.y = 17;
-		return t;
-	};
-	_proto.btn_close_email_i = function () {
-		var t = new eui.Image();
-		this.btn_close_email = t;
-		t.height = 60;
-		t.right = 0;
-		t.source = "wutong_json.delete";
-		t.top = 39;
-		t.width = 60;
-		return t;
-	};
-	_proto.email_tool_i = function () {
-		var t = new eui.Group();
-		this.email_tool = t;
-		t.anchorOffsetY = 0;
-		t.height = 790;
-		t.width = 530;
-		t.x = 50;
-		t.y = 103;
-		return t;
-	};
-	return emailSkin;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/email/ScrollerEmail.exml'] = window.scrollerEmail = (function (_super) {
-	__extends(scrollerEmail, _super);
-	function scrollerEmail() {
-		_super.call(this);
-		this.skinParts = ["scroller_email"];
-		
-		this.height = 790;
-		this.width = 530;
-		this.elementsContent = [this.scroller_email_i()];
-	}
-	var _proto = scrollerEmail.prototype;
-
-	_proto.scroller_email_i = function () {
-		var t = new eui.Scroller();
-		this.scroller_email = t;
-		t.anchorOffsetY = 0;
-		t.height = 790;
-		t.width = 530;
-		t.x = 0;
-		t.y = 0;
-		return t;
-	};
-	return scrollerEmail;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/goldCoin/Exchange.exml'] = window.goldCoin = (function (_super) {
-	__extends(goldCoin, _super);
-	var goldCoin$Skin2 = 	(function (_super) {
-		__extends(goldCoin$Skin2, _super);
-		function goldCoin$Skin2() {
-			_super.call(this);
-			this.skinParts = ["labelDisplay"];
-			
-			this.elementsContent = [this._Image1_i(),this.labelDisplay_i()];
-			this.states = [
-				new eui.State ("up",
-					[
-					])
-				,
-				new eui.State ("down",
-					[
-					])
-				,
-				new eui.State ("disabled",
-					[
-					])
-			];
-		}
-		var _proto = goldCoin$Skin2.prototype;
-
-		_proto._Image1_i = function () {
-			var t = new eui.Image();
-			t.percentHeight = 100;
-			t.source = "wutong_json.btn_add_1";
-			t.percentWidth = 100;
-			return t;
-		};
-		_proto.labelDisplay_i = function () {
-			var t = new eui.Label();
-			this.labelDisplay = t;
-			t.horizontalCenter = 0;
-			t.verticalCenter = 0;
-			return t;
-		};
-		return goldCoin$Skin2;
-	})(eui.Skin);
-
-	var goldCoin$Skin3 = 	(function (_super) {
-		__extends(goldCoin$Skin3, _super);
-		function goldCoin$Skin3() {
-			_super.call(this);
-			this.skinParts = ["labelDisplay"];
-			
-			this.elementsContent = [this._Image1_i(),this.labelDisplay_i()];
-			this.states = [
-				new eui.State ("up",
-					[
-					])
-				,
-				new eui.State ("down",
-					[
-					])
-				,
-				new eui.State ("disabled",
-					[
-					])
-			];
-		}
-		var _proto = goldCoin$Skin3.prototype;
-
-		_proto._Image1_i = function () {
-			var t = new eui.Image();
-			t.percentHeight = 100;
-			t.source = "wutong_json.btn_sub_1";
-			t.percentWidth = 100;
-			return t;
-		};
-		_proto.labelDisplay_i = function () {
-			var t = new eui.Label();
-			this.labelDisplay = t;
-			t.horizontalCenter = 0;
-			t.verticalCenter = 0;
-			return t;
-		};
-		return goldCoin$Skin3;
-	})(eui.Skin);
-
-	function goldCoin() {
-		_super.call(this);
-		this.skinParts = ["head_img","goBack","exchange_top","gold_inp","change_ratio","confirm","svc_inp","add","del","exchange"];
-		
-		this.height = 1334;
-		this.width = 750;
-		this.elementsContent = [this.exchange_i()];
-		
-		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.exchange_head"],[0],this.head_img,"source");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.enter_tips"],[0],this._Label1,"text");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.input_gold"],[0],this._Label2,"text");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.exchange_ratio"],[0],this._Label3,"text");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.exchange_tips"],[0],this._Label4,"text");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.confirm"],[0],this._Label6,"text");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.input_svc"],[0],this._Label7,"text");
-	}
-	var _proto = goldCoin.prototype;
-
-	_proto.exchange_i = function () {
-		var t = new eui.Group();
-		this.exchange = t;
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.top = 0;
-		t.elementsContent = [this._Image1_i(),this.exchange_top_i(),this._Label1_i(),this._Label2_i(),this.gold_inp_i(),this._Label3_i(),this._Label4_i(),this._Rect1_i(),this._Rect2_i(),this.change_ratio_i(),this._Label5_i(),this.confirm_i(),this._Group1_i()];
-		return t;
-	};
-	_proto._Image1_i = function () {
-		var t = new eui.Image();
-		t.anchorOffsetY = 0;
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.scale9Grid = new egret.Rectangle(45,18,659,555);
-		t.source = "auction_json.auc_bj";
-		t.top = 0;
-		return t;
-	};
-	_proto.exchange_top_i = function () {
-		var t = new eui.Group();
-		this.exchange_top = t;
-		t.anchorOffsetY = 0;
-		t.height = 82;
-		t.left = 0;
-		t.right = 0;
-		t.top = 0;
-		t.elementsContent = [this._Image2_i(),this.head_img_i(),this.goBack_i()];
-		return t;
-	};
-	_proto._Image2_i = function () {
-		var t = new eui.Image();
-		t.left = 0;
-		t.right = 0;
-		t.scale9Grid = new egret.Rectangle(185,11,497,68);
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "auction_json.auc_top";
-		t.top = -4;
-		return t;
-	};
-	_proto.head_img_i = function () {
-		var t = new eui.Image();
-		this.head_img = t;
-		t.horizontalCenter = -106;
-		t.y = 23;
-		return t;
-	};
-	_proto.goBack_i = function () {
-		var t = new eui.Group();
-		this.goBack = t;
-		t.anchorOffsetY = 0;
-		t.height = 78;
-		t.left = 0;
-		t.top = 0;
-		t.width = 150;
-		t.elementsContent = [this._Image3_i()];
-		return t;
-	};
-	_proto._Image3_i = function () {
-		var t = new eui.Image();
-		t.horizontalCenter = -6;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "auction_json.auc_return";
-		t.verticalCenter = -2;
-		return t;
-	};
-	_proto._Label1_i = function () {
-		var t = new eui.Label();
-		this._Label1 = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.textColor = 0x3c2405;
-		t.x = 69;
-		t.y = 197;
-		return t;
-	};
-	_proto._Label2_i = function () {
-		var t = new eui.Label();
-		this._Label2 = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.textColor = 0x3c2405;
-		t.x = 81;
-		t.y = 433;
-		return t;
-	};
-	_proto.gold_inp_i = function () {
-		var t = new eui.Label();
-		this.gold_inp = t;
-		t.anchorOffsetY = 0;
-		t.fontFamily = "PingFang-SC-Bold";
-		t.height = 49.67;
-		t.restrict = "0-9.";
-		t.size = 48;
-		t.text = "0";
-		t.textColor = 0xf76005;
-		t.verticalAlign = "middle";
-		t.width = 300;
-		t.x = 260;
-		t.y = 414;
-		return t;
-	};
-	_proto._Label3_i = function () {
-		var t = new eui.Label();
-		this._Label3 = t;
-		t.anchorOffsetX = 0;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.textColor = 0xa07b49;
-		t.width = 230;
-		t.x = 81;
-		t.y = 512;
-		return t;
-	};
-	_proto._Label4_i = function () {
-		var t = new eui.Label();
-		this._Label4 = t;
-		t.anchorOffsetX = 0;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.textColor = 0xA07B49;
-		t.width = 618;
-		t.x = 81;
-		t.y = 589;
-		return t;
-	};
-	_proto._Rect1_i = function () {
-		var t = new eui.Rect();
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.fillColor = 0xd9b078;
-		t.height = 2;
-		t.horizontalCenter = 0;
-		t.width = 590;
-		t.y = 358.66;
-		return t;
-	};
-	_proto._Rect2_i = function () {
-		var t = new eui.Rect();
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.fillColor = 0xd9b078;
-		t.height = 2;
-		t.horizontalCenter = 0;
-		t.width = 590;
-		t.y = 479.66;
-		return t;
-	};
-	_proto.change_ratio_i = function () {
-		var t = new eui.Label();
-		this.change_ratio = t;
-		t.anchorOffsetX = 0;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.text = "0.00";
-		t.textColor = 0xa07b49;
-		t.width = 88;
-		t.x = 368;
-		t.y = 512;
-		return t;
-	};
-	_proto._Label5_i = function () {
-		var t = new eui.Label();
-		t.anchorOffsetX = 0;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.text = "1 :";
-		t.textColor = 0xA07B49;
-		t.width = 39;
-		t.x = 327;
-		t.y = 512;
-		return t;
-	};
-	_proto.confirm_i = function () {
-		var t = new eui.Group();
-		this.confirm = t;
-		t.anchorOffsetY = 0;
-		t.bottom = 50;
-		t.height = 100;
-		t.horizontalCenter = 0;
-		t.width = 600;
-		t.elementsContent = [this._Image4_i(),this._Label6_i()];
-		return t;
-	};
-	_proto._Image4_i = function () {
-		var t = new eui.Image();
-		t.height = 109;
-		t.horizontalCenter = 0;
-		t.source = "auction_json.auc_btn";
-		t.width = 645;
-		t.y = 1;
-		return t;
-	};
-	_proto._Label6_i = function () {
-		var t = new eui.Label();
-		this._Label6 = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.horizontalCenter = 0;
-		t.textAlign = "center";
-		t.textColor = 0xffe5b8;
-		t.verticalAlign = "middle";
-		t.verticalCenter = 0;
-		return t;
-	};
-	_proto._Group1_i = function () {
-		var t = new eui.Group();
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.height = 98;
-		t.width = 626;
-		t.x = 72;
-		t.y = 284;
-		t.elementsContent = [this._Label7_i(),this.svc_inp_i(),this.add_i(),this.del_i()];
-		return t;
-	};
-	_proto._Label7_i = function () {
-		var t = new eui.Label();
-		this._Label7 = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.textColor = 0x3c2405;
-		t.verticalCenter = 0;
-		t.x = 9;
-		return t;
-	};
-	_proto.svc_inp_i = function () {
-		var t = new eui.Label();
-		this.svc_inp = t;
-		t.anchorOffsetY = 0;
-		t.fontFamily = "PingFang-SC-Bold";
-		t.height = 57.66;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.size = 48;
-		t.text = "0";
-		t.textColor = 0xf76005;
-		t.verticalAlign = "middle";
-		t.verticalCenter = 0;
-		t.width = 300;
-		t.x = 179;
-		return t;
-	};
-	_proto.add_i = function () {
-		var t = new eui.Button();
-		this.add = t;
-		t.height = 50;
-		t.label = "";
-		t.right = 32;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.verticalCenter = 0;
-		t.width = 50;
-		t.skinName = goldCoin$Skin2;
-		return t;
-	};
-	_proto.del_i = function () {
-		var t = new eui.Button();
-		this.del = t;
-		t.height = 50;
-		t.label = "";
-		t.right = 115;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.verticalCenter = 0;
-		t.width = 50;
-		t.skinName = goldCoin$Skin3;
-		return t;
-	};
-	return goldCoin;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/goldCoin/Gold.exml'] = window.gold = (function (_super) {
-	__extends(gold, _super);
-	function gold() {
-		_super.call(this);
-		this.skinParts = ["head_img","goBack","exchange_top","goldAmount","confirmExchange","goldLog","gold_group"];
-		
-		this.height = 1334;
-		this.width = 750;
-		this.elementsContent = [this.gold_group_i()];
-		
-		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.gold_head"],[0],this.head_img,"source");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.amount"],[0],this._Label1,"text");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.confirm_exchange"],[0],this._Label2,"text");
-	}
-	var _proto = gold.prototype;
-
-	_proto.gold_group_i = function () {
-		var t = new eui.Group();
-		this.gold_group = t;
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.top = 0;
-		t.elementsContent = [this._Image1_i(),this.exchange_top_i(),this.goldAmount_i(),this._Label1_i(),this.confirmExchange_i(),this.goldLog_i()];
-		return t;
-	};
-	_proto._Image1_i = function () {
-		var t = new eui.Image();
-		t.anchorOffsetY = 0;
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.scale9Grid = new egret.Rectangle(45,18,659,555);
-		t.source = "auction_json.auc_bj";
-		t.top = 0;
-		return t;
-	};
-	_proto.exchange_top_i = function () {
-		var t = new eui.Group();
-		this.exchange_top = t;
-		t.anchorOffsetY = 0;
-		t.height = 82;
-		t.left = 0;
-		t.right = 0;
-		t.top = 0;
-		t.elementsContent = [this._Image2_i(),this.head_img_i(),this.goBack_i()];
-		return t;
-	};
-	_proto._Image2_i = function () {
-		var t = new eui.Image();
-		t.left = 0;
-		t.right = 0;
-		t.scale9Grid = new egret.Rectangle(185,11,497,68);
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "auction_json.auc_top";
-		t.top = -4;
-		return t;
-	};
-	_proto.head_img_i = function () {
-		var t = new eui.Image();
-		this.head_img = t;
-		t.horizontalCenter = -106;
-		t.y = 23;
-		return t;
-	};
-	_proto.goBack_i = function () {
-		var t = new eui.Group();
-		this.goBack = t;
-		t.anchorOffsetY = 0;
-		t.height = 78;
-		t.left = 0;
-		t.top = 0;
-		t.width = 150;
-		t.elementsContent = [this._Image3_i()];
-		return t;
-	};
-	_proto._Image3_i = function () {
-		var t = new eui.Image();
-		t.horizontalCenter = -6;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "auction_json.auc_return";
-		t.verticalCenter = -2;
-		return t;
-	};
-	_proto.goldAmount_i = function () {
-		var t = new eui.Label();
-		this.goldAmount = t;
-		t.fontFamily = "PingFang-SC-Bold";
-		t.horizontalCenter = 0;
-		t.size = 48;
-		t.text = "0";
-		t.textAlign = "center";
-		t.textColor = 0xf76005;
-		t.verticalAlign = "middle";
-		t.y = 144;
-		return t;
-	};
-	_proto._Label1_i = function () {
-		var t = new eui.Label();
-		this._Label1 = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.horizontalCenter = 0;
-		t.textAlign = "center";
-		t.textColor = 0x3c2405;
-		t.verticalAlign = "middle";
-		t.y = 212;
-		return t;
-	};
-	_proto.confirmExchange_i = function () {
-		var t = new eui.Group();
-		this.confirmExchange = t;
-		t.anchorOffsetY = 0;
-		t.bottom = 50;
-		t.height = 100;
-		t.horizontalCenter = 0;
-		t.width = 600;
-		t.elementsContent = [this._Image4_i(),this._Label2_i()];
-		return t;
-	};
-	_proto._Image4_i = function () {
-		var t = new eui.Image();
-		t.height = 109;
-		t.horizontalCenter = 0.5;
-		t.source = "auction_json.auc_btn";
-		t.width = 645;
-		t.y = -0.52;
-		return t;
-	};
-	_proto._Label2_i = function () {
-		var t = new eui.Label();
-		this._Label2 = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.horizontalCenter = 0;
-		t.textAlign = "center";
-		t.textColor = 0xffe5b8;
-		t.verticalAlign = "middle";
-		t.verticalCenter = 0;
-		return t;
-	};
-	_proto.goldLog_i = function () {
-		var t = new eui.Group();
-		this.goldLog = t;
-		t.height = 850;
-		t.horizontalCenter = 0;
-		t.verticalCenter = 18;
-		t.width = 690;
-		return t;
-	};
-	return gold;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/goldCoin/GoldLogList.exml'] = window.goldLogList = (function (_super) {
-	__extends(goldLogList, _super);
-	function goldLogList() {
-		_super.call(this);
-		this.skinParts = ["logText","logTime","logChange"];
-		
-		this.height = 123;
-		this.width = 690;
-		this.elementsContent = [this.logText_i(),this.logTime_i(),this.logChange_i(),this._Rect1_i()];
-	}
-	var _proto = goldLogList.prototype;
-
-	_proto.logText_i = function () {
-		var t = new eui.Label();
-		this.logText = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.text = "兑换金币";
-		t.textColor = 0x3c2405;
-		t.top = 20;
-		t.x = 43;
-		return t;
-	};
-	_proto.logTime_i = function () {
-		var t = new eui.Label();
-		this.logTime = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.text = "2018-11-12 11:11";
-		t.textColor = 0xa07b49;
-		t.top = 67;
-		t.x = 43;
-		return t;
-	};
-	_proto.logChange_i = function () {
-		var t = new eui.Label();
-		this.logChange = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.right = 17;
-		t.text = "+180";
-		t.textColor = 0x3c2405;
-		t.y = 20;
-		return t;
-	};
-	_proto._Rect1_i = function () {
-		var t = new eui.Rect();
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.bottom = 2;
-		t.fillColor = 0xd9b078;
-		t.height = 1;
-		t.left = 0;
-		t.right = 0;
-		return t;
-	};
-	return goldLogList;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/goldCoin/ScrollerLog.exml'] = window.scrollerLog = (function (_super) {
-	__extends(scrollerLog, _super);
-	function scrollerLog() {
-		_super.call(this);
-		this.skinParts = ["scroller_log"];
-		
-		this.height = 850;
-		this.width = 690;
-		this.elementsContent = [this.scroller_log_i()];
-	}
-	var _proto = scrollerLog.prototype;
-
-	_proto.scroller_log_i = function () {
-		var t = new eui.Scroller();
-		this.scroller_log = t;
-		t.anchorOffsetY = 0;
-		t.height = 850;
-		t.width = 690;
-		t.x = 0;
-		t.y = 0;
-		return t;
-	};
-	return scrollerLog;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/phoenix/ChangeNameCommit.exml'] = window.changeNameCommit = (function (_super) {
-	__extends(changeNameCommit, _super);
-	function changeNameCommit() {
-		_super.call(this);
-		this.skinParts = ["commit","new_name"];
-		
-		this.height = 461;
-		this.width = 590;
-		this.elementsContent = [this._Image1_i(),this._Label1_i(),this._Label2_i(),this.commit_i(),this.new_name_i(),this._Label4_i()];
-	}
-	var _proto = changeNameCommit.prototype;
-
-	_proto._Image1_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.scale9Grid = new egret.Rectangle(100,61,394,127);
-		t.source = "wutong_json.frame_green_1";
-		t.top = 0;
-		return t;
-	};
-	_proto._Label1_i = function () {
-		var t = new eui.Label();
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.bold = true;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.horizontalCenter = 0.5;
-		t.text = "设置昵称";
-		t.textAlign = "center";
-		t.textColor = 0x3c2405;
-		t.verticalAlign = "middle";
-		t.y = 85;
-		return t;
-	};
-	_proto._Label2_i = function () {
-		var t = new eui.Label();
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.left = 107;
-		t.text = "昵称：";
-		t.textAlign = "center";
-		t.textColor = 0x3c2405;
-		t.verticalAlign = "middle";
-		t.y = 190;
-		return t;
-	};
-	_proto.commit_i = function () {
-		var t = new eui.Group();
-		this.commit = t;
-		t.bottom = 88;
-		t.height = 60;
-		t.horizontalCenter = 0;
-		t.width = 166;
-		t.elementsContent = [this._Image2_i(),this._Label3_i()];
-		return t;
-	};
-	_proto._Image2_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.source = "wutong_json.btn_green";
-		t.top = 0;
-		return t;
-	};
-	_proto._Label3_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang-SC-Medium";
-		t.horizontalCenter = 0;
-		t.text = "提交";
-		t.textAlign = "center";
-		t.textColor = 0xFFE5B8;
-		t.verticalAlign = "middle";
-		t.verticalCenter = -3;
-		return t;
-	};
-	_proto.new_name_i = function () {
-		var t = new eui.EditableText();
-		this.new_name = t;
-		t.anchorOffsetX = 0;
-		t.border = false;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.prompt = "请输入新昵称";
-		t.text = "";
-		t.textColor = 0x3c2405;
-		t.width = 305;
-		t.x = 189;
-		t.y = 191;
-		return t;
-	};
-	_proto._Label4_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang-SC-Medium";
-		t.size = 24;
-		t.text = "字数超出限制";
-		t.textColor = 0xea5300;
-		t.visible = false;
-		t.x = 173;
-		t.y = 230;
-		return t;
-	};
-	return changeNameCommit;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/phoenix/ChangeNameConfirm.exml'] = window.changeNameConfirm = (function (_super) {
-	__extends(changeNameConfirm, _super);
-	function changeNameConfirm() {
-		_super.call(this);
-		this.skinParts = ["wait","confirm"];
-		
-		this.height = 341;
-		this.width = 590;
-		this.elementsContent = [this._Image1_i(),this.wait_i(),this.confirm_i(),this._Label3_i()];
-	}
-	var _proto = changeNameConfirm.prototype;
-
-	_proto._Image1_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.scale9Grid = new egret.Rectangle(92,57,406,125);
-		t.source = "wutong_json.frame_green_1";
-		t.top = 0;
-		return t;
-	};
-	_proto.wait_i = function () {
-		var t = new eui.Group();
-		this.wait = t;
-		t.height = 60;
-		t.width = 166;
-		t.x = 99;
-		t.y = 221;
-		t.elementsContent = [this._Image2_i(),this._Label1_i()];
-		return t;
-	};
-	_proto._Image2_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.source = "wutong_json.btn_green";
-		t.top = 0;
-		return t;
-	};
-	_proto._Label1_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang-SC-Medium";
-		t.horizontalCenter = 0;
-		t.text = "稍后";
-		t.textAlign = "center";
-		t.textColor = 0xffe5b8;
-		t.verticalAlign = "middle";
-		t.verticalCenter = -3;
-		return t;
-	};
-	_proto.confirm_i = function () {
-		var t = new eui.Group();
-		this.confirm = t;
-		t.height = 60;
-		t.width = 166;
-		t.x = 324;
-		t.y = 220;
-		t.elementsContent = [this._Image3_i(),this._Label2_i()];
-		return t;
-	};
-	_proto._Image3_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.source = "wutong_json.btn_green";
-		t.top = 0;
-		return t;
-	};
-	_proto._Label2_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang-SC-Medium";
-		t.horizontalCenter = 0;
-		t.text = "确认";
-		t.textAlign = "center";
-		t.textColor = 0xFFE5B8;
-		t.verticalAlign = "middle";
-		t.verticalCenter = -3;
-		return t;
-	};
-	_proto._Label3_i = function () {
-		var t = new eui.Label();
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.height = 103;
-		t.horizontalCenter = 0;
-		t.text = "是否花费XX储值修改昵称?";
-		t.textAlign = "center";
-		t.textColor = 0x3c2405;
-		t.verticalAlign = "middle";
-		t.width = 448;
-		t.y = 61;
-		return t;
-	};
-	return changeNameConfirm;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/phoenix/Detail.exml'] = window.detail = (function (_super) {
-	__extends(detail, _super);
-	function detail() {
-		_super.call(this);
-		this.skinParts = ["gender","g_text","gender_group","ph_name_1","ph_img","ph_xp_next","ph_xp_now","ph_xp_desc","group_xp","egg_img","egg_status","status_count","ph_name_2","ph_num","change_name","ph_from","ph_from_title","group_from","scroller_group","group_log","back","group_top"];
-		
-		this.height = 1334;
-		this.width = 750;
-		this.elementsContent = [this._Group4_i()];
-		
-		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.lifeTitle"],[0],this._Image2,"source");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.ph_detail"],[0],this._Image3,"source");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.nick_name"],[0],this._Label1,"text");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.ph_num"],[0],this._Label2,"text");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.ph_from"],[0],this.ph_from,"text");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.ph_from_title"],[0],this.ph_from_title,"text");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.ph_log"],[0],this._Image4,"source");
-		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.page_title"],[0],this._Image7,"source");
-	}
-	var _proto = detail.prototype;
-
-	_proto._Group4_i = function () {
-		var t = new eui.Group();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.top = 0;
-		t.elementsContent = [this._Image1_i(),this._Scroller1_i(),this.group_top_i()];
-		return t;
-	};
-	_proto._Image1_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.scale9Grid = new egret.Rectangle(141,0,488,600);
-		t.source = "auction_json.auc_bj";
-		t.top = 0;
-		return t;
-	};
-	_proto._Scroller1_i = function () {
-		var t = new eui.Scroller();
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.bottom = 0;
-		t.horizontalCenter = 0;
-		t.top = 0;
-		t.width = 662;
-		t.viewport = this._Group3_i();
-		return t;
-	};
-	_proto._Group3_i = function () {
-		var t = new eui.Group();
-		t.anchorOffsetY = 0;
-		t.elementsContent = [this._Group2_i(),this.scroller_group_i(),this.group_log_i()];
-		return t;
-	};
-	_proto._Group2_i = function () {
-		var t = new eui.Group();
-		t.anchorOffsetY = 0;
-		t.height = 664;
-		t.left = 0;
-		t.right = 0;
-		t.y = 86;
-		t.elementsContent = [this.gender_group_i(),this.ph_name_1_i(),this.ph_img_i(),this.group_xp_i(),this.egg_img_i(),this.egg_status_i(),this.status_count_i(),this._Rect1_i()];
-		return t;
-	};
-	_proto.gender_group_i = function () {
-		var t = new eui.Group();
-		this.gender_group = t;
-		t.height = 50;
-		t.horizontalCenter = 0;
-		t.width = 200;
-		t.y = 47;
-		t.elementsContent = [this.gender_i(),this.g_text_i()];
-		return t;
-	};
-	_proto.gender_i = function () {
-		var t = new eui.Image();
-		this.gender = t;
-		t.horizontalCenter = 0;
-		t.source = "";
-		t.verticalCenter = 0;
-		return t;
-	};
-	_proto.g_text_i = function () {
-		var t = new eui.Label();
-		this.g_text = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.horizontalCenter = 10.5;
-		t.size = 26;
-		t.text = "";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.verticalCenter = 0;
-		return t;
-	};
-	_proto.ph_name_1_i = function () {
-		var t = new eui.Label();
-		this.ph_name_1 = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.horizontalCenter = 0;
-		t.size = 35;
-		t.text = "";
-		t.textAlign = "left";
-		t.textColor = 0x3c2405;
-		t.y = 484;
-		return t;
-	};
-	_proto.ph_img_i = function () {
-		var t = new eui.Image();
-		this.ph_img = t;
-		t.horizontalCenter = 46;
-		t.source = "";
-		t.y = 122;
-		return t;
-	};
-	_proto.group_xp_i = function () {
-		var t = new eui.Group();
-		this.group_xp = t;
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.height = 31;
-		t.horizontalCenter = 0;
-		t.width = 340;
-		t.y = 559;
-		t.elementsContent = [this._Group1_i(),this._Image2_i()];
-		return t;
-	};
-	_proto._Group1_i = function () {
-		var t = new eui.Group();
-		t.anchorOffsetX = 0;
-		t.right = 0;
-		t.top = 0;
-		t.width = 252;
-		t.elementsContent = [this.ph_xp_next_i(),this.ph_xp_now_i(),this.ph_xp_desc_i()];
-		return t;
-	};
-	_proto.ph_xp_next_i = function () {
-		var t = new eui.Image();
-		this.ph_xp_next = t;
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "auction_json.smt_d_2x";
-		t.top = 0;
-		return t;
-	};
-	_proto.ph_xp_now_i = function () {
-		var t = new eui.Image();
-		this.ph_xp_now = t;
-		t.left = 4;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "auction_json.smt_h_2x";
-		t.top = 4;
-		t.width = 0;
-		t.y = -4;
-		return t;
-	};
-	_proto.ph_xp_desc_i = function () {
-		var t = new eui.Label();
-		this.ph_xp_desc = t;
-		t.height = 28;
-		t.right = 14;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.size = 20;
-		t.text = "0/0";
-		t.textAlign = "right";
-		t.textColor = 0x301300;
-		t.top = 0;
-		t.verticalAlign = "middle";
-		t.width = 136;
-		t.x = 248;
-		t.y = -8;
-		return t;
-	};
-	_proto._Image2_i = function () {
-		var t = new eui.Image();
-		this._Image2 = t;
-		t.left = 0;
-		t.top = 4;
-		return t;
-	};
-	_proto.egg_img_i = function () {
-		var t = new eui.Image();
-		this.egg_img = t;
-		t.horizontalCenter = 0;
-		t.scaleX = 0.9;
-		t.scaleY = 0.9;
-		t.source = "auction_json.csd_2x";
-		t.visible = false;
-		t.y = 168;
-		return t;
-	};
-	_proto.egg_status_i = function () {
-		var t = new eui.Label();
-		this.egg_status = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.size = 24;
-		t.text = "";
-		t.textAlign = "center";
-		t.textColor = 0xa07b49;
-		t.visible = false;
-		t.y = 489;
-		return t;
-	};
-	_proto.status_count_i = function () {
-		var t = new eui.Label();
-		this.status_count = t;
-		t.fontFamily = "PingFang-SC-Medium";
-		t.horizontalCenter = 0;
-		t.size = 24;
-		t.text = "";
-		t.textColor = 0xa07b49;
-		t.visible = false;
-		t.y = 532;
-		return t;
-	};
-	_proto._Rect1_i = function () {
-		var t = new eui.Rect();
-		t.bottom = 44;
-		t.fillColor = 0xd9b078;
-		t.height = 1;
-		t.left = 0;
-		t.right = 0;
-		return t;
-	};
-	_proto.scroller_group_i = function () {
-		var t = new eui.Group();
-		this.scroller_group = t;
-		t.anchorOffsetY = 0;
-		t.height = 312;
-		t.left = 0;
-		t.right = 0;
-		t.y = 720;
-		t.elementsContent = [this._Image3_i(),this._Label1_i(),this.ph_name_2_i(),this._Label2_i(),this.ph_num_i(),this.change_name_i(),this.group_from_i(),this._Rect2_i(),this._Image4_i()];
-		return t;
-	};
-	_proto._Image3_i = function () {
-		var t = new eui.Image();
-		this._Image3 = t;
-		t.left = 10;
-		t.top = 20;
-		return t;
-	};
-	_proto._Label1_i = function () {
-		var t = new eui.Label();
-		this._Label1 = t;
-		t.size = 24;
-		t.textColor = 0xa07b49;
-		t.x = 10;
-		t.y = 122;
-		return t;
-	};
-	_proto.ph_name_2_i = function () {
-		var t = new eui.Label();
-		this.ph_name_2 = t;
-		t.bold = true;
-		t.size = 24;
-		t.text = "";
-		t.textColor = 0xA07B49;
-		t.x = 100;
-		t.y = 122;
-		return t;
-	};
-	_proto._Label2_i = function () {
-		var t = new eui.Label();
-		this._Label2 = t;
-		t.size = 24;
-		t.textColor = 0xA07B49;
-		t.x = 10;
-		t.y = 170;
-		return t;
-	};
-	_proto.ph_num_i = function () {
-		var t = new eui.Label();
-		this.ph_num = t;
-		t.size = 24;
-		t.text = "";
-		t.textColor = 0xA07B49;
-		t.x = 100;
-		t.y = 170;
-		return t;
-	};
-	_proto.change_name_i = function () {
-		var t = new eui.Image();
-		this.change_name = t;
-		t.source = "auction_json.bj_2x";
-		t.visible = false;
-		t.x = 280;
-		t.y = 122;
-		return t;
-	};
-	_proto.group_from_i = function () {
-		var t = new eui.Group();
-		this.group_from = t;
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.x = 10;
-		t.y = 220;
-		t.elementsContent = [this.ph_from_i(),this.ph_from_title_i()];
-		return t;
-	};
-	_proto.ph_from_i = function () {
-		var t = new eui.Label();
-		this.ph_from = t;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.size = 24;
-		t.textColor = 0xA07B49;
-		t.x = 91;
-		return t;
-	};
-	_proto.ph_from_title_i = function () {
-		var t = new eui.Label();
-		this.ph_from_title = t;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.size = 24;
-		t.textColor = 0xA07B49;
-		t.x = 0;
-		return t;
-	};
-	_proto._Rect2_i = function () {
-		var t = new eui.Rect();
-		t.bottom = 37;
-		t.fillColor = 0xD9B078;
-		t.height = 1;
-		t.left = 0;
-		t.right = 0;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.x = 0;
-		return t;
-	};
-	_proto._Image4_i = function () {
-		var t = new eui.Image();
-		this._Image4 = t;
-		t.left = 10;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.top = 332;
-		t.x = 10;
-		t.y = 315;
-		return t;
-	};
-	_proto.group_log_i = function () {
-		var t = new eui.Group();
-		this.group_log = t;
-		t.anchorOffsetY = 0;
-		t.height = 287;
-		t.left = 0;
-		t.right = 0;
-		t.y = 1020;
-		return t;
-	};
-	_proto.group_top_i = function () {
-		var t = new eui.Group();
-		this.group_top = t;
-		t.left = 0;
-		t.right = 0;
-		t.top = 0;
-		t.elementsContent = [this._Image5_i(),this.back_i(),this._Image7_i()];
-		return t;
-	};
-	_proto._Image5_i = function () {
-		var t = new eui.Image();
-		t.left = 0;
-		t.right = 0;
-		t.scale9Grid = new egret.Rectangle(203,11,455,68);
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "auction_json.auc_top";
-		t.top = -6;
-		return t;
-	};
-	_proto.back_i = function () {
-		var t = new eui.Group();
-		this.back = t;
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.height = 70;
-		t.left = 12;
-		t.verticalCenter = -4;
-		t.width = 120;
-		t.elementsContent = [this._Image6_i()];
-		return t;
-	};
-	_proto._Image6_i = function () {
-		var t = new eui.Image();
-		t.left = 30;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "auction_json.auc_return";
-		t.verticalCenter = -1.5;
-		t.x = 30.5;
-		t.y = 17.5;
-		return t;
-	};
-	_proto._Image7_i = function () {
-		var t = new eui.Image();
-		this._Image7 = t;
-		t.left = 199;
-		t.verticalCenter = 0;
-		return t;
-	};
-	return detail;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/phoenix/LogList.exml'] = window.logList = (function (_super) {
-	__extends(logList, _super);
-	function logList() {
-		_super.call(this);
-		this.skinParts = ["log_content"];
-		
-		this.height = 62;
-		this.width = 662;
-		this.elementsContent = [this.log_content_i()];
-		
-		eui.Binding.$bindProperties(this, ["hostComponent.data.datetime"],[0],this._Label1,"text");
-	}
-	var _proto = logList.prototype;
-
-	_proto.log_content_i = function () {
-		var t = new eui.Group();
-		this.log_content = t;
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.top = 0;
-		t.elementsContent = [this._Label1_i()];
-		return t;
-	};
-	_proto._Label1_i = function () {
-		var t = new eui.Label();
-		this._Label1 = t;
-		t.left = 10;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.size = 25;
-		t.textColor = 0xa07b49;
-		t.verticalCenter = 0;
-		t.width = 147;
-		return t;
-	};
-	return logList;
-})(eui.Skin);generateEUI.paths['resource/garden_skin/phoenix/MoodTips.exml'] = window.moodTips = (function (_super) {
-	__extends(moodTips, _super);
-	function moodTips() {
-		_super.call(this);
-		this.skinParts = ["mood_tips_close","mood_tips_confirm"];
-		
-		this.height = 597;
-		this.width = 590;
-		this.elementsContent = [this._Group2_i()];
-	}
-	var _proto = moodTips.prototype;
-
-	_proto._Group2_i = function () {
-		var t = new eui.Group();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.top = 0;
-		t.elementsContent = [this._Image1_i(),this._Label1_i(),this._Label2_i(),this._Label3_i(),this._Label4_i(),this.mood_tips_close_i(),this.mood_tips_confirm_i(),this._Group1_i(),this._Label10_i(),this._Label11_i(),this._Label12_i(),this._Label13_i(),this._Label14_i(),this._Label15_i(),this._Label16_i(),this._Label17_i(),this._Label18_i(),this._Label19_i(),this._Label20_i(),this._Label21_i(),this._Label22_i(),this._Label23_i(),this._Label24_i(),this._Label25_i()];
-		return t;
-	};
-	_proto._Image1_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.height = 584;
-		t.scale9Grid = new egret.Rectangle(91,63,406,119);
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "wutong_json.frame_green_1";
-		t.width = 590;
-		t.x = 0;
-		t.y = 13;
-		return t;
-	};
-	_proto._Label1_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "0";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 102;
-		t.y = 417;
-		return t;
-	};
-	_proto._Label2_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "绝望";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 210;
-		t.y = 417;
-		return t;
-	};
-	_proto._Label3_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "1h";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 340;
-		t.y = 417;
-		return t;
-	};
-	_proto._Label4_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "5min";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 448;
-		t.y = 417;
-		return t;
-	};
-	_proto.mood_tips_close_i = function () {
-		var t = new eui.Image();
-		this.mood_tips_close = t;
-		t.right = 0;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "wutong_json.delete";
-		t.top = 0;
-		t.x = 534;
-		t.y = 0;
-		return t;
-	};
-	_proto.mood_tips_confirm_i = function () {
-		var t = new eui.Group();
-		this.mood_tips_confirm = t;
-		t.height = 63;
-		t.horizontalCenter = 0;
-		t.width = 166;
-		t.y = 485;
-		t.elementsContent = [this._Image2_i(),this._Label5_i()];
-		return t;
-	};
-	_proto._Image2_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.source = "wutong_json.btn_green_1";
-		t.top = 0;
-		return t;
-	};
-	_proto._Label5_i = function () {
-		var t = new eui.Label();
-		t.horizontalCenter = 0;
-		t.text = "确认";
-		t.textAlign = "center";
-		t.textColor = 0xffe5b8;
-		t.verticalAlign = "middle";
-		t.verticalCenter = -3;
-		return t;
-	};
-	_proto._Group1_i = function () {
-		var t = new eui.Group();
-		t.anchorOffsetX = 0;
-		t.horizontalCenter = 0;
-		t.top = 93;
-		t.width = 503;
-		t.elementsContent = [this._Image3_i(),this._Label6_i(),this._Label7_i(),this._Label8_i(),this._Label9_i()];
-		return t;
-	};
-	_proto._Image3_i = function () {
-		var t = new eui.Image();
-		t.bottom = 0;
-		t.left = 0;
-		t.right = 0;
-		t.scaleX = 1;
-		t.scaleY = 1;
-		t.source = "auction_json.tm_k_2x";
-		t.top = 0;
-		return t;
-	};
-	_proto._Label6_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "心情指数";
-		t.textColor = 0xa07b49;
-		t.verticalCenter = 0;
-		t.x = 24;
-		return t;
-	};
-	_proto._Label7_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "心情";
-		t.textColor = 0xa07b49;
-		t.verticalCenter = 0;
-		t.x = 164;
-		return t;
-	};
-	_proto._Label8_i = function () {
-		var t = new eui.Label();
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.fontFamily = "PingFang SC";
-		t.height = 37;
-		t.size = 18;
-		t.text = "每消耗1心情值所需时间";
-		t.textColor = 0xa07b49;
-		t.verticalCenter = 0.5;
-		t.width = 101;
-		t.x = 257;
-		return t;
-	};
-	_proto._Label9_i = function () {
-		var t = new eui.Label();
-		t.anchorOffsetX = 0;
-		t.anchorOffsetY = 0;
-		t.fontFamily = "PingFang SC";
-		t.height = 37;
-		t.right = 24;
-		t.size = 18;
-		t.text = "每消耗1生命值所需时间";
-		t.textColor = 0xA07B49;
-		t.verticalCenter = 0.5;
-		t.width = 101;
-		return t;
-	};
-	_proto._Label10_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "80-100";
-		t.textAlign = "center";
-		t.textColor = 0x3c2405;
-		t.verticalAlign = "middle";
-		t.x = 83;
-		t.y = 174;
-		return t;
-	};
-	_proto._Label11_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "非常好";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 198;
-		t.y = 174;
-		return t;
-	};
-	_proto._Label12_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "6h";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 340;
-		t.y = 174;
-		return t;
-	};
-	_proto._Label13_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "30min";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 442;
-		t.y = 174;
-		return t;
-	};
-	_proto._Label14_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "60-79";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 87;
-		t.y = 236;
-		return t;
-	};
-	_proto._Label15_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "一般";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 209;
-		t.y = 236;
-		return t;
-	};
-	_proto._Label16_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "2h";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 340;
-		t.y = 236;
-		return t;
-	};
-	_proto._Label17_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "10min";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 442;
-		t.y = 236;
-		return t;
-	};
-	_proto._Label18_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "30-59";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 87;
-		t.y = 298;
-		return t;
-	};
-	_proto._Label19_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "差";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 222;
-		t.y = 300;
-		return t;
-	};
-	_proto._Label20_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "1.5h";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 335;
-		t.y = 300;
-		return t;
-	};
-	_proto._Label21_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "8min";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 448;
-		t.y = 300;
-		return t;
-	};
-	_proto._Label22_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "1-29";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 93;
-		t.y = 362;
-		return t;
-	};
-	_proto._Label23_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "极差";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 209;
-		t.y = 362;
-		return t;
-	};
-	_proto._Label24_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "1.2h";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 335;
-		t.y = 362;
-		return t;
-	};
-	_proto._Label25_i = function () {
-		var t = new eui.Label();
-		t.fontFamily = "PingFang SC";
-		t.size = 24;
-		t.text = "6min";
-		t.textAlign = "center";
-		t.textColor = 0x3C2405;
-		t.verticalAlign = "middle";
-		t.x = 448;
-		t.y = 363;
-		return t;
-	};
-	return moodTips;
 })(eui.Skin);generateEUI.paths['resource/garden_skin/miner/Binding.exml'] = window.binding = (function (_super) {
 	__extends(binding, _super);
 	function binding() {
@@ -10483,9 +8849,9 @@
 	return goodsIntro;
 })(eui.Skin);generateEUI.paths['resource/garden_skin/miner/GoodsPay.exml'] = window.goodsPay = (function (_super) {
 	__extends(goodsPay, _super);
-	var goodsPay$Skin4 = 	(function (_super) {
-		__extends(goodsPay$Skin4, _super);
-		function goodsPay$Skin4() {
+	var goodsPay$Skin2 = 	(function (_super) {
+		__extends(goodsPay$Skin2, _super);
+		function goodsPay$Skin2() {
 			_super.call(this);
 			this.skinParts = ["labelDisplay"];
 			
@@ -10504,7 +8870,7 @@
 					])
 			];
 		}
-		var _proto = goodsPay$Skin4.prototype;
+		var _proto = goodsPay$Skin2.prototype;
 
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
@@ -10520,12 +8886,12 @@
 			t.verticalCenter = 0;
 			return t;
 		};
-		return goodsPay$Skin4;
+		return goodsPay$Skin2;
 	})(eui.Skin);
 
-	var goodsPay$Skin5 = 	(function (_super) {
-		__extends(goodsPay$Skin5, _super);
-		function goodsPay$Skin5() {
+	var goodsPay$Skin3 = 	(function (_super) {
+		__extends(goodsPay$Skin3, _super);
+		function goodsPay$Skin3() {
 			_super.call(this);
 			this.skinParts = ["labelDisplay"];
 			
@@ -10544,7 +8910,7 @@
 					])
 			];
 		}
-		var _proto = goodsPay$Skin5.prototype;
+		var _proto = goodsPay$Skin3.prototype;
 
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
@@ -10560,7 +8926,7 @@
 			t.verticalCenter = 0;
 			return t;
 		};
-		return goodsPay$Skin5;
+		return goodsPay$Skin3;
 	})(eui.Skin);
 
 	function goodsPay() {
@@ -10661,7 +9027,7 @@
 		t.label = "";
 		t.verticalCenter = 12;
 		t.width = 50;
-		t.skinName = goodsPay$Skin4;
+		t.skinName = goodsPay$Skin2;
 		return t;
 	};
 	_proto.use_pay_dec_i = function () {
@@ -10672,7 +9038,7 @@
 		t.label = "";
 		t.verticalCenter = 12;
 		t.width = 50;
-		t.skinName = goodsPay$Skin5;
+		t.skinName = goodsPay$Skin3;
 		return t;
 	};
 	_proto.use_pay_conf_i = function () {
@@ -10735,9 +9101,9 @@
 	return goodsPay;
 })(eui.Skin);generateEUI.paths['resource/garden_skin/miner/GoodsUse.exml'] = window.goodsUse = (function (_super) {
 	__extends(goodsUse, _super);
-	var goodsUse$Skin6 = 	(function (_super) {
-		__extends(goodsUse$Skin6, _super);
-		function goodsUse$Skin6() {
+	var goodsUse$Skin4 = 	(function (_super) {
+		__extends(goodsUse$Skin4, _super);
+		function goodsUse$Skin4() {
 			_super.call(this);
 			this.skinParts = ["labelDisplay"];
 			
@@ -10756,7 +9122,7 @@
 					])
 			];
 		}
-		var _proto = goodsUse$Skin6.prototype;
+		var _proto = goodsUse$Skin4.prototype;
 
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
@@ -10772,12 +9138,12 @@
 			t.verticalCenter = 0;
 			return t;
 		};
-		return goodsUse$Skin6;
+		return goodsUse$Skin4;
 	})(eui.Skin);
 
-	var goodsUse$Skin7 = 	(function (_super) {
-		__extends(goodsUse$Skin7, _super);
-		function goodsUse$Skin7() {
+	var goodsUse$Skin5 = 	(function (_super) {
+		__extends(goodsUse$Skin5, _super);
+		function goodsUse$Skin5() {
 			_super.call(this);
 			this.skinParts = ["labelDisplay"];
 			
@@ -10796,7 +9162,7 @@
 					])
 			];
 		}
-		var _proto = goodsUse$Skin7.prototype;
+		var _proto = goodsUse$Skin5.prototype;
 
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
@@ -10812,7 +9178,7 @@
 			t.verticalCenter = 0;
 			return t;
 		};
-		return goodsUse$Skin7;
+		return goodsUse$Skin5;
 	})(eui.Skin);
 
 	function goodsUse() {
@@ -10927,7 +9293,7 @@
 		t.scaleY = 1;
 		t.verticalCenter = 0;
 		t.width = 52;
-		t.skinName = goodsUse$Skin6;
+		t.skinName = goodsUse$Skin4;
 		return t;
 	};
 	_proto.use_pay_dec_i = function () {
@@ -10940,7 +9306,7 @@
 		t.scaleY = 1;
 		t.verticalCenter = 0;
 		t.width = 52;
-		t.skinName = goodsUse$Skin7;
+		t.skinName = goodsUse$Skin5;
 		return t;
 	};
 	_proto.use_pay_num_i = function () {
@@ -14002,6 +12368,1640 @@
 		return t;
 	};
 	return working;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/goldCoin/Exchange.exml'] = window.goldCoin = (function (_super) {
+	__extends(goldCoin, _super);
+	var goldCoin$Skin6 = 	(function (_super) {
+		__extends(goldCoin$Skin6, _super);
+		function goldCoin$Skin6() {
+			_super.call(this);
+			this.skinParts = ["labelDisplay"];
+			
+			this.elementsContent = [this._Image1_i(),this.labelDisplay_i()];
+			this.states = [
+				new eui.State ("up",
+					[
+					])
+				,
+				new eui.State ("down",
+					[
+					])
+				,
+				new eui.State ("disabled",
+					[
+					])
+			];
+		}
+		var _proto = goldCoin$Skin6.prototype;
+
+		_proto._Image1_i = function () {
+			var t = new eui.Image();
+			t.percentHeight = 100;
+			t.source = "wutong_json.btn_add_1";
+			t.percentWidth = 100;
+			return t;
+		};
+		_proto.labelDisplay_i = function () {
+			var t = new eui.Label();
+			this.labelDisplay = t;
+			t.horizontalCenter = 0;
+			t.verticalCenter = 0;
+			return t;
+		};
+		return goldCoin$Skin6;
+	})(eui.Skin);
+
+	var goldCoin$Skin7 = 	(function (_super) {
+		__extends(goldCoin$Skin7, _super);
+		function goldCoin$Skin7() {
+			_super.call(this);
+			this.skinParts = ["labelDisplay"];
+			
+			this.elementsContent = [this._Image1_i(),this.labelDisplay_i()];
+			this.states = [
+				new eui.State ("up",
+					[
+					])
+				,
+				new eui.State ("down",
+					[
+					])
+				,
+				new eui.State ("disabled",
+					[
+					])
+			];
+		}
+		var _proto = goldCoin$Skin7.prototype;
+
+		_proto._Image1_i = function () {
+			var t = new eui.Image();
+			t.percentHeight = 100;
+			t.source = "wutong_json.btn_sub_1";
+			t.percentWidth = 100;
+			return t;
+		};
+		_proto.labelDisplay_i = function () {
+			var t = new eui.Label();
+			this.labelDisplay = t;
+			t.horizontalCenter = 0;
+			t.verticalCenter = 0;
+			return t;
+		};
+		return goldCoin$Skin7;
+	})(eui.Skin);
+
+	function goldCoin() {
+		_super.call(this);
+		this.skinParts = ["head_img","goBack","exchange_top","gold_inp","change_ratio","confirm","svc_inp","add","del","exchange"];
+		
+		this.height = 1334;
+		this.width = 750;
+		this.elementsContent = [this.exchange_i()];
+		
+		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.exchange_head"],[0],this.head_img,"source");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.enter_tips"],[0],this._Label1,"text");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.input_gold"],[0],this._Label2,"text");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.exchange_ratio"],[0],this._Label3,"text");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.exchange_tips"],[0],this._Label4,"text");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.confirm"],[0],this._Label6,"text");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.input_svc"],[0],this._Label7,"text");
+	}
+	var _proto = goldCoin.prototype;
+
+	_proto.exchange_i = function () {
+		var t = new eui.Group();
+		this.exchange = t;
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.top = 0;
+		t.elementsContent = [this._Image1_i(),this.exchange_top_i(),this._Label1_i(),this._Label2_i(),this.gold_inp_i(),this._Label3_i(),this._Label4_i(),this._Rect1_i(),this._Rect2_i(),this.change_ratio_i(),this._Label5_i(),this.confirm_i(),this._Group1_i()];
+		return t;
+	};
+	_proto._Image1_i = function () {
+		var t = new eui.Image();
+		t.anchorOffsetY = 0;
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.scale9Grid = new egret.Rectangle(45,18,659,555);
+		t.source = "auction_json.auc_bj";
+		t.top = 0;
+		return t;
+	};
+	_proto.exchange_top_i = function () {
+		var t = new eui.Group();
+		this.exchange_top = t;
+		t.anchorOffsetY = 0;
+		t.height = 82;
+		t.left = 0;
+		t.right = 0;
+		t.top = 0;
+		t.elementsContent = [this._Image2_i(),this.head_img_i(),this.goBack_i()];
+		return t;
+	};
+	_proto._Image2_i = function () {
+		var t = new eui.Image();
+		t.left = 0;
+		t.right = 0;
+		t.scale9Grid = new egret.Rectangle(185,11,497,68);
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "auction_json.auc_top";
+		t.top = -4;
+		return t;
+	};
+	_proto.head_img_i = function () {
+		var t = new eui.Image();
+		this.head_img = t;
+		t.horizontalCenter = -106;
+		t.y = 23;
+		return t;
+	};
+	_proto.goBack_i = function () {
+		var t = new eui.Group();
+		this.goBack = t;
+		t.anchorOffsetY = 0;
+		t.height = 78;
+		t.left = 0;
+		t.top = 0;
+		t.width = 150;
+		t.elementsContent = [this._Image3_i()];
+		return t;
+	};
+	_proto._Image3_i = function () {
+		var t = new eui.Image();
+		t.horizontalCenter = -6;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "auction_json.auc_return";
+		t.verticalCenter = -2;
+		return t;
+	};
+	_proto._Label1_i = function () {
+		var t = new eui.Label();
+		this._Label1 = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.textColor = 0x3c2405;
+		t.x = 69;
+		t.y = 197;
+		return t;
+	};
+	_proto._Label2_i = function () {
+		var t = new eui.Label();
+		this._Label2 = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.textColor = 0x3c2405;
+		t.x = 81;
+		t.y = 433;
+		return t;
+	};
+	_proto.gold_inp_i = function () {
+		var t = new eui.Label();
+		this.gold_inp = t;
+		t.anchorOffsetY = 0;
+		t.fontFamily = "PingFang-SC-Bold";
+		t.height = 49.67;
+		t.restrict = "0-9.";
+		t.size = 48;
+		t.text = "0";
+		t.textColor = 0xf76005;
+		t.verticalAlign = "middle";
+		t.width = 300;
+		t.x = 260;
+		t.y = 414;
+		return t;
+	};
+	_proto._Label3_i = function () {
+		var t = new eui.Label();
+		this._Label3 = t;
+		t.anchorOffsetX = 0;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.textColor = 0xa07b49;
+		t.width = 230;
+		t.x = 81;
+		t.y = 512;
+		return t;
+	};
+	_proto._Label4_i = function () {
+		var t = new eui.Label();
+		this._Label4 = t;
+		t.anchorOffsetX = 0;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.textColor = 0xA07B49;
+		t.width = 618;
+		t.x = 81;
+		t.y = 589;
+		return t;
+	};
+	_proto._Rect1_i = function () {
+		var t = new eui.Rect();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.fillColor = 0xd9b078;
+		t.height = 2;
+		t.horizontalCenter = 0;
+		t.width = 590;
+		t.y = 358.66;
+		return t;
+	};
+	_proto._Rect2_i = function () {
+		var t = new eui.Rect();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.fillColor = 0xd9b078;
+		t.height = 2;
+		t.horizontalCenter = 0;
+		t.width = 590;
+		t.y = 479.66;
+		return t;
+	};
+	_proto.change_ratio_i = function () {
+		var t = new eui.Label();
+		this.change_ratio = t;
+		t.anchorOffsetX = 0;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.text = "0.00";
+		t.textColor = 0xa07b49;
+		t.width = 88;
+		t.x = 368;
+		t.y = 512;
+		return t;
+	};
+	_proto._Label5_i = function () {
+		var t = new eui.Label();
+		t.anchorOffsetX = 0;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.text = "1 :";
+		t.textColor = 0xA07B49;
+		t.width = 39;
+		t.x = 327;
+		t.y = 512;
+		return t;
+	};
+	_proto.confirm_i = function () {
+		var t = new eui.Group();
+		this.confirm = t;
+		t.anchorOffsetY = 0;
+		t.bottom = 50;
+		t.height = 100;
+		t.horizontalCenter = 0;
+		t.width = 600;
+		t.elementsContent = [this._Image4_i(),this._Label6_i()];
+		return t;
+	};
+	_proto._Image4_i = function () {
+		var t = new eui.Image();
+		t.height = 109;
+		t.horizontalCenter = 0;
+		t.source = "auction_json.auc_btn";
+		t.width = 645;
+		t.y = 1;
+		return t;
+	};
+	_proto._Label6_i = function () {
+		var t = new eui.Label();
+		this._Label6 = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.horizontalCenter = 0;
+		t.textAlign = "center";
+		t.textColor = 0xffe5b8;
+		t.verticalAlign = "middle";
+		t.verticalCenter = 0;
+		return t;
+	};
+	_proto._Group1_i = function () {
+		var t = new eui.Group();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.height = 98;
+		t.width = 626;
+		t.x = 72;
+		t.y = 284;
+		t.elementsContent = [this._Label7_i(),this.svc_inp_i(),this.add_i(),this.del_i()];
+		return t;
+	};
+	_proto._Label7_i = function () {
+		var t = new eui.Label();
+		this._Label7 = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.textColor = 0x3c2405;
+		t.verticalCenter = 0;
+		t.x = 9;
+		return t;
+	};
+	_proto.svc_inp_i = function () {
+		var t = new eui.Label();
+		this.svc_inp = t;
+		t.anchorOffsetY = 0;
+		t.fontFamily = "PingFang-SC-Bold";
+		t.height = 57.66;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.size = 48;
+		t.text = "0";
+		t.textColor = 0xf76005;
+		t.verticalAlign = "middle";
+		t.verticalCenter = 0;
+		t.width = 300;
+		t.x = 179;
+		return t;
+	};
+	_proto.add_i = function () {
+		var t = new eui.Button();
+		this.add = t;
+		t.height = 50;
+		t.label = "";
+		t.right = 32;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.verticalCenter = 0;
+		t.width = 50;
+		t.skinName = goldCoin$Skin6;
+		return t;
+	};
+	_proto.del_i = function () {
+		var t = new eui.Button();
+		this.del = t;
+		t.height = 50;
+		t.label = "";
+		t.right = 115;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.verticalCenter = 0;
+		t.width = 50;
+		t.skinName = goldCoin$Skin7;
+		return t;
+	};
+	return goldCoin;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/goldCoin/Gold.exml'] = window.gold = (function (_super) {
+	__extends(gold, _super);
+	function gold() {
+		_super.call(this);
+		this.skinParts = ["head_img","goBack","exchange_top","goldAmount","confirmExchange","goldLog","gold_group"];
+		
+		this.height = 1334;
+		this.width = 750;
+		this.elementsContent = [this.gold_group_i()];
+		
+		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.gold_head"],[0],this.head_img,"source");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.amount"],[0],this._Label1,"text");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.goldCoin.confirm_exchange"],[0],this._Label2,"text");
+	}
+	var _proto = gold.prototype;
+
+	_proto.gold_group_i = function () {
+		var t = new eui.Group();
+		this.gold_group = t;
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.top = 0;
+		t.elementsContent = [this._Image1_i(),this.exchange_top_i(),this.goldAmount_i(),this._Label1_i(),this.confirmExchange_i(),this.goldLog_i()];
+		return t;
+	};
+	_proto._Image1_i = function () {
+		var t = new eui.Image();
+		t.anchorOffsetY = 0;
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.scale9Grid = new egret.Rectangle(45,18,659,555);
+		t.source = "auction_json.auc_bj";
+		t.top = 0;
+		return t;
+	};
+	_proto.exchange_top_i = function () {
+		var t = new eui.Group();
+		this.exchange_top = t;
+		t.anchorOffsetY = 0;
+		t.height = 82;
+		t.left = 0;
+		t.right = 0;
+		t.top = 0;
+		t.elementsContent = [this._Image2_i(),this.head_img_i(),this.goBack_i()];
+		return t;
+	};
+	_proto._Image2_i = function () {
+		var t = new eui.Image();
+		t.left = 0;
+		t.right = 0;
+		t.scale9Grid = new egret.Rectangle(185,11,497,68);
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "auction_json.auc_top";
+		t.top = -4;
+		return t;
+	};
+	_proto.head_img_i = function () {
+		var t = new eui.Image();
+		this.head_img = t;
+		t.horizontalCenter = -106;
+		t.y = 23;
+		return t;
+	};
+	_proto.goBack_i = function () {
+		var t = new eui.Group();
+		this.goBack = t;
+		t.anchorOffsetY = 0;
+		t.height = 78;
+		t.left = 0;
+		t.top = 0;
+		t.width = 150;
+		t.elementsContent = [this._Image3_i()];
+		return t;
+	};
+	_proto._Image3_i = function () {
+		var t = new eui.Image();
+		t.horizontalCenter = -6;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "auction_json.auc_return";
+		t.verticalCenter = -2;
+		return t;
+	};
+	_proto.goldAmount_i = function () {
+		var t = new eui.Label();
+		this.goldAmount = t;
+		t.fontFamily = "PingFang-SC-Bold";
+		t.horizontalCenter = 0;
+		t.size = 48;
+		t.text = "0";
+		t.textAlign = "center";
+		t.textColor = 0xf76005;
+		t.verticalAlign = "middle";
+		t.y = 144;
+		return t;
+	};
+	_proto._Label1_i = function () {
+		var t = new eui.Label();
+		this._Label1 = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.horizontalCenter = 0;
+		t.textAlign = "center";
+		t.textColor = 0x3c2405;
+		t.verticalAlign = "middle";
+		t.y = 212;
+		return t;
+	};
+	_proto.confirmExchange_i = function () {
+		var t = new eui.Group();
+		this.confirmExchange = t;
+		t.anchorOffsetY = 0;
+		t.bottom = 50;
+		t.height = 100;
+		t.horizontalCenter = 0;
+		t.width = 600;
+		t.elementsContent = [this._Image4_i(),this._Label2_i()];
+		return t;
+	};
+	_proto._Image4_i = function () {
+		var t = new eui.Image();
+		t.height = 109;
+		t.horizontalCenter = 0.5;
+		t.source = "auction_json.auc_btn";
+		t.width = 645;
+		t.y = -0.52;
+		return t;
+	};
+	_proto._Label2_i = function () {
+		var t = new eui.Label();
+		this._Label2 = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.horizontalCenter = 0;
+		t.textAlign = "center";
+		t.textColor = 0xffe5b8;
+		t.verticalAlign = "middle";
+		t.verticalCenter = 0;
+		return t;
+	};
+	_proto.goldLog_i = function () {
+		var t = new eui.Group();
+		this.goldLog = t;
+		t.height = 850;
+		t.horizontalCenter = 0;
+		t.verticalCenter = 18;
+		t.width = 690;
+		return t;
+	};
+	return gold;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/goldCoin/GoldLogList.exml'] = window.goldLogList = (function (_super) {
+	__extends(goldLogList, _super);
+	function goldLogList() {
+		_super.call(this);
+		this.skinParts = ["logText","logTime","logChange"];
+		
+		this.height = 123;
+		this.width = 690;
+		this.elementsContent = [this.logText_i(),this.logTime_i(),this.logChange_i(),this._Rect1_i()];
+	}
+	var _proto = goldLogList.prototype;
+
+	_proto.logText_i = function () {
+		var t = new eui.Label();
+		this.logText = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.text = "兑换金币";
+		t.textColor = 0x3c2405;
+		t.top = 20;
+		t.x = 43;
+		return t;
+	};
+	_proto.logTime_i = function () {
+		var t = new eui.Label();
+		this.logTime = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.text = "2018-11-12 11:11";
+		t.textColor = 0xa07b49;
+		t.top = 67;
+		t.x = 43;
+		return t;
+	};
+	_proto.logChange_i = function () {
+		var t = new eui.Label();
+		this.logChange = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.right = 17;
+		t.text = "+180";
+		t.textColor = 0x3c2405;
+		t.y = 20;
+		return t;
+	};
+	_proto._Rect1_i = function () {
+		var t = new eui.Rect();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.bottom = 2;
+		t.fillColor = 0xd9b078;
+		t.height = 1;
+		t.left = 0;
+		t.right = 0;
+		return t;
+	};
+	return goldLogList;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/goldCoin/ScrollerLog.exml'] = window.scrollerLog = (function (_super) {
+	__extends(scrollerLog, _super);
+	function scrollerLog() {
+		_super.call(this);
+		this.skinParts = ["scroller_log"];
+		
+		this.height = 850;
+		this.width = 690;
+		this.elementsContent = [this.scroller_log_i()];
+	}
+	var _proto = scrollerLog.prototype;
+
+	_proto.scroller_log_i = function () {
+		var t = new eui.Scroller();
+		this.scroller_log = t;
+		t.anchorOffsetY = 0;
+		t.height = 850;
+		t.width = 690;
+		t.x = 0;
+		t.y = 0;
+		return t;
+	};
+	return scrollerLog;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/phoenix/ChangeNameCommit.exml'] = window.changeNameCommit = (function (_super) {
+	__extends(changeNameCommit, _super);
+	function changeNameCommit() {
+		_super.call(this);
+		this.skinParts = ["commit","new_name"];
+		
+		this.height = 461;
+		this.width = 590;
+		this.elementsContent = [this._Image1_i(),this._Label1_i(),this._Label2_i(),this.commit_i(),this.new_name_i(),this._Label4_i()];
+	}
+	var _proto = changeNameCommit.prototype;
+
+	_proto._Image1_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.scale9Grid = new egret.Rectangle(100,61,394,127);
+		t.source = "wutong_json.frame_green_1";
+		t.top = 0;
+		return t;
+	};
+	_proto._Label1_i = function () {
+		var t = new eui.Label();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.bold = true;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.horizontalCenter = 0.5;
+		t.text = "设置昵称";
+		t.textAlign = "center";
+		t.textColor = 0x3c2405;
+		t.verticalAlign = "middle";
+		t.y = 85;
+		return t;
+	};
+	_proto._Label2_i = function () {
+		var t = new eui.Label();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.left = 107;
+		t.text = "昵称：";
+		t.textAlign = "center";
+		t.textColor = 0x3c2405;
+		t.verticalAlign = "middle";
+		t.y = 190;
+		return t;
+	};
+	_proto.commit_i = function () {
+		var t = new eui.Group();
+		this.commit = t;
+		t.bottom = 88;
+		t.height = 60;
+		t.horizontalCenter = 0;
+		t.width = 166;
+		t.elementsContent = [this._Image2_i(),this._Label3_i()];
+		return t;
+	};
+	_proto._Image2_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.source = "wutong_json.btn_green";
+		t.top = 0;
+		return t;
+	};
+	_proto._Label3_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang-SC-Medium";
+		t.horizontalCenter = 0;
+		t.text = "提交";
+		t.textAlign = "center";
+		t.textColor = 0xFFE5B8;
+		t.verticalAlign = "middle";
+		t.verticalCenter = -3;
+		return t;
+	};
+	_proto.new_name_i = function () {
+		var t = new eui.EditableText();
+		this.new_name = t;
+		t.anchorOffsetX = 0;
+		t.border = false;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.prompt = "请输入新昵称";
+		t.text = "";
+		t.textColor = 0x3c2405;
+		t.width = 305;
+		t.x = 189;
+		t.y = 191;
+		return t;
+	};
+	_proto._Label4_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang-SC-Medium";
+		t.size = 24;
+		t.text = "字数超出限制";
+		t.textColor = 0xea5300;
+		t.visible = false;
+		t.x = 173;
+		t.y = 230;
+		return t;
+	};
+	return changeNameCommit;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/phoenix/ChangeNameConfirm.exml'] = window.changeNameConfirm = (function (_super) {
+	__extends(changeNameConfirm, _super);
+	function changeNameConfirm() {
+		_super.call(this);
+		this.skinParts = ["wait","confirm"];
+		
+		this.height = 341;
+		this.width = 590;
+		this.elementsContent = [this._Image1_i(),this.wait_i(),this.confirm_i(),this._Label3_i()];
+	}
+	var _proto = changeNameConfirm.prototype;
+
+	_proto._Image1_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.scale9Grid = new egret.Rectangle(92,57,406,125);
+		t.source = "wutong_json.frame_green_1";
+		t.top = 0;
+		return t;
+	};
+	_proto.wait_i = function () {
+		var t = new eui.Group();
+		this.wait = t;
+		t.height = 60;
+		t.width = 166;
+		t.x = 99;
+		t.y = 221;
+		t.elementsContent = [this._Image2_i(),this._Label1_i()];
+		return t;
+	};
+	_proto._Image2_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.source = "wutong_json.btn_green";
+		t.top = 0;
+		return t;
+	};
+	_proto._Label1_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang-SC-Medium";
+		t.horizontalCenter = 0;
+		t.text = "稍后";
+		t.textAlign = "center";
+		t.textColor = 0xffe5b8;
+		t.verticalAlign = "middle";
+		t.verticalCenter = -3;
+		return t;
+	};
+	_proto.confirm_i = function () {
+		var t = new eui.Group();
+		this.confirm = t;
+		t.height = 60;
+		t.width = 166;
+		t.x = 324;
+		t.y = 220;
+		t.elementsContent = [this._Image3_i(),this._Label2_i()];
+		return t;
+	};
+	_proto._Image3_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.source = "wutong_json.btn_green";
+		t.top = 0;
+		return t;
+	};
+	_proto._Label2_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang-SC-Medium";
+		t.horizontalCenter = 0;
+		t.text = "确认";
+		t.textAlign = "center";
+		t.textColor = 0xFFE5B8;
+		t.verticalAlign = "middle";
+		t.verticalCenter = -3;
+		return t;
+	};
+	_proto._Label3_i = function () {
+		var t = new eui.Label();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.height = 103;
+		t.horizontalCenter = 0;
+		t.text = "是否花费XX储值修改昵称?";
+		t.textAlign = "center";
+		t.textColor = 0x3c2405;
+		t.verticalAlign = "middle";
+		t.width = 448;
+		t.y = 61;
+		return t;
+	};
+	return changeNameConfirm;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/phoenix/Detail.exml'] = window.detail = (function (_super) {
+	__extends(detail, _super);
+	function detail() {
+		_super.call(this);
+		this.skinParts = ["gender","g_text","gender_group","ph_name_1","ph_img","ph_xp_next","ph_xp_now","ph_xp_desc","group_xp","egg_img","egg_status","status_count","ph_name_2","ph_num","change_name","ph_from","ph_from_title","group_from","scroller_group","group_log","back","group_top"];
+		
+		this.height = 1334;
+		this.width = 750;
+		this.elementsContent = [this._Group4_i()];
+		
+		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.lifeTitle"],[0],this._Image2,"source");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.ph_detail"],[0],this._Image3,"source");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.nick_name"],[0],this._Label1,"text");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.ph_num"],[0],this._Label2,"text");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.ph_from"],[0],this.ph_from,"text");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.ph_from_title"],[0],this.ph_from_title,"text");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.ph_log"],[0],this._Image4,"source");
+		eui.Binding.$bindProperties(this, ["hostComponent.data.detailTs.page_title"],[0],this._Image7,"source");
+	}
+	var _proto = detail.prototype;
+
+	_proto._Group4_i = function () {
+		var t = new eui.Group();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.top = 0;
+		t.elementsContent = [this._Image1_i(),this._Scroller1_i(),this.group_top_i()];
+		return t;
+	};
+	_proto._Image1_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.scale9Grid = new egret.Rectangle(141,0,488,600);
+		t.source = "auction_json.auc_bj";
+		t.top = 0;
+		return t;
+	};
+	_proto._Scroller1_i = function () {
+		var t = new eui.Scroller();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.bottom = 0;
+		t.horizontalCenter = 0;
+		t.top = 0;
+		t.width = 662;
+		t.viewport = this._Group3_i();
+		return t;
+	};
+	_proto._Group3_i = function () {
+		var t = new eui.Group();
+		t.anchorOffsetY = 0;
+		t.elementsContent = [this._Group2_i(),this.scroller_group_i(),this.group_log_i()];
+		return t;
+	};
+	_proto._Group2_i = function () {
+		var t = new eui.Group();
+		t.anchorOffsetY = 0;
+		t.height = 664;
+		t.left = 0;
+		t.right = 0;
+		t.y = 86;
+		t.elementsContent = [this.gender_group_i(),this.ph_name_1_i(),this.ph_img_i(),this.group_xp_i(),this.egg_img_i(),this.egg_status_i(),this.status_count_i(),this._Rect1_i()];
+		return t;
+	};
+	_proto.gender_group_i = function () {
+		var t = new eui.Group();
+		this.gender_group = t;
+		t.height = 50;
+		t.horizontalCenter = 0;
+		t.width = 200;
+		t.y = 47;
+		t.elementsContent = [this.gender_i(),this.g_text_i()];
+		return t;
+	};
+	_proto.gender_i = function () {
+		var t = new eui.Image();
+		this.gender = t;
+		t.horizontalCenter = 0;
+		t.source = "";
+		t.verticalCenter = 0;
+		return t;
+	};
+	_proto.g_text_i = function () {
+		var t = new eui.Label();
+		this.g_text = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.horizontalCenter = 10.5;
+		t.size = 26;
+		t.text = "";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.verticalCenter = 0;
+		return t;
+	};
+	_proto.ph_name_1_i = function () {
+		var t = new eui.Label();
+		this.ph_name_1 = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.horizontalCenter = 0;
+		t.size = 35;
+		t.text = "";
+		t.textAlign = "left";
+		t.textColor = 0x3c2405;
+		t.y = 484;
+		return t;
+	};
+	_proto.ph_img_i = function () {
+		var t = new eui.Image();
+		this.ph_img = t;
+		t.horizontalCenter = 46;
+		t.source = "";
+		t.y = 122;
+		return t;
+	};
+	_proto.group_xp_i = function () {
+		var t = new eui.Group();
+		this.group_xp = t;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.height = 31;
+		t.horizontalCenter = 0;
+		t.width = 340;
+		t.y = 559;
+		t.elementsContent = [this._Group1_i(),this._Image2_i()];
+		return t;
+	};
+	_proto._Group1_i = function () {
+		var t = new eui.Group();
+		t.anchorOffsetX = 0;
+		t.right = 0;
+		t.top = 0;
+		t.width = 252;
+		t.elementsContent = [this.ph_xp_next_i(),this.ph_xp_now_i(),this.ph_xp_desc_i()];
+		return t;
+	};
+	_proto.ph_xp_next_i = function () {
+		var t = new eui.Image();
+		this.ph_xp_next = t;
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "auction_json.smt_d_2x";
+		t.top = 0;
+		return t;
+	};
+	_proto.ph_xp_now_i = function () {
+		var t = new eui.Image();
+		this.ph_xp_now = t;
+		t.left = 4;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "auction_json.smt_h_2x";
+		t.top = 4;
+		t.width = 0;
+		t.y = -4;
+		return t;
+	};
+	_proto.ph_xp_desc_i = function () {
+		var t = new eui.Label();
+		this.ph_xp_desc = t;
+		t.height = 28;
+		t.right = 14;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.size = 20;
+		t.text = "0/0";
+		t.textAlign = "right";
+		t.textColor = 0x301300;
+		t.top = 0;
+		t.verticalAlign = "middle";
+		t.width = 136;
+		t.x = 248;
+		t.y = -8;
+		return t;
+	};
+	_proto._Image2_i = function () {
+		var t = new eui.Image();
+		this._Image2 = t;
+		t.left = 0;
+		t.top = 4;
+		return t;
+	};
+	_proto.egg_img_i = function () {
+		var t = new eui.Image();
+		this.egg_img = t;
+		t.horizontalCenter = 0;
+		t.scaleX = 0.9;
+		t.scaleY = 0.9;
+		t.source = "auction_json.csd_2x";
+		t.visible = false;
+		t.y = 168;
+		return t;
+	};
+	_proto.egg_status_i = function () {
+		var t = new eui.Label();
+		this.egg_status = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.size = 24;
+		t.text = "";
+		t.textAlign = "center";
+		t.textColor = 0xa07b49;
+		t.visible = false;
+		t.y = 489;
+		return t;
+	};
+	_proto.status_count_i = function () {
+		var t = new eui.Label();
+		this.status_count = t;
+		t.fontFamily = "PingFang-SC-Medium";
+		t.horizontalCenter = 0;
+		t.size = 24;
+		t.text = "";
+		t.textColor = 0xa07b49;
+		t.visible = false;
+		t.y = 532;
+		return t;
+	};
+	_proto._Rect1_i = function () {
+		var t = new eui.Rect();
+		t.bottom = 44;
+		t.fillColor = 0xd9b078;
+		t.height = 1;
+		t.left = 0;
+		t.right = 0;
+		return t;
+	};
+	_proto.scroller_group_i = function () {
+		var t = new eui.Group();
+		this.scroller_group = t;
+		t.anchorOffsetY = 0;
+		t.height = 312;
+		t.left = 0;
+		t.right = 0;
+		t.y = 720;
+		t.elementsContent = [this._Image3_i(),this._Label1_i(),this.ph_name_2_i(),this._Label2_i(),this.ph_num_i(),this.change_name_i(),this.group_from_i(),this._Rect2_i(),this._Image4_i()];
+		return t;
+	};
+	_proto._Image3_i = function () {
+		var t = new eui.Image();
+		this._Image3 = t;
+		t.left = 10;
+		t.top = 20;
+		return t;
+	};
+	_proto._Label1_i = function () {
+		var t = new eui.Label();
+		this._Label1 = t;
+		t.size = 24;
+		t.textColor = 0xa07b49;
+		t.x = 10;
+		t.y = 122;
+		return t;
+	};
+	_proto.ph_name_2_i = function () {
+		var t = new eui.Label();
+		this.ph_name_2 = t;
+		t.bold = true;
+		t.size = 24;
+		t.text = "";
+		t.textColor = 0xA07B49;
+		t.x = 100;
+		t.y = 122;
+		return t;
+	};
+	_proto._Label2_i = function () {
+		var t = new eui.Label();
+		this._Label2 = t;
+		t.size = 24;
+		t.textColor = 0xA07B49;
+		t.x = 10;
+		t.y = 170;
+		return t;
+	};
+	_proto.ph_num_i = function () {
+		var t = new eui.Label();
+		this.ph_num = t;
+		t.size = 24;
+		t.text = "";
+		t.textColor = 0xA07B49;
+		t.x = 100;
+		t.y = 170;
+		return t;
+	};
+	_proto.change_name_i = function () {
+		var t = new eui.Image();
+		this.change_name = t;
+		t.source = "auction_json.bj_2x";
+		t.visible = false;
+		t.x = 280;
+		t.y = 122;
+		return t;
+	};
+	_proto.group_from_i = function () {
+		var t = new eui.Group();
+		this.group_from = t;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.x = 10;
+		t.y = 220;
+		t.elementsContent = [this.ph_from_i(),this.ph_from_title_i()];
+		return t;
+	};
+	_proto.ph_from_i = function () {
+		var t = new eui.Label();
+		this.ph_from = t;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.size = 24;
+		t.textColor = 0xA07B49;
+		t.x = 91;
+		return t;
+	};
+	_proto.ph_from_title_i = function () {
+		var t = new eui.Label();
+		this.ph_from_title = t;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.size = 24;
+		t.textColor = 0xA07B49;
+		t.x = 0;
+		return t;
+	};
+	_proto._Rect2_i = function () {
+		var t = new eui.Rect();
+		t.bottom = 37;
+		t.fillColor = 0xD9B078;
+		t.height = 1;
+		t.left = 0;
+		t.right = 0;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.x = 0;
+		return t;
+	};
+	_proto._Image4_i = function () {
+		var t = new eui.Image();
+		this._Image4 = t;
+		t.left = 10;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.top = 332;
+		t.x = 10;
+		t.y = 315;
+		return t;
+	};
+	_proto.group_log_i = function () {
+		var t = new eui.Group();
+		this.group_log = t;
+		t.anchorOffsetY = 0;
+		t.height = 287;
+		t.left = 0;
+		t.right = 0;
+		t.y = 1020;
+		return t;
+	};
+	_proto.group_top_i = function () {
+		var t = new eui.Group();
+		this.group_top = t;
+		t.left = 0;
+		t.right = 0;
+		t.top = 0;
+		t.elementsContent = [this._Image5_i(),this.back_i(),this._Image7_i()];
+		return t;
+	};
+	_proto._Image5_i = function () {
+		var t = new eui.Image();
+		t.left = 0;
+		t.right = 0;
+		t.scale9Grid = new egret.Rectangle(203,11,455,68);
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "auction_json.auc_top";
+		t.top = -6;
+		return t;
+	};
+	_proto.back_i = function () {
+		var t = new eui.Group();
+		this.back = t;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.height = 70;
+		t.left = 12;
+		t.verticalCenter = -4;
+		t.width = 120;
+		t.elementsContent = [this._Image6_i()];
+		return t;
+	};
+	_proto._Image6_i = function () {
+		var t = new eui.Image();
+		t.left = 30;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "auction_json.auc_return";
+		t.verticalCenter = -1.5;
+		t.x = 30.5;
+		t.y = 17.5;
+		return t;
+	};
+	_proto._Image7_i = function () {
+		var t = new eui.Image();
+		this._Image7 = t;
+		t.left = 199;
+		t.verticalCenter = 0;
+		return t;
+	};
+	return detail;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/phoenix/LogList.exml'] = window.logList = (function (_super) {
+	__extends(logList, _super);
+	function logList() {
+		_super.call(this);
+		this.skinParts = ["log_content"];
+		
+		this.height = 62;
+		this.width = 662;
+		this.elementsContent = [this.log_content_i()];
+		
+		eui.Binding.$bindProperties(this, ["hostComponent.data.datetime"],[0],this._Label1,"text");
+	}
+	var _proto = logList.prototype;
+
+	_proto.log_content_i = function () {
+		var t = new eui.Group();
+		this.log_content = t;
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.top = 0;
+		t.elementsContent = [this._Label1_i()];
+		return t;
+	};
+	_proto._Label1_i = function () {
+		var t = new eui.Label();
+		this._Label1 = t;
+		t.left = 10;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.size = 25;
+		t.textColor = 0xa07b49;
+		t.verticalCenter = 0;
+		t.width = 147;
+		return t;
+	};
+	return logList;
+})(eui.Skin);generateEUI.paths['resource/garden_skin/phoenix/MoodTips.exml'] = window.moodTips = (function (_super) {
+	__extends(moodTips, _super);
+	function moodTips() {
+		_super.call(this);
+		this.skinParts = ["mood_tips_close","mood_tips_confirm"];
+		
+		this.height = 597;
+		this.width = 590;
+		this.elementsContent = [this._Group2_i()];
+	}
+	var _proto = moodTips.prototype;
+
+	_proto._Group2_i = function () {
+		var t = new eui.Group();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.top = 0;
+		t.elementsContent = [this._Image1_i(),this._Label1_i(),this._Label2_i(),this._Label3_i(),this._Label4_i(),this.mood_tips_close_i(),this.mood_tips_confirm_i(),this._Group1_i(),this._Label10_i(),this._Label11_i(),this._Label12_i(),this._Label13_i(),this._Label14_i(),this._Label15_i(),this._Label16_i(),this._Label17_i(),this._Label18_i(),this._Label19_i(),this._Label20_i(),this._Label21_i(),this._Label22_i(),this._Label23_i(),this._Label24_i(),this._Label25_i()];
+		return t;
+	};
+	_proto._Image1_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.height = 584;
+		t.scale9Grid = new egret.Rectangle(91,63,406,119);
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "wutong_json.frame_green_1";
+		t.width = 590;
+		t.x = 0;
+		t.y = 13;
+		return t;
+	};
+	_proto._Label1_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "0";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 102;
+		t.y = 417;
+		return t;
+	};
+	_proto._Label2_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "绝望";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 210;
+		t.y = 417;
+		return t;
+	};
+	_proto._Label3_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "1h";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 340;
+		t.y = 417;
+		return t;
+	};
+	_proto._Label4_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "5min";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 448;
+		t.y = 417;
+		return t;
+	};
+	_proto.mood_tips_close_i = function () {
+		var t = new eui.Image();
+		this.mood_tips_close = t;
+		t.right = 0;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "wutong_json.delete";
+		t.top = 0;
+		t.x = 534;
+		t.y = 0;
+		return t;
+	};
+	_proto.mood_tips_confirm_i = function () {
+		var t = new eui.Group();
+		this.mood_tips_confirm = t;
+		t.height = 63;
+		t.horizontalCenter = 0;
+		t.width = 166;
+		t.y = 485;
+		t.elementsContent = [this._Image2_i(),this._Label5_i()];
+		return t;
+	};
+	_proto._Image2_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.source = "wutong_json.btn_green_1";
+		t.top = 0;
+		return t;
+	};
+	_proto._Label5_i = function () {
+		var t = new eui.Label();
+		t.horizontalCenter = 0;
+		t.text = "确认";
+		t.textAlign = "center";
+		t.textColor = 0xffe5b8;
+		t.verticalAlign = "middle";
+		t.verticalCenter = -3;
+		return t;
+	};
+	_proto._Group1_i = function () {
+		var t = new eui.Group();
+		t.anchorOffsetX = 0;
+		t.horizontalCenter = 0;
+		t.top = 93;
+		t.width = 503;
+		t.elementsContent = [this._Image3_i(),this._Label6_i(),this._Label7_i(),this._Label8_i(),this._Label9_i()];
+		return t;
+	};
+	_proto._Image3_i = function () {
+		var t = new eui.Image();
+		t.bottom = 0;
+		t.left = 0;
+		t.right = 0;
+		t.scaleX = 1;
+		t.scaleY = 1;
+		t.source = "auction_json.tm_k_2x";
+		t.top = 0;
+		return t;
+	};
+	_proto._Label6_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "心情指数";
+		t.textColor = 0xa07b49;
+		t.verticalCenter = 0;
+		t.x = 24;
+		return t;
+	};
+	_proto._Label7_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "心情";
+		t.textColor = 0xa07b49;
+		t.verticalCenter = 0;
+		t.x = 164;
+		return t;
+	};
+	_proto._Label8_i = function () {
+		var t = new eui.Label();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.fontFamily = "PingFang SC";
+		t.height = 37;
+		t.size = 18;
+		t.text = "每消耗1心情值所需时间";
+		t.textColor = 0xa07b49;
+		t.verticalCenter = 0.5;
+		t.width = 101;
+		t.x = 257;
+		return t;
+	};
+	_proto._Label9_i = function () {
+		var t = new eui.Label();
+		t.anchorOffsetX = 0;
+		t.anchorOffsetY = 0;
+		t.fontFamily = "PingFang SC";
+		t.height = 37;
+		t.right = 24;
+		t.size = 18;
+		t.text = "每消耗1生命值所需时间";
+		t.textColor = 0xA07B49;
+		t.verticalCenter = 0.5;
+		t.width = 101;
+		return t;
+	};
+	_proto._Label10_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "80-100";
+		t.textAlign = "center";
+		t.textColor = 0x3c2405;
+		t.verticalAlign = "middle";
+		t.x = 83;
+		t.y = 174;
+		return t;
+	};
+	_proto._Label11_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "非常好";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 198;
+		t.y = 174;
+		return t;
+	};
+	_proto._Label12_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "6h";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 340;
+		t.y = 174;
+		return t;
+	};
+	_proto._Label13_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "30min";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 442;
+		t.y = 174;
+		return t;
+	};
+	_proto._Label14_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "60-79";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 87;
+		t.y = 236;
+		return t;
+	};
+	_proto._Label15_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "一般";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 209;
+		t.y = 236;
+		return t;
+	};
+	_proto._Label16_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "2h";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 340;
+		t.y = 236;
+		return t;
+	};
+	_proto._Label17_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "10min";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 442;
+		t.y = 236;
+		return t;
+	};
+	_proto._Label18_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "30-59";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 87;
+		t.y = 298;
+		return t;
+	};
+	_proto._Label19_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "差";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 222;
+		t.y = 300;
+		return t;
+	};
+	_proto._Label20_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "1.5h";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 335;
+		t.y = 300;
+		return t;
+	};
+	_proto._Label21_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "8min";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 448;
+		t.y = 300;
+		return t;
+	};
+	_proto._Label22_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "1-29";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 93;
+		t.y = 362;
+		return t;
+	};
+	_proto._Label23_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "极差";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 209;
+		t.y = 362;
+		return t;
+	};
+	_proto._Label24_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "1.2h";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 335;
+		t.y = 362;
+		return t;
+	};
+	_proto._Label25_i = function () {
+		var t = new eui.Label();
+		t.fontFamily = "PingFang SC";
+		t.size = 24;
+		t.text = "6min";
+		t.textAlign = "center";
+		t.textColor = 0x3C2405;
+		t.verticalAlign = "middle";
+		t.x = 448;
+		t.y = 363;
+		return t;
+	};
+	return moodTips;
 })(eui.Skin);generateEUI.paths['resource/garden_skin/wutong/AuctionRule.exml'] = window.auctionRule = (function (_super) {
 	__extends(auctionRule, _super);
 	function auctionRule() {

@@ -93,7 +93,6 @@ final class Base{
 		        showMessage('抱歉！您访问的页面不存在','','html','error');
 		    }
 		}
-
 		if (class_exists($class_name)){
 			$main = new $class_name();
 			$function = $_GET['op'].'Op';

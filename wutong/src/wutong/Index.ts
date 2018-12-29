@@ -208,7 +208,7 @@ class Index extends eui.ItemRenderer{
 		super();
 		this.skinName = "resource/garden_skin/wutong/Index.exml";
 		//语言包判断
-		var lang = Main.Shared().lang;
+		this.lang = Main.Shared().lang;
 		this.data = Main.Shared().lang_config;
 		this.top = 0;
 		this.left = 0;
