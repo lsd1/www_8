@@ -21,11 +21,19 @@ $config['setup_date']           = '2018-12-29 16:12:48';
 $config['gip']                  = 0;
 $config['dbdriver']             = 'mysqli';
 $config['tablepre']             = 'yyshop_';
+
 $config['db']['1']['dbhost']    = '192.168.0.120';
 $config['db']['1']['dbport']    = '3306';
 $config['db']['1']['dbuser']    = 'root';
 $config['db']['1']['dbpwd']     = 'Ww@123456';
 $config['db']['1']['dbname']    = 'yyshop';
+
+//$config['db']['1']['dbhost']    = 'localhost';
+//$config['db']['1']['dbport']    = '3306';
+//$config['db']['1']['dbuser']    = 'root';
+//$config['db']['1']['dbpwd']     = 'root';
+//$config['db']['1']['dbname']    = 'yyshop';
+
 $config['db']['1']['dbcharset'] = 'UTF-8';
 $config['db']['slave']          = $config['db']['master'];
 $config['session_expire']   = 3600;

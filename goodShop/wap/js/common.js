@@ -1,3 +1,4 @@
+var token = '';
 function getQueryString(name){
 	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 	var r = window.location.search.substr(1).match(reg);
@@ -797,3 +798,65 @@ function isEmpty(obj)
     }
     return true;
 }
+
+var loding = false;
+
+//获取yy用户信息
+function getYyUserInfo(token) {
+    if(loding) return false;
+    loding = true;
+    $.ajax({
+        headers: {
+            token: token,
+            Accept: "application/json; charset=utf-8"
+        },
+        url: YyApiUrl + '/user-api/user/getUserMall',
+        success: function(result) {
+            setTimeout(function () {
+                loding = false;
+            }, 1000);
+            if (result.code == 200) {
+                var params = new Object();
+                var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                params.member_avatar = result.data.photo;
+                params.member_name = result.data.nickName;
+                params.member_mobile = result.data.mobile;
+                params.member_id = result.data.memberId;
+                params.token = token.substr(0, 50);
+                params.client = isiOS ? 'ios' : 'android';
+                yyAutoLogin(params);
+
+                //$.sDialog({skin: "green", content: "已取消收藏！", okBtn: false, cancelBtn: false});
+                //return_val = true;
+            } else {
+                console.log(result.message);
+                //$.sDialog({skin: "red", content: result.datas.error, okBtn: false, cancelBtn: false});
+            }
+        }
+    });
+}
+
+function yyAutoLogin(params) {
+    $.ajax({
+        type: 'post',
+        url: ApiUrl + '/index.php?act=login&op=yy_login',
+        data: params,
+        dataType: 'json',
+        async: false,
+        success: function(result) {
+            if (result.code == 200) {
+                // $.sDialog({skin: "green", content: "已取消收藏！", okBtn: false, cancelBtn: false});
+                // return_val = true;
+                console.log(result);
+                addCookie("key", result.datas.key, 24000);
+                updateCookieCart(result.datas.key);
+                addCookie('username',result.datas.username, 24000);
+            } else {
+                // $.sDialog({skin: "red", content: result.datas.error, okBtn: false, cancelBtn: false});
+            }
+        }
+    });
+}
+
+var token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyNzg1IiwiaWF0IjoxNTQ2NDEyMDEyLCJzdWIiOiJ5dW55bFlZU0QiLCJpc3MiOiIxNTAxMjM0MDA0NCIsImV4cCI6MTU0Njc3MjAxMn0.GL1AqBGJmyj2s1Lw_7YHSpsUvnVh-iT5DWk-aoCz7vA";
+getYyUserInfo(token);

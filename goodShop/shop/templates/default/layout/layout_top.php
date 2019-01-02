@@ -117,7 +117,7 @@
 <div style=" background:<?php echo $output['setting_config']['hao_top_banner_color']; ?>;">
   <div class="wrapper" id="top-banner" style="display: none;">
       <a href="javascript:void(0);" class="close" title="关闭"></a>
-      <a href="<?php echo $output['setting_config']['hao_top_banner_url']; ?>" title="<?php echo $output['setting_config']['hao_top_banner_name']; ?>"><img border="0" src="<?php echo UPLOAD_SITE_URL.DS.ATTACH_COMMON.DS.$output['setting_config']['hao_top_banner_pic']; ?>" alt=""></a>
+                                                                                                                                                                                                                                          <a href="<?php echo $output['setting_config']['hao_top_banner_url']; ?>" title="<?php echo $output['setting_config']['hao_top_banner_name']; ?>"><img border="0" src="<?php echo UPLOAD_SITE_URL.DS.ATTACH_COMMON.DS.$output['setting_config']['hao_top_banner_pic']; ?>" alt=""></a>
   </div>
 </div>
 <?php } ?>

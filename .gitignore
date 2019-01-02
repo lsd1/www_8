@@ -1,3 +1,8 @@
 .idea
 .vscode
 node_modules
+goodShop/data/upload
+goodShop/data/cache
+goodShop/data/session
+goodShop/data/log
+
