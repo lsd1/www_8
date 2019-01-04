@@ -193,7 +193,7 @@ class Invite extends PureComponent {
                              <div className="right">
                                  <p className="fz-xs">{intl.get('USERINFO_REBATE')}</p>
                                  <div className="mt-sm">
-                                    <span className="opacity-5">EXB</span><em className="num ml-md">{peopleData.amount}</em>
+                                    <span className="opacity-5"></span><em className="num ml-md">{peopleData.amount}</em>
                                  </div>
                              </div>
                           </div>

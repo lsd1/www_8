@@ -1,21 +1,21 @@
 <?php
 //by 33hao.com 好商城
 $config = array();
-$config['base_site_url'] 		= 'http://goodshop.com';
-$config['shop_site_url']        = 'http://goodshop.com/shop';
-$config['cms_site_url']         = 'http://goodshop.com/cms';
-$config['microshop_site_url']   = 'http://goodshop.com/microshop';
-$config['circle_site_url']      = 'http://goodshop.com/circle';
-$config['admin_site_url']       = 'http://goodshop.com/admin';
-$config['mobile_site_url']      = 'http://goodshop.com/mobile';
-$config['wap_site_url']         = 'http://goodshop.com/wap';
-$config['chat_site_url']        = 'http://goodshop.com/chat';
-$config['node_site_url'] 		= 'http://goodshop.com:33'; //如果要启用IM，把 http://goodshop.com 修改为：http://您的服务器IP
-$config['delivery_site_url']    = 'http://goodshop.com/delivery';
-$config['chain_site_url']       = 'http://goodshop.com/chain';
-$config['member_site_url']      = 'http://goodshop.com/member';
-$config['upload_site_url']      = 'http://goodshop.com/data/upload';
-$config['resource_site_url']    = 'http://goodshop.com/data/resource';
+$config['base_site_url'] 		= 'http://192.168.1.101';
+$config['shop_site_url']        = 'http://192.168.1.101/shop';
+$config['cms_site_url']         = 'http://192.168.1.101/cms';
+$config['microshop_site_url']   = 'http://192.168.1.101/microshop';
+$config['circle_site_url']      = 'http://192.168.1.101/circle';
+$config['admin_site_url']       = 'http://192.168.1.101/admin';
+$config['mobile_site_url']      = 'http://192.168.1.101/mobile';
+$config['wap_site_url']         = 'http://192.168.1.101/wap';
+$config['chat_site_url']        = 'http://192.168.1.101/chat';
+$config['node_site_url'] 		= 'http://192.168.1.101:33'; //如果要启用IM，把 http://192.168.1.101 修改为：http://您的服务器IP
+$config['delivery_site_url']    = 'http://192.168.1.101/delivery';
+$config['chain_site_url']       = 'http://192.168.1.101/chain';
+$config['member_site_url']      = 'http://192.168.1.101/member';
+$config['upload_site_url']      = 'http://192.168.1.101/data/upload';
+$config['resource_site_url']    = 'http://192.168.1.101/data/resource';
 $config['version']              = '201706150001';
 $config['setup_date']           = '2018-12-29 16:12:48';
 $config['gip']                  = 0;
