@@ -1,7 +1,12 @@
 var token = getCookie('token');
 var loginTimeOut = getCookie('login');
 // var token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMTExMTExMTIiLCJpYXQiOjE1NDY0OTc5NTUsInN1YiI6Inl1bnlsWVlTRCIsImlzcyI6IjEzNzk0MTI1MDUxIiwiZXhwIjoxNTQ2ODU3OTU1fQ.0VS7sL_EyKjjKPy_FCYy8amdo7exMiWlvY4S90KpWpU";
-if(token && !loginTimeOut){
+// if(token && !loginTimeOut){
+//     addCookie('key', token.substr(0, 50));
+//     getYyUserInfo(token);
+// }
+
+if(token){
     addCookie('key', token.substr(0, 50));
     getYyUserInfo(token);
 }

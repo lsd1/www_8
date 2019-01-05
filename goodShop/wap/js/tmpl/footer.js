@@ -13,7 +13,7 @@ $(function (){
         +'<div class="nav-text">';
     if(key){
         html += '<a href="'+WapSiteUrl+'/tmpl/member/member.html">我的商城</a>'
-            + '<a id="logoutbtn" href="javascript:void(0);">注销</a>'
+            // + '<a id="logoutbtn" href="javascript:void(0);">注销</a>'
             + '<a href="'+WapSiteUrl+'/tmpl/member/member_feedback.html">反馈</a>'
 	    + '<a href="' + WapSiteUrl + '/tmpl/article_list.html?ac_id=2">帮助</a>';
             
