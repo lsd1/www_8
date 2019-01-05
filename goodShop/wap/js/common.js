@@ -1,4 +1,16 @@
-var token = '';
+var token = getCookie('token');
+var loginTimeOut = getCookie('login');
+// var token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMTExMTExMTIiLCJpYXQiOjE1NDY0OTc5NTUsInN1YiI6Inl1bnlsWVlTRCIsImlzcyI6IjEzNzk0MTI1MDUxIiwiZXhwIjoxNTQ2ODU3OTU1fQ.0VS7sL_EyKjjKPy_FCYy8amdo7exMiWlvY4S90KpWpU";
+if(token && !loginTimeOut){
+    addCookie('key', token.substr(0, 50));
+    getYyUserInfo(token);
+}
+
+if(!token){
+    delCookie('key');
+    delCookie('username');
+}
+
 function getQueryString(name){
 	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 	var r = window.location.search.substr(1).match(reg);
@@ -825,12 +837,8 @@ function getYyUserInfo(token) {
                 params.token = token.substr(0, 50);
                 params.client = isiOS ? 'ios' : 'android';
                 yyAutoLogin(params);
-
-                //$.sDialog({skin: "green", content: "已取消收藏！", okBtn: false, cancelBtn: false});
-                //return_val = true;
             } else {
                 console.log(result.message);
-                //$.sDialog({skin: "red", content: result.datas.error, okBtn: false, cancelBtn: false});
             }
         }
     });
@@ -845,18 +853,15 @@ function yyAutoLogin(params) {
         async: false,
         success: function(result) {
             if (result.code == 200) {
-                // $.sDialog({skin: "green", content: "已取消收藏！", okBtn: false, cancelBtn: false});
-                // return_val = true;
-                console.log(result);
                 addCookie("key", result.datas.key, 24000);
+                addCookie("login", 1, 0.05);
                 updateCookieCart(result.datas.key);
                 addCookie('username',result.datas.username, 24000);
             } else {
-                // $.sDialog({skin: "red", content: result.datas.error, okBtn: false, cancelBtn: false});
+                console.log('yy自動登陸失敗！');
+                console.log(result.message);
             }
         }
     });
 }
 
-var token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyNzg1IiwiaWF0IjoxNTQ2NDEyMDEyLCJzdWIiOiJ5dW55bFlZU0QiLCJpc3MiOiIxNTAxMjM0MDA0NCIsImV4cCI6MTU0Njc3MjAxMn0.GL1AqBGJmyj2s1Lw_7YHSpsUvnVh-iT5DWk-aoCz7vA";
-getYyUserInfo(token);

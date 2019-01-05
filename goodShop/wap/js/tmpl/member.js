@@ -1,4 +1,5 @@
-$(function(){
+waitCookie();
+function waitCookie() {
     if (getQueryString('key') != '') {
         var key = getQueryString('key');
         var username = getQueryString('username');
@@ -6,8 +7,23 @@ $(function(){
         addCookie('username', username);
     } else {
         var key = getCookie('key');
+        if(!key){
+            t1 = setInterval(function () {
+                var key= getCookie('key');
+                if(key){
+                    console.log(key);
+                    getInfo(key);
+                    clearInterval(t1);
+                }
+            },500);
+        }else{
+            getInfo(key);
+        }
     }
-	//33hao v5.2 第三方登录后返回上回访问页面 
+}
+
+function getInfo(key){
+	//33hao v5.2 第三方登录后返回上回访问页面
 	var redirect_uri = getCookie('redirect_uri');
 	if(redirect_uri && getQueryString('info') == 'hao'){
 	    window.location.href = WapSiteUrl + redirect_uri;
@@ -85,4 +101,4 @@ $(function(){
 
 	  //滚动header固定到顶部
 	  $.scrollTransparent();
-});
+}

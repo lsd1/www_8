@@ -4623,7 +4623,7 @@ CREATE TABLE `#__member` (
   `member_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '会员id',
   `member_name` varchar(50) NOT NULL COMMENT '会员名称',
   `member_truename` varchar(20) DEFAULT NULL COMMENT '真实姓名',
-  `member_avatar` varchar(50) DEFAULT NULL COMMENT '会员头像',
+  `member_avatar` varchar(100) DEFAULT NULL COMMENT '会员头像',
   `member_sex` tinyint(1) DEFAULT NULL COMMENT '会员性别',
   `member_birthday` date DEFAULT NULL COMMENT '生日',
   `member_passwd` varchar(32) NOT NULL COMMENT '会员密码',

@@ -355,9 +355,9 @@ class memberModel extends Model {
             return array('error' => $error);
         }
 
-        if(is_numeric($register_info["username"])) {
-            return array('error' => '用户名不能为纯数字');
-        }
+//        if(is_numeric($register_info["username"])) {
+//            return array('error' => '用户名不能为纯数字');
+//        }
 
         // 验证用户名是否重复
         $check_member_name  = $this->getMemberInfo(array('member_name'=>$register_info['username']));

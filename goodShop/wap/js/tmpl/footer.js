@@ -18,10 +18,14 @@ $(function (){
 	    + '<a href="' + WapSiteUrl + '/tmpl/article_list.html?ac_id=2">帮助</a>';
             
     } else {
-        html += '<a href="'+WapSiteUrl+'/tmpl/member/login.html">登录</a>'
-            + '<a href="'+WapSiteUrl+'/tmpl/member/register.html">注册</a>'
-            + '<a href="'+WapSiteUrl+'/tmpl/member/login.html">反馈</a>'
-	    + '<a href="' + WapSiteUrl + '/tmpl/article_list.html?ac_id=2">帮助</a>';
+        // html += '<a href="'+WapSiteUrl+'/tmpl/member/login.html">登录</a>'
+        //     + '<a href="'+WapSiteUrl+'/tmpl/member/register.html">注册</a>'
+        //     + '<a href="'+WapSiteUrl+'/tmpl/member/login.html">反馈</a>'
+	    // + '<a href="' + WapSiteUrl + '/tmpl/article_list.html?ac_id=2">帮助</a>';
+        html += '<a href="'+WapSiteUrl+'/tmpl/member/login.html">反馈</a>'
+            + '<a href="' + WapSiteUrl + '/tmpl/article_list.html?ac_id=2">帮助</a>';
+
+
     }
         html += '<a href="javascript:void(0);" class="gotop">返回顶部</a>' + "</div>" + '<!--<div class="copyright">' + 'Copyright&nbsp;&copy;&nbsp;2005-2016 <a href="javascript:void(0);">好商城V5 www.33hao.com</a>版权所有' + "</div>--></div>";
         
