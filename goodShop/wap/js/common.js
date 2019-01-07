@@ -1,10 +1,13 @@
 var token = getCookie('token');
 var loginTimeOut = getCookie('login');
 // var token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMTExMTExMTIiLCJpYXQiOjE1NDY0OTc5NTUsInN1YiI6Inl1bnlsWVlTRCIsImlzcyI6IjEzNzk0MTI1MDUxIiwiZXhwIjoxNTQ2ODU3OTU1fQ.0VS7sL_EyKjjKPy_FCYy8amdo7exMiWlvY4S90KpWpU";
-// if(token && !loginTimeOut){
-//     addCookie('key', token.substr(0, 50));
-//     getYyUserInfo(token);
-// }
+if(!token){
+    alert('没传token');
+}
+if(token && !loginTimeOut){
+    addCookie('key', token.substr(0, 50));
+    getYyUserInfo(token);
+}
 
 if(token){
     addCookie('key', token.substr(0, 50));
@@ -859,6 +862,7 @@ function yyAutoLogin(params) {
         success: function(result) {
             if (result.code == 200) {
                 addCookie("key", result.datas.key, 24000);
+                addCookie("userid", result.datas.userid, 24000);
                 addCookie("login", 1, 0.05);
                 updateCookieCart(result.datas.key);
                 addCookie('username',result.datas.username, 24000);

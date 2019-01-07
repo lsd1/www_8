@@ -223,6 +223,6 @@ class loginControl extends mobileHomeControl {
             }
         }
 
-        output_data(array('key' => $token, 'username' => $member_info['member_name']));
+        output_data(array('key' => $token, 'userid'=> $member_info['member_id'], 'username' => $member_info['member_name']));
     }
 }

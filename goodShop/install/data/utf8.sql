@@ -27,7 +27,7 @@ CREATE TABLE `#__activity_detail` (
 
 CREATE TABLE `#__address` (
   `address_id` mediumint(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '地址ID',
-  `member_id` mediumint(10) unsigned NOT NULL DEFAULT '0' COMMENT '会员ID',
+  `member_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '会员ID',
   `true_name` varchar(50) NOT NULL COMMENT '会员姓名',
   `area_id` mediumint(10) unsigned NOT NULL DEFAULT '0' COMMENT '地区ID',
   `city_id` mediumint(9) DEFAULT NULL COMMENT '市级ID',
@@ -3492,7 +3492,7 @@ CREATE TABLE `#__arrival_notice` (
   `an_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '通知id',
   `goods_id` int(10) unsigned NOT NULL COMMENT '商品id',
   `goods_name` varchar(50) NOT NULL COMMENT '商品名称',
-  `member_id` int(10) unsigned NOT NULL COMMENT '会员id',
+  `member_id` int(11) unsigned NOT NULL COMMENT '会员id',
   `store_id` int(10) unsigned NOT NULL COMMENT '店铺id',
   `an_addtime` int(10) unsigned NOT NULL COMMENT '添加时间',
   `an_email` varchar(100) NOT NULL COMMENT '邮箱',
@@ -3778,7 +3778,7 @@ INSERT INTO `#__consult_type` (`ct_id`, `ct_name`, `ct_introduce`, `ct_sort`) VA
 
 CREATE TABLE `#__consume` (
   `consume_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '消费表',
-  `member_id` int(10) unsigned NOT NULL COMMENT '会员id',
+  `member_id` int(11) unsigned NOT NULL COMMENT '会员id',
   `member_name` varchar(50) NOT NULL COMMENT '会员名称',
   `consume_amount` decimal(10,2) NOT NULL COMMENT '金额',
   `consume_time` int(10) unsigned NOT NULL COMMENT '时间',
@@ -4071,7 +4071,7 @@ INSERT INTO `#__express` (`id`, `e_name`, `e_state`, `e_code`, `e_code_kdniao`, 
 
 CREATE TABLE `#__favorites` (
   `log_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录ID',
-  `member_id` int(10) unsigned NOT NULL COMMENT '会员ID',
+  `member_id` int(11) unsigned NOT NULL COMMENT '会员ID',
   `member_name` varchar(50) NOT NULL COMMENT '会员名',
   `fav_id` int(10) unsigned NOT NULL COMMENT '商品或店铺ID',
   `fav_type` char(5) NOT NULL DEFAULT 'goods' COMMENT '类型:goods为商品,store为店铺,默认为商品',
@@ -4251,7 +4251,7 @@ CREATE TABLE `#__goods_class_staple` (
   `gc_id_2` int(10) unsigned NOT NULL COMMENT '二级商品分类',
   `gc_id_3` int(10) unsigned NOT NULL COMMENT '三级商品分类',
   `type_id` int(10) unsigned NOT NULL COMMENT '类型id',
-  `member_id` int(10) unsigned NOT NULL COMMENT '会员id',
+  `member_id` int(11) unsigned NOT NULL COMMENT '会员id',
   `counter` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '计数器',
   PRIMARY KEY (`staple_id`),
   KEY `store_id` (`member_id`)
@@ -4419,7 +4419,7 @@ CREATE TABLE `#__groupbuy_price_range` (
 
 CREATE TABLE `#__groupbuy_quota` (
   `quota_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '抢购套餐编号',
-  `member_id` int(10) unsigned NOT NULL COMMENT '用户编号',
+  `member_id` int(11) unsigned NOT NULL COMMENT '用户编号',
   `store_id` int(10) unsigned NOT NULL COMMENT '店铺编号',
   `member_name` varchar(50) NOT NULL COMMENT '用户名',
   `store_name` varchar(50) NOT NULL COMMENT '店铺名称',
@@ -4528,7 +4528,7 @@ INSERT INTO `#__inform_subject_type` (`inform_type_id`, `inform_type_name`, `inf
 
 CREATE TABLE `#__invoice` (
   `inv_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '索引id',
-  `member_id` int(10) unsigned NOT NULL COMMENT '会员ID',
+  `member_id` int(11) unsigned NOT NULL COMMENT '会员ID',
   `inv_state` enum('1','2') DEFAULT NULL COMMENT '1普通发票2增值税发票',
   `inv_title` varchar(50) DEFAULT '' COMMENT '发票抬头[普通发票]',
   `inv_content` varchar(10) DEFAULT '' COMMENT '发票内容[普通发票]',
@@ -4595,7 +4595,7 @@ INSERT INTO `#__mail_msg_temlates` (`name`, `title`, `code`, `content`) VALUES
 CREATE TABLE `#__mall_consult` (
   `mc_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '平台客服咨询id',
   `mct_id` int(10) unsigned NOT NULL COMMENT '咨询类型id',
-  `member_id` int(10) unsigned NOT NULL COMMENT '会员id',
+  `member_id` int(11) unsigned NOT NULL COMMENT '会员id',
   `member_name` varchar(50) NOT NULL COMMENT '会员名称',
   `mc_content` varchar(500) NOT NULL COMMENT '咨询内容',
   `mc_addtime` int(10) unsigned NOT NULL COMMENT '咨询时间',
@@ -4685,7 +4685,7 @@ CREATE TABLE `#__member_common` (
 
 CREATE TABLE `#__member_msg_setting` (
   `mmt_code` varchar(50) NOT NULL COMMENT '用户消息模板编号',
-  `member_id` int(10) unsigned NOT NULL COMMENT '会员id',
+  `member_id` int(11) unsigned NOT NULL COMMENT '会员id',
   `is_receive` tinyint(3) unsigned NOT NULL COMMENT '是否接收 1是，0否',
   PRIMARY KEY (`mmt_code`,`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户消息接收设置表';
@@ -4766,7 +4766,7 @@ CREATE TABLE `#__mb_feedback` (
   `content` varchar(500) DEFAULT NULL,
   `type` varchar(50) DEFAULT NULL COMMENT '1来自手机端2来自PC端',
   `ftime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '反馈时间',
-  `member_id` int(10) unsigned NOT NULL COMMENT '用户编号',
+  `member_id` int(11) unsigned NOT NULL COMMENT '用户编号',
   `member_name` varchar(50) NOT NULL COMMENT '用户名',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='意见反馈' AUTO_INCREMENT=1 ;
@@ -4812,7 +4812,7 @@ INSERT INTO `#__mb_special_item` (`item_id`, `special_id`, `item_type`, `item_da
 
 CREATE TABLE `#__mb_user_token` (
   `token_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '令牌编号',
-  `member_id` int(10) unsigned NOT NULL COMMENT '用户编号',
+  `member_id` int(11) unsigned NOT NULL COMMENT '用户编号',
   `member_name` varchar(50) NOT NULL COMMENT '用户名',
   `token` varchar(50) NOT NULL COMMENT '登录令牌',
   `openid` varchar(50) DEFAULT NULL COMMENT '微信支付jsapi的openid缓存',
@@ -5348,7 +5348,7 @@ CREATE TABLE `#__p_mansong` (
   `quota_id` int(10) unsigned NOT NULL COMMENT '套餐编号',
   `start_time` int(10) unsigned NOT NULL COMMENT '活动开始时间',
   `end_time` int(10) unsigned NOT NULL COMMENT '活动结束时间',
-  `member_id` int(10) unsigned NOT NULL COMMENT '用户编号',
+  `member_id` int(11) unsigned NOT NULL COMMENT '用户编号',
   `store_id` int(10) unsigned NOT NULL COMMENT '店铺编号',
   `member_name` varchar(50) NOT NULL COMMENT '用户名',
   `store_name` varchar(50) NOT NULL COMMENT '店铺名称',
@@ -5359,7 +5359,7 @@ CREATE TABLE `#__p_mansong` (
 
 CREATE TABLE `#__p_mansong_quota` (
   `quota_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '满就送套餐编号',
-  `member_id` int(10) unsigned NOT NULL COMMENT '用户编号',
+  `member_id` int(11) unsigned NOT NULL COMMENT '用户编号',
   `store_id` int(10) unsigned NOT NULL COMMENT '店铺编号',
   `member_name` varchar(50) NOT NULL COMMENT '用户名',
   `store_name` varchar(50) NOT NULL COMMENT '店铺名称',
@@ -5407,7 +5407,7 @@ CREATE TABLE `#__p_xianshi` (
   `quota_id` int(10) unsigned NOT NULL COMMENT '套餐编号',
   `start_time` int(10) unsigned NOT NULL COMMENT '活动开始时间',
   `end_time` int(10) unsigned NOT NULL COMMENT '活动结束时间',
-  `member_id` int(10) unsigned NOT NULL COMMENT '用户编号',
+  `member_id` int(11) unsigned NOT NULL COMMENT '用户编号',
   `store_id` int(10) unsigned NOT NULL COMMENT '店铺编号',
   `member_name` varchar(50) NOT NULL COMMENT '用户名',
   `store_name` varchar(50) NOT NULL COMMENT '店铺名称',
@@ -5439,7 +5439,7 @@ CREATE TABLE `#__p_xianshi_goods` (
 
 CREATE TABLE `#__p_xianshi_quota` (
   `quota_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '限时折扣套餐编号',
-  `member_id` int(10) unsigned NOT NULL COMMENT '用户编号',
+  `member_id` int(11) unsigned NOT NULL COMMENT '用户编号',
   `store_id` int(10) unsigned NOT NULL COMMENT '店铺编号',
   `member_name` varchar(50) NOT NULL COMMENT '用户名',
   `store_name` varchar(50) NOT NULL COMMENT '店铺名称',
@@ -5605,7 +5605,7 @@ CREATE TABLE `#__refund_return` (
 CREATE TABLE `#__seller` (
   `seller_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '卖家编号',
   `seller_name` varchar(50) NOT NULL COMMENT '卖家用户名',
-  `member_id` int(10) unsigned NOT NULL COMMENT '用户编号',
+  `member_id` int(11) unsigned NOT NULL COMMENT '用户编号',
   `seller_group_id` int(10) unsigned NOT NULL COMMENT '卖家组编号',
   `store_id` int(10) unsigned NOT NULL COMMENT '店铺编号',
   `is_admin` tinyint(3) unsigned NOT NULL COMMENT '是否管理员(0-不是 1-是)',
@@ -5866,7 +5866,7 @@ CREATE TABLE `#__sms_log` (
   `log_msg` varchar(300) NOT NULL COMMENT '短信内容',
   `log_type` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '短信类型:1为注册,2为登录,3为找回密码,默认为1',
   `add_time` int(10) unsigned NOT NULL COMMENT '添加时间',
-  `member_id` int(10) unsigned DEFAULT '0' COMMENT '会员ID,注册为0',
+  `member_id` int(11) unsigned DEFAULT '0' COMMENT '会员ID,注册为0',
   `member_name` varchar(50) DEFAULT '' COMMENT '会员名',
   PRIMARY KEY (`log_id`),
   KEY `log_phone` (`log_phone`)
@@ -5875,7 +5875,7 @@ CREATE TABLE `#__sms_log` (
 CREATE TABLE `#__sns_albumclass` (
   `ac_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '相册id',
   `ac_name` varchar(100) NOT NULL COMMENT '相册名称',
-  `member_id` int(10) unsigned NOT NULL COMMENT '所属会员id',
+  `member_id` int(11) unsigned NOT NULL COMMENT '所属会员id',
   `ac_des` varchar(255) DEFAULT '' COMMENT '相册描述',
   `ac_sort` tinyint(3) unsigned NOT NULL COMMENT '排序',
   `ac_cover` varchar(255) DEFAULT NULL COMMENT '相册封面',
@@ -5891,7 +5891,7 @@ CREATE TABLE `#__sns_albumpic` (
   `ap_cover` varchar(255) NOT NULL COMMENT '图片路径',
   `ap_size` int(10) unsigned NOT NULL COMMENT '图片大小',
   `ap_spec` varchar(100) NOT NULL COMMENT '图片规格',
-  `member_id` int(10) unsigned NOT NULL COMMENT '所属店铺id',
+  `member_id` int(11) unsigned NOT NULL COMMENT '所属店铺id',
   `upload_time` int(10) unsigned NOT NULL COMMENT '图片上传时间',
   `ap_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '图片类型，0为无、1为买家秀',
   `item_id` tinyint(4) NOT NULL DEFAULT '0' COMMENT '信息ID',
@@ -6339,7 +6339,7 @@ INSERT INTO `#__store_grade` (`sg_id`, `sg_name`, `sg_goods_limit`, `sg_album_li
 (3, '钻石店铺', 0, 1000, 100, 6, 'default|style1|style2|style3|style4|style5', '1000.00', '', 'editor_multimedia', 100);
 
 CREATE TABLE `#__store_joinin` (
-  `member_id` int(10) unsigned NOT NULL COMMENT '用户编号',
+  `member_id` int(11) unsigned NOT NULL COMMENT '用户编号',
   `member_name` varchar(50) DEFAULT NULL COMMENT '店主用户名',
   `company_name` varchar(50) DEFAULT NULL COMMENT '公司名称',
   `company_province_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '所在地省ID',
