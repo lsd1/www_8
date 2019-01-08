@@ -4,7 +4,7 @@
   "description": "learn",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "webpack --mode development --config webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -14,5 +14,14 @@
     "react"
   ],
   "author": "lsd",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
 }
