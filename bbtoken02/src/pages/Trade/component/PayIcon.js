@@ -14,6 +14,7 @@ import intl from 'react-intl-universal';
 // });
 
 export default function PayIcon({ name,small=false}) {
+  console.log(name);
   return  (<Fragment> 
      {name.includes('银联')&&(
         <Fragment>
@@ -36,7 +37,7 @@ export default function PayIcon({ name,small=false}) {
 
         {name.includes('飞马钱包')&&(
      	<Fragment>
-          {/* <Icon type="fm" className="payways-icon" style={{color:'red',fontSize:22}} /> */}
+          <Icon type="fm" className="payways-icon" style={{color:'red',fontSize:22}} />
           {small &&<span className="mr-sm fz-sm gray">{intl.get('GLOBAL_FM')}{intl.get('GLOBAL_PAYMENT')}</span>}
       </Fragment>)}
      
