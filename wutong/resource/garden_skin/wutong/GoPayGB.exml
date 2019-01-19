@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="goPayGB" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="goPay" width="630" height="421" horizontalCenter="0" verticalCenter="-31">
+		<e:Image source="wutong_json.frame_green_1" scaleX="1" scaleY="1" scale9Grid="57,53,29,25" top="0" bottom="0" left="0" right="0"/>
+		<e:Button id="btn_close_goPay" label="" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="286" verticalCenter="-198" x="910" y="-31" scaleX="1" scaleY="1" width="62" height="62">
+		<e:skinName>
+			<e:Skin states="up,down,disabled" xmlns:w="http://ns.egret.com/wing">
+			<e:Image width="100%" height="100%" source="wutong_json.delete"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+		<e:Group id="mgCoin" anchorOffsetX="0" anchorOffsetY="0" width="493" height="214" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="-50">
+			<e:Label id="notEnough" text="{data.goPayGB.notEnough}" textColor="0x8b2b00" fontFamily="PingFang-SC-Medium" size="30" anchorOffsetY="0" height="214" textAlign="center" width="493" horizontalCenter="0" verticalAlign="middle" verticalCenter="0"/>
+		</e:Group>
+		<e:Group id="btn_later_goPay" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="108" x="152" y="521" scaleX="1" scaleY="1" width="166" height="60">
+		<e:Image left="0" right="0" top="0" bottom="0" source="wutong_json.btn_green"/>
+		<e:Label id="wait" text="{data.goPayGB.wait}" fontFamily="PingFang-SC-Medium" size="30" horizontalCenter="0" verticalAlign="middle" textAlign="center" verticalCenter="0" textColor="0xffe5b8"/>
+		</e:Group>
+		<e:Group id="btn_up_goPay" horizontalCenter="134" verticalCenter="108" x="568" y="521" scaleX="1" scaleY="1" width="166" height="60" visible="false" locked="true">
+		<e:Image source="wutong_json.btn_green" left="0" right="0" top="0" bottom="0"/>
+		<e:Label id="go" text="{data.goPayGB.go}" fontFamily="PingFang-SC-Medium" size="30" horizontalCenter="0" verticalAlign="middle" textAlign="center" verticalCenter="0"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="bidList" width="654" height="50" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group width="654" height="50" x="0" y="0">
+		<e:Label id="price_text" text="500000" fontFamily="PingFang-SC-Medium" size="24" textColor="0x3c2405" verticalCenter="0" left="0"/>
+		<e:Label id="bidder_text" text="" y="13" fontFamily="PingFang-SC-Medium" size="24" textColor="0x3C2405" horizontalCenter="0"/>
+		<e:Label id="auc_time" text="04-08 08:20" y="13" fontFamily="PingFang-SC-Medium" size="24" textColor="0x3C2405" right="0"/>
+	</e:Group>
+</e:Skin>

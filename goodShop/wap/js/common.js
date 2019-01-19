@@ -1,3 +1,24 @@
+var token = getCookie('token');
+var loginTimeOut = getCookie('login');
+// var token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMTExMTExMTIiLCJpYXQiOjE1NDY0OTc5NTUsInN1YiI6Inl1bnlsWVlTRCIsImlzcyI6IjEzNzk0MTI1MDUxIiwiZXhwIjoxNTQ2ODU3OTU1fQ.0VS7sL_EyKjjKPy_FCYy8amdo7exMiWlvY4S90KpWpU";
+if(!token){
+    alert('没传token');
+}
+if(token && !loginTimeOut){
+    addCookie('key', token.substr(0, 50));
+    getYyUserInfo(token);
+}
+
+if(token){
+    addCookie('key', token.substr(0, 50));
+    getYyUserInfo(token);
+}
+
+if(!token){
+    delCookie('key');
+    delCookie('username');
+}
+
 function getQueryString(name){
 	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 	var r = window.location.search.substr(1).match(reg);
@@ -797,3 +818,59 @@ function isEmpty(obj)
     }
     return true;
 }
+
+var loding = false;
+
+//获取yy用户信息
+function getYyUserInfo(token) {
+    if(loding) return false;
+    loding = true;
+    $.ajax({
+        headers: {
+            token: token,
+            Accept: "application/json; charset=utf-8"
+        },
+        url: YyApiUrl + '/user-api/user/getUserMall',
+        success: function(result) {
+            setTimeout(function () {
+                loding = false;
+            }, 1000);
+            if (result.code == 200) {
+                var params = new Object();
+                var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                params.member_avatar = result.data.photo;
+                params.member_name = result.data.nickName;
+                params.member_mobile = result.data.mobile;
+                params.member_id = result.data.memberId;
+                params.token = token.substr(0, 50);
+                params.client = isiOS ? 'ios' : 'android';
+                yyAutoLogin(params);
+            } else {
+                console.log(result.message);
+            }
+        }
+    });
+}
+
+function yyAutoLogin(params) {
+    $.ajax({
+        type: 'post',
+        url: ApiUrl + '/index.php?act=login&op=yy_login',
+        data: params,
+        dataType: 'json',
+        async: false,
+        success: function(result) {
+            if (result.code == 200) {
+                addCookie("key", result.datas.key, 24000);
+                addCookie("userid", result.datas.userid, 24000);
+                addCookie("login", 1, 0.05);
+                updateCookieCart(result.datas.key);
+                addCookie('username',result.datas.username, 24000);
+            } else {
+                console.log('yy自動登陸失敗！');
+                console.log(result.message);
+            }
+        }
+    });
+}
+

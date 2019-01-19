@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="character" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="character" width="590" height="888" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" locked="true">
+		<e:Image source="wutong_json.tips_panel" left="0" right="0" top="0" bottom="0" scale9Grid="183,145,225,86" anchorOffsetY="0"/>
+		<e:Image id="btn_close" source="wutong_json.delete" x="527" y="43"/>
+		<e:Image id="head_img" y="17" source="{data.minerTools.tool}" horizontalCenter="0"/>
+		<e:Group id="list_box" width="465" height="678.66" y="134.99" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0.5">
+		</e:Group>
+		<e:Group id="introduction" width="94" height="46" y="86" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-166">
+			<e:Image source="wenhao_png" left="0" verticalCenter="0"/>
+			<e:Label text="{data.character.introduction}" x="38" size="24" fontFamily="PingFang-SC-Heavy" verticalCenter="0" textColor="0x3c2405"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="group_tips" anchorOffsetY="0" left="0" right="0" top="0" bottom="0" visible="false" locked="true">
+		<e:Rect left="0" right="0" top="0" bottom="0" fillAlpha="0.4"/>
+		<e:Group width="607" height="466" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0">
+			<e:Image source="wutong_json.tips_panel" scaleX="1" scaleY="1" scale9Grid="53,94,511,43" anchorOffsetY="0" left="0" right="0" top="0" bottom="0"/>
+			<e:Image source="{data.tips.panel_head}" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="-206"/>
+			<e:Label id="tips_text" text="" anchorOffsetX="0" width="336" anchorOffsetY="0" height="198" fontFamily="Microsoft YaHei" size="30" lineSpacing="25" verticalCenter="-10" y="157" scaleX="1" scaleY="1" verticalAlign="middle" horizontalCenter="0" textAlign="center" textColor="0x3C2405" x="30"/>
+			<e:Group id="tips_close" width="175" height="61" scaleX="1" scaleY="1" horizontalCenter="-119" bottom="50" x="-8" y="822">
+				<e:Image source="wutong_json.btn_green_1" scaleX="1" scaleY="1" width="175" height="69" horizontalCenter="0" verticalCenter="4"/>
+				<e:Label id="iKnow" fontFamily="Microsoft YaHei" horizontalCenter="0" verticalCenter="-1" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="再想想"/>
+			</e:Group>
+			<e:Group id="btn_service" width="175" height="61" scaleX="1" scaleY="1" horizontalCenter="132" x="243" bottom="50" y="822">
+				<e:Image source="wutong_json.btn_green_1" scaleX="1" scaleY="1" width="175" height="69" horizontalCenter="0" verticalCenter="4"/>
+				<e:Label text="{data.character.dete}" fontFamily="Microsoft YaHei" horizontalCenter="0" verticalCenter="-1" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8"/>
+			</e:Group>
+			<e:Group id="btn_buy" width="175" height="61" scaleX="1" scaleY="1" horizontalCenter="132" x="243" bottom="50" y="822">
+				<e:Image source="wutong_json.btn_green_1" scaleX="1" scaleY="1" width="175" height="69" horizontalCenter="0" verticalCenter="4"/>
+				<e:Label text="{data.character.buy}" fontFamily="Microsoft YaHei" horizontalCenter="0" verticalCenter="-1" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8"/>
+			</e:Group>
+		</e:Group>
+	</e:Group>
+	<e:Group id="group_intro" left="0" right="0" top="0" bottom="0" visible="false">
+		<e:Rect left="0" right="0" top="0" bottom="0" fillAlpha="0.4"/>
+		<e:Group anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" height="479.73" verticalCenter="19">
+			<e:Image source="wutong_json.tips_panel" anchorOffsetY="0" left="0" right="0" top="0" bottom="-121.26999999999998" scale9Grid="119,150,359,65"/>
+			<e:Image source="{data.character.discription}" horizontalCenter="0" top="20"/>
+			<e:Image id="btn_close_intro" source="wutong_json.delete" x="528" y="45.5"/>
+			<e:Group width="421" height="381" y="130" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="13.5">
+				<e:Label text="{data.character.tips_1st}" anchorOffsetX="0" left="0" right="1" textColor="0x3c2405" size="24" top="0" lineSpacing="10"/>
+				<e:Label text="1." anchorOffsetX="0" textColor="0x3C2405" size="24" horizontalCenter="-228.5" top="0"/>
+				<e:Label text="2." anchorOffsetX="0" textColor="0x3C2405" size="24" horizontalCenter="-228" top="102"/>
+				<e:Label text="{data.character.tips_2nd}" anchorOffsetX="0" left="0" right="0" textColor="0x3C2405" size="24" top="102" lineSpacing="10"/>
+				<e:Label text="3." anchorOffsetX="0" textColor="0x3C2405" size="24" horizontalCenter="-228" top="199"/>
+				<e:Label text="{data.character.tips_3rd}" anchorOffsetX="0" left="0" right="0" textColor="0x3C2405" size="24" top="199" lineSpacing="10"/>
+				<e:Label text="4." anchorOffsetX="0" textColor="0x3C2405" size="24" horizontalCenter="-228" top="295"/>
+				<e:Label text="{data.character.tips_4th}" anchorOffsetX="0" left="0" right="0" textColor="0x3C2405" size="24" top="295" lineSpacing="10"/>
+			</e:Group>
+		</e:Group>
+	</e:Group>
+</e:Skin>

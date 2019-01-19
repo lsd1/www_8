@@ -750,7 +750,6 @@
 	}
 	function chat_show_list(){
 		if(user['u_id'] == '') {
-			console.log(12333);
     	    return ;
 		}
 		var obj_chat = $(".chat-list");

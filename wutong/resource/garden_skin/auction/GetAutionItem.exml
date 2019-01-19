@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="getAutionItem" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group_get_item" top="0" bottom="0" left="0" right="0">
+		<e:Rect left="0" right="0" top="0" bottom="0" fillAlpha="0.3"/>
+		<e:Group width="560" height="590" verticalCenter="0" horizontalCenter="0" x="-273" y="166" scaleX="1" scaleY="1">
+			<e:Image anchorOffsetX="0" left="0" right="0" top="0" bottom="0" anchorOffsetY="0" source="wutong_json.frame_green_1" scale9Grid="74,32,444,192"/>
+			<e:Group id="btn_get" width="160" height="54" y="449" anchorOffsetY="0" horizontalCenter="0">
+			<e:Image source="wutong_json.btn_green_1" top="6" bottom="-6" left="0" right="0"/>
+			<e:Label text="{data.getAutionItem.receive}" textColor="0xffe5b8" fontFamily="PingFang-SC" horizontalCenter="0" verticalCenter="2"/>
+			</e:Group>
+			<e:Image source="" y="125" horizontalCenter="0"/>
+			<e:Image id="getEgg" x="57" y="-162" anchorOffsetY="0" height="253" anchorOffsetX="0" width="446" scaleX="1" scaleY="1" source="{data.getAutionItem.getEgg}"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

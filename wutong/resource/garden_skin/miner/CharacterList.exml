@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="characterList" width="473" height="360" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="chara_list" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" left="0" top="0" right="0" bottom="0">
+		<e:Group width="167" height="262" y="21" left="6">
+		<e:Image source="minerV1_json.wsy_2x" x="0" y="0"/>
+		<e:Image id="chara_img" source="" horizontalCenter="0" verticalCenter="0"/>
+		<e:Image id="chara_using" source="{list_data.minerTools.using}" x="-10" y="-7"/>
+		</e:Group>
+		<e:Group width="278" height="182" y="20" anchorOffsetY="0" anchorOffsetX="0" left="195">
+		<e:Image source="minerV1_json.st_2x" x="0" y="0"/>
+		<e:Label id="chara_name" text="" y="-1" fontFamily="DFPHaiBaoW12" textColor="0x3C2405" bold="true" left="20"/>
+		<e:Group width="260" height="38" y="38">
+			<e:Image source="minerV1_json.db_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+			<e:Label fontFamily="PingFang-SC-Medium" size="22" text="{list_data.character.chara_gain}" left="24" verticalCenter="0" textColor="0x3c2405"/>
+			<e:Label id="chara_gain" text="" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" left="134"/>
+		</e:Group>
+		<e:Group width="260" height="38" y="88" x="0">
+			<e:Image source="minerV1_json.db_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+			<e:Label id="chara_durable" text="100" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" x="113.5"/>
+			<e:Label fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" text="{list_data.character.durability}" left="24" verticalCenter="0"/>
+		</e:Group>
+		<e:Group width="260" height="38" y="138" x="0">
+			<e:Image source="minerV1_json.db_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+			<e:Label fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" text="{list_data.character.price}" verticalCenter="0" left="24"/>
+			<e:Label id="chara_price" text="0%" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" left="92"/>
+		</e:Group>
+		</e:Group>
+		<e:Group width="276" height="66" y="220" anchorOffsetX="0" anchorOffsetY="0" left="191">
+		<e:Image id="chara_service" x="1" y="0" source="{list_data.character.replace}"/>
+		<e:Image id="chara_replace" x="141" y="0" source="{list_data.minerTools.service}"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

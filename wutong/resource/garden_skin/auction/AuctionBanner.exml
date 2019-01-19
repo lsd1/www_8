@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="auctionBanner" width="680" height="340" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="img_banner" top="0" bottom="0" left="0" right="0"/>
+	<e:Label x="35" y="258" textColor="0x54350d" size="24" fontFamily="PingFang-SC-Regular" text="{data.auctionBanner.auc_time}"/>
+	<e:Label id="auction_content" text="" x="35" y="302" textColor="0x54350D" size="24" fontFamily="PingFang-SC-Regular"/>
+</e:Skin>

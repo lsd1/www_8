@@ -242,13 +242,13 @@ class memberModel extends Model {
                 "validator" => "username",
                 "message" => "请填写字母、数字、中文、_"
             ),
-            array(
-                "input" => $user_name,
-                "max" => "20",
-                "min" => "3",
-                "validator" => "length",
-                "message" => "用户名长度要在6~20个字符"
-            ),
+//            array(
+//                "input" => $user_name,
+//                "max" => "20",
+//                "min" => "3",
+//                "validator" => "length",
+//                "message" => "用户名长度要在6~20个字符"
+//            ),
             array(
                 "input" => $password,
                 "require" => "true",
@@ -325,9 +325,9 @@ class memberModel extends Model {
             array(
                 "input" => $register_info["username"],
                 "max" => "20",
-                "min" => "6",
+                "min" => "2",
                 "validator" => "length",
-                "message" => "用户名长度要在6~20个字符"
+                "message" => "用户名长度要在2~20个字符"
             ),
             array(
                 "input" => $register_info["password"],
@@ -341,22 +341,23 @@ class memberModel extends Model {
                 "operator" => "==",
                 "to" => $register_info["password"],
                 "message" => "密码与确认密码不相同"
-            ),
-            array(
-                "input" => $register_info["email"],
-                "require" => "true",
-                "validator" => "email",
-                "message" => "电子邮件格式不正确"
-            ),
+            )
+//        ,
+//            array(
+//                "input" => $register_info["email"],
+//                "require" => "true",
+//                "validator" => "email",
+//                "message" => "电子邮件格式不正确"
+//            ),
         );
         $error = $obj_validate->validate();
         if ($error != ''){
             return array('error' => $error);
         }
 
-        if(is_numeric($register_info["username"])) {
-            return array('error' => '用户名不能为纯数字');
-        }
+//        if(is_numeric($register_info["username"])) {
+//            return array('error' => '用户名不能为纯数字');
+//        }
 
         // 验证用户名是否重复
         $check_member_name  = $this->getMemberInfo(array('member_name'=>$register_info['username']));
@@ -370,13 +371,15 @@ class memberModel extends Model {
             return array('error' => '邮箱已存在');
         }
 	
-	// 会员添加
+	    // 会员添加
         $member_info    = array();
 		$member_info['member_id']=$register_info['member_id'];
         $member_info['member_name']     = $register_info['username'];
         $member_info['member_passwd']   = $register_info['password'];
+        $member_info['member_avatar']     = $register_info['member_avatar'];
+        $member_info['member_mobile']     = $register_info['member_mobile'];
         $member_info['member_email']        = $register_info['email'];
-		//添加邀请人(推荐人)会员积分 by 33h ao.com v  5 
+        //添加邀请人(推荐人)会员积分 by 33h ao.com v  5
 		$member_info['inviter_id']	= $register_info['inviter_id'];
 		//33hao 5.2 分销
 		$member_info['invite_one']        = $register_info['invite_one'];
@@ -384,7 +387,6 @@ class memberModel extends Model {
 		$member_info['invite_three']      = $register_info['invite_three'];
         $insert_id  = $this->addMember($member_info);
         if($insert_id) {
-
             $member_info['member_id'] = $insert_id;
             $member_info['is_buy'] = 1;
             process::addprocess('reg');
@@ -409,6 +411,7 @@ class memberModel extends Model {
             $this->beginTransaction();
             $member_info    = array();
             $member_info['member_id']           = $param['member_id'];
+            $member_info['member_avatar']       = $param['member_avatar'];
             $member_info['member_name']         = $param['member_name'];
             $member_info['member_passwd']       = md5(trim($param['member_passwd']));
             $member_info['member_email']        = $param['member_email'];

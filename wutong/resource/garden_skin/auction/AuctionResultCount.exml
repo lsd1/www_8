@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="auctionResultCount" width="680" height="300" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Label y="58" textColor="0x54350d" fontFamily="PingFang-SC-Heavy" size="23" horizontalCenter="0" text="{data.auctionResultCount.the_next_time}"/>
+		<e:Group id="count" width="506" height="109" y="92" anchorOffsetY="0" anchorOffsetX="0" horizontalCenter="0">
+			<e:Image width="47" height="47" x="91" y="32" source="auction_json.time_down_list"/>
+			<e:Image width="47" height="47" x="140" y="32" source="auction_json.time_down_list"/>
+			<e:Image width="47" height="47" x="206" y="32" source="auction_json.time_down_list"/>
+			<e:Image width="47" height="47" x="256" y="32" source="auction_json.time_down_list"/>
+			<e:Image width="47" height="47" x="321" y="32" source="auction_json.time_down_list"/>
+			<e:Image width="47" height="47" x="367" y="32" source="auction_json.time_down_list"/>
+			<e:Label text="0" x="91" y="31" anchorOffsetX="0" width="47" height="47" verticalAlign="middle" textAlign="center"/>
+			<e:Label text="0" x="141" y="31" anchorOffsetX="0" width="47" height="47" verticalAlign="middle" textAlign="center"/>
+			<e:Label text=":" x="172" y="28" anchorOffsetX="0" width="47" height="47" verticalAlign="middle" textAlign="center" textColor="0x3c2405"/>
+			<e:Label text="0" x="206" y="31" anchorOffsetX="0" width="47" height="47" verticalAlign="middle" textAlign="center"/>
+			<e:Label text="0" x="257" y="31" anchorOffsetX="0" width="47" height="47" verticalAlign="middle" textAlign="center"/>
+			<e:Label text=":" x="288" y="29" anchorOffsetX="0" width="47" height="47" verticalAlign="middle" textAlign="center" textColor="0x3c2405"/>
+			<e:Label text="0" x="321" y="31" anchorOffsetX="0" width="47" height="47" verticalAlign="middle" textAlign="center"/>
+			<e:Label text="0" x="368" y="31" anchorOffsetX="0" width="47" height="47" verticalAlign="middle" textAlign="center"/>
+		</e:Group>
+		<e:Group id="group_result" y="227" anchorOffsetY="0" height="33" horizontalCenter="0">
+			<e:Label size="29" textColor="0xb1834e" fontFamily="PingFang-SC-Regular" anchorOffsetX="0" width="131" scaleX="1" scaleY="1" right="-10" verticalCenter="0.030000000000001137" text="{data.auctionResultCount.Auc_results}"/>
+			<e:Label id="resultDate" text="" horizontalCenter="-69" size="29" textColor="0xB1834E" fontFamily="PingFang-SC-Regular" anchorOffsetX="0" width="141" x="161" scaleX="1" scaleY="1" verticalCenter="0.030000000000001137"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="usePayInput" width="150" height="52" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="" left="0" right="0" top="0" bottom="0" source="auction_json.farem_white_3new"/>
+	<e:EditableText id="text_type" width="150" height="52" text="1" fontFamily="PingFang-SC-Heavy" size="30" horizontalCenter="0" verticalCenter="0" textAlign="center" verticalAlign="middle" textColor="0x3c2405"/>
+</e:Skin>

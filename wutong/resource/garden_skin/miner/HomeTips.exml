@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="homeTips" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="pay_tool" width="592" height="556" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_tool" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image y="21" horizontalCenter="0" source="minerV1_json.prompt_cn"/>
+		<e:Label id="tool_explain" text="" y="161" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" width="464" lineSpacing="20" horizontalCenter="0"/>
+		<e:Group id="btn_pay_tools" y="391" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="0.5" verticalAlign="middle" textAlign="center" text="{data.homeTips.buyNow}" size="30" textColor="0xffe5b8"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="pay_goods" width="592" height="556" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_goods" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image y="21" horizontalCenter="0" source="minerV1_json.prompt_cn"/>
+		<e:Label text="{data.homeTips.gain}" y="161" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" width="464" lineSpacing="20" horizontalCenter="0"/>
+		<e:Group id="btn_pay_goods" y="391" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="0.5" verticalAlign="middle" textAlign="center" text="{data.homeTips.goBuy}" size="30" textColor="0xFFE5B8"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="emailInstr" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="email_instr" width="630" height="956" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0">
+		<e:Image scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" source="wutong_json.tips_panel" scale9Grid="88,127,399,119"/>
+		<e:Image id="panel_title"   top="14"  horizontalCenter="0" source="wutong_json.mail_cn"/>
+		<e:Image id="btn_close_instr" source="wutong_json.delete" width="62" height="62" horizontalCenter="286" verticalCenter="-408"/>
+		<e:Label id="title" text="" size="30" verticalAlign="middle" fontFamily="PingFang-SC-Bold" horizontalCenter="-102" verticalCenter="-330" bold="true" textColor="0x3c2405" anchorOffsetX="0" width="271" anchorOffsetY="0" textAlign="left"/>
+		<e:Label id="datatime" text="" fontFamily="PingFang-SC-Medium" verticalCenter="-336" size="24" verticalAlign="middle" right="76" textColor="0x3c2405"/>
+		<e:Label id="datatime_1" text="" fontFamily="PingFang-SC-Medium" verticalCenter="-309" size="24" verticalAlign="middle" right="76" textColor="0x3c2405"/>
+		<e:Group id="content"  anchorOffsetX="0" width="480" anchorOffsetY="0" horizontalCenter="0" top="200">
+
+			<e:Group id="group_img" anchorOffsetY="0" width="480" horizontalCenter="0" y="0">
+				<e:Image id="email_img" source="" top="0" scaleX="1" scaleY="1" bottom="0" left="0" right="0" height="270"/>
+			</e:Group>
+		</e:Group>
+
+
+	</e:Group>
+</e:Skin>

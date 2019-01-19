@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="scrollerRecordsIncome" width="680" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="scrollerRecordsIncome" left="0" right="0" top="0" bottom="0">
+		<e:Group height="170" anchorOffsetX="0" left="0" right="0" bottom="0" anchorOffsetY="0">
+			<e:Group id="go_link" width="610" height="110" y="14" horizontalCenter="0" visible="false" locked="true">
+				<e:Image source="minerV1_json.a_n_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+				<e:Label text="{langData.scrollerRecordsIncome.winding}" fontFamily="PingFang-SC-Medium" textColor="0xffe5b8" horizontalCenter="0" verticalCenter="-4"/>
+			</e:Group>
+			<!--<e:Group id="change_link" width="610" height="110" y="31" horizontalCenter="0" visible="false" locked="true">
+				<e:Image source="minerV1_json.a_n_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+				<e:Label text="{langData.scrollerRecordsIncome.changeVSC}" fontFamily="PingFang-SC-Medium" textColor="0xFFE5B8" horizontalCenter="0.5" verticalCenter="-20"/>
+				<e:Label id="the_link" text="asdfasdfasdfasdfasdfasdf" fontFamily="PingFang-SC-Medium" textColor="0xFFE5B8" horizontalCenter="0.5" verticalCenter="16"/>
+			</e:Group>-->
+			<e:Group id="exchange" width="610" height="110" horizontalCenter="0" x="35" scaleX="1" scaleY="1" verticalCenter="0" visible="false" locked="true">
+				<e:Image source="minerV1_json.a_n_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+				<e:Label fontFamily="PingFang-SC-Medium" textColor="0xFFE5B8" horizontalCenter="0" verticalCenter="-4" text="{langData.scrollerRecordsIncome.exchange_vsc}"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="scroller_box" anchorOffsetY="0" left="0" right="0" bottom="173" top="247">
+
+		</e:Group>
+		<e:Group id="cumulativeText" height="244" anchorOffsetY="0" left="0" right="0" top="0" x="0" y="0" scaleX="1" scaleY="1">
+			<e:Label id="now_income" text="" y="40" fontFamily="PingFang-SC-Bold" textColor="0xF76005" size="48" horizontalCenter="0"/>
+			<e:Label y="100" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" horizontalCenter="0" text="{langData.scrollerRecordsIncome.current}"/>
+			<e:Label id="cumu_income" text="" y="180" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" right="11" size="24"/>
+			<e:Rect height="1" fillColor="0xd9b078" left="0" right="0" bottom="5"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="creationList" width="680" height="500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="creationList" left="0" right="0" top="0" bottom="0" anchorOffsetX="0">
+		<e:Group id="gender_group" width="200" height="50" x="52" y="32">
+			<e:Image id="gender" source="" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+			<e:Label id="g_text" text="" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="26" textAlign="center" verticalAlign="middle" horizontalCenter="3" verticalCenter="0"/>
+		</e:Group>
+
+		<e:Image id="ph_img" x="82" y="126" scaleX="0.8" scaleY="0.8" source="" anchorOffsetY="0" height="242" anchorOffsetX="0" width="182"/>
+		<e:Label y="30" textColor="0xa07b49" fontFamily="PingFang SC" size="24" left="314" text="{langData.creationList.num}"/>
+		<e:Label y="102" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="314" text="{langData.creationList.life_limit}"/>
+
+		<e:Label y="168" textColor="0xA07B49" fontFamily="PingFang SC" size="24" text="{langData.creationList.starting_price}" left="315"/>
+		<e:Label y="238" textColor="0xA07B49" fontFamily="PingFang SC" size="24" text="{langData.creationList.high_bid}" left="316"/>
+		<e:Label id="ph_num" text="" y="31" textColor="0x3c2405" fontFamily="PingFang SC" size="24" left="401"/>
+		<e:Label id="ph_xp" text="" y="102" textColor="0x3C2405" fontFamily="PingFang SC" size="24" left="436"/>
+
+		<e:Label id="start_price" text="" y="168" textColor="0x3C2405" fontFamily="PingFang SC" size="24" left="432"/>
+		<e:Label id="high_price" text="" y="231" fontFamily="PingFang SC" size="34" textColor="0xf76005" left="434"/>
+		<e:Label id="time_down" text="" y="409" fontFamily="PingFang-SC-Medium" textColor="0xa07b49" size="18" horizontalCenter="-185"/>
+		<e:Label y="410" fontFamily="PingFang-SC-Medium" textColor="0xA07B49" size="18" horizontalCenter="-188" text=""/>
+		<e:Group id="btn_go_pay_again" width="170" height="65" x="319" y="305" visible="false">
+			<e:Image source="wutong_json.btn_green" x="0" y="0" scaleX="1" scaleY="1"/>
+			<e:Label y="14" textColor="0xFFE5B8" fontFamily="PingFang-SC-Medium" scaleX="1" scaleY="1" text="{langData.creationList.bid_again}" horizontalCenter="0"/>
+		</e:Group>
+		<e:Group id="btn_go_pay" width="170" height="65" x="319" y="305">
+			<e:Image source="wutong_json.btn_green" x="0" y="0" scaleX="1" scaleY="1"/>
+			<e:Label textColor="0xffe5b8" fontFamily="PingFang-SC-Medium" scaleX="1" scaleY="1" horizontalCenter="1" textAlign="center" text="{langData.creationList.bid}" verticalCenter="-3.5"/>
+		</e:Group>
+		<e:Group id="the_first" width="140" height="55" x="334" y="400">
+			<e:Image source="auction_json.auc_success" x="0" y="0"/>
+			<e:Label y="0" fontFamily="PingFang-SC-Bold" size="20" textColor="0xf76005" horizontalCenter="0" text="{langData.creationList.leading}"/>
+		</e:Group>
+
+		<e:Rect height="1" fillColor="0xd9b078" strokeColor="0xd9b078" horizontalCenter="0" width="600" verticalCenter="227"/>
+		<e:Image source="auction_json.ty" x="89" y="349"/>
+	</e:Group>
+</e:Skin>

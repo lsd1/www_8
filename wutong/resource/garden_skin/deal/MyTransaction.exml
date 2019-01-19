@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="myTransaction" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="myTransaction" left="0" right="0" top="0" bottom="0">
+		<e:Image source="auction_json.auc_bj" scale9Grid="45,18,659,555" anchorOffsetY="0" top="0" bottom="0" left="0" right="0"/>
+		<e:Group id="auc_nav" width="662" height="72" horizontalCenter="0" top="110">
+			<e:Image source="auction_json.auc_nav_tow" left="0" right="0" top="0" bottom="0"/>
+			<e:Group id="bid_money" height="72" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" left="0" right="330">
+			<e:Label fontFamily="PingFang-SC-Medium" size="24" textColor="0x3c2405" horizontalCenter="0" verticalCenter="0" text="{data.myTransaction.buy_history}"/>
+			<e:Image id="bid_one" source="auction_json.auc_curr_col" verticalCenter="0" left="0" right="0"/>
+			</e:Group>
+			<e:Group id="shelf_money" width="330" height="72" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="166" verticalCenter="0">
+			<e:Label fontFamily="PingFang-SC-Medium" size="24" textColor="0x3C2405" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" text="{data.myTransaction.shelf_record}"/>
+				<e:Image id="shelf_one" source="auction_json.auc_curr_col" horizontalCenter="0" verticalCenter="0" x="-166" y="1" scaleX="1" scaleY="1" visible="false"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="list_group" anchorOffsetY="0" top="196" bottom="90" width="680" horizontalCenter="0">
+		</e:Group>
+		<e:Group id="auc_top" anchorOffsetY="0" top="0" left="0" right="0" height="82">
+		<e:Image source="auction_json.auc_top" scaleX="1" scaleY="1" top="-5" left="0" right="0" bottom="-3" scale9Grid="178,11,479,68"/>
+
+			<e:Image y="23" left="199" source="{data.myTransaction.img_head}"/>
+			<e:Group id="btn_go_back" width="150" height="78" anchorOffsetY="0" left="0" top="0">
+				<e:Image source="auction_json.auc_return" scaleX="1" scaleY="1" horizontalCenter="-6" verticalCenter="-2"/>
+			</e:Group>
+			<e:Label id="shelf_detail" textColor="0x3c2405" fontFamily="PingFang-SC-Medium" size="30" bold="true" right="44" y="26" x="644" scaleX="1" scaleY="1" text="{data.myTransaction.shelf}"/>
+		</e:Group>
+		<e:Group id="auc_bottom" height="131" bottom="0" left="0" right="0">
+		<e:Image source="auction_json.auc_bottom" scaleX="1" scaleY="1" bottom="0" height="131" left="0" right="0"/>
+		<e:Group id="swap" width="150" height="130" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" bottom="0" left="133">
+			<e:Label id="cre_text" size="22" fontFamily="PingFang-SC-Medium" scaleX="1" scaleY="1" textColor="0xa07b49" horizontalCenter="-2" verticalCenter="34" text="{data.myTransaction.exchange}"/>
+			<e:Image id="cre_img"  horizontalCenter="-2" verticalCenter="-21" source="transaction_json.tran_goly"/>
+		</e:Group>
+
+		<e:Group id="auc" width="150" height="131" anchorOffsetY="0" scaleX="1" scaleY="1" bottom="0" right="163">
+			<e:Image id="frame" source="auction_json.auc_bottom_icon" scaleX="1" scaleY="1" horizontalCenter="5" verticalCenter="-38" x="5" y="-46"/>
+			<e:Image id="auc_img" scaleX="1.5" scaleY="1.5" horizontalCenter="2" verticalCenter="-38" source="transaction_json.tran_play"/>
+			<e:Label id="auc_text" fontFamily="PingFang-SC-Medium" size="22" scaleX="1" scaleY="1" textColor="0x3c2405" horizontalCenter="0" verticalCenter="33" text="{data.myTransaction.my_transaction}"/>
+		</e:Group>
+		</e:Group>
+	</e:Group>
+	<e:Group id="point" left="0" right="0" top="0" bottom="0" visible="false">
+		<e:Rect left="0" right="0" top="0" bottom="0" fillAlpha="0.5"/>
+		<e:Group width="590" height="360" anchorOffsetY="0" anchorOffsetX="0" horizontalCenter="0" verticalCenter="0">
+			<e:Image source="wutong_json.frame_green_1" scale9Grid="141,94,297,84" anchorOffsetY="0" left="0" right="0" top="0" bottom="0"/>
+			<e:Label textColor="0x3C2405" fontFamily="PingFang-SC-Medium" anchorOffsetX="0" width="358" anchorOffsetY="0" height="71" top="60" textAlign="center" horizontalCenter="0" text="{data.myTransaction.remove_props}"/>
+			<e:Group id="btn_cancel" width="170" height="65" x="83" y="242">
+				<e:Image source="wutong_json.btn_green" x="0" y="0" scaleX="1" scaleY="1"/>
+				<e:Label textColor="0xFFE5B8" fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="0" text="{data.myTransaction.cancel}"/>
+			</e:Group>
+			<e:Group id="btn_dete" width="170" height="65" bottom="54" horizontalCenter="110">
+				<e:Image source="wutong_json.btn_green" x="0" y="0" scaleX="1" scaleY="1"/>
+				<e:Label textColor="0xFFE5B8" fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="0" text="{data.myTransaction.dete}"/>
+			</e:Group>
+		</e:Group>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="goldLogList" width="690" height="123" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Label id="logText" text="兑换金币" fontFamily="PingFang-SC-Medium" top="20" x="43" textColor="0x3c2405"/>
+	<e:Label id="logTime" text="2018-11-12 11:11" fontFamily="PingFang-SC-Medium" top="67" x="43" textColor="0xa07b49"/>
+	<e:Label id="logChange" text="+180" fontFamily="PingFang-SC-Medium" right="17" y="20" textColor="0x3c2405"/>
+	<e:Rect height="1" fillColor="0xd9b078" anchorOffsetX="0" anchorOffsetY="0" left="0" right="0" bottom="2"/>
+</e:Skin>

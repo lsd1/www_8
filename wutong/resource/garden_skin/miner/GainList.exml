@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="gainList" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="321" height="30">
+	<e:Label id="the_text" text="凤凰拥有者x1" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" anchorOffsetY="0" textAlign="center" left="0" right="0" top="0"/>
+</e:Skin>

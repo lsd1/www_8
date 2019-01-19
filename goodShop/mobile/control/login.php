@@ -64,7 +64,7 @@ class loginControl extends mobileHomeControl {
     /**
      * 登录生成token
      */
-    private function _get_token($member_id, $member_name, $client) {
+    private function _get_token($member_id, $member_name, $client, $token = null) {
         $model_mb_user_token = Model('mb_user_token');
 
         //重新登录后以前的令牌失效
@@ -76,7 +76,7 @@ class loginControl extends mobileHomeControl {
 
         //生成新的token
         $mb_user_token_info = array();
-        $token = md5($member_name . strval(TIMESTAMP) . strval(rand(0,999999)));
+        $token = $token ? $token : md5($member_name . strval(TIMESTAMP) . strval(rand(0,999999)));
         $mb_user_token_info['member_id'] = $member_id;
         $mb_user_token_info['member_name'] = $member_name;
         $mb_user_token_info['token'] = $token;
@@ -165,5 +165,64 @@ class loginControl extends mobileHomeControl {
             output_error($member_info['error']);
         }
 
+    }
+
+    /**
+     * yy自动登陆
+     */
+    public function yy_loginOp(){
+        $token = $_POST['token'];
+        $member_id = $_POST['member_id'];
+        //获取用户信息
+        $model_member = Model('member');
+        $model_mb_user_token = Model('mb_user_token');
+        $token_info = $model_mb_user_token->getMbUserTokenInfoById($member_id);
+
+        //更新会员信息
+        if(!$token_info){
+            //不存在用户信息则去自动注册一个
+            $register_info[] = array();
+            $pwd = "8ab59db42dfc5bb98cb532d7ecde0b37";
+            $register_info['member_id'] = $_POST['member_id'];
+            $register_info['username'] = $_POST['member_name'];
+            $register_info['password'] = $pwd;
+            $register_info['password_confirm'] = $pwd;
+            $register_info['member_mobile'] = $_POST['member_mobile'];
+            $register_info['email'] = $_POST['member_mobile'];
+            $register_info['member_avatar'] = $_POST['member_avatar'];
+            $register_info['member_mobile_bind'] = 1;
+            //添加奖励积分 v5.1.1
+            $register_info['inviter_id'] = 0;
+            //33Hao 5.2.1 分销
+            $register_info['invite_one'] = 0;
+            $register_info['invite_two'] = 0;
+            $register_info['invite_three'] = 0;
+            $member_info = $model_member->register($register_info);
+            //生成令牌记录
+            $this->_get_token($member_info['member_id'], $member_info["member_name"], $_POST['client'], $token);
+        }else{
+            //同步token
+            if($token_info['token'] !== $token){
+                $model_mb_user_token->updateMemberToken($member_id, $token);
+            }
+
+            $member_info = $model_mb_user_token->getMbUserTokenInfoByToken($token);
+
+            //同步用户信息
+            $update = [];
+            if($member_info["member_avatar"] !== $_POST["member_avatar"]){
+                $update["member_avatar"] = $_POST["member_avatar"];
+            }else if($member_info["member_mobile"] !== $_POST["member_mobile"]){
+                $update["member_mobile"] = $_POST["member_mobile"];
+            }else if($member_info["member_name"] !== $_POST["member_name"]){
+                $update["member_name"] = $_POST["member_name"];
+            }
+            if($update !== []){
+                $model_member->editMember(array("member_id"=>$member_id), $update);
+                $member_info = $model_member->getMemberInfoByID($member_id);
+            }
+        }
+
+        output_data(array('key' => $token, 'userid'=> $member_info['member_id'], 'username' => $member_info['member_name']));
     }
 }

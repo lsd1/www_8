@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="changeNameConfirm" width="590" height="341" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="wutong_json.frame_green_1" top="0" bottom="0" left="0" right="0" scale9Grid="92,57,406,125"/>
+	<e:Group id="wait" width="166" height="60" x="99" y="221">
+		<e:Image source="wutong_json.btn_green" left="0" right="0" top="0" bottom="0"/>
+		<e:Label text="稍后" textAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="-3" fontFamily="PingFang-SC-Medium" textColor="0xffe5b8"/>
+	</e:Group>
+	<e:Group id="confirm" width="166" height="60" x="324" y="220">
+		<e:Image source="wutong_json.btn_green" left="0" right="0" top="0" bottom="0"/>
+		<e:Label text="确认" textAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="-3" fontFamily="PingFang-SC-Medium" textColor="0xFFE5B8"/>
+	</e:Group>
+	<e:Label text="是否花费XX储值修改昵称?" y="61" anchorOffsetX="0" width="448" anchorOffsetY="0" height="103" verticalAlign="middle" textAlign="center" horizontalCenter="0" textColor="0x3c2405" fontFamily="PingFang-SC-Medium"/>
+</e:Skin>

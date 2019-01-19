@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="myShelfHistoryList" width="680" height="490" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="myShelfHistoryList" left="0" right="0" top="0" bottom="0" anchorOffsetX="0" anchorOffsetY="0" height="0" locked="true" visible="false">
+		<e:Group id="gender_group" width="200" height="50" x="52" y="32">
+			<e:Image id="gender" source="" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+			<e:Label id="g_text" text="" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="26" textAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="0"/>
+		</e:Group>
+
+		<e:Image id="ph_img" x="61" scaleX="0.8" scaleY="0.8" source="" top="130"/>
+		<e:Label y="33" textColor="0xA07B49" fontFamily="PingFang SC" size="24" text="{langData.myShelfHistoryList.num}" left="323"/>
+		<e:Label id="life_txt" y="113" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="325" text=""/>
+
+		<e:Label y="192" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="323" text="{langData.myShelfHistoryList.price}"/>
+
+		<e:Label id="ph_num" text="MGE016498545" y="32" textColor="0x3C2405" fontFamily="PingFang SC" size="24" left="425"/>
+		<e:Label id="ph_xp" text="1000" y="112" textColor="0x3C2405" fontFamily="PingFang SC" size="24" left="458"/>
+
+		<e:Label id="high_price" text="" y="187" fontFamily="PingFang SC" size="34" textColor="0xF76005" left="414"/>
+		<e:Group id="status_group" width="140" height="55" x="340" y="278" anchorOffsetY="0" visible="false">
+			<e:Image id="status_img" y="0" x="0" source="auction_json.auc_lose"/>
+			<e:Label id="status_text" text="" y="3" fontFamily="PingFang-SC-Bold" size="20" textColor="0xa07b49" horizontalCenter="0"/>
+		</e:Group>
+
+		<e:Group id="btn_off" width="170" height="65" x="327" y="273">
+			<e:Image source="wutong_json.btn_green" x="0" y="0"/>
+			<e:Label y="13" textColor="0xFFE5B8" fontFamily="PingFang-SC-Medium" scaleX="1" scaleY="1" horizontalCenter="-2" textAlign="center" verticalAlign="middle" text="{langData.myShelfHistoryList.drop_off}"/>
+		</e:Group>
+		<e:Rect height="1" fillColor="0xD9B078" strokeColor="0xD9B078" width="600" horizontalCenter="0" verticalCenter="217"/>
+		<e:Group width="281" height="40" x="325" y="380" anchorOffsetY="0" anchorOffsetX="0">
+			<e:Label id="shelf_time" text="05.25 14:25" x="15" y="10" textColor="0xa07b49" fontFamily="PingFang-SC-Bold" size="18"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="wt_group" left="0" right="0" top="0" bottom="0" anchorOffsetX="0" anchorOffsetY="0" height="0" locked="true">
+		<e:Group width="200" height="50" x="55" y="32">
+			<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" source="auction_json.auc_n_u"/>
+			<e:Label text="梧桐果" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="26" textAlign="center" verticalAlign="middle" horizontalCenter="0" verticalCenter="0"/>
+		</e:Group>
+		<e:Image x="80.8" scaleX="0.8" scaleY="0.8" top="136" source="wtg_smart_png"/>
+		<e:Label y="33" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="312" text="名称"/>
+		<e:Label y="113" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="312" text="数量"/>
+		<e:Label y="193" textColor="0xA07B49" fontFamily="PingFang SC" size="24" left="312" text="{langData.transactionList.price}"/>
+		<e:Label id="wt_name" text="梧桐果" y="31" textColor="0x3C2405" fontFamily="PingFang SC" size="24" left="401"/>
+		<e:Label id="wt_num" text="1000" y="112" textColor="0x3C2405" fontFamily="PingFang SC" size="24" left="425"/>
+		<e:Label id="wt_price" text="" y="188" fontFamily="PingFang SC" size="34" textColor="0xF76005" left="401"/>
+		<e:Group id="wt_status_group" width="140" height="55" x="340" y="278" anchorOffsetY="0" visible="false">
+		<e:Image id="wt_status_img" y="0" x="0" source="auction_json.auc_lose"/>
+		<e:Label id="wt_status_text" text="" y="3" fontFamily="PingFang-SC-Bold" size="20" textColor="0xA07B49" horizontalCenter="0"/>
+		</e:Group>
+		<e:Group id="btn_off_wt" width="170" height="65" x="327" y="273">
+		<e:Image source="wutong_json.btn_green" x="0" y="0"/>
+		<e:Label y="13" textColor="0xFFE5B8" fontFamily="PingFang-SC-Medium" scaleX="1" scaleY="1" horizontalCenter="-2" textAlign="center" verticalAlign="middle" text="{langData.myShelfHistoryList.drop_off}"/>
+		</e:Group>
+		<e:Rect height="1" fillColor="0xD9B078" strokeColor="0xD9B078" width="600" horizontalCenter="0" verticalCenter="217"/>
+		<e:Group width="281" height="40" x="325" y="380" anchorOffsetY="0" anchorOffsetX="0">
+		<e:Label id="wt_shelf_time" text="05.25 14:25" x="15" y="10" textColor="0xA07B49" fontFamily="PingFang-SC-Bold" size="18"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

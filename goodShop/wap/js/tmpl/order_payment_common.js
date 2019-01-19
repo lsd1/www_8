@@ -1,4 +1,6 @@
 var key = getCookie('key');
+var token = getCookie('token');
+var userid = getCookie('userid');
 var password,rcb_pay,pd_pay,payment_code;
  // 现在支付方式
  function toPay(pay_sn,act,op) {
@@ -161,15 +163,19 @@ var password,rcb_pay,pd_pay,payment_code;
                      }
                      // 验证支付密码是否正确
                      $.ajax({
-                         type:'post',
-                         url:ApiUrl+'/index.php?act=member_buy&op=check_pd_pwd',
-                         dataType:'json',
-                         data:{key:key,password:password},
+                         headers: {
+                             token: token
+                         },
+                         contentType: "application/json; charset=utf-8",
+                         data: JSON.stringify({userId:userid,payWord:password}),
+                         type: 'POST',
+                         processData: false,
+                         url:YyApiUrl + '/user-api/settings/checkPayWord',
                          success:function(result){
-                             if (result.datas.error) {
+                             if (result.code == 501) {
                                  $.sDialog({
                                      skin:"red",
-                                     content:result.datas.error,
+                                     content:result.message,
                                      okBtn:false,
                                      cancelBtn:false
                                  });

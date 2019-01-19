@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="detail" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group top="0" bottom="0" left="0" right="0">
+		<e:Image source="auction_json.auc_bj" top="0" bottom="0" left="0" right="0" scale9Grid="141,0,488,600"/>
+
+		<e:Scroller anchorOffsetX="0" bottom="0" width="662" anchorOffsetY="0" horizontalCenter="0" top="0">
+			<e:Group anchorOffsetY="0">
+				<e:Group height="664" anchorOffsetY="0" left="0" right="0" y="86">
+					<e:Group id="gender_group" width="200" height="50" y="47" horizontalCenter="0">
+						<e:Image id="gender" source="" horizontalCenter="0" verticalCenter="0"/>
+						<e:Label id="g_text" text="" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="26" textAlign="center" verticalAlign="middle" horizontalCenter="10.5" verticalCenter="0"/>
+					</e:Group>
+					<e:Label id="ph_name_1" text="" y="484" horizontalCenter="0" textColor="0x3c2405" fontFamily="PingFang-SC-Medium" size="35" textAlign="left"/>
+					<e:Image id="ph_img" y="122" horizontalCenter="46" source=""/>
+					<e:Group id="group_xp" width="340" height="31" y="559" anchorOffsetY="0" anchorOffsetX="0" horizontalCenter="0">
+						<e:Group top="0" anchorOffsetX="0" width="252" right="0">
+							<e:Image id="ph_xp_next" source="auction_json.smt_d_2x" right="0" top="0" scaleX="1" scaleY="1" bottom="0" left="0"/>
+							<e:Image id="ph_xp_now" source="auction_json.smt_h_2x" top="4" width="0" y="-4" scaleX="1" scaleY="1" left="4"/>
+							<e:Label id="ph_xp_desc" text="0/0" height="28" verticalAlign="middle" size="20" width="136" textAlign="right" top="0" textColor="0x301300" right="14" x="248" y="-8" scaleX="1" scaleY="1"/>
+						</e:Group>
+						<e:Image source="{data.detailTs.lifeTitle}" left="0" top="4"/>
+					</e:Group>
+					<e:Image id="egg_img" source="auction_json.csd_2x" y="168" scaleX="0.9" scaleY="0.9" horizontalCenter="0" visible="false"/>
+					<e:Label id="egg_status" text="" y="489" textColor="0xa07b49" size="24" fontFamily="PingFang-SC-Medium" textAlign="center" visible="false"/>
+					<e:Label id="status_count" text="" y="532" fontFamily="PingFang-SC-Medium" size="24" textColor="0xa07b49" horizontalCenter="0" visible="false"/>
+					<e:Rect height="1" left="0" right="0" fillColor="0xd9b078" bottom="44"/>
+				</e:Group>
+				<e:Group id="scroller_group" height="312" y="720" anchorOffsetY="0" left="0" right="0">
+					<e:Image source="{data.detailTs.ph_detail}" left="10" top="20"/>
+					<e:Label text="{data.detailTs.nick_name}" x="10" y="122" textColor="0xa07b49" size="24"/>
+
+					<e:Label id="ph_name_2" text="" x="100" y="122" textColor="0xA07B49" bold="true" size="24"/>
+					<e:Label text="{data.detailTs.ph_num}" x="10" y="170" textColor="0xA07B49" size="24"/>
+					<e:Label id="ph_num" text="" x="100" y="170" textColor="0xA07B49" size="24"/>
+
+					<e:Image id="change_name" source="auction_json.bj_2x" x="280" y="122" visible="false"/>
+
+					<e:Group id="group_from" x="10" y="220" anchorOffsetX="0" anchorOffsetY="0">
+						<e:Label id="ph_from" text="{data.detailTs.ph_from}" x="91" textColor="0xA07B49" scaleX="1" scaleY="1" size="24"/>
+						<e:Label id="ph_from_title" text="{data.detailTs.ph_from_title}" x="0" textColor="0xA07B49" scaleX="1" scaleY="1" size="24"/>
+					</e:Group>
+					<e:Rect height="1" left="0" right="0" fillColor="0xD9B078" x="0" scaleX="1" scaleY="1" bottom="37"/>
+					<e:Image left="10" source="{data.detailTs.ph_log}" top="332" x="10" y="315" scaleX="1" scaleY="1"/>
+				</e:Group>
+                <e:Group id="group_log" anchorOffsetY="0" right="0" height="287" y="1020" left="0">
+
+
+				</e:Group>
+			</e:Group>
+		</e:Scroller>
+		<e:Group id="group_top" left="0" right="0" top="0">
+			<e:Image source="auction_json.auc_top" scaleX="1" scaleY="1" top="-6" left="0" right="0" scale9Grid="203,11,455,68"/>
+			<e:Group id="back" width="120" height="70" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="-4" left="12">
+				<e:Image source="auction_json.auc_return" left="30" x="30.5" scaleX="1" scaleY="1" verticalCenter="-1.5" y="17.5"/>
+			</e:Group>
+
+			<e:Image source="{data.detailTs.page_title}" verticalCenter="0" left="199"/>
+		</e:Group>
+
+	</e:Group>
+</e:Skin>

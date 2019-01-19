@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="myAuction" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="myAuction" left="0" right="0" top="0" bottom="0">
+		<e:Image source="auction_json.auc_bj" scale9Grid="45,18,659,555" anchorOffsetY="0" top="0" bottom="0" left="0" right="0"/>
+		<e:Group id="auc_nav" width="662" height="72" horizontalCenter="0" top="100">
+			<e:Image source="auction_json.auc_nav_tow" left="0" right="0" top="0" bottom="0"/>
+			<e:Group id="bid_money" height="72" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" left="0" right="0">
+			<e:Label text="{data.myAuction.bid_record}" fontFamily="PingFang-SC-Medium" size="24" textColor="0x3c2405" horizontalCenter="0" verticalCenter="0"/>
+			<e:Image id="bid_one" source="auction_json.auc_curr_col" verticalCenter="0" left="0" right="0"/>
+			</e:Group>
+			<e:Group id="shelf_money" width="330" height="72" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="166" verticalCenter="0" locked="true" visible="false">
+			<e:Label text="上架记录" fontFamily="PingFang-SC-Medium" size="24" textColor="0x3C2405" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+				<e:Image id="shelf_one" source="auction_json.auc_curr_col" horizontalCenter="0" verticalCenter="0" x="-166" y="1" scaleX="1" scaleY="1" visible="false"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="list_group" anchorOffsetY="0" left="35" right="35" top="190" bottom="96"/>
+		<e:Group id="auc_top" anchorOffsetY="0" top="0" left="0" right="0" height="82">
+		<e:Image source="auction_json.auc_top" scaleX="1" scaleY="1" top="-5" left="0" right="0" bottom="-3"/>
+
+			<e:Image id="head_img" horizontalCenter="-106" y="23" source="{data.myAuction.head_img}"/>
+			<e:Group id="btn_go_back" width="150" height="78" anchorOffsetY="0" left="0" top="0">
+				<e:Image source="auction_json.auc_return" scaleX="1" scaleY="1" horizontalCenter="-6" verticalCenter="-2"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="auc_bottom" height="131" bottom="0" left="0" right="0">
+		<e:Image source="auction_json.auc_bottom" scaleX="1" scaleY="1" bottom="0" height="131" left="0" right="0"/>
+		<e:Group id="cre" width="150" height="130" scaleX="1" scaleY="1" anchorOffsetX="0" anchorOffsetY="0" bottom="0" left="133">
+			<e:Label id="cre_text" size="22" fontFamily="PingFang-SC-Medium" scaleX="1" scaleY="1" textColor="0xa07b49" horizontalCenter="-2" verticalCenter="34" text="{data.myAuction.crea_time}"/>
+			<e:Image id="cre_img" source="auction_json.auc_sz"  horizontalCenter="-2" verticalCenter="-21"/>
+		</e:Group>
+
+		<e:Group id="auc" width="150" height="131" anchorOffsetY="0" scaleX="1" scaleY="1" bottom="0" right="163">
+			<e:Image id="frame" source="auction_json.auc_bottom_icon" scaleX="1" scaleY="1" horizontalCenter="5" verticalCenter="-38" x="5" y="-46"/>
+			<e:Image id="auc_img" source="auction_json.auc_cz" scaleX="1.5" scaleY="1.5" horizontalCenter="2" verticalCenter="-38"/>
+			<e:Label id="auc_text" fontFamily="PingFang-SC-Medium" size="22" scaleX="1" scaleY="1" textColor="0x3c2405" horizontalCenter="0" verticalCenter="33" text="{data.myAuction.my_auc}"/>
+		</e:Group>
+		</e:Group>
+	</e:Group>
+</e:Skin>

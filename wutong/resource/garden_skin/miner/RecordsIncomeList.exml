@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="recordsIncomeList" width="640" height="120" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="the_content" left="0" right="0" top="0" bottom="0" x="0" y="0" scaleX="1" scaleY="1">
+		<e:Label id="txt_name" text="" y="28" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" left="47"/>
+		<e:Label id="txt_timer" text="" y="64" fontFamily="PingFang-SC-Medium" textColor="0xA07B49" left="47"/>
+		<e:Label id="txt_num" text="" y="28" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" right="31"/>
+	</e:Group>
+</e:Skin>

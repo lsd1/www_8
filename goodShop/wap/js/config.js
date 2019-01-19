@@ -4,6 +4,7 @@ var pagesize = 10;
 var WapSiteUrl = "http://"+window.location.host+"/wap";//"http://v5.33hao.com/wap";
 var IOSSiteUrl = "http://"+window.location.host+"/app.ipa";//"http://v5.33hao.com/app.ipa";
 var AndroidSiteUrl = "http://"+window.location.host+"/app.apk";//"http://v5.33hao.com/app.apk";
+var YyApiUrl = "http://192.168.0.120:8090";
 
 // auto url detection
 (function() {

@@ -1,4 +1,9 @@
 $(function(){
+    $.sDialog({skin: "red", content: '请先登陆APP', okBtn: false, cancelBtn: false});
+    setTimeout(function () {
+        window.location.href = WapSiteUrl + '/index.html';
+    },2000);
+    return false;
     var key = getCookie('key');
     if (key) {
 		delCookie('username');

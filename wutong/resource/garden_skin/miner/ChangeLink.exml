@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="changeLink" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="get_code" width="592" height="556" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_code" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image y="21" horizontalCenter="0" source="{data.changeLink.change_img}"/>
+		<e:Label text="{data.changeLink.address_mobile}" x="81" y="143" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" width="430"/>
+		<e:Group width="424" height="58" x="78" y="260">
+		<e:Image source="auction_json.auc_fra" x="0" y="0" anchorOffsetX="0" width="424" anchorOffsetY="0" height="58" scale9Grid="8,8,326,40" scaleX="1" scaleY="1"/>
+		<e:EditableText id="code_input" width="235" height="58" text="" x="20" y="0" verticalAlign="middle" anchorOffsetX="0" fontFamily="PingFang-SC-Medium" textColor="0xb1834e" prompt="{data.changeLink.enter_code}" promptColor="0xb1834e"/>
+			<e:Group id="btn_getCode" width="170" height="65" x="258" y="-1">
+				<e:Image x="0" y="0" source="wutong_json.btn_green"/>
+				<e:Label id="btn_get_txt" text="{data.changeLink.get_code}" y="16" fontFamily="PingFang-SC-Medium" size="29" textColor="0xffe5b8" horizontalCenter="0.5"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="btn_push_code" y="391" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="1.5" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.changeLink.submit}" size="30"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="wallet_address" width="592" height="556" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_address" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image y="21" horizontalCenter="0" source="{data.changeLink.change_img}"/>
+		<e:Label text="{data.changeLink.bind_VSC}" x="81" y="143" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" width="430"/>
+		<e:Group width="424" height="58" x="78" y="260">
+		<e:Image source="auction_json.auc_fra" x="0" y="0" anchorOffsetX="0" width="424" anchorOffsetY="0" height="58" scale9Grid="8,8,326,40" scaleX="1" scaleY="1"/>
+		<e:EditableText id="address_input" width="401" height="58" text="" x="20" y="0" verticalAlign="middle" anchorOffsetX="0" fontFamily="PingFang-SC-Medium" textColor="0xb1834e" size="24" prompt="{data.changeLink.enter_VSC}" promptColor="0xb1834e"/>
+		</e:Group>
+		<e:Group id="btn_wallet" y="391" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="0" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.changeLink.change}"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="go_pay" width="592" height="556" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_pay" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image y="21" horizontalCenter="0" source="{data.changeLink.change_img}"/>
+		<e:Label id="the_dec" text="" x="87" y="170" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" width="430"/>
+		<e:Group id="btn_confrim" y="391" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="0" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.changeLink.change}"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="pay_status" width="592" height="556" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close_status" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image y="21" horizontalCenter="0" source="{data.changeLink.change_img}"/>
+		<e:Label id="status_txt" text="" x="87" y="170" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" anchorOffsetX="0" width="430"/>
+		<e:Group id="btn_status_confrim" y="391" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="0" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.changeLink.determine}"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

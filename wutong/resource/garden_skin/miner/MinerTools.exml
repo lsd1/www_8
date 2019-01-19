@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="minerTools" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="theTools" width="590" height="888" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="-64.5">
+		<e:Image source="wutong_json.tips_panel" left="0" right="0" top="0" bottom="0" scale9Grid="183,145,225,86" anchorOffsetY="0"/>
+		<e:Image id="btn_close_theTool" source="wutong_json.delete" x="536" y="50.5"/>
+
+
+
+
+		<e:Image id="head_img" y="17" source="{data.minerTools.tool}" horizontalCenter="0"/>
+		<e:Group width="465" height="678.66" y="134.99" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0.5">
+			<e:Group id="now_list" width="465" height="360" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" verticalCenter="-159" horizontalCenter="0">
+				<e:Group width="167" height="262" y="21" left="6">
+				<e:Image source="minerV1_json.wsy_2x" x="0" y="0"/>
+				<e:Image id="now_img" source="" horizontalCenter="0" verticalCenter="0"/>
+				<e:Image source="{data.minerTools.using}" x="-10" y="-7"/>
+				</e:Group>
+				<e:Group width="278" height="182" y="20" anchorOffsetY="0" anchorOffsetX="0" left="195">
+				<e:Image source="minerV1_json.st_2x" x="0" y="0"/>
+				<e:Label id="now_name" text="" y="-1" fontFamily="DFPHaiBaoW12" textColor="0x3C2405" bold="true" left="20"/>
+				<e:Group width="260" height="38" y="38">
+					<e:Image source="minerV1_json.db_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+					<e:Label text="{data.minerTools.durability}" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" right="141"/>
+					<e:Label id="now_duration" text="300" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" left="119"/>
+				</e:Group>
+				<e:Group width="260" height="38" y="88" x="0">
+					<e:Image source="minerV1_json.db_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+					<e:Label id="now_useTime" text="" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" x="139"/>
+					<e:Label text="{data.minerTools.length}" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" right="121"/>
+				</e:Group>
+				<e:Group width="260" height="38" y="138" x="0">
+					<e:Image source="minerV1_json.db_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+					<e:Label id="the_now_type" text="{data.minerTools.improve}" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" right="119"/>
+					<e:Label id="now_addWeight" text="0%" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" left="141"/>
+				</e:Group>
+				</e:Group>
+				<e:Group width="276" height="66" y="220" anchorOffsetX="0" anchorOffsetY="0" left="191">
+				<e:Image id="service" source="{data.minerTools.service}" x="1" y="0"/>
+				<e:Image id="rise" x="141" y="0" source="{data.minerTools.rise}"/>
+				</e:Group>
+				<e:Image id="arrow_img" source="jt_2x_png" y="307.96" horizontalCenter="0.5"/>
+			</e:Group>
+			<e:Group id="next_list" width="465" height="302.67" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="173.17000000000002" x="0" y="-36" scaleX="1" scaleY="1">
+				<e:Group width="167" height="262" y="21" left="6">
+				<e:Image source="minerV1_json.wsy_2x" x="0" y="0"/>
+				<e:Image id="next_img" horizontalCenter="0" verticalCenter="0" source=""/>
+				<e:Image source="{data.minerTools.using}" x="-10" y="-7" visible="false"/>
+				</e:Group>
+				<e:Group width="278" height="182" y="20" anchorOffsetY="0" anchorOffsetX="0" left="195">
+				<e:Image source="minerV1_json.st_2x" x="0" y="0"/>
+				<e:Label id="next_name" text="" y="-1" fontFamily="DFPHaiBaoW12" textColor="0x3C2405" bold="true" left="20"/>
+				<e:Group width="260" height="38" y="38">
+					<e:Image source="minerV1_json.db_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+					<e:Label text="{data.minerTools.durability}" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" right="141"/>
+					<e:Label id="next_duration" text="300" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" left="119"/>
+				</e:Group>
+				<e:Group width="260" height="38" y="88" x="0">
+					<e:Image source="minerV1_json.db_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+					<e:Label id="next_useTime" text="" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" x="139"/>
+					<e:Label y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" right="141" text="{data.minerTools.kylength}"/>
+				</e:Group>
+				<e:Group width="260" height="38" y="138" x="0">
+					<e:Image source="minerV1_json.db_2x" x="0" y="0" scaleX="1" scaleY="1"/>
+					<e:Label id="the_next_type" text="{data.minerTools.improve}" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" right="119"/>
+					<e:Label id="next_addWeight" text="0%" y="8" fontFamily="PingFang-SC-Medium" size="22" textColor="0x3C2405" left="141"/>
+				</e:Group>
+				</e:Group>
+				<e:Group width="276" height="66" y="220" anchorOffsetX="0" anchorOffsetY="0" left="191" visible="false">
+				<e:Image id="service1" source="{data.minerTools.service}" x="1" y="0"/>
+				<e:Image id="rise1" x="141" y="0" source="{data.minerTools.rise}"/>
+				</e:Group>
+			</e:Group>
+		</e:Group>
+	</e:Group>
+	<e:Group id="pay" width="592" height="481" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0" visible="false">
+		<e:Image source="wutong_json.tips_panel" left="0" right="0" top="0" bottom="0" scale9Grid="132,155,335,59"/>
+		<e:Image id="btn_close_pay" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image id="head_pay_img" y="21" horizontalCenter="0" source="{data.minerTools.tool}"/>
+		<e:Label id="status_txt" text="" y="170" fontFamily="PingFang-SC-Medium" anchorOffsetX="0" width="400" textAlign="center" horizontalCenter="6" textColor="0x3c2405"/>
+		<e:Group id="btn_success" y="340" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65" visible="false">
+			<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+			<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="1.5" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.minerTools.determine}"/>
+		</e:Group>
+		<e:Group id="btn_pay" y="340" scaleX="1" scaleY="1" horizontalCenter="1" width="170" height="65">
+		<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+		<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="1.5" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.minerTools.pay}"/>
+		</e:Group>
+	</e:Group>
+
+</e:Skin>

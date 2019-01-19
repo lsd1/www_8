@@ -31,12 +31,28 @@ class mb_user_tokenModel extends Model{
         return $this->getMbUserTokenInfo(array('token' => $token));
     }
 
+    public function getMbUserTokenInfoById($member_id) {
+        if(empty($member_id)) {
+            return null;
+        }
+        return $this->getMbUserTokenInfo(array('member_id' => $member_id));
+    }
+
     public function updateMemberOpenId($token, $openId)
     {
         return $this->where(array(
             'token' => $token,
         ))->update(array(
             'openid' => $openId,
+        ));
+    }
+
+    public function updateMemberToken($member_id, $token)
+    {
+        return $this->where(array(
+            'member_id' => $member_id,
+        ))->update(array(
+            'token' => $token,
         ));
     }
 

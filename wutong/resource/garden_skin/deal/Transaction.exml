@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="transaction" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="transaction" left="0" right="0" top="0" bottom="0">
+		<e:Image source="auction_json.auc_bj" scale9Grid="45,18,659,555" anchorOffsetY="0" top="0" bottom="0" left="0" right="0" height="0"/>
+		<e:Group id="auc_top" height="90" anchorOffsetY="0" left="0" right="0" top="0">
+		<e:Image source="auction_json.auc_top" scaleX="1" scaleY="1" height="90" top="-6" scale9Grid="187,11,470,68" left="0" right="0"/>
+			<e:Image scaleX="1" scaleY="1" left="199" verticalCenter="1" source="{data.transaction.img_head}"/>
+			<e:Group id="btn_go_back" width="150" height="78" anchorOffsetY="0" verticalCenter="-6" left="0">
+				<e:Image source="auction_json.auc_return" scaleX="1" scaleY="1" horizontalCenter="-7" verticalCenter="-2"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="list_group" width="660" anchorOffsetY="0" horizontalCenter="0" top="201" bottom="78"/>
+		<e:Group id="auc_bottom" height="131" bottom="0" left="0" right="0">
+		<e:Image source="auction_json.auc_bottom" scaleX="1" scaleY="1" bottom="0" left="0" right="0" top="0"/>
+
+
+		<e:Group id="trans" width="150" height="132" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" bottom="0" left="133">
+			<e:Image id="frame" source="auction_json.auc_bottom_icon" scaleX="1" scaleY="1" horizontalCenter="0.5" verticalCenter="-41" x="11" y="-46"/>
+			<e:Label fontFamily="PingFang-SC-Medium" size="22" scaleX="1" scaleY="1" textColor="0x3C2405" horizontalCenter="8" verticalCenter="35" text="{data.transaction.exchange}"/>
+
+			<e:Image scaleX="1.5" scaleY="1.5" horizontalCenter="0.5" verticalCenter="-41" source="transaction_json.tran_goly"/>
+		</e:Group>
+		<e:Group id="my_auc" width="150" height="130" anchorOffsetY="0" scaleX="1" scaleY="1" bottom="1" right="163">
+			<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="-16" source="transaction_json.tran_play"/>
+			<e:Label fontFamily="PingFang-SC-Medium" size="22" scaleX="1" scaleY="1" textColor="0xA07B49" horizontalCenter="0" verticalCenter="33" text="{data.transaction.my_transaction}"/>
+		</e:Group>
+		</e:Group>
+
+		<e:Group id="transaction_nav" anchorOffsetY="0" scaleX="1" scaleY="1" top="110" width="662" horizontalCenter="0">
+			<e:Image source="auction_json.auc_nav_four" right="0" left="0" bottom="0" top="0" scale9Grid="35,9,593,54"/>
+			<e:Group id="type" height="68" anchorOffsetX="0" anchorOffsetY="0" left="0" right="442" verticalCenter="-1">
+			<e:Label id="no_1" fontFamily="PingFang-SC-Medium" textColor="0x3c2405" size="24" top="24" text="{data.transaction.type}" right="78"/>
+			<e:Image id="type_v" source="auction_json.auc_down" left="144" top="30"/>
+			<e:Image id="type_c" source="auction_json.auc_curr_pag" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" visible="false"/>
+
+			</e:Group>
+			<e:Group id="algebra" height="68" verticalCenter="-1" x="220" width="220">
+			<e:Label id="no_2" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="24" scaleX="1" scaleY="1" top="24" text="{data.transaction.algebra}" right="74"/>
+			<e:Image id="algebra_v" source="auction_json.auc_down" scaleX="1" scaleY="1" left="148" top="30"/>
+			<e:Image id="algebra_c" source="auction_json.auc_curr_pag" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" visible="false"/>
+			</e:Group>
+
+			<e:Group id="sorting" height="68" verticalCenter="-2" width="220" x="440">
+			<e:Label id="no_3" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="24" scaleX="1" scaleY="1" top="23" text="{data.transaction.sorting}" right="81"/>
+			<e:Image id="sorting_v" source="auction_json.auc_down" scaleX="1" scaleY="1" top="31" left="139"/>
+			<e:Image id="sorting_c" source="auction_json.auc_curr_pag" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" visible="false"/>
+			</e:Group>
+		</e:Group>
+		<e:Group id="diff_group" top="182" width="660" horizontalCenter="0" height="210" visible="false">
+			<e:Image source="auction_json.nav_bj" left="0" right="0" top="0" bottom="0" scaleX="1" scaleY="1"/>
+		</e:Group>
+
+	</e:Group>
+</e:Skin>

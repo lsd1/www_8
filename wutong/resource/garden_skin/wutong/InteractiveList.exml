@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="interactiveList" width="570" height="128" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="interactive_list" anchorOffsetX="0" x="0" y="0" scaleX="1" scaleY="1" width="570" height="128">
+		<e:Label id="username" text="" textColor="0x3C2405" size="30" fontFamily="PingFang-SC-Heavy" anchorOffsetX="0" width="265" horizontalCenter="-21.5" verticalCenter="-23.5"/>
+		<e:Label id="treeLevel" text="" textColor="0x3C2405" fontFamily="Adobe Heiti Std R" size="22" textAlign="left" horizontalCenter="-122" verticalCenter="23"/>
+		<e:Label id="countdown" text="" anchorOffsetX="0" width="130" anchorOffsetY="0" height="38" textColor="0x3C2405" size="18" fontFamily="PingFang-SC-Medium" textAlign="right" verticalAlign="middle" right="79" verticalCenter="-22" visible="false"/>
+		<e:Image id="top_img" source="" scaleX="1" scaleY="1" right="36" top="24" width="36" height="36" visible="false"/>
+		<e:Image id="water_img" source="wutong_json.water_1" y="71" right="36" width="36" height="36" visible="false"/>
+	</e:Group>
+
+</e:Skin>

@@ -1,0 +1,165 @@
+[2018-12-29 16:51:23] / ( act=index&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_navigation' doesn't exist
+SELECT * FROM `yyshop_navigation` ORDER BY nav_sort 
+[2018-12-29 16:51:23] / ( act=index&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_p_xianshi_goods' doesn't exist
+SELECT * FROM `yyshop_p_xianshi_goods` WHERE ( state = '1' ) AND ( start_time < '1546073482' ) AND ( end_time > '1546073482' ) ORDER BY xianshi_recommend desc LIMIT 6  
+[2018-12-29 16:51:23] / ( act=index&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_web' doesn't exist
+SELECT * FROM `yyshop_web` WHERE ( web_show = '1' ) AND ( web_page LIKE 'index%' ) ORDER BY web_sort LIMIT 1000  
+[2018-12-29 16:51:23] / ( act=index&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_seo' doesn't exist
+SELECT * FROM `yyshop_seo` 
+[2018-12-29 16:51:23] / ( act=index&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_web_channel' doesn't exist
+SELECT gc_id,channel_id FROM `yyshop_web_channel` WHERE ( gc_id > '0' ) AND ( channel_show = '1' ) ORDER BY update_time desc LIMIT 999  
+[2018-12-29 16:51:23] / ( act=index&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_p_xianshi_goods' doesn't exist
+SELECT * FROM `yyshop_p_xianshi_goods` WHERE ( state = '1' ) AND ( start_time < '1546073483' ) AND ( end_time > '1546073483' ) ORDER BY xianshi_recommend desc LIMIT 6  
+[2018-12-29 16:51:23] / ( act=index&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_web' doesn't exist
+SELECT * FROM `yyshop_web` WHERE ( web_show = '1' ) AND ( web_page LIKE 'index%' ) ORDER BY web_sort LIMIT 1000  
+[2018-12-29 16:51:24] /crontab/cj_index.php?act=task&run=js ( act=task&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_task' doesn't exist
+SELECT * FROM `yyshop_task` WHERE ( islock = '0' ) LIMIT 1000  
+[2018-12-29 16:51:32] /admin/modules/system/index.php?act=task ( act=task&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_task' doesn't exist
+SELECT * FROM `yyshop_task` LIMIT 30  
+[2018-12-29 16:51:36] /admin/modules/system/index.php?act=cache ( act=cache&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_web' doesn't exist
+UPDATE `yyshop_web` SET web_html='' WHERE ( web_show = '1' )
+[2018-12-29 08:51:38] /admin/modules/system/index.php?act=cache ( act=cache&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` 
+[2018-12-29 08:51:50] /admin/modules/shop/index.php?act=setting ( act=setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:51:55] /admin/modules/shop/index.php?act=store ( act=store&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_store_grade' doesn't exist
+SELECT * FROM `yyshop_store_grade` as `store_grade`   order by sg_id
+[2018-12-29 08:51:55] http://goodshop.com/admin/modules/shop/index.php?act=store&op=get_xml ( act=store&op=get_xml ) 
+ERR: Db Error: Table 'yyshop.yyshop_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `yyshop_store` WHERE ( is_own_shop = '0' ) ORDER BY store_id asc LIMIT 1  
+[2018-12-29 08:51:55] http://goodshop.com/admin/modules/shop/index.php?act=store&op=get_xml ( act=store&op=get_xml ) 
+ERR: Db Error: Table 'yyshop.yyshop_store' doesn't exist
+SELECT * FROM `yyshop_store` WHERE ( is_own_shop = '0' ) ORDER BY store_id asc LIMIT 0,15  
+[2018-12-29 08:51:55] http://goodshop.com/admin/modules/shop/index.php?act=store&op=get_xml ( act=store&op=get_xml ) 
+ERR: Db Error: Table 'yyshop.yyshop_store_grade' doesn't exist
+SELECT * FROM `yyshop_store_grade` as `store_grade`   order by sg_id
+[2018-12-29 08:51:55] http://goodshop.com/admin/modules/shop/index.php?act=store&op=get_xml ( act=store&op=get_xml ) 
+ERR: Db Error: Table 'yyshop.yyshop_store_class' doesn't exist
+SELECT * FROM `yyshop_store_class` ORDER BY sc_sort asc,sc_id asc 
+[2018-12-29 08:51:56] /admin/modules/system/index.php?act=setting ( act=setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:51:57] /admin/modules/shop/index.php?act=setting ( act=setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:51:58] /admin/modules/cms/index.php?act=cms_manage ( act=cms_manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:51:58] /admin/modules/circle/index.php?act=circle_setting ( act=circle_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:51:59] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:52:00] /admin/modules/mobile/index.php?act=mb_setting ( act=mb_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:52:40] /admin/modules/mobile/index.php?act=mb_special&op=goods_xianshi_list&keyword=test ( act=mb_special&op=goods_xianshi_list ) 
+ERR: Db Error: Table 'yyshop.yyshop_p_xianshi_goods' doesn't exist
+SELECT goods_id FROM `yyshop_p_xianshi_goods` WHERE ( goods_name LIKE '%test%' ) LIMIT 1000  
+[2018-12-29 08:53:14] /admin/modules/mobile/index.php?act=mb_wx ( act=mb_wx&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  WHERE name='mobile_wx'
+[2018-12-29 08:53:17] /admin/modules/mobile/index.php?act=mb_wx ( act=mb_wx&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  WHERE name='mobile_wx'
+[2018-12-29 08:53:17] /admin/modules/mobile/index.php?act=mb_connect ( act=mb_connect&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:17] /admin/modules/mobile/index.php?act=mb_wx ( act=mb_wx&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  WHERE name='mobile_wx'
+[2018-12-29 08:53:41] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:42] /admin/modules/circle/index.php?act=circle_setting ( act=circle_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:43] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:43] /admin/modules/circle/index.php?act=circle_setting ( act=circle_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:44] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:44] /admin/modules/mobile/index.php?act=mb_setting ( act=mb_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:45] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:45] /admin/modules/circle/index.php?act=circle_setting ( act=circle_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:46] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:46] /admin/modules/mobile/index.php?act=mb_setting ( act=mb_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:47] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:48] /admin/modules/circle/index.php?act=circle_setting ( act=circle_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:49] /admin/modules/cms/index.php?act=cms_manage ( act=cms_manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:49] /admin/modules/shop/index.php?act=setting ( act=setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:50] /admin/modules/system/index.php?act=setting ( act=setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:51] /admin/modules/shop/index.php?act=setting ( act=setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:51] /admin/modules/cms/index.php?act=cms_manage ( act=cms_manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:52] /admin/modules/circle/index.php?act=circle_setting ( act=circle_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:52] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:53] /admin/modules/mobile/index.php?act=mb_setting ( act=mb_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:53] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:54] /admin/modules/mobile/index.php?act=mb_setting ( act=mb_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:54] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:55] /admin/modules/mobile/index.php?act=mb_setting ( act=mb_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:55] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:56] /admin/modules/mobile/index.php?act=mb_setting ( act=mb_setting&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  
+[2018-12-29 08:53:56] /admin/modules/microshop/index.php?act=manage ( act=manage&op=index ) 
+ERR: Db Error: Table 'yyshop.yyshop_setting' doesn't exist
+SELECT * FROM `yyshop_setting` as `setting`  

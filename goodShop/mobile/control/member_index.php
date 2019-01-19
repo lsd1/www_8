@@ -24,7 +24,8 @@ class member_indexControl extends mobileMemberControl {
     public function indexOp() {
         $member_info = array();
         $member_info['user_name'] = $this->member_info['member_name'];
-        $member_info['avatar'] = getMemberAvatarForID($this->member_info['member_id']);
+        $member_info['avatar'] = $this->member_info['member_avatar'];
+        //$member_info['avatar'] = getMemberAvatarForID($this->member_info['member_id']);
 
         $member_gradeinfo = Model('member')->getOneMemberGrade(intval($this->member_info['member_exppoints']));
         $member_info['level_name'] = $member_gradeinfo['level_name'];

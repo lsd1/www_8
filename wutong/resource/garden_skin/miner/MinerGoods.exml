@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="minerGoods" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="minerGoods" width="650" height="1000" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0">
+		<e:Image source="wutong_json.tips_panel" left="0" right="0" top="0" bottom="0" scale9Grid="96,145,407,89"/>
+		<e:Image id="btn_close" source="wutong_json.delete" right="0" top="39" width="62" height="62"/>
+		<e:Image id="head_img" y="19" horizontalCenter="0" source="wutong_json.wupin_cn"/>
+
+		<e:Scroller width="550" height="807" y="153" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0">
+		<e:Group anchorOffsetY="0" height="816" x="0" y="18">
+			<e:Group id="group_good" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" height="503" width="550" y="0" x="0"/>
+			<e:Group id="group_egg" height="221" anchorOffsetY="0" left="0" right="0" y="586">
+
+			</e:Group>
+		</e:Group>
+		</e:Scroller>
+		<e:Label id="no_egg" y="822.5" textColor="0x3C2405" fontFamily="PingFang-SC-Medium" size="30" bold="true" scaleX="1" scaleY="1" text="{data.minerGoods.no_egg}" anchorOffsetX="0" width="448" textAlign="center" horizontalCenter="0" visible="false"/>
+	</e:Group>
+</e:Skin>

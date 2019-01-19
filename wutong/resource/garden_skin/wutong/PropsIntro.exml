@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="propsIntro" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="props" width="630" height="638" anchorOffsetY="0" anchorOffsetX="0" horizontalCenter="0" verticalCenter="0">
+		<e:Image id="intro_bg" anchorOffsetY="0" scaleX="1" scaleY="1" top="0" bottom="0" source="wutong_json.tips_panel" left="0" right="0" scale9Grid="62,127,499,15"/>
+		<e:Image y="18" source="{data.propsIntro.intro_name}" horizontalCenter="0"/>
+
+		<e:Image id="btn_close" source="wutong_json.delete" horizontalCenter="284" y="35.5" width="62" height="62"/>
+		<e:Group id="group_tool_img" width="110" height="110" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" y="149">
+			<e:Image scaleX="1" scaleY="1" horizontalCenter="0" width="110" height="110" source="auction_json.baidikuang"/>
+			<e:Image id="use_prop_img" scaleX="1" scaleY="1" source="" top="22" horizontalCenter="0"/>
+
+		</e:Group>
+		<e:Group id="intro_egg" width="519" y="299" anchorOffsetX="0" anchorOffsetY="0" height="314" horizontalCenter="0">
+			<e:Group id="btn_hatch" width="166" height="60" anchorOffsetX="0" scaleX="1" scaleY="1" horizontalCenter="0.5" bottom="27">
+				<e:Image source="wutong_json.btn_green" left="0" right="0" top="0" bottom="0"/>
+				<e:Label id="hatch_content" text="{data.propsIntro.btn_hatch}" fontFamily="PingFang-SC-Medium" size="30" anchorOffsetX="0" textAlign="center" verticalCenter="-3" horizontalCenter="0" textColor="0xffe5b8"/>
+			</e:Group>
+			<e:Image x="60" y="19" source="auction_json.shutiao"/>
+			<e:Label id="egg_name" text="" x="93" y="22" textColor="0x3c2405" fontFamily="PingFang-SC-Medium"/>
+			<e:Group id="egg_group_intro" y="62" anchorOffsetY="0" height="89" anchorOffsetX="0" width="427" horizontalCenter="7">
+			</e:Group>
+			<e:Label id="egg_num_title" text="{data.propsIntro.egg_num_title}" y="155" anchorOffsetY="0" height="28" anchorOffsetX="0" width="73" textColor="0x3C2405" fontFamily="PingFang SC" size="24" x="60"/>
+			<e:Label id="egg_num" text="" y="155" anchorOffsetY="0" height="28" anchorOffsetX="0" width="214" textColor="0x3C2405" fontFamily="PingFang SC" size="24" x="130"/>
+			<!--<e:Label id="egg_f_title" text="{data.propsIntro.egg_f_title}" y="206" anchorOffsetY="0" height="28" anchorOffsetX="0" width="73" textColor="0x3C2405" fontFamily="PingFang SC" size="24" x="30"/>-->
+			<!--<e:Label id="egg_f" text="" y="206" anchorOffsetY="0" height="28" anchorOffsetX="0" width="214" textColor="0x3C2405" fontFamily="PingFang SC" size="24" x="104"/>-->
+			<!--<e:Label id="egg_m_title" text="{data.propsIntro.egg_m_title}" y="242" anchorOffsetY="0" height="28" anchorOffsetX="0" width="73" textColor="0x3C2405" fontFamily="PingFang SC" size="24" x="29"/>-->
+			<!--<e:Label id="egg_m" text="" y="243" anchorOffsetY="0" height="28" anchorOffsetX="0" width="214" textColor="0x3C2405" fontFamily="PingFang SC" size="24" x="103"/>-->
+			<!--<e:Label id="egg_status_title" text="{data.propsIntro.egg_status_title}" y="279" anchorOffsetY="0" height="28" anchorOffsetX="0" width="73" textColor="0x3C2405" fontFamily="PingFang SC" size="24" x="29"/>-->
+			<!--<e:Label id="egg_status" text="" y="279" anchorOffsetY="0" height="28" anchorOffsetX="0" width="214" textColor="0x3C2405" fontFamily="PingFang SC" size="24" x="103"/>-->
+			<!--<e:Label id="egg_sex_title" text="{data.propsIntro.egg_sex_title}" y="314" anchorOffsetY="0" height="28" anchorOffsetX="0" width="73" textColor="0x3C2405" fontFamily="PingFang SC" size="24" x="30"/>-->
+			<!--<e:Label id="egg_sex" text="" y="314" anchorOffsetY="0" height="28" anchorOffsetX="0" width="214" textColor="0x3C2405" fontFamily="PingFang SC" size="24" x="104"/>-->
+		</e:Group>
+		<e:Group id="intro_tool" width="543" anchorOffsetX="0" anchorOffsetY="0" height="300" horizontalCenter="0" bottom="85" locked="true" visible="false">
+			<e:Group id="intro_text" width="427" height="133" y="44" anchorOffsetY="0" anchorOffsetX="0" scaleX="1" scaleY="1" horizontalCenter="0"/>
+			<e:Group id="btn_use" width="166" height="60" anchorOffsetX="0" horizontalCenter="-99" x="22" scaleX="1" scaleY="1" bottom="0" visible="false">
+				<e:Image source="wutong_json.btn_green" top="0" bottom="0" horizontalCenter="0"/>
+				<e:Label id="btn_use_text" text="{data.propsIntro.btn_use_text}" fontFamily="PingFang-SC-Medium" size="30" anchorOffsetX="0" textAlign="center" verticalAlign="middle" verticalCenter="-3" textColor="0xffe5b8" horizontalCenter="0"/>
+			</e:Group>
+			<e:Group id="btn_buy" width="166" height="60" anchorOffsetX="0" horizontalCenter="110" x="372" scaleX="1" scaleY="1" bottom="0" visible="false">
+				<e:Image top="0" bottom="0" source="wutong_json.btn_green" horizontalCenter="0"/>
+				<e:Label id="buy" text="{data.propsIntro.buy}" fontFamily="PingFang-SC-Medium" size="30" anchorOffsetX="0" textAlign="center" verticalAlign="middle" verticalCenter="-3" textColor="0xffe5b8" horizontalCenter="0"/>
+			</e:Group>
+			<e:Group id="btn_con" width="166" height="60" anchorOffsetX="0" horizontalCenter="3" x="196" scaleX="1" scaleY="1" bottom="0" visible="false">
+				<e:Image source="wutong_json.btn_green" left="0" right="0" top="0" bottom="0"/>
+				<e:Label id="btn_con_text" text="{data.propsIntro.btn_con_text}" fontFamily="PingFang-SC-Medium" size="30" anchorOffsetX="0" textAlign="center" verticalCenter="-3" horizontalCenter="0" textColor="0xffe5b8"/>
+			</e:Group>
+			<e:Group id="btn_use_1" width="166" height="60" anchorOffsetX="0" horizontalCenter="3" x="196" scaleX="1" scaleY="1" bottom="0" visible="false">
+				<e:Image source="wutong_json.btn_green" left="0" right="0" top="0" bottom="0"/>
+				<e:Label id="btn_use_1_text" text="{data.propsIntro.btn_use_text}" fontFamily="PingFang-SC-Medium" size="30" anchorOffsetX="0" textAlign="center" verticalCenter="-3" horizontalCenter="0" textColor="0xffe5b8"/>
+			</e:Group>
+			<e:Group id="btn_hatch_2" width="166" height="60" anchorOffsetX="0" scaleX="1" scaleY="1" horizontalCenter="0" bottom="0" visible="false">
+				<e:Image source="wutong_json.btn_green" left="0" right="0" top="0" bottom="0"/>
+				<e:Label id="hatch_content_2" text="{data.propsIntro.btn_hatch}" fontFamily="PingFang-SC-Medium" size="30" anchorOffsetX="0" textAlign="center" verticalCenter="-3" horizontalCenter="0" textColor="0xffe5b8"/>
+			</e:Group>
+
+
+
+		</e:Group>
+		<e:Group id="group_price" y="261" anchorOffsetY="0" anchorOffsetX="0" horizontalCenter="-92" visible="false"/>
+
+	</e:Group>
+
+</e:Skin>

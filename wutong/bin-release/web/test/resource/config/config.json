@@ -1,0 +1,5 @@
+{
+	"api_domain":"https://wutongapi.svchain.club/",
+	"ws_url":"wss://wutongsocket.svchain.club:45678/",
+	"imgUrl":"https://maiguoer-game.oss-cn-hongkong.aliyuncs.com/game/wutong/"
+}

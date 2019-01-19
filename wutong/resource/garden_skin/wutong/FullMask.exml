@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="fullMask" width="750" height="1334" xmlns:e="http://ns.egret.com/eui">
+	<e:Rect top="0" bottom="0" left="0" right="0" fillAlpha="0.5"/>
+</e:Skin>

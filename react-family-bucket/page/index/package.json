@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "bable-loader": "^0.0.1-security"
+  }
+}

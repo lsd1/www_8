@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="fruitList" width="505" height="70" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="fruit_list" width="505" horizontalCenter="0" top="0" bottom="0">
+		<e:Image id="fru_icon" source="wutong_json.fruit_1" left="0" width="46" anchorOffsetX="0" verticalCenter="0"/>
+		<e:Label id="fru_number" text="" fontFamily="PingFang-SC-Medium" size="24" textColor="0x3C2405" horizontalCenter="-158" verticalCenter="0"/>
+		<e:Label id="fru_state" text="" fontFamily="PingFang-SC-Medium" textColor="0x3C2405" size="20" horizontalCenter="-17" verticalCenter="0"/>
+		<e:Label id="fru_time" text="" textColor="0xfc3d02" size="24" fontFamily="PingFang-SC-Bold" horizontalCenter="204" verticalCenter="0"/>
+	</e:Group>
+</e:Skin>

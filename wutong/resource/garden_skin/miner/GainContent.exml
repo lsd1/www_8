@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="gainContent" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="gain_group" width="592" height="480" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="0" horizontalCenter="0">
+		<e:Image source="wutong_json.tips_panel" scale9Grid="132,172,335,61" left="0" right="0" top="0" bottom="0"/>
+		<e:Image id="btn_close" source="wutong_json.delete" x="536" y="46"/>
+		<e:Image id="head_img" y="21" horizontalCenter="0" source="{data.gainContent.gain_png}"/>
+		<e:Group width="395" y="143" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0.5">
+			<e:Label fontFamily="PingFang-SC-Medium" anchorOffsetX="0" textColor="0x3c2405" text="{data.gainContent.theText}" anchorOffsetY="0" left="0" right="0" height="95" top="0"/>
+			<e:Group id="list_box" width="321" anchorOffsetX="0" height="220" horizontalCenter="0" top="110" x="37" y="107" scaleX="1" scaleY="1">
+			</e:Group>
+		</e:Group>
+		<e:Group id="btn_success" scaleX="1" scaleY="1" horizontalCenter="-6" width="170" height="65" bottom="57">
+			<e:Image scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="4" source="auction_json.auc_btn"/>
+			<e:Label fontFamily="PingFang-SC-Medium" horizontalCenter="0" verticalCenter="1.5" verticalAlign="middle" textAlign="center" textColor="0xFFE5B8" text="{data.winding.confirm}"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

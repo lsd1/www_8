@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="logList" width="662" height="62" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+    <e:Group id="log_content" anchorOffsetY="0" anchorOffsetX="0" left="0" right="0" top="0" bottom="0">
+        <e:Label text="{data.datetime}" textColor="0xa07b49" scaleX="1" scaleY="1" verticalCenter="0" width="147" size="25" left="10"/>
+    </e:Group>
+</e:Skin>
