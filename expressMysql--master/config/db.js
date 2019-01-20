@@ -1,0 +1,17 @@
+import Sequelize from 'sequelize';
+const config = {
+	database:'mge_mora',
+	user: 'root',
+	pwd: 'root',
+    host: 'localhost',
+    dialect: 'mysql',
+    port: '3306',
+};
+
+const sequelize = new Sequelize(config['database'], config['user'], config['pwd'], {dialect: config['dialect']});
+
+sequelize.authenticate().then(() => {
+    console.log('数据库连接成功...')
+}).catch(err => {console.error('数据库连接失败...', err)});
+
+export {sequelize, config};
