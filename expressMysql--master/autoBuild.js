@@ -1,6 +1,7 @@
 import SequelizeAuto from 'sequelize-auto';
 import {config} from './config/db';
-const auto = new SequelizeAuto(
+import {createModelAndService} from './createModelAndService';
+const autoBuild = new SequelizeAuto(
     config['database'],
     config['user'],
     config['pwd'],
@@ -14,8 +15,14 @@ const auto = new SequelizeAuto(
         }
     }
 );
-auto.run(function (err) {
-    if (err) throw err;
-    console.log(auto.tables); // table list
-    console.log(auto.foreignKeys); // foreign key list
-});
+// autoBuild.run(function (err) {
+//     if (err) throw err;
+//     console.log(autoBuild.tables); // table list
+//     console.log(autoBuild.foreignKeys); // foreign key list
+// });
+
+setTimeout(function () {
+    createModelAndService();
+}, 3000);
+
+

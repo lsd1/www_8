@@ -51,7 +51,7 @@ app.all('*',function(req,res,next){
 });
 
 // 路由列表
-app.use('/company', require('./routes/diamondLogCtrl'));
+app.use('/diamondLog', require('./routes/diamondLogCtrl'));
 
 // 错误处理中间件
 app.use(function(req, res, next) {

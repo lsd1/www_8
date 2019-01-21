@@ -10,18 +10,23 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		name: {
 			type: DataTypes.STRING(20),
-			allowNull: true
+			allowNull: false
+		},
+		index: {
+			type: DataTypes.INTEGER(3).UNSIGNED,
+			allowNull: false,
+			defaultValue: '0'
 		},
 		value: {
 			type: DataTypes.STRING(20),
-			allowNull: true
+			allowNull: false
 		},
 		content: {
 			type: DataTypes.STRING(30),
-			allowNull: true
+			allowNull: false
 		}
 	}, {
 		tableName: 'mge_mora_config',
-		timestamps: false
+		timestamps: true
 	});
 };

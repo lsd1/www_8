@@ -2,23 +2,37 @@
 
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('mge_member', {
+		id: {
+			type: DataTypes.INTEGER(10).UNSIGNED,
+			allowNull: false,
+			autoIncrement: true
+		},
 		uno: {
 			type: DataTypes.INTEGER(10),
 			allowNull: false,
 			primaryKey: true
 		},
-		diamond: {
-			type: "DOUBLE(15,2) UNSIGNED",
-			allowNull: false,
-			defaultValue: '0.00'
+		user_name: {
+			type: DataTypes.STRING(30),
+			allowNull: false
 		},
-		freezeDiamond: {
-			type: "DOUBLE(15,2) UNSIGNED",
+		user_avatar: {
+			type: DataTypes.STRING(255),
+			allowNull: false
+		},
+		diamond: {
+			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
-			defaultValue: '0.00'
+			defaultValue: '0'
+		},
+		freeze_diamond: {
+			type: DataTypes.INTEGER(10).UNSIGNED,
+			allowNull: false,
+			defaultValue: '0'
 		}
 	}, {
 		tableName: 'mge_member',
-		timestamps: false
+        underscored: true,
+		timestamps: true
 	});
 };

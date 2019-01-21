@@ -1,13 +1,13 @@
-import BaseService from './baseService.js';
+import BaseService from './baseService';
 
-import {AutoWritedDiamondLogModel} from '../common/AutoWrite.js';
+import {AutoWritedDiamondLogModel} from '../common/AutoWrite';
 
 @AutoWritedDiamondLogModel
 
 class DiamondLogService extends BaseService{
-	constructor(){
-		super(DiamondLogService.model);
-	}
+    constructor(){
+        super(DiamondLogService.model);
+    }
 }
 
 module.exports = new DiamondLogService();

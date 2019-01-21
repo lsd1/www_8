@@ -12,22 +12,25 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false
 		},
-		targetUno: {
+		target_uno: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false
 		},
 		shape: {
-			type: DataTypes.ENUM('0','1','2'),
+			type: DataTypes.INTEGER(4),
 			allowNull: false
 		},
-		targetShape: {
-			type: DataTypes.ENUM('0','1','2'),
+		target_shape: {
+			type: DataTypes.INTEGER(4),
 			allowNull: false
 		},
-		diamond: {
-			type: "DOUBLE(15,2) UNSIGNED",
-			allowNull: false,
-			defaultValue: '0.00'
+		grade: {
+			type: DataTypes.INTEGER(3).UNSIGNED,
+			allowNull: false
+		},
+		diamond_number: {
+			type: DataTypes.INTEGER(10).UNSIGNED,
+			allowNull: false
 		},
 		status: {
 			type: DataTypes.ENUM('0','1','2','3'),
@@ -35,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: '0'
 		}
 	}, {
-		tableName: 'mge_order_mora',
-		timestamps: false
+        underscored: true,
+		timestamps: true
 	});
 };

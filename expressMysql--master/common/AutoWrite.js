@@ -1,6 +1,14 @@
-//模拟工厂模式，给每个target的原型上注入新属性
 module.exports = {
     AutoWritedDiamondLogModel(target, key, descriptor){
-		target.model = require('../model/diamondLog');
-	}
+        target.model = require('../model/diamondLogModel');
+    },
+    AutoWritedMemberModel(target, key, descriptor){
+        target.model = require('../model/memberModel');
+    },
+    AutoWritedMoraConfigModel(target, key, descriptor){
+        target.model = require('../model/moraConfigModel');
+    },
+    AutoWritedOrderMoraModel(target, key, descriptor){
+        target.model = require('../model/orderMoraModel');
+    },
 };

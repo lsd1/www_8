@@ -32,10 +32,10 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen('3333','127.0.0.1',()=>{
+server.listen('6666','192.168.1.238',()=>{
     const host = server.address().address;
     const port = server.address().port;
-    console.log("应用实例，访问地址为 https://%s:%s", host, port|3333)
+    console.log("应用实例，访问地址为 https://%s:%s", host, port|6666)
 });
 server.on('error', onError);
 server.on('listening', onListening);
@@ -131,13 +131,13 @@ io.use(function(socket, next) {
 });
 
 io.on('connection', function (socket) {
-    socket.emit('ge', 'connect!');
+    socket.emit('get', 'connect!');
 
     socket.on('send', function (msg) {
-        socket.emit('ge', 'you say:'+ msg);
+        socket.emit('get', 'you say:'+ msg);
     });
 
     socket.on('disconnect', function () {
-        //socket.emit('disconnect', 'disconnect！');
+        socket.emit('disconnect', 'disconnect！');
     });
 });
