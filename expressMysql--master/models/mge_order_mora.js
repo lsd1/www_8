@@ -14,7 +14,8 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		target_uno: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
-			allowNull: false
+			allowNull: true,
+            defaultValue: null
 		},
 		shape: {
 			type: DataTypes.INTEGER(4),
@@ -22,7 +23,8 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		target_shape: {
 			type: DataTypes.INTEGER(4),
-			allowNull: false
+			allowNull: true,
+            defaultValue: null
 		},
 		grade: {
 			type: DataTypes.INTEGER(3).UNSIGNED,
@@ -38,6 +40,7 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: '0'
 		}
 	}, {
+        tableName: 'mge_order_mora',
         underscored: true,
 		timestamps: true
 	});

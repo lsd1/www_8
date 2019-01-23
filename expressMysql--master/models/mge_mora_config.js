@@ -27,6 +27,7 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	}, {
 		tableName: 'mge_mora_config',
+        underscored: true,
 		timestamps: true
 	});
 };

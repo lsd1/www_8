@@ -8,7 +8,10 @@ const config = {
     port: '3306',
 };
 
-const sequelize = new Sequelize(config['database'], config['user'], config['pwd'], {dialect: config['dialect']});
+const sequelize = new Sequelize(config['database'], config['user'], config['pwd'], {
+    dialect: config['dialect'],
+    timezone:'+8:00'
+});
 
 sequelize.authenticate().then(() => {
     console.log('数据库连接成功...')

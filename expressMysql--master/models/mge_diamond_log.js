@@ -14,20 +14,43 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		traget_uno: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
-			allowNull: false
+			allowNull: false,
+            defaultValue: 0
 		},
 		type: {
 			type: DataTypes.ENUM('0','1'),
 			allowNull: false
 		},
-		change: {
-			type: "DOUBLE(15,2) UNSIGNED",
+        before_change: {
+            type: DataTypes.INTEGER(10).UNSIGNED,
+            allowNull: false
+        },
+        change: {
+            type: DataTypes.INTEGER(10).UNSIGNED,
+            allowNull: false
+        },
+		after_change: {
+			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false
 		},
+        source: {
+            type: DataTypes.INTEGER(4),
+            allowNull: false
+        },
 		content: {
 			type: DataTypes.STRING(30),
 			allowNull: false
-		}
+		},
+        vsc: {
+            type: DataTypes.INTEGER(10),
+            allowNull: false,
+            defaultValue: 0
+        },
+        freeze_diamond:{
+            type: DataTypes.INTEGER(10),
+            allowNull: false,
+            defaultValue: 0
+        }
 	}, {
 		tableName: 'mge_diamond_log',
         underscored: true,

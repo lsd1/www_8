@@ -1,10 +1,20 @@
 import Sequelize from 'sequelize';
 import {sequelize} from '../config/db.js';
+import moment from 'moment';
 const Op = Sequelize.Op;
 class BaseModel{
 	constructor(model){
 		this.model = model(sequelize, Sequelize);
 	}
+
+	fromtTime (time) {
+		return moment(time).format('YYYY-MM-DD HH:mm:ss');
+	}
+
+    toFlat (o) {
+        return JSON.parse(JSON.stringify(o).replace(/"[^"]*":\s*\{/g,'').replace(/\}{2,}/g,'}'));
+    }
+
 	// 返回实例化的sequelize模型实例
 	getModel(){
 		return this.model;

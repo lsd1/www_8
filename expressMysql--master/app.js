@@ -29,7 +29,7 @@ app.use(compression());
 
 app.use(cookieParser());
 
-app.use('/public', express.static('public'));
+// app.use('/public', express.static('public'));
 
 // app.use('/', express.static(__dirname+'/'));
 
@@ -52,6 +52,9 @@ app.all('*',function(req,res,next){
 
 // 路由列表
 app.use('/diamondLog', require('./routes/diamondLogCtrl'));
+app.use('/orderMora', require('./routes/orderMoraCtrl'));
+// app.use('/moraConfig', require('./routes/moraConfigCtrl'));
+app.use('/member', require('./routes/memberCtrl'));
 
 // 错误处理中间件
 app.use(function(req, res, next) {

@@ -11,6 +11,11 @@ var url = require('url');
 var https = require('https');
 var fs = require('fs');
 var path = require('path');
+var io;
+global.roomDataOnGame = [];
+global.shapeArr = [];
+global.newRoomData = {};
+import {onConnect,getRoomData} from "../routes/socketCtrl";
 // var httpsOpt = {
 //   key : fs.readFileSync(path.join(path.dirname(__dirname),'public/httpsCert/214099849550308.key')),
 //   cert : fs.readFileSync(path.join(path.dirname(__dirname),'public/httpsCert/214099849550308.pem'))
@@ -32,10 +37,10 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen('6666','192.168.1.238',()=>{
+server.listen('666','192.168.1.238',()=>{
     const host = server.address().address;
     const port = server.address().port;
-    console.log("应用实例，访问地址为 https://%s:%s", host, port|6666)
+    console.log("应用实例，访问地址为 http://%s:%s", host, port || 666);
 });
 server.on('error', onError);
 server.on('listening', onListening);
@@ -88,6 +93,8 @@ function onError(error) {
   }
 }
 
+
+
 /**
  * Event listener for HTTP server "listening" event.
  */
@@ -107,37 +114,33 @@ var opts = {
     'transports': ['polling', 'websocket']
 };
 
-var io = require('socket.io').listen(server, opts);
 
-if ( typeof io.emit === "function" ) {
-    console.log('   info  - socket.io started');
-}
-
-io.use(function(socket, next) {
-    var handshakeData = socket.request;
-    var domain = '';
-    var origin = handshakeData.headers.origin || handshakeData.headers.referer;
-    var parts = url.parse(''+origin);
-    var re = new RegExp(domain+"$","g");
-    var arr = re.exec(parts.hostname);
-    if ( domain === '' ) {
-        next();
-    } else if ( arr !== null ) {
-        next();
-    } else {
-        var dt = new Date();
-        console.log(dateToString(dt)+' '+parts.hostname+' handshake unauthorized');
+getRoomData().then((data)=>{
+    global.roomNumData = data[0];
+    global.roomData = data[1];
+    global.shapeArr = data[2];
+    console.log(global.shapeArr);
+    io = require('socket.io').listen(server, opts);
+    global.io = io;
+    if ( typeof io.emit === "function" ) {
+        console.log('   info  - socket.io started');
     }
-});
 
-io.on('connection', function (socket) {
-    socket.emit('get', 'connect!');
-
-    socket.on('send', function (msg) {
-        socket.emit('get', 'you say:'+ msg);
+    io.use(function(socket, next) {
+        var handshakeData = socket.request;
+        var domain = '';
+        var origin = handshakeData.headers.origin || handshakeData.headers.referer;
+        var parts = url.parse(''+origin);
+        var re = new RegExp(domain+"$","g");
+        var arr = re.exec(parts.hostname);
+        if ( domain === '' ) {
+            next();
+        } else if ( arr !== null ) {
+            next();
+        } else {
+            var dt = new Date();
+            console.log(dateToString(dt)+' '+parts.hostname+' handshake unauthorized');
+        }
     });
-
-    socket.on('disconnect', function () {
-        socket.emit('disconnect', 'disconnect！');
-    });
+    io.on('connection',  onConnect);
 });

@@ -23,6 +23,7 @@ const createModelAndService = () => {
         nameArr.push([CameName, cameName]);
         buildModel(CameName, cameName, snakeName);
         buildService(CameName, cameName);
+        buildRoute(cameName);
     });
     buildAutoWrite(nameArr);
 };
@@ -99,6 +100,43 @@ const buildAutoWrite = (nameArr) => {
     createFile('./common/AutoWrite.js', template_auto_write);
 };
 
-export {createModelAndService, buildModel, buildService, buildAutoWrite, createFile};
+
+const buildRoute = (cameName) => {
+
+    let template_route = `import express from 'express';
+
+import ${cameName}Service from '../service/${cameName}Service.js';
+
+const router = express.Router();
+
+class ${cameName}Ctroller{
+	static initRouter(){
+		/***************查询业务***************/
+		router.get('/all', async (req, res, next) => {
+			try{res.json(await ${cameName}Service.baseFindAll());}catch(err){next(err);}
+		});
+
+		router.put('/update', async (req, res, next) => {
+			try{res.json(await ${cameName}Service.baseUpdate(req.body['update'], req.body['where']));}catch(err){next(err);}
+		});
+
+		router.delete('/delete', async (req, res, next) => {
+			try{res.json(await ${cameName}Service.baseDelete(req.body));}catch(err){next(err);}
+		});
+
+		router.post('/createBatch', async (req, res, next) => {
+			try{res.json(await ${cameName}Service.baseCreateBatch(req.body['entitys']));}catch(err){next(err);}
+		});
+
+		return router;
+	}
+}
+
+module.exports = ${cameName}Ctroller.initRouter();`;
+
+    createFile(`./routes/${cameName}Ctrl.js`, template_route);
+};
+
+export {createModelAndService, buildModel, buildService, buildAutoWrite, createFile, buildRoute};
 
 
