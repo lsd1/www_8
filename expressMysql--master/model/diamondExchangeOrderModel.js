@@ -12,8 +12,7 @@ class DiamondExchangeOrderModel extends BaseModel{
         this.model.sync();
     }
 
-    genOrderNO (clientType)
-    {
+    genOrderNO (clientType) {
         let mt = new JSMTRand();
         clientType = (clientType == 1) ? '11' : '10';
         return 'EX' + clientType + Moment().format('YYYYMMDDHHmmss') + Microtime.nowStruct()[1] + mt.rand(10, 99);

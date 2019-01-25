@@ -11,7 +11,6 @@ setInterval(()=>{
     let timeStamp = new Date().getTime();
     let newArr = [];
     global.roomDataOnGame.forEach((item, index) => {
-        console.log(item[2] + 30000, timeStamp);
         if((item[2] + 30000) < timeStamp){
             delete global.roomDataOnGame[index];
             emitAll('cancelGame', {code:0, data:{id:item[1], uid:item[3]}});
@@ -26,12 +25,11 @@ setInterval(()=>{
 async function getRoomData(){
     let gradeData = JSON.parse(JSON.stringify(await moraConfigService.getAllGradeConfig()));
     let shapeData = JSON.parse(JSON.stringify(await moraConfigService.getAllShapeConfig()));
-    console.log(shapeData);
     let shapeArr = [];
     shapeData.forEach(item => {
         shapeArr.push(Number(item['value']));
     });
-    let roomData = JSON.parse(JSON.stringify(await orderMoraService.baseFindByFilter(['id', 'grade', 'shape', 'status'], {status:'0'})));
+    let roomData = JSON.parse(JSON.stringify(await orderMoraService.baseFindByFilter(['id', 'uid', 'grade', 'shape', 'status'], {status:'0'})));
     let roomNumArr = {};
     let roomArr = {};
     gradeData.forEach(item1 => {
@@ -41,7 +39,7 @@ async function getRoomData(){
             if(item1.index == item2.grade){
                 number ++;
                 ids[item2.id] = item2.id;
-                global.newRoomData[item2.id] = {shape:item2.shape, status:item2.status};
+                global.newRoomData[item2.id] = {shape:item2.shape, status:item2.status, uid:item2.uid};
             }
         });
         roomNumArr[item1.index] = {grade:item1.index, amount:item1.value, number:number};
@@ -55,35 +53,20 @@ async function getRoomData(){
 function addRoom(grade, id){
     global.roomData[grade][id] = id;
     global.roomNumData[grade]['number'] = Object.keys(global.roomData[grade]).length;
-    // emitAll('getAllRoom', JSON.stringify(global.roomData));
     emitAll('getAllRoom', {code:0, data: global.roomNumData});
-    // emitAll('getAllRoom', JSON.stringify(global.roomDataOnGame));
 }
 
 //从列表删除房间
 function delRoom(grade, id){
     delete global.roomData[grade][id];
     global.roomNumData[grade]['number'] = Object.keys(global.roomData[grade]).length;
-    // emitAll('getAllRoom', JSON.stringify(global.roomData));
     emitAll('getAllRoom', {code:0, data: global.roomNumData});
-    // emitAll('getAllRoom', JSON.stringify(global.roomDataOnGame));
 }
 
 //给所有人发消息
 function emitAll(listen, msg) {
     global.io.local.emit(listen, msg);
 }
-
-//给自己发消息
-function emitSelf(listen, msg) {
-    selSocket.emit(listen, msg);
-}
-
-//给其他人发消息
-function emitOther(listen, msg) {
-    selSocket.broadcast.emit(listen, msg);
-}
-
 
 //对游戏超时的房间回收，返回到正常房间列表
 function receiveRoom(id) {
@@ -102,74 +85,88 @@ function changeRoom(grade, id, uid){
     delRoom(grade, id);
 }
 
-function getObjItem(obj){
+function getObjItem(obj, exclude){
+    let res = 0;
     for (var key in obj){
-        return obj[key];
+        if(exclude == global.newRoomData[key]['uid']){
+            continue;
+        }else{
+            res =  obj[key];
+        }
     }
+    return res;
 }
 
 //判断比赛胜负
 function getStatus(combineShape){
     let status = '4';
     let targetStatus = '3';
-    let msg = 'win';
+    let msg = 'lose';
+    let targetMsg = 'win';
     switch(combineShape){
         case '0-0':
             status = '2';
             targetStatus = '2';
             msg = 'draw';
+            targetMsg = 'draw';
             break;
         case '1-1':
             status = '2';
             targetStatus = '2';
             msg = 'draw';
+            targetMsg = 'draw';
             break;
         case '2-2':
             status =  '2';
             targetStatus =  '2';
             msg = 'draw';
+            targetMsg = 'draw';
             break;
         case '0-1':
             status = '3';
             targetStatus = '4';
-            msg = 'lose';
+            msg = 'win';
+            targetMsg = 'lose';
             break;
         case '1-2':
             status = '3';
             targetStatus = '4';
-            msg = 'lose';
+            msg = 'win';
+            targetMsg = 'lose';
             break;
         case '2-0':
             status = '3';
             targetStatus = '4';
-            msg = 'lose';
+            msg = 'win';
+            targetMsg = 'lose';
             break;
     }
-    return {status:status,targetStatus:targetStatus, msg:msg};
+    return {status:status,targetStatus:targetStatus, msg:msg, targetMsg:targetMsg};
 }
 
 async function onConnect(socket){
     selSocket = socket;
+    socket.emit('send', global.roomData);
     selSocket.on('getAllRoom',  (msg) => {
-        emitSelf('getAllRoom', {code:0, data:global.roomNumData});
+        socket.emit('getAllRoom', {code:0, data:global.roomNumData});
     });
 
     //监听：用户提交比赛结果，判断胜负
     selSocket.on('submitRes', async (msg) => {
         if(msg.shape === undefined || msg.uid === undefined || msg.pwd === undefined){
-            emitSelf('submitRes', {code:301, msg:'params_error'});
+            socket.emit('submitRes', {code:301, msg:'params_error'});
             return false;
         }
 
         if(!global.newRoomData[msg.id]){
-            emitSelf('submitRes', {code:110, msg:'room_not_exist'});
+            socket.emit('submitRes', {code:110, msg:'room_not_exist'});
             return false;
         }
 
         //校验二级密码。
         let checkRes = await externalService.checkSecondPwdService(msg.uid, msg.pwd);
         if(!checkRes){
-            emitSelf('submitRes', {code: 110, msg: 'pwd_error'});
+            socket.emit('submitRes', {code: 110, msg: 'pwd_error'});
             return false;
         }
         //TODO:判断钻石是否足够
@@ -211,9 +208,10 @@ async function onConnect(socket){
                         delete global.roomDataOnGame[index];
                     }
                 });
-                emitSelf('submitRes', {code:0, data:{status:statusRes.targetStatus}, msg:statusRes.msg});
+            socket.emit('submitRes', {code:0, data:{status:statusRes.targetStatus, other_shape:shape}, msg:statusRes.targetMsg});
+            socket.broadcast.emit('submitRes', {code:0, data:{status:statusRes.status, other_shape:msg.shape}, msg:statusRes.msg});
         }).catch(function (err) {
-            emitSelf('submitRes', {code: 110, msg: err.message});
+            socket.emit('submitRes', {code: 110, msg: err.message});
             return false;
         })
 
@@ -222,22 +220,32 @@ async function onConnect(socket){
     //监听：取消比赛，退出房间
     selSocket.on('cancelGame', (msg) => {
         if(msg['uid'] === undefined || msg['id'] === undefined){
-            emitSelf('cancelGame', {code:301, msg:'params_error'});
+            socket.emit('cancelGame', {code:301, msg:'params_error'});
             return false;
         }
         receiveRoom(msg['id']);
-        emitSelf('cancelGame', {code:0, data:{id:msg['id'], uid:msg['uid']}});
+        socket.emit('cancelGame', {code:0, data:{id:msg['id'], uid:msg['uid']}});
     });
 
     //监听：获取一个房间,开始竞猜
-    selSocket.on('getRoomId', async (msg) => {
-        if(msg['uid'] !== undefined && msg['grade'] !== undefined ){
-            let id = getObjItem(global.roomData[msg['grade']]);
+    selSocket.on('enterRoom', async (msg) => {
+        if(msg.uid !== undefined && msg.grade !== undefined ){
+            let id = getObjItem(global.roomData[msg.grade], msg.uid);
             if(id){
-                changeRoom(msg['grade'], id, msg['uid']);
+                changeRoom(msg.grade, id, msg.uid);
                 try{
+
                     let roomInfo = await orderMoraService.getRoomInfoByIdService(id);
-                    emitSelf('getRoomId', {
+                    let targetInfo = await memberService.getMemberInfoByIdService(msg.uid, ['user_name', 'user_avatar']);
+                    socket.broadcast.emit('enterRoom', {
+                        id:roomInfo.id,
+                        grade:roomInfo.grade,
+                        amount:roomInfo.diamond_number,
+                        user_name:targetInfo.user_name,
+                        user_avatar:targetInfo.user_avatar
+                    });
+
+                    socket.emit('enterRoom', {
                         id:roomInfo.id,
                         grade:roomInfo.grade,
                         amount:roomInfo.diamond_number,
@@ -245,15 +253,15 @@ async function onConnect(socket){
                         user_avatar:roomInfo.user_avatar
                     });
                 }catch (e) {
-                    emitSelf('getRoomId', {code:110, msg: e.message});
+                    socket.emit('enterRoom', {code:110, msg: e.message});
                     return false;
                 }
             }else{
-                emitSelf('getRoomId', {code:110, msg: 'room_not_found'});
+                socket.emit('enterRoom', {code:110, msg: 'room_not_found'});
                 return false;
             }
         }else{
-            emitSelf('getRoomId', {code:301, msg:'params_error'});
+            socket.emit('enterRoom', {code:301, msg:'params_error'});
             return false;
         }
     });
@@ -261,19 +269,19 @@ async function onConnect(socket){
     //监听：新建一个房间
     selSocket.on('createRoom', async (msg) => {
         if(msg.uid === undefined || msg.shape === undefined || msg.grade === undefined || msg.pwd === undefined ){
-            emitSelf('createRoom', {code: 301, msg: 'params_error'});
+            socket.emit('createRoom', {code: 301, msg: 'params_error'});
             return false;
         }
         //TODO:校验竞猜等级是否正确。
         if(global.shapeArr.indexOf(Number(msg.shape)) == -1){
-            emitSelf('createRoom', {code: 110, msg: 'shape_is_err'});
+            socket.emit('createRoom', {code: 110, msg: 'shape_is_err'});
             return false;
         }
 
         //校验二级密码。
         let checkRes = await externalService.checkSecondPwdService(msg.uid, msg.pwd);
         if(!checkRes){
-            emitSelf('createRoom', {code: 110, msg: 'pwd_error'});
+            socket.emit('createRoom', {code: 110, msg: 'pwd_error'});
             return false;
         }
 
@@ -281,7 +289,7 @@ async function onConnect(socket){
             uid: msg.uid,
             shape: msg.shape,
             grade: msg.grade,
-            status: 0,
+            status: '0',
             diamond_number: global.roomNumData[msg.grade]['amount']
         };
 
@@ -299,10 +307,9 @@ async function onConnect(socket){
                 delRes.content = '创建竞猜冻结钻石';
                 await diamondLogService.baseCreate(delRes);
             });
-
             addRoom(cRes.grade, cRes.id);
             global.newRoomData[cRes.id] = {shape: cRes.shape, status: cRes.status};
-            emitSelf('createRoom', {
+            socket.emit('createRoom', {
                 code: 0,
                 data: {
                     id: cRes.id,
@@ -311,7 +318,7 @@ async function onConnect(socket){
                 },
             });
         }).catch((err)=>{
-            emitSelf('createRoom', {code:110, msg:err.message});
+            socket.emit('createRoom', {code:110, msg:err.message});
             return false;
         });
     });

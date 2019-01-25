@@ -62,6 +62,11 @@ class MemberModel extends BaseModel{
         return {type:'0', before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:Number(num)}
     }
 
+    async getMemberInfoById(id, attribute){
+        console.log('id:', id);
+        console.log('attribute:', attribute);
+        return await this.model.findByPk(id, {attributes: attribute});
+    }
 
     //取消竞猜解冻钻石
      async addDiamond(uid, num){

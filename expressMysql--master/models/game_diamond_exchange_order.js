@@ -23,11 +23,6 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			defaultValue: '0'
 		},
-        vsc: {
-            type: DataTypes.INTEGER(10).UNSIGNED,
-            allowNull: false,
-            defaultValue: '0'
-        },
 		amount: {
 			type: DataTypes.DECIMAL,
 			allowNull: false,

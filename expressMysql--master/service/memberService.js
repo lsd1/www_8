@@ -6,6 +6,9 @@ import MoraConfigService from './moraConfigService';
 import Moment from 'moment';
 
 import {AutoWritedMemberModel} from '../common/AutoWrite';
+import MemberModel from "../model/memberModel";
+import Sequelize from "sequelize";
+import {sequelize} from "../config/db";
 
 @AutoWritedMemberModel
 
@@ -44,6 +47,10 @@ class MemberService extends BaseService{
         return MemberService.model.delDiamond(uid, num);
     }
 
+    getMemberInfoByIdService(id, attribute){
+        return MemberService.model.getMemberInfoById(id, attribute);
+    }
+
     //svc兑换成钻石
     async exchangeDiamondService(uid, pwd, num, clientType){
         if(uid === '' ){
@@ -64,7 +71,6 @@ class MemberService extends BaseService{
                 uid:uid,
                 orderNO: orderNO,
                 diamond: diamond,
-                vsc: num,
                 amount: num,
                 orderType: 1,
                 payType:3,
@@ -74,27 +80,48 @@ class MemberService extends BaseService{
                 payTime: Moment().format('YYYY-MM-DD HH:mm:ss'),
                 finishTime: Moment().format('YYYY-MM-DD HH:mm:ss')
             };
-            let exchangeRes = await DiamondExchangeOrderService.baseCreate(orderCreateData);
-            if(exchangeRes){
-                //增加钻石
-                let incrementRes = await this.diamondIncrementService(uid, diamond);
-                //添加日志
-                if(!decincrementResRes['err']){
-                    incrementRes.source = 1;
-                    incrementRes.content = '钻石兑换vsc';
-                    incrementRes.vsc_status = 1;
-                    incrementRes.join_id = orderNO;
-                    await DiamondLogService.baseCreate(incrementRes);
-                }else{
-                    return {status:110, msg:incrementRes['err']}
-                }
-                return {status:0, msg:'exchange_diamond_succ'};
+
+            //创建兑换订单
+            let orderCreateRes = await DiamondExchangeOrderService.baseCreate(orderCreateData);
+            if(orderCreateRes){
+                //1.开启事物
+                sequelize.transaction( async (t) => {
+
+                    //5.请求外部兑换接口
+                }).then(()=>{
+
+                }).catch(()=>{
+
+                });
+
+                return {code:0, msg:'exchange_diamond_succ'};
             }else{
-                return {status:110, msg:'exchange_diamond_faild'}
+                return {code:110, msg:'exchange_diamond_faild'}
             }
         }else{
-            return {status:110, msg:'second_pwd_err'}
+            return {code:110, msg:'second_pwd_err'}
         }
+    }
+
+    //TODO:svc兑换钻石第二部分
+    step2 () {
+        //2.增加用户钻石数量
+        // let incrementRes = await this.diamondIncrementService(uid, diamond);
+        // await this.diamondIncrementService(uid, diamond).then(async (incrementRes) => {
+        //     //3.创建资产变更日志
+        //     incrementRes.source = 1;
+        //     incrementRes.content = '钻石兑换vsc';
+        //     incrementRes.vsc_status = 1;
+        //     incrementRes.join_id = orderNO;
+        //     await DiamondLogService.baseCreate(incrementRes);
+        //
+        // }).then(async () => {
+        //     //4.修改兑换状态为成功
+        //     DiamondExchangeOrderService.baseUpdate({status: 9}, {id:orderCreateRes.id})
+        //
+        // }).then(async () => {
+        //
+        // });
     }
 
     //diamond兑换成Vsc
