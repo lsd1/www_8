@@ -9,8 +9,8 @@ class DiamondLogService extends BaseService{
         super(DiamondLogService.model);
     }
 
-    getLogListByUnoService(uno, limit, lastId, type){
-        return DiamondLogService.model.getLogListByUno(uno, limit, lastId, type);
+    getLogListByUidService(uid, limit, lastId, type){
+        return DiamondLogService.model.getLogListByUid(uid, limit, lastId, type);
     }
 }
 

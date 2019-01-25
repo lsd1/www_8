@@ -55,6 +55,7 @@ app.use('/diamondLog', require('./routes/diamondLogCtrl'));
 app.use('/orderMora', require('./routes/orderMoraCtrl'));
 // app.use('/moraConfig', require('./routes/moraConfigCtrl'));
 app.use('/member', require('./routes/memberCtrl'));
+app.use('/recordLog', require('./routes/recordLogCtrl'));
 
 // 错误处理中间件
 app.use(function(req, res, next) {

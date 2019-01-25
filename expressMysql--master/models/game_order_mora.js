@@ -1,18 +1,18 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('mge_order_mora', {
+	return sequelize.define('game_order_mora', {
 		id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true
 		},
-		uno: {
+		uid: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false
 		},
-		target_uno: {
+		target_uid: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: true,
             defaultValue: null
@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: '0'
 		}
 	}, {
-        tableName: 'mge_order_mora',
+        tableName: 'game_order_mora',
         underscored: true,
 		timestamps: true
 	});

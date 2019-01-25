@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('mge_mora_config', {
+	return sequelize.define('game_mora_config', {
 		id: {
 			type: DataTypes.INTEGER(3).UNSIGNED,
 			allowNull: false,
@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false
 		}
 	}, {
-		tableName: 'mge_mora_config',
+		tableName: 'game_mora_config',
         underscored: true,
 		timestamps: true
 	});

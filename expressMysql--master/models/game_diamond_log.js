@@ -1,18 +1,23 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('mge_diamond_log', {
+	return sequelize.define('game_diamond_log', {
 		id: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true
 		},
-		uno: {
+        join_id: {
+            type: DataTypes.INTEGER(10).UNSIGNED,
+            allowNull: false,
+            defaultValue: 0
+        },
+		uid: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false
 		},
-		traget_uno: {
+		traget_uid: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
             defaultValue: 0
@@ -46,13 +51,18 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 0
         },
+        vsc_status:{
+            type: DataTypes.INTEGER(4),
+            allowNull: false,
+            defaultValue: 0
+		},
         freeze_diamond:{
             type: DataTypes.INTEGER(10),
             allowNull: false,
             defaultValue: 0
         }
 	}, {
-		tableName: 'mge_diamond_log',
+		tableName: 'game_diamond_log',
         underscored: true,
 		timestamps: true,
 	});

@@ -2,7 +2,7 @@ import BaseModel from './baseModel';
 import MemberModel from './memberModel';
 import {sequelize} from '../config/db.js';
 import Sequelize from 'sequelize';
-import OrderMora from '../models/mge_order_mora';
+import OrderMora from '../models/game_order_mora';
 class OrderMoraModel extends BaseModel{
     constructor(){
         super(OrderMora);
@@ -23,35 +23,36 @@ class OrderMoraModel extends BaseModel{
     }
 
     async getRoomInfoById(id){
+        this.model.belongsTo(MemberModel.model, {foreignKey:'uid'});
         let resData = await this.model.findByPk(id, {
-            attributes:['id', 'uno', 'grade', ['diamond_number', 'amount'], 'shape', 'target_uno', 'target_shape', 'status'],
+            attributes:['id', 'uid', 'grade', ['diamond_number', 'amount'], 'shape', 'target_uid', 'target_shape', 'status'],
             include:{
                 model:MemberModel.model,
-                where: { uno: Sequelize.col('mge_member.uno') },
+                where: { uid: Sequelize.col('game_member.id') },
                 attributes:['user_name','user_avatar']
             }
         });
         return this.toFlat(resData);
     }
 
-    async getRoomListByUno(uno){
-        let resData = await this.findByFilter(['id', 'grade', ['diamond_number', 'amount'], 'shape'], {uno: uno, status: '0'});
+    async getRoomListByUid(uid){
+        let resData = await this.findByFilter(['id', 'grade', ['diamond_number', 'amount'], 'shape'], {uid: uid, status: '0'});
         return this.toFlat(resData);
     }
 
-    async getRecordListByUno(uno, lastId, limit){
+    async getRecordListByUid(uid, lastId, limit){
         lastId = lastId || 0;
         limit = limit || 10;
-        this.model.belongsTo(MemberModel.model, {foreignKey:'target_uno'});
+        this.model.belongsTo(MemberModel.model, {foreignKey:'target_uid'});
         let resData = await this.model.findAll(
             {
-                attributes:['id', 'uno', 'grade', ['diamond_number', 'amount'], 'shape', 'target_uno', 'target_shape', 'status', 'updated_at'],
+                attributes:['id', 'uid', 'grade', ['diamond_number', 'amount'], 'shape', 'target_uid', 'target_shape', 'status', 'updated_at'],
                 include:{
                     model:MemberModel.model,
                     attributes:[['user_name', 'target_user_name'], ['user_avatar', 'target_user_avatar']]
                 },
                 where: {
-                    uno: Number(uno),
+                    uid: Number(uid),
                     status: {[Sequelize.Op.gt]: '1'},
                     id: {[Sequelize.Op.gt]: Number(lastId)}
                 },

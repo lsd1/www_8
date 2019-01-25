@@ -1,6 +1,9 @@
 import Sequelize from 'sequelize';
+import cls from 'continuation-local-storage';
+const namespace = cls.createNamespace('my-namespace');
+Sequelize.useCLS(namespace);
 const config = {
-	database:'mge_mora',
+	database:'game_mora',
 	user: 'root',
 	pwd: 'root',
     host: 'localhost',

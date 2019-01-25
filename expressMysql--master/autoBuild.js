@@ -20,9 +20,8 @@ const autoBuild = new SequelizeAuto(
 //     console.log(autoBuild.tables); // table list
 //     console.log(autoBuild.foreignKeys); // foreign key list
 // });
-
-setTimeout(function () {
-    createModelAndService();
-}, 3000);
+// setTimeout(function () {
+//     createModelAndService();
+// }, 3000);
 
 

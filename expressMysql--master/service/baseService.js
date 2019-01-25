@@ -37,9 +37,8 @@ class BaseService{
 		return this.instance.delete(where);
 
 	}
-	baseCreate(entity){
-
-		return this.instance.create(entity);
+	baseCreate(entity, option){
+		return this.instance.create(entity,option);
 
 	}
 	baseCreateBatch(entitys){

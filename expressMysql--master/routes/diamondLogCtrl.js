@@ -15,8 +15,8 @@ class diamondLogCtroller{
 
         router.get('/getLogList', async (req, res, next) => {
             try{
-            	res.json(await diamondLogService.getLogListByUnoService(
-					req.query.uno,
+            	res.json(await diamondLogService.getLogListByUidService(
+					req.query.uid,
 					req.query.limit,
 					req.query.lastId,
 					req.query.type

@@ -23,6 +23,16 @@ class MoraConfigService extends BaseService{
     getAllShapeConfig(){
         return MoraConfigService.model.findByFilter(['name','index','value','content'],{name:'shape'});
     }
+
+    //获取竞猜费率
+    getRateConfig(){
+        return MoraConfigService.model.findByFilter(['value'],{name:'rate'});
+    }
+
+    //获取兑换比例
+    getExchangeRateConfig(){
+        return MoraConfigService.model.findByFilter(['value'],{name:'exchange_rate'});
+    }
 }
 
 module.exports = new MoraConfigService();

@@ -1,6 +1,6 @@
 import BaseModel from './baseModel';
 import Sequelize from 'sequelize';
-import DiamondLog from '../models/mge_diamond_log';
+import DiamondLog from '../models/game_diamond_log';
 
 class DiamondLogModel extends BaseModel{
     constructor(){
@@ -10,17 +10,17 @@ class DiamondLogModel extends BaseModel{
     }
 
     //获取用户资产记录。
-    getLogListByUno (uno, limit, lastId, type){
+    getLogListByUid (uid, limit, lastId, type){
         limit = limit || 10;
         lastId = lastId || 0;
-        let where = {uno: Number(uno), id:{[Sequelize.Op.gt]: Number(lastId)}};
+        let where = {uid: Number(uid), id:{[Sequelize.Op.gt]: Number(lastId)}};
 
         if(type !== undefined){
             where.type = type;
         }
 
         return this.model.findAll({
-            attributes:  { exclude: ['uno', 'traget_uno', 'created_at'] },
+            attributes:  { exclude: ['uid', 'traget_uid', 'created_at'] },
             where: where,
             limit: Number(limit)
         });

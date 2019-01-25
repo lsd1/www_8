@@ -58,8 +58,9 @@ class BaseModel{
 	}
 	/**************************************插入方法**************************************/
 	// 插入单个实体
-	create(entity){
-		return this.model.create(entity);
+	create(entity, option){
+        option = option || {};
+		return this.model.create(entity, option);
 	}
 	// 批量插入实体集
 	createBatch(entitys){

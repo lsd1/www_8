@@ -11,4 +11,10 @@ module.exports = {
     AutoWritedOrderMoraModel(target, key, descriptor){
         target.model = require('../model/orderMoraModel');
     },
+    AutoWritedDiamondExchangeOrderModel(target, key, descriptor){
+        target.model = require('../model/diamondExchangeOrderModel');
+    },
+    AutoWritedRecordLogModel(target, key, descriptor){
+        target.model = require('../model/recordLogModel');
+    },
 };

@@ -1,8 +1,8 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('mge_member', {
-		uno: {
+	return sequelize.define('game_member', {
+		id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
             primaryKey: true
@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: '0'
 		}
 	}, {
-		tableName: 'mge_member',
+		tableName: 'game_member',
         underscored: true,
 		timestamps: true
 	});

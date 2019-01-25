@@ -1,6 +1,6 @@
 import BaseModel from './baseModel';
 
-import MoraConfig from '../models/mge_mora_config';
+import MoraConfig from '../models/game_mora_config';
 
 class MoraConfigModel extends BaseModel{
     constructor(){

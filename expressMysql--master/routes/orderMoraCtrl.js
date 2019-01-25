@@ -21,14 +21,14 @@ class orderMoraCtroller{
             try{res.json(await orderMoraService.getRoomInfoByIdService(req.query.id));}catch(err){next(err);}
         });
 
-        //根据uno获取用户未完成房间列表
-        router.get('/getRoomListByUno', async (req, res, next) => {
-            try{res.json(await orderMoraService.getRoomListByUnoService(req.query.uno));}catch(err){next(err);}
+        //根据uid获取用户未完成房间列表
+        router.get('/getRoomListByUid', async (req, res, next) => {
+            try{res.json(await orderMoraService.getRoomListByUidService(req.query.uid));}catch(err){next(err);}
         });
 
-        //根据uno获取用户战绩列表
-        router.get('/getRecordListByUno', async (req, res, next) => {
-            try{res.json(await orderMoraService.getRecordListByUnoService(req.query.uno, req.query.lastId, req.query.limit));}catch(err){next(err);}
+        //根据uid获取用户战绩列表
+        router.get('/getRecordListByUid', async (req, res, next) => {
+            try{res.json(await orderMoraService.getRecordListByUidService(req.query.uid, req.query.lastId, req.query.limit));}catch(err){next(err);}
         });
 
 		router.put('/update', async (req, res, next) => {

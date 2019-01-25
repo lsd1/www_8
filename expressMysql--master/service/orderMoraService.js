@@ -12,12 +12,13 @@ class OrderMoraService extends BaseService{
     getRoomInfoByIdService(id){
        return OrderMoraService.model.getRoomInfoById(id);
     }
-    getRoomListByUnoService(uno){
-        return OrderMoraService.model.getRoomListByUno(uno);
+
+    getRoomListByUidService(uid){
+        return OrderMoraService.model.getRoomListByUid(uid);
     }
 
-    getRecordListByUnoService(uno, lastId, limit){
-        return OrderMoraService.model.getRecordListByUno(uno, lastId, limit);
+    getRecordListByUidService(uid, lastId, limit){
+        return OrderMoraService.model.getRecordListByUid(uid, lastId, limit);
     }
 
 }
