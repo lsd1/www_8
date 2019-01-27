@@ -21,6 +21,10 @@ class OrderMoraService extends BaseService{
         return OrderMoraService.model.getRecordListByUid(uid, lastId, limit);
     }
 
+    createData(obj){
+        return OrderMoraService.model.create(obj);
+    }
+
 }
 
 module.exports = new OrderMoraService();

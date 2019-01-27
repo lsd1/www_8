@@ -15,6 +15,9 @@ var io;
 global.roomDataOnGame = [];
 global.shapeArr = [];
 global.newRoomData = {};
+global.rate = null;
+global.exchangeUid = null;
+global.gradeConfigData = [];
 import {onConnect,getRoomData} from "../routes/socketCtrl";
 // var httpsOpt = {
 //   key : fs.readFileSync(path.join(path.dirname(__dirname),'public/httpsCert/214099849550308.key')),
@@ -119,7 +122,11 @@ getRoomData().then((data)=>{
     global.roomNumData = data[0];
     global.roomData = data[1];
     global.shapeArr = data[2];
-    console.log(global.shapeArr);
+    global.rate = parseFloat(data[3]);
+    global.exchangeUid = data[4];
+    global.gradeConfigData = data[5];
+    console.log('global.rate:', global.rate);
+    console.log('global.exchangeUid:', global.exchangeUid);
     io = require('socket.io').listen(server, opts);
     global.io = io;
     if ( typeof io.emit === "function" ) {

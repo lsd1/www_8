@@ -14,8 +14,7 @@ class DiamondLogModel extends BaseModel{
         limit = limit || 10;
         lastId = lastId || 0;
         let where = {uid: Number(uid), id:{[Sequelize.Op.gt]: Number(lastId)}};
-
-        if(type !== undefined){
+        if(type != ''){
             where.type = type;
         }
 

@@ -4,10 +4,7 @@ import DiamondLogService from './diamondLogService';
 import DiamondExchangeOrderService from './diamondExchangeOrderService';
 import MoraConfigService from './moraConfigService';
 import Moment from 'moment';
-
 import {AutoWritedMemberModel} from '../common/AutoWrite';
-import MemberModel from "../model/memberModel";
-import Sequelize from "sequelize";
 import {sequelize} from "../config/db";
 
 @AutoWritedMemberModel
@@ -15,6 +12,41 @@ import {sequelize} from "../config/db";
 class MemberService extends BaseService{
     constructor(){
         super(MemberService.model);
+    }
+
+    async getMemberInfoService(secretdata, user_avatar, user_name){
+        let memberInfo = ExternalService.memberInfoDecode(secretdata);
+        let uid = Number(memberInfo.uid);
+        let token = memberInfo.token;
+        let lang = Number(memberInfo.lang);
+        let network = Number(memberInfo.network);
+        let clientType = Number(memberInfo.clientType);
+        let version = memberInfo.version;
+        let updateData = {};
+        let res = await MemberService.model.findOrBuildMember({id:uid},{id:uid, user_name:user_name, user_avatar:user_avatar, diamond:0, token:token, freeze_diamond:0});
+
+        if(res[0]['token'] !== token){
+            updateData.token = token;
+        }else if(res[0]['user_avatar'] !== user_avatar){
+            updateData.user_avatar = user_avatar;
+        }else if(res[0]['user_name'] !== user_name){
+            updateData.user_name = user_name;
+        }
+        if(updateData !== {}){
+            await this.baseUpdate(updateData, {id: uid});
+        }
+        return {
+            code:0,
+            data:{
+                uid:uid,
+                lang:lang,
+                token:token,
+                network:network,
+                clientType:clientType,
+                version:version,
+                diamond:res[0]['diamond'],
+            }
+        }
     }
 
     //钻石递增
@@ -27,6 +59,12 @@ class MemberService extends BaseService{
         return MemberService.model.diamondDecrement(uid, num);
     }
 
+    //钻石递减
+
+    diamondDecrementService2(uid, num){
+        return MemberService.model.diamondDecrement2(uid, num);
+    }
+
     //冻结钻石递增
     freezeDiamondIncrementService(uid, num){
         return MemberService.model.freezeDiamondIncrement(uid, num);
@@ -37,14 +75,14 @@ class MemberService extends BaseService{
         return MemberService.model.freezeDiamondDecrement(uid, num);
     }
 
-    //取消竞猜
-    cancelMoraService(uid, num){
-        return MemberService.model.addDiamond(uid, num);
+    //解冻钻石
+    unfreezeDiamondService(uid, num){
+        return MemberService.model.unfreezeDiamond(uid, num);
     }
 
     //参与竞猜
-    participateMoraService(uid, num){
-        return MemberService.model.delDiamond(uid, num);
+    freezeDiamond(uid, num){
+        return MemberService.model.freezeDiamond(uid, num);
     }
 
     getMemberInfoByIdService(id, attribute){
@@ -53,6 +91,7 @@ class MemberService extends BaseService{
 
     //svc兑换成钻石
     async exchangeDiamondService(uid, pwd, num, clientType){
+        clientType = ExternalService.getClientType(clientType);
         if(uid === '' ){
             return {status:110, msg:'uid_empty'}
         }
@@ -89,12 +128,11 @@ class MemberService extends BaseService{
 
                     //5.请求外部兑换接口
                 }).then(()=>{
-
-                }).catch(()=>{
-
+                    return {code:0, data:{}, msg:'exchange_diamond_succ'};
+                }).catch((err)=>{
+                    return {code:110, msg:err.message}
                 });
 
-                return {code:0, msg:'exchange_diamond_succ'};
             }else{
                 return {code:110, msg:'exchange_diamond_faild'}
             }

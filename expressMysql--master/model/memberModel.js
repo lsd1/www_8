@@ -9,49 +9,63 @@ class MemberModel extends BaseModel{
         this.model.sync();
     }
 
-    //钻石递增
+    //递增 钻石
     async diamondIncrement(uid, num){
-        let member = await this.model.findById(uid);
+        let member = await this.model.findByPk(uid);
         let before_change = member.diamond;
         await member.increment('diamond', {by: num});
         let newMember = await member.reload();
-        return {type:'1', before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:0}
+        return {type:'1', uid: uid, before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:0}
     }
 
-    //钻石递减
+    //递增 冻结钻石
+    async freezeDiamondIncrement(uid, num){
+        let member = await this.model.findByPk(uid);
+        await member.increment('freeze_diamond', {by: num});
+        return {freeze_diamon: Number(num)}
+    }
+
+    //递减 钻石
     async diamondDecrement(uid, num){
-        let member = await this.model.findById(uid);
+        let member = await this.model.findByPk(uid);
         let before_change = member.diamond;
         if(member.diamond < num){
-            return {err:"diamond_not_enough"}
+            throw Error('diamond_not_enough');
         }
         await member.decrement('diamond', {by: num});
         let newMember = await member.reload();
-        return {type:'0', before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:0}
+        return {type:'0', uid: uid, before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:0}
     }
 
-    //冻结钻石递增
-    async freezeDiamondIncrement(uid, num){
-        this.model.findById(uid).then(member => {
-            return member.increment('freeze_diamond', {by: num})
-        });
+    //递减 钻石
+    async diamondDecrement2(uid, num){
+        let member = await this.model.findByPk(uid);
+        let before_change = member.diamond;
+        if(member.diamond < num){
+            throw Error('diamond_not_enough');
+        }
+        await member.decrement('diamond', {by: num});
+        let newMember = await member.reload();
+        return {type:'0', uid: uid, before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:0}
     }
 
-    //冻结钻石递减
+    //递减 冻结钻石
     async freezeDiamondDecrement(uid, num){
-        let member = await this.model.findById(uid);
+        let member = await this.model.findByPk(uid);
+        console.log('member', JSON.stringify(member));
+        console.log('neeNum:', num);
         let before_change = member.diamond;
         if(member.freeze_diamond < num){
-            return {err:"freeze_diamond_error"}
+            throw Error('freeze_diamond_error');
         }
         await member.decrement('freeze_diamond', {by: num});
-        let newMember = await member.reload();
-        return {type:'0', before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:-Number(num)}
+        return {freeze_diamon: -Number(num)}
     }
 
-    //参与竞猜冻结钻石
-    async delDiamond(uid, num){
-        let member = await this.model.findById(uid);
+    //冻结钻石
+    async freezeDiamond(uid, num){
+        let member = await this.model.findByPk(uid);
+        console.log(uid, num);
         let before_change = member.diamond;
         if(member.diamond < num){
             throw Error('diamond_not_enough');
@@ -59,26 +73,43 @@ class MemberModel extends BaseModel{
         await member.decrement('diamond', {by: Number(num)});
         await member.increment('freeze_diamond', {by: Number(num)});
         let newMember = await member.reload();
-        return {type:'0', before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:Number(num)}
+        return {type:'0', uid: uid, before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:Number(num)}
     }
 
-    async getMemberInfoById(id, attribute){
-        console.log('id:', id);
-        console.log('attribute:', attribute);
-        return await this.model.findByPk(id, {attributes: attribute});
-    }
-
-    //取消竞猜解冻钻石
-     async addDiamond(uid, num){
-        let member = await this.model.findById(uid);
+    //解冻钻石
+     async unfreezeDiamond(uid, num){
+        console.log('id:',uid);
+        console.log('num:',num);
+        let member = await this.model.findByPk(uid);
+        console.log('memberInfo:', JSON.stringify(member));
+        console.log('freeze_diamond:', member.freeze_diamond);
+        console.log('needNum:', num);
         let before_change = member.diamond;
         if(member.freeze_diamond < num){
-            return {err:"freeze_diamond_error"}
+            throw Error('freeze_diamond_error');
         }
         await member.increment('diamond', {by: Number(num)});
         await member.decrement('freeze_diamond', {by: Number(num)});
         let newMember = await member.reload();
-        return {type:1, before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:-Number(num)}
+        return {type:1, uid: uid, before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:-Number(num)}
+    }
+
+    async getMemberInfoById(id, attribute){
+        let options = {};
+        if(attribute){
+            options = {attributes: attribute};
+        }
+        console.log('attribute:', attribute);
+        return await this.model.findByPk(id, options);
+    }
+
+    async findOrBuildMember(where,params){
+           let memberInfo = await this.model.findOrCreate({where: where, defaults: params});
+           return memberInfo;
+            // .spread((user, created) => {
+            //     console.log(user.get({
+            //         plain: true
+            //     }))
     }
 
 }

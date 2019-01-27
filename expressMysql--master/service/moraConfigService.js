@@ -31,7 +31,12 @@ class MoraConfigService extends BaseService{
 
     //获取兑换比例
     getExchangeRateConfig(){
-        return MoraConfigService.model.findByFilter(['value'],{name:'exchange_rate'});
+        return MoraConfigService.model.findByFilter(['value'],{name:'exchangeRate'});
+    }
+
+    //获取竞猜费率结算账号
+    getExchangeUidConfig(){
+        return MoraConfigService.model.findByFilter(['value'],{name:'exchangeUid'});
     }
 }
 

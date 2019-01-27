@@ -20,6 +20,10 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			defaultValue: '0'
 		},
+		token: {
+            type: DataTypes.STRING(50),
+            allowNull: false
+		},
 		freeze_diamond: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
