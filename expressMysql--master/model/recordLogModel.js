@@ -12,20 +12,21 @@ class RecordLogModel extends BaseModel{
     }
 
     async getRecordListByUid(uid, lastId, limit){
-        lastId = lastId || 0;
-        limit = limit || 10;
+        limit = limit > 0 ? limit : 10;
+        let where = {uid: Number(uid)};
+        if(lastId > 0){
+            where.id = {[Sequelize.Op.lt]: Number(lastId)};
+        }
         this.model.belongsTo(MemberModel.model, {foreignKey:'target_uid'});
         let resData = await this.model.findAll(
             {
-                attributes:['id', 'uid', 'grade', ['diamond_number', 'amount'], ['room_owner_id','roomOwner'], 'shape', 'target_uid', 'target_shape', 'status', 'updated_at'],
+                attributes:['id', 'uid', 'grade', ['res_diamond', 'amount'], ['room_owner_id','roomOwner'], 'shape', 'target_uid', 'target_shape', 'status', 'updated_at'],
                 include:{
                     model:MemberModel.model,
                     attributes:[['user_name', 'target_user_name'], ['user_avatar', 'target_user_avatar']]
                 },
-                where: {
-                    uid: Number(uid),
-                    id: {[Sequelize.Op.gt]: Number(lastId)}
-                },
+                where: where,
+                order:[['id', 'DESC']],
                 limit: Number(limit)
             }
         );

@@ -83,13 +83,42 @@
 // console.warn("Decoded all: " + dec);
 
 
-import memberService from "./service/memberService";
+// import memberService from "./service/memberService";
+//
+//
+//  async  function getInfo (){
+//      let res = await memberService.getMemberInfoService({id:1696538},{id:1696538, user_name:'lsd', user_avatar:'我的头像', diamond:0, token:'123123123wadasdasdasdadasdasdsd', freeze_diamond:0});
+//      console.log(JSON.stringify());
+//  }
+// getInfo ();
+import request from "request";
+import ExternalService from './service/externalService';
+import MemberService from './service/memberService';
+//
+// MemberService.getMemberInfoByIdService(16965038).then(res=>{
+//     console.log(res);
+// });
 
-
- async  function getInfo (){
-     let res = await memberService.getMemberInfoService({id:1696538},{id:1696538, user_name:'lsd', user_avatar:'我的头像', diamond:0, token:'123123123wadasdasdasdadasdasdsd', freeze_diamond:0});
-     console.log(JSON.stringify());
- }
-getInfo ();
-
+let postData = {
+    clientType:1,
+    lang:0,
+    network:0,
+    uid:1696538,
+    version:'9.9.9'
+};
+ExternalService.initParams(postData,'member/exchangeVsc',{},'http://192.168.1.238:666/').then(res=>{
+    console.log(res);
+});
+{ data:
+{ clientType: 1,
+    lang: 0,
+    network: 1,
+    timestamp: 1548718727083,
+    uid: 1696538,
+    version: '9.9.9',
+    sign: '69415e3dd1d9111c9505628affdf7d56',
+    uuid: '154871872708361835',
+    action: 'member/exchangeVsc' },
+    postUrl: 'http://192.168.1.238:666/member/exchangeVsc',
+        getUrl: 'http://192.168.1.238:666/member/exchangeVsc?clientType=1&lang=0&network=1&timestamp=1548718727083&uid=1696538&version=9.9.9&sign=69415e3dd1d9111c9505628affdf7d56&uuid=154871872708361835&action =member%2FexchangeVsc' }
 

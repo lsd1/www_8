@@ -11,6 +11,7 @@ import bodyParser from 'body-parser';
 import multipart from 'connect-multiparty';
 
 import compression from 'compression';
+import BaseCtroller from './routes/baseCtroller';
 
 //配置express中间件
 const app = express();
@@ -51,6 +52,7 @@ app.all('*',function(req,res,next){
 });
 
 // 路由列表
+app.use('/', BaseCtroller.verify);
 app.use('/diamondLog', require('./routes/diamondLogCtrl'));
 app.use('/orderMora', require('./routes/orderMoraCtrl'));
 // app.use('/moraConfig', require('./routes/moraConfigCtrl'));

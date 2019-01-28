@@ -1,7 +1,7 @@
 import express from 'express';
 
 import diamondExchangeOrderService from '../service/diamondExchangeOrderService.js';
-
+import  BaseCtroller from './baseCtroller'
 const router = express.Router();
 
 class diamondExchangeOrderCtroller{

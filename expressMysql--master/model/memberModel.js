@@ -91,7 +91,7 @@ class MemberModel extends BaseModel{
         await member.increment('diamond', {by: Number(num)});
         await member.decrement('freeze_diamond', {by: Number(num)});
         let newMember = await member.reload();
-        return {type:1, uid: uid, before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:-Number(num)}
+        return {type:'1', uid: uid, before_change:before_change, change:Number(num), after_change:newMember.diamond, vsc:0, freeze_diamond:-Number(num)}
     }
 
     async getMemberInfoById(id, attribute){
@@ -99,8 +99,13 @@ class MemberModel extends BaseModel{
         if(attribute){
             options = {attributes: attribute};
         }
-        console.log('attribute:', attribute);
-        return await this.model.findByPk(id, options);
+        try {
+            return await this.model.findByPk(id, options);
+        }catch (e) {
+            console.log(e);
+            throw e;
+        }
+
     }
 
     async findOrBuildMember(where,params){

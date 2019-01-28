@@ -29,9 +29,13 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false
 		},
         diamond_number: {
-			type: DataTypes.INTEGER(10).UNSIGNED,
-			allowNull: false
-		},
+            type: DataTypes.INTEGER(10).UNSIGNED,
+            allowNull: false
+        },
+        res_diamond: {
+            type: DataTypes.INTEGER(10),
+            allowNull: false
+        },
         shape: {
             type: DataTypes.INTEGER(4),
             allowNull: false

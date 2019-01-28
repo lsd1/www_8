@@ -32,7 +32,7 @@ class OrderMoraModel extends BaseModel{
                 attributes:['user_name','user_avatar']
             }
         });
-        return this.toFlat(resData);
+        return this.toFlat(resData || []);
     }
 
     async getRoomListByUid(uid){

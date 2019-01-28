@@ -51,7 +51,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 0
         },
-        vsc_status:{
+        status:{
             type: DataTypes.INTEGER(4),
             allowNull: false,
             defaultValue: 0
