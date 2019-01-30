@@ -17,4 +17,10 @@ module.exports = {
     AutoWritedRecordLogModel(target, key, descriptor){
         target.model = require('../model/recordLogModel');
     },
+	AutoWritedNoticModel(target, key, descriptor){
+        target.model = require('../model/noticModel');
+    },
+    AutoWritedTaskModel(target, key, descriptor){
+        target.model = require('../model/taskModel');
+    }
 };
