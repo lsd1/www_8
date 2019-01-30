@@ -55,27 +55,21 @@ app.all('*',function(req,res,next){
 app.use('/', BaseCtroller.verify);
 app.use('/diamondLog', require('./routes/diamondLogCtrl'));
 app.use('/orderMora', require('./routes/orderMoraCtrl'));
-// app.use('/moraConfig', require('./routes/moraConfigCtrl'));
 app.use('/member', require('./routes/memberCtrl'));
 app.use('/recordLog', require('./routes/recordLogCtrl'));
 
 // 错误处理中间件
 app.use(function(req, res, next) {
   let err = new Error('Not Found');
-
   err.status = 404;
-
-  res.json({error:err});
-
+  res.json({code:err});
 });
 
 app.use(errorHandler);
 
 function errorHandler(err, req, res, next) {
 	console.error(err);
-
-	res.json({error: err});
-
+	res.json({code:111, msg: err});
 }
 
 module.exports = app;

@@ -1,7 +1,9 @@
 import BaseService from './baseService';
 import ExternalService from './externalService';
 import DiamondLogService from './diamondLogService';
+import DiamondLogModel from '../model/diamondLogModel';
 import DiamondExchangeOrderService from './diamondExchangeOrderService';
+import DiamondExchangeOrderModel from '../model/diamondExchangeOrderModel';
 import MoraConfigService from './moraConfigService';
 import Moment from 'moment';
 import {AutoWritedMemberModel} from '../common/AutoWrite';
@@ -13,9 +15,24 @@ class MemberService extends BaseService{
     constructor(){
         super(MemberService.model);
     }
-
-    async getMemberInfoService(secretdata, user_name, user_avatar){
+    async getMemberInfoService(secretdata){
         let memberInfo = ExternalService.memberInfoDecode(secretdata);
+        //调用外部接口获取用户信息
+        let memberDetail = {},user_name = '', user_avatar = '', vscAmount = 0;
+        try {
+            memberDetail = await ExternalService.postGetMemberInfoService(memberInfo);
+            if(memberDetail == -1){
+                memberDetail = await ExternalService.postGetMemberInfoService(memberInfo);
+            }
+        }catch (e) {
+            console.log(e);
+        }
+        if(memberDetail.code == 0){
+             user_name = memberDetail.data.memberInfo.username;
+             user_avatar = memberDetail.data.memberInfo.avatar;
+             vscAmount = memberDetail.data.memberInfo.vscAmount;
+        }
+
         let uid = Number(memberInfo.uid);
         let token = memberInfo.token;
         let lang = Number(memberInfo.lang);
@@ -25,11 +42,11 @@ class MemberService extends BaseService{
         let updateData = {};
         let res = await MemberService.model.findOrBuildMember({id:uid},{id:uid, user_name:user_name, user_avatar:user_avatar, diamond:0, token:token, freeze_diamond:0});
         let exchangeRate = await MoraConfigService.getExchangeRateConfig();
-        if(res[0]['token'] !== token){
+        if(token && res[0]['token'] !== token){
             updateData.token = token;
-        }else if(res[0]['user_avatar'] !== user_avatar){
+        }else if(user_avatar && res[0]['user_avatar'] !== user_avatar){
             updateData.user_avatar = user_avatar;
-        }else if(res[0]['user_name'] !== user_name){
+        }else if(user_name && res[0]['user_name'] !== user_name){
             updateData.user_name = user_name;
         }
 
@@ -43,16 +60,18 @@ class MemberService extends BaseService{
             token:token,
             network:network,
             clientType:clientType,
+            avatar:user_avatar || res[0]['user_avatar'],
+            name:user_name || res[0]['user_name'],
             version:version,
             diamond:res[0]['diamond'],
-            vscAmount:1000,
+            vscAmount:vscAmount,
             exchangeRate:exchangeRate[0]['value']
         }
     }
 
     //钻石递增
-    diamondIncrementService(uid, num){
-        return MemberService.model.diamondIncrement(uid, num);
+    diamondIncrementService(uid, num, transaction){
+        return MemberService.model.diamondIncrement(uid, num, transaction);
     }
 
     //钻石递减
@@ -102,9 +121,9 @@ class MemberService extends BaseService{
         if(!postData.num){
             return {code:110, msg:'num_empty'}
         }
-        let checkRes = await ExternalService.checkSecondPwdService(postData.uid, postData.pwd);
-        if(!checkRes){
-            return {code:110, msg:'pwd_error'}
+        let checkRes = await ExternalService.postCheckSecondPwdService(postData);
+        if(checkRes.code != 0){
+            return {code:checkRes.code, msg:checkRes.msg}
         }
         let num = Number(postData.num);
         let exchangeRate = await MoraConfigService.getExchangeRateConfig();
@@ -117,13 +136,13 @@ class MemberService extends BaseService{
             amount: num,
             orderType: 1,
             payType:3,
-            status:0,
+            status:1,
             content:'vsc兑换成钻石',
             datetime: Moment().format('YYYY-MM-DD HH:mm:ss'),
             payTime: Moment().format('YYYY-MM-DD HH:mm:ss'),
             finishTime: Moment().format('YYYY-MM-DD HH:mm:ss')
         };
-        //创建订单
+        //1.创建订单
         let orderCreateRes = await DiamondExchangeOrderService.baseCreate(orderCreateData);
         if(!orderCreateRes){
             return {code:110, msg:'create_order_faild'}
@@ -136,27 +155,43 @@ class MemberService extends BaseService{
             console.log(e);
             throw e;
         }
-        console.log(res);
-        if(res == 0){
-         return await sequelize.transaction(async ()=>{
-                let incrementRes = await this.diamondIncrementService(postData.uid, diamond);
-                //3.创建资产变更日志
-                incrementRes.source = 0;
-                incrementRes.content = 'vsc兑换成钻石';
-                incrementRes.status = 1;
-                incrementRes.join_id = orderNO;
-                await DiamondLogService.baseCreate(incrementRes);
-                //4.修改兑换状态为成功
-                await DiamondExchangeOrderService.baseUpdate({status: 9}, {id:orderCreateRes.id});
-                return incrementRes.after_change;
-            }).then((number) => {
-                return {diamond:number};
-            }).catch((err) => {
+        if(res.code == 0){
+            return await this.exchangeDiamondStep2(orderCreateRes.id, postData.uid);
+        } else {
+            if(res.code > 0){
+                return res;
+            }else{
                 return {code:5, msg:'diamond_will_arrive_later'};
-            });
-        }else{
-            return {msg:'diamond_will_arrive_later'};
+            }
         }
+    }
+
+    //vsc兑换钻石第二步
+    async exchangeDiamondStep2(orderId, uid) {
+        //3.确认订单状态为2
+        let res = await DiamondExchangeOrderModel.model.findAll({attributes: ['id', 'uid', 'diamond', 'orderNO'], where: {id:orderId, status: 2}});
+        console.log('res:', res);
+        if (!res) {
+            return {code: 5, msg: 'diamond_will_arrive_later'};
+        }
+        return await sequelize.transaction(async (t) => {
+            console.log('res.diamond:', res[0]['diamond']);
+            let incrementRes = await this.diamondIncrementService(uid, res[0]['diamond'], {transaction: t});
+            //4.创建资产变更日志.
+            incrementRes.source = 0;
+            incrementRes.content = 'vsc兑换成钻石';
+            incrementRes.status = 2;
+            incrementRes.join_id = res[0]['orderNO'];
+            await DiamondLogService.baseCreate(incrementRes, {transaction: t});
+            //5.修改兑换状态为成功.
+            await DiamondExchangeOrderModel.model.update({status: 9}, {where: {id: orderId}, transaction: t});
+            return incrementRes.after_change;
+        }).then((number) => {
+            return {diamond: number};
+        }).catch((err) => {
+            console.log(err);
+            return {code: 5, msg: 'diamond_will_arrive_later'};
+        });
     }
 
     //diamond兑换成Vsc
@@ -171,14 +206,14 @@ class MemberService extends BaseService{
             return {code:110, msg:'num_empty'}
         }
         //TODO：校验二级密码
-        // let checkRes = await ExternalService.checkSecondPwdService(postData.uid, postData.pwd);
-        // if (!checkRes) {
-        //     return {code:110, msg:'pwd_error'}
-        // }
+        let checkRes = await ExternalService.postCheckSecondPwdService(postData);
+        if (checkRes.code != 0) {
+            return {code:checkRes.code, msg:checkRes.msg}
+        }
 
-       return sequelize.transaction(async (t) => {
-            //创建订单
-            let exchangeRate = await MoraConfigService.getExchangeRateConfig();
+        let exchangeRate = await MoraConfigService.getExchangeRateConfig();
+        return sequelize.transaction(async (t) => {
+            //1.创建订单
             let vsc = Number(postData.num) * exchangeRate[0]['value'];
             let orderNO = ExternalService.getOrderNO(postData.clientType);
             let orderCreateData = {
@@ -188,32 +223,62 @@ class MemberService extends BaseService{
                 amount: vsc,
                 orderType: 2,
                 payType: 3,
-                status: 0,
+                status: 1,
                 content: '钻石兑换成vsc',
                 datetime: Moment().format('YYYY-MM-DD HH:mm:ss'),
                 payTime: Moment().format('YYYY-MM-DD HH:mm:ss'),
                 finishTime: Moment().format('YYYY-MM-DD HH:mm:ss')
             };
+            let orderCreateRes = await DiamondExchangeOrderService.baseCreate(orderCreateData, {transaction:t});
 
-            //创建兑换订单
-            let orderCreateRes = await DiamondExchangeOrderService.baseCreate(orderCreateData);
-
-            //冻结钻石
-            let freeRes = await MemberService.model.freezeDiamond(postData.uid, Number(postData.num));
-            //添加资产变更日志
+            //2.冻结钻石
+            let freeRes = await MemberService.model.freezeDiamond(postData.uid, Number(postData.num), {transaction:t});
+            //3.添加资产变更日志
             freeRes.source = 1;
             freeRes.content = '钻石兑换svc';
             freeRes.vsc = vsc;
+            freeRes.status = 1;
             freeRes.join_id = orderCreateRes.id;
-            await DiamondLogService.baseCreate(freeRes);
-            return {orderId:orderCreateRes.id, diamond:freeRes.after_change};
-        }).then(async (res)=>{
+            let logRes = await DiamondLogService.baseCreate(freeRes, {transaction:t});
+
+            return {orderId:orderCreateRes.id, diamond:freeRes.after_change, change:freeRes.change, logId:logRes.id};
+        }).then(async (res) => {
             postData.orderId = res.orderId;
-            //请求外部兑换接口
-            await ExternalService.postExchangeVscService(postData);
-            return {diamond:res.diamond, msg:'vsc_will_arrive_later'};
+            //4.请求外部兑换接口
+            let res2 = await ExternalService.postExchangeVscService(postData);
+            if(res2.code == 0){
+                return await this.exchangeVscStep2(res.orderId, postData.uid);
+            }else{
+                if(res2.code > 0){
+                    return res2;
+                }else{
+                    return {code:5, diamond:res.diamond, msg:'vsc_will_arrive_later'};
+                }
+            }
         }).catch((err)=>{
             return {code:110, msg:err.message};
+        });
+    }
+
+    //钻石兑换vsc第二步
+    async exchangeVscStep2(orderId, uid){
+        //5.查找订单状态为3的订单，
+        let res = await DiamondExchangeOrderModel.model.findAll({attributes: ['id','diamond','uid', 'orderNO'], where: {id:orderId, status: 3}});
+        if(!res){
+            return {code:5, diamond:res[0]['diamond'], msg:'vsc_will_arrive_later'};
+        }
+        return await sequelize.transaction(async (t1)=>{
+            //6.将他状态改为9
+            await DiamondExchangeOrderModel.model.update({status: 9}, {where: {id: res.orderId}, transaction: t1});
+            //7.冻结的钻石删除掉
+            await MemberService.model.freezeDiamondDecrement(uid, res.change, {transaction: t1});
+            //8.自己变更日志状态改为2
+            await DiamondLogModel.mode.update({status: 2}, {where: {id: res.logId, transaction: t1}});
+        }).then(()=>{
+            return {diamond:res.diamond};
+        }).catch((e)=>{
+            console.log(e);
+            return {code:5, diamond:res.diamond, msg:'vsc_will_arrive_later'};
         });
     }
 }

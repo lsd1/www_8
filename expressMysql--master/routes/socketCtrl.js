@@ -157,10 +157,10 @@ async function onConnect(socket){
     // setTimeout(function () {
     //     socket.emit('newConnect', {code:0,msg:'new_connect'});
     // }, 2000);
-    setTimeout(function () {
-    let msgArr = [{msg_id:1,msg_content:'消息1',diamond:-1}];
-        socket.emit('getMsg', {code:0, data:msgArr});
-    }, 3000);
+    // setTimeout(function () {
+    // let msgArr = [{msg_id:1,msg_content:'消息1',diamond:-1}];
+    //     socket.emit('getMsg', {code:0, data:msgArr});
+    // }, 3000);
     socket.on('getMsg', (msg) => {
         console.log(msg);
     });
@@ -192,9 +192,9 @@ async function onConnect(socket){
         }
 
         //校验二级密码。
-        let checkRes = await externalService.checkSecondPwdService(msg.uid, msg.pwd);
-        if(!checkRes){
-            socket.emit('submitRes', {code: 110, msg: 'pwd_error'});
+        let checkRes = await externalService.postCheckSecondPwdService(msg);
+        if(checkRes.code != 0){
+            socket.emit('submitRes',{code:checkRes.code, msg:checkRes.msg});
             return false;
         }
 
@@ -397,12 +397,11 @@ async function onConnect(socket){
         }
 
         //校验二级密码。
-        let checkRes = await externalService.checkSecondPwdService(msg.uid, msg.pwd);
-        if(!checkRes){
-            socket.emit('createRoom', {code: 110, msg: 'pwd_error'});
+        let checkRes = await externalService.postCheckSecondPwdService(msg);
+        if(checkRes.code != 0){
+            socket.emit('createRoom', {code:checkRes.code, msg:checkRes.msg});
             return false;
         }
-
 
         //判断钻石是否足够
         let diamondData = await memberService.getMemberInfoByIdService(msg.uid, ['diamond']);

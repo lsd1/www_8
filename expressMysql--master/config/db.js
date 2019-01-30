@@ -9,6 +9,7 @@ const config = {
     host: 'localhost',
     dialect: 'mysql',
     port: '3306',
+    unionApi:'http://192.168.8.115/'
 };
 
 const sequelize = new Sequelize(config['database'], config['user'], config['pwd'], {

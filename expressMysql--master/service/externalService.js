@@ -4,6 +4,8 @@ import JSMTRand from 'js_mt_rand';
 import Moment from 'moment';
 import Microtime  from 'microtime';
 import MemberModel from '../model/memberModel';
+import {config} from "../config/db";
+
 class ExternalService {
     //解密
     decode(cryptkey, iv, secretdata) {
@@ -33,7 +35,6 @@ class ExternalService {
     };
 
     memberInfoDecode (secretdata){
-        console.log('secretdata:', secretdata);
         let iv = this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0)+this.chr(0);
         let cryptkey = crypto.createHash('sha256').update('maiguoerueepcncecjz6833dbkdshy2cxbhsajzz0954gdjkwgarsgxjkdd3svghf').digest();
         let infoArr = this.decode(cryptkey, iv, secretdata).split('&');
@@ -45,29 +46,48 @@ class ExternalService {
         return memberInfo;
     };
 
-    async checkSecondPwdService (uid, pwd){
-        return true;
+    async postGetMemberInfoService (postData){
+        let action = 'v1.0/game/mora/member_info',
+            data = {},
+            url = config.unionApi;
+        let params = await this.initParams(postData, action, data, url);
+        let res = await this.sendRequest(params.getUrl, {}, 'GET');
+        if(res != -1 && res.code == 0){
+            return res;
+        }else{
+            return false;
+        }
+    };
+
+
+    async postCheckSecondPwdService (postData){
+        let action = 'v1.0/pin/check_pin_code',
+            data = {pinCode:postData.pwd},
+            url = config.unionApi;
+        let params = await this.initParams(postData, action, data, url);
+        return await this.sendRequest(params.postUrl, params.data, 'POST');
     };
 
     async postExchangeDiamondService (postData){
         let action = 'v1.0/pay/confirm_pay',
             data = {
-                payOrder:postData.payOrder,
+                payOrder:'exchangeDiamond',
                 orderId:postData.orderId,
-                pinCode:postData.pwd,payType:3
+                pinCode:postData.pwd,
+                payType:3
             },
-        url = 'http://api.union.local/';
+        url = config.unionApi;
         let params = await this.initParams(postData, action, data, url);
         return await this.sendRequest(params.postUrl, params.data, 'POST');
-
     };
 
     async postExchangeVscService (postData) {
-        let action = 'v1.0/game/mora/diamond_to_asset',
+        let action = 'v1.0/game/mora/diamond_to_assets',
             data = {orderId:postData.orderId},
-            url = 'http://api.union.local/';
+            url = config.unionApi;
         let params = await this.initParams(postData, action, data, url);
         return await this.sendRequest(params.postUrl, params.data, 'POST');
+
     }
 
     //生成随机订单号
@@ -82,14 +102,18 @@ class ExternalService {
     }
 
     async initParams(postData, action, otherData, url){
+        let  uid = postData.uid || 0, token = '';
+        if(postData.token){
+             token = postData.token;
+        }else{
+            let memberInfo = await MemberModel.getMemberInfoById(uid);
+            token = memberInfo.token;
+        }
         let
             lang = postData.lang || 0,
-            uid = postData.uid || 0,
             clientType = postData.clientType || 0,
             network = postData.network || 1,
             version = postData.version || '9.9.9',
-            memberInfo = await MemberModel.getMemberInfoById(uid),
-            token = memberInfo.token,
             timestamp = new Date().getTime(),
             uuid = timestamp.toString() + this.getRndNum(5).toString(),
             param = "clientType=" + clientType + "&lang=" + lang + "&network=" + network + "&timestamp=" + timestamp + "&uid=" + uid + "&version=" + version,
@@ -141,7 +165,6 @@ class ExternalService {
     sendRequest(url, data, method){
         data = data || [];
         return new Promise(function (resolve,reject) {
-            resolve(0);
             try {
                 request({
                     url: url,//请求路径
@@ -152,13 +175,16 @@ class ExternalService {
                     body: JSON.stringify(data)//post参数字符串
                 }, function(error, response, body) {
                     if(!error && response.statusCode == 200){
-                        resolve(JSON.parse(body).code);
+                        console.log('response:', JSON.parse(body));
+                        resolve(JSON.parse(body));
                     }else{
-                        resolve(110);
+                        console.log(error);
+                        resolve({code:110,msg:error.message});
                     }
                 });
             }catch (e) {
-                resolve(110);
+                console.log(e);
+                resolve({code:110,msg:e.message});
             }
         })
     }
