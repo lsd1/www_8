@@ -1,9 +1,10 @@
-import orderMoraService from '../service/orderMoraService.js';
-import moraConfigService from '../service/moraConfigService.js';
-import memberService from '../service/memberService.js';
-import diamondLogService from '../service/diamondLogService.js';
-import externalService from '../service/externalService.js'
-import recordLogService from '../service/recordLogService.js'
+import orderMoraService from '../service/orderMoraService';
+import orderMoraModel from '../model/orderMoraModel'
+import moraConfigService from '../service/moraConfigService';
+import memberService from '../service/memberService';
+import diamondLogService from '../service/diamondLogService';
+import externalService from '../service/externalService'
+import recordLogService from '../service/recordLogService'
 import  BaseCtroller from './baseCtroller'
 import {sequelize} from '../config/db.js';
 
@@ -50,7 +51,6 @@ async function getRoomData(){
         roomArr[item1.index] = ids;
         gradeConfigData[item1.index] = item1.value;
     });
-    console.log('newRoomData:', global.newRoomData);
     return [roomNumArr, roomArr, shapeArr, rateData[0]['value'], exchangeUidData[0]['value'], gradeConfigData];
 }
 
@@ -154,9 +154,17 @@ async function onConnect(socket){
     socket.on('getAllRoom',  (msg) => {
         socket.emit('getAllRoom', {code:0, data:global.roomNumData});
     });
+    // setTimeout(function () {
+    //     socket.emit('newConnect', {code:0,msg:'new_connect'});
+    // }, 2000);
     setTimeout(function () {
-        socket.emit('newConnect', {code:0,msg:'new_connect'});
-    }, 2000);
+    let msgArr = [{msg_id:1,msg_content:'消息1',diamond:-1}];
+        socket.emit('getMsg', {code:0, data:msgArr});
+    }, 3000);
+    socket.on('getMsg', (msg) => {
+        console.log(msg);
+    });
+
     //监听：用户提交比赛结果，判断胜负
     socket.on('submitRes', async (msg) => {
         if(msg.shape === undefined || msg.uid === undefined || msg.pwd === undefined || msg.shape === undefined || msg.id === undefined ){
@@ -193,8 +201,6 @@ async function onConnect(socket){
         //判断钻石是否足够
         let diamondData = await memberService.getMemberInfoByIdService(msg.uid, ['diamond']);
         let diamondNum = global.newRoomData[msg.id]['diamond'];
-        console.log('roomInfo:', global.newRoomData[msg.id]);
-        console.log('roomId:', msg.id);
         if(diamondData['diamond'] <  diamondNum){
             socket.emit('submitRes', {code: 110, msg: 'diamond_not_enough'});
             return false;
@@ -203,9 +209,10 @@ async function onConnect(socket){
         //判断胜负
         let shape = global.newRoomData[msg.id]['shape'];
         let grade = global.newRoomData[msg.id]['grade'];
-        console.log(grade);
         let calDiamond;
         let calTargetDiamond;
+        let resDiamond;
+        let targetResDiamond;
         let statusRes = getStatus(shape + '-' + msg.shape);
         let updateData = {
             target_uid:msg.uid,
@@ -218,7 +225,6 @@ async function onConnect(socket){
                 //结算双方钻石
                 let logArr = [];
                 let diamondRate =  diamondNum * global.rate * 2;
-                console.log('diamondRate:', diamondRate);
                 let msgArr = ['svc兑换钻石', '钻石兑换svc', '竞猜胜出获得', '竞猜失败损失', '创建房间冻结钻石', '返还押金钻石', '费率账户入账'];
                 switch(updateData.status){
                     case '2'://双方平：1.返还房主押金
@@ -228,6 +234,8 @@ async function onConnect(socket){
                         calRes1.source = 5;
                         calRes1.content = msgArr[5];
                         logArr.push(calRes1);
+                        resDiamond = -1;
+                        targetResDiamond = -1;
                         break;
                     case '3'://房主胜：1.解冻房主押金，2.结算手续费，3.扣除我的钻石，3.给房主增加钻石
                         //1.返还房主押金
@@ -246,11 +254,13 @@ async function onConnect(socket){
                         let calRes4 = await memberService.diamondDecrementService(msg.uid, diamondNum);
                         calRes4.source = 3;
                         calRes4.content = msgArr[3];
+                        targetResDiamond = calRes4.after_change;
                         logArr.push(calRes4);
                         //4.给房主增加钻石
                         let calRes5 = await memberService.diamondIncrementService(global.newRoomData[msg.id]['uid'], (diamondNum - diamondRate));
                         calRes5.source = 2;
                         calRes5.content = msgArr[2];
+                        resDiamond = calRes5.after_change;
                         logArr.push(calRes5);
                         break;
                     case '4'://房主败：1.扣除房主押金，2.结算手续费，3.给自己增加钻石
@@ -258,6 +268,7 @@ async function onConnect(socket){
                         calTargetDiamond = diamondNum * 2 - diamondRate;
                         //1.扣除房主押金
                         await memberService.freezeDiamondDecrementService(global.newRoomData[msg.id]['uid'], diamondNum);
+                        resDiamond = -1;
                         //2.结算手续费到费率账户
                         let calRes6 = await memberService.diamondIncrementService(global.exchangeUid, diamondRate);
                         calRes6.source = 6;
@@ -267,6 +278,7 @@ async function onConnect(socket){
                         let calRes7 = await memberService.diamondIncrementService(msg.uid, (diamondNum - diamondRate));
                         calRes7.source = 2;
                         calRes7.content = msgArr[2];
+                        resDiamond = calRes7.after_change;
                         logArr.push(calRes7);
                         break;
                 }
@@ -289,7 +301,6 @@ async function onConnect(socket){
                     target_shape:shape,
                     status:statusRes.targetStatus
                 });
-
                 //插入房主对战日志
                 recordLogService.baseCreate({
                     order_id:Number(msg.id),
@@ -313,8 +324,8 @@ async function onConnect(socket){
                     delete global.roomDataOnGame[index];
                 }
             });
-            socket.emit('submitRes', {code:0, data:{id:msg.id,status:statusRes.targetStatus, other_shape:shape}, msg:statusRes.targetMsg});
-            socket.broadcast.emit('submitRes', {code:0, data:{id:msg.id,status:statusRes.status, other_shape:msg.shape}, msg:statusRes.msg});
+            socket.emit('submitRes', {code:0, data:{id:msg.id,status:statusRes.targetStatus, other_shape:shape, amount:calTargetDiamond, diamond:targetResDiamond}, msg:statusRes.targetMsg});
+            socket.broadcast.emit('submitRes', {code:0, data:{id:msg.id,status:statusRes.status, other_shape:msg.shape, amount:calDiamond, diamond:resDiamond}, msg:statusRes.msg});
         }).catch(function (err) {
             console.log(err);
             socket.emit('submitRes', {code: 110, msg: err.message});
@@ -342,7 +353,6 @@ async function onConnect(socket){
 
                     let roomInfo = await orderMoraService.getRoomInfoByIdService(id);
                     let targetInfo = await memberService.getMemberInfoByIdService(msg.uid, ['user_name', 'user_avatar']);
-                    console.log('roomInfo:', roomInfo);
                     socket.broadcast.emit('enterRoom', {
                         id:roomInfo.id,
                         uid:msg.uid,
@@ -421,16 +431,17 @@ async function onConnect(socket){
             delRes.source = 4;
             delRes.content = '创建房间冻结钻石';
             await diamondLogService.baseCreate(delRes);
-            return createRes;
-        }).then((createRes) => {
-            addRoom(createRes.grade, createRes.id);
-            global.newRoomData[createRes.id] = {shape: createRes.shape, status: createRes.status, diamond:createRes.diamond_number, grade:createRes.grade, uid:createRes.uid};
+            return {uid:createRes.uid, shape:createRes.shape, id:createRes.id, status:createRes.status,diamond_number:createRes.diamond_number, grade: createRes.grade, diamond:delRes.after_change}
+        }).then((res) => {
+            addRoom(res.grade, res.id);
+            global.newRoomData[res.id] = {shape: res.shape, status: res.status, diamond:res.diamond_number, grade:res.grade, uid:res.uid};
             socket.emit('createRoom', {
                 code: 0,
                 data: {
-                    id: createRes.id,
-                    grade: createRes.grade,
-                    amount: createRes.diamond_number,
+                    id: res.id,
+                    grade: res.grade,
+                    amount: res.diamond_number,
+                    diamond: res.diamond,
                     shape: msg.shape
                 }
             });
@@ -444,16 +455,72 @@ async function onConnect(socket){
     socket.on('isGameOn', async (msg) => {
         let status = 0;
         if(global.newRoomData[msg.id]) status = 1;
-        socket.emit('isGameOn', {code: 0, data:{status:status}});
+        socket.emit('isGameOn', {code: 0, data:{status:status,index:msg.index}});
         return false;
 
+    });
+
+    //房主取消对局
+    socket.on('delGame', async (msg) => {
+        let roomId = msg.id;
+        let uid = msg.uid;
+        let status = 0;
+        //判断对局是否存在
+        if(!global.newRoomData[msg.id]){
+            socket.emit('delGame', {code:1, msg:'game_over'});
+            return false;
+        }
+        //判断是否是自己的房间
+        if(global.newRoomData[msg.id]['uid'] != msg.uid){
+            socket.emit('delGame', {code:2, msg:'not_your_room'});
+            return false;
+        }
+        //判断对局是否认在进行中
+        let isOnGame = false;
+        global.roomDataOnGame.forEach(item=>{
+            if(item[1] == msg.id){
+                isOnGame = true;
+                return;
+            }
+        });
+        if(isOnGame){
+            socket.emit('delGame', {code:3, msg:'canot_cancel_room'});
+            return false;
+        }
+
+        //取消对局
+        let roomInfo = await orderMoraModel.model.findByPk(msg.id);
+        if(roomInfo){
+            if(roomInfo.status != 0){
+                socket.emit('delGame', {code:1, msg:'game_over'});
+                return false;
+            }
+        }else{
+            socket.emit('delGame', {code:4, msg:'room_not_exist'});
+            return false;
+        }
+        sequelize.transaction(async () => {
+            await orderMoraService.baseDelete({id:msg.id});
+            let unfreezeRes = await memberService.unfreezeDiamondService(msg.uid, roomInfo.diamond_number);
+            unfreezeRes.source = 5;
+            unfreezeRes.content = '取消对局返还钻石';
+            await diamondLogService.baseCreate(unfreezeRes);
+            return unfreezeRes.after_change;
+        }).then((diamond)=>{
+            let grade = global.newRoomData[msg.id]['grade'];
+            delRoom(grade, msg.id);
+            delete global.newRoomData[msg.id];
+            socket.emit('delGame', {code:0,data:{diamond:diamond}, msg:'canot_cancel_room'});
+            return false;
+        }).catch(()=>{
+           socket.emit('delGame', {code:5, msg:'cancel_faild'});
+            return false;
+        });
     });
 
     //判断玩家是否还在游戏中
     socket.on('isPlaying', async (msg) => {
         let status = 0;
-        console.log('msg:',msg);
-        console.log('roomDataOnGame:',global.roomDataOnGame);
         global.roomDataOnGame.forEach((item, index) => {
             if(item[3] == msg.uid){
                 status = 1;

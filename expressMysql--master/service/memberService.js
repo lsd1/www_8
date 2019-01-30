@@ -24,6 +24,7 @@ class MemberService extends BaseService{
         let version = memberInfo.version;
         let updateData = {};
         let res = await MemberService.model.findOrBuildMember({id:uid},{id:uid, user_name:user_name, user_avatar:user_avatar, diamond:0, token:token, freeze_diamond:0});
+        let exchangeRate = await MoraConfigService.getExchangeRateConfig();
         if(res[0]['token'] !== token){
             updateData.token = token;
         }else if(res[0]['user_avatar'] !== user_avatar){
@@ -44,6 +45,8 @@ class MemberService extends BaseService{
             clientType:clientType,
             version:version,
             diamond:res[0]['diamond'],
+            vscAmount:1000,
+            exchangeRate:exchangeRate[0]['value']
         }
     }
 

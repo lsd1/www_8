@@ -141,6 +141,7 @@ class ExternalService {
     sendRequest(url, data, method){
         data = data || [];
         return new Promise(function (resolve,reject) {
+            resolve(0);
             try {
                 request({
                     url: url,//请求路径
