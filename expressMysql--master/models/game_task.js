@@ -15,17 +15,17 @@ module.exports = function(sequelize, DataTypes) {
 		join_id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: true,
-			defaultValue: '0'
+			defaultValue: 0
 		},
 		type: {
 			type: DataTypes.INTEGER(3).UNSIGNED,
 			allowNull: true,
-			defaultValue: '0'
+			defaultValue: 0
 		},
 		status: {
 			type: DataTypes.INTEGER(3).UNSIGNED,
 			allowNull: true,
-			defaultValue: '0'
+			defaultValue: 0
 		}
 	}, {
 		tableName: 'game_task',

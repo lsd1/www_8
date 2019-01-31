@@ -5,6 +5,7 @@ import DiamondLogModel from '../model/diamondLogModel';
 import DiamondExchangeOrderService from './diamondExchangeOrderService';
 import DiamondExchangeOrderModel from '../model/diamondExchangeOrderModel';
 import MoraConfigService from './moraConfigService';
+import TaskService from './taskService';
 import Moment from 'moment';
 import {AutoWritedMemberModel} from '../common/AutoWrite';
 import {sequelize} from "../config/db";
@@ -75,38 +76,38 @@ class MemberService extends BaseService{
     }
 
     //钻石递减
-    diamondDecrementService(uid, num){
-        return MemberService.model.diamondDecrement(uid, num);
+    diamondDecrementService(uid, num, transaction){
+        return MemberService.model.diamondDecrement(uid, num, transaction);
     }
 
     //钻石递减
 
-    diamondDecrementService2(uid, num){
-        return MemberService.model.diamondDecrement2(uid, num);
+    diamondDecrementService2(uid, num, transaction){
+        return MemberService.model.diamondDecrement2(uid, num, transaction);
     }
 
     //冻结钻石递增
-    freezeDiamondIncrementService(uid, num){
-        return MemberService.model.freezeDiamondIncrement(uid, num);
+    freezeDiamondIncrementService(uid, num, transaction){
+        return MemberService.model.freezeDiamondIncrement(uid, num, transaction);
     }
 
     //冻结钻石递减
-    freezeDiamondDecrementService(uid, num){
-        return MemberService.model.freezeDiamondDecrement(uid, num);
+    freezeDiamondDecrementService(uid, num, transaction){
+        return MemberService.model.freezeDiamondDecrement(uid, num, transaction);
     }
 
     //解冻钻石
-    unfreezeDiamondService(uid, num){
-        return MemberService.model.unfreezeDiamond(uid, num);
+    unfreezeDiamondService(uid, num, transaction){
+        return MemberService.model.unfreezeDiamond(uid, num, transaction);
     }
 
     //冻结钻石
-    freezeDiamond(uid, num){
-        return MemberService.model.freezeDiamond(uid, num);
+    freezeDiamond(uid, num, transaction){
+        return MemberService.model.freezeDiamond(uid, num, transaction);
     }
 
-    async getMemberInfoByIdService(id, attribute){
-        return MemberService.model.getMemberInfoById(id, attribute);
+    async getMemberInfoByIdService(id, attribute, transaction){
+        return MemberService.model.getMemberInfoById(id, attribute, transaction);
     }
 
     //svc兑换成钻石
@@ -158,6 +159,13 @@ class MemberService extends BaseService{
         if(res.code == 0){
             return await this.exchangeDiamondStep2(orderCreateRes.id, postData.uid);
         } else {
+            //创建订单状态监听事务
+            let taskData = {
+                uid:postData.uid,
+                join_id:orderCreateRes.id,
+                type:1
+            };
+            await TaskService.baseCreate(taskData);
             if(res.code > 0){
                 return res;
             }else{
@@ -172,6 +180,13 @@ class MemberService extends BaseService{
         let res = await DiamondExchangeOrderModel.model.findAll({attributes: ['id', 'uid', 'diamond', 'orderNO'], where: {id:orderId, status: 2}});
         console.log('res:', res);
         if (!res) {
+            //创建订单状态监听事务
+            let taskData = {
+                uid:uid,
+                join_id:orderId,
+                type:1
+            };
+            await TaskService.baseCreate(taskData);
             return {code: 5, msg: 'diamond_will_arrive_later'};
         }
         return await sequelize.transaction(async (t) => {
@@ -187,8 +202,15 @@ class MemberService extends BaseService{
             await DiamondExchangeOrderModel.model.update({status: 9}, {where: {id: orderId}, transaction: t});
             return incrementRes.after_change;
         }).then((number) => {
-            return {diamond: number};
-        }).catch((err) => {
+            return {code:0, diamond: number};
+        }).catch(async (err) => {
+            //创建订单状态监听事务
+            let taskData = {
+                uid:uid,
+                join_id:orderId,
+                type:1
+            };
+            await TaskService.baseCreate(taskData);
             console.log(err);
             return {code: 5, msg: 'diamond_will_arrive_later'};
         });
@@ -205,7 +227,7 @@ class MemberService extends BaseService{
         if (!postData.num) {
             return {code:110, msg:'num_empty'}
         }
-        //TODO：校验二级密码
+        //校验二级密码
         let checkRes = await ExternalService.postCheckSecondPwdService(postData);
         if (checkRes.code != 0) {
             return {code:checkRes.code, msg:checkRes.msg}
@@ -249,6 +271,13 @@ class MemberService extends BaseService{
             if(res2.code == 0){
                 return await this.exchangeVscStep2(res.orderId, postData.uid);
             }else{
+                //创建订单状态监听事务
+                let taskData = {
+                    uid:postData.uid,
+                    join_id:res.orderId,
+                    type:2
+                };
+                await TaskService.baseCreate(taskData);
                 if(res2.code > 0){
                     return res2;
                 }else{
@@ -265,6 +294,13 @@ class MemberService extends BaseService{
         //5.查找订单状态为3的订单，
         let res = await DiamondExchangeOrderModel.model.findAll({attributes: ['id','diamond','uid', 'orderNO'], where: {id:orderId, status: 3}});
         if(!res){
+            //创建订单状态监听事务
+            let taskData = {
+                uid:uid,
+                join_id:orderId,
+                type:2
+            };
+            await TaskService.baseCreate(taskData);
             return {code:5, diamond:res[0]['diamond'], msg:'vsc_will_arrive_later'};
         }
         return await sequelize.transaction(async (t1)=>{
@@ -275,8 +311,15 @@ class MemberService extends BaseService{
             //8.自己变更日志状态改为2
             await DiamondLogModel.mode.update({status: 2}, {where: {id: res.logId, transaction: t1}});
         }).then(()=>{
-            return {diamond:res.diamond};
-        }).catch((e)=>{
+            return {code:0, diamond:res.diamond};
+        }).catch(async (e)=>{
+            //创建订单状态监听事务
+            let taskData = {
+                uid:uid,
+                join_id:orderId,
+                type:2
+            };
+            await TaskService.baseCreate(taskData);
             console.log(e);
             return {code:5, diamond:res.diamond, msg:'vsc_will_arrive_later'};
         });

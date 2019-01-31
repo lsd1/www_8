@@ -91,36 +91,14 @@
 //      console.log(JSON.stringify());
 //  }
 // getInfo ();
-import request from "request";
-import ExternalService from './service/externalService';
-import MemberService from './service/memberService';
 //
 // MemberService.getMemberInfoByIdService(16965038).then(res=>{
 //     console.log(res);
 // });
 
-let postData = {
-    clientType:1,
-    lang:0,
-    network:0,
-    uid:1696538,
-    version:'9.9.9'
-};
-ExternalService.initParams(postData,'member/exchangeVsc',{},'http://192.168.1.238:666/').then(res=>{
+import TaskSrevice from './service/taskService';
+async  function get(){
+    let res = await TaskSrevice.listenTaskService(7159444);
     console.log(res);
-});
-// { data:
-// { clientType: 1,
-//     lang: 0,
-//     network: 1,
-//     timestamp: 1548718727083,
-//     uid: 1696538,
-//     version: '9.9.9',
-//     sign: '69415e3dd1d9111c9505628affdf7d56',
-//     uuid: '154871872708361835',
-//     action: 'member/exchangeVsc' },
-//     postUrl: 'http://192.168.1.238:666/member/exchangeVsc',
-//         getUrl: 'http://192.168.1.238:666/member/exchangeVsc?clientType=1&lang=0&network=1&timestamp=1548718727083&uid=1696538&version=9.9.9&sign=69415e3dd1d9111c9505628affdf7d56&uuid=154871872708361835&action =member%2FexchangeVsc' }
-//
-'clientType=0&lang=11&network=1&timestamp=1548753749388&uid=100001&version="1.0.3"token=684bf1cad7441dbd98490327966c5eb3uuid=154875374938890541action=member/exchangeDiamond'
-'clientType=0&lang=11&network=1&timestamp=1548753749388&uid=100001&version="1.0.3"token="684bf1cad7441dbd98490327966c5eb3"uuid=154875374938890541action=member/exchangeDiamond'
+}
+get();

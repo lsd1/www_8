@@ -5,6 +5,8 @@ import memberService from '../service/memberService';
 import diamondLogService from '../service/diamondLogService';
 import externalService from '../service/externalService'
 import recordLogService from '../service/recordLogService'
+import noticService from '../service/noticService'
+import taskService from '../service/taskService'
 import  BaseCtroller from './baseCtroller'
 import {sequelize} from '../config/db.js';
 
@@ -154,15 +156,29 @@ async function onConnect(socket){
     socket.on('getAllRoom',  (msg) => {
         socket.emit('getAllRoom', {code:0, data:global.roomNumData});
     });
-    // setTimeout(function () {
-    //     socket.emit('newConnect', {code:0,msg:'new_connect'});
-    // }, 2000);
-    // setTimeout(function () {
-    // let msgArr = [{msg_id:1,msg_content:'消息1',diamond:-1}];
-    //     socket.emit('getMsg', {code:0, data:msgArr});
-    // }, 3000);
+    socket.on('online', async (msg)=>{
+        socket.emit('getMsg', {code:0, data:[{msg_id:0, msg_content:'xiix'}]});
+
+        await taskService.listenTaskService(msg.uid);
+        let msgData = await noticService.baseFindByFilter({exclude: ['updated_at','created_at']}, {uid:msg.uid, status: 0});
+        let memberInfo = await memberService.getMemberInfoByIdService(msg.uid);
+        let msgArr = [];
+        if(msgData){
+            msgData.forEach(item => {
+                switch (item.type){
+                    case 0:
+                        msgArr.push({msg_id:item.id, msg_content:item.content, diamond: memberInfo.diamond});
+                    break;
+                    default:
+                        msgArr.push({msg_id:item.id, msg_content:item.content});
+                }
+            });
+            socket.emit('getMsg', {code:0, data:msgArr});
+        }
+    });
+
     socket.on('getMsg', (msg) => {
-        console.log(msg);
+        noticService.baseUpdate({status: 1}, {id: msg.msgId});
     });
 
     //监听：用户提交比赛结果，判断胜负
@@ -221,14 +237,14 @@ async function onConnect(socket){
         };
         sequelize.transaction(async (t)=>{
                 //更新房间信息
-                orderMoraService.baseUpdate(updateData, {id: msg.id});
+                await orderMoraModel.model.update(updateData, {where:{id: msg.id}, transaction:t});
                 //结算双方钻石
                 let logArr = [];
                 let diamondRate =  diamondNum * global.rate * 2;
                 let msgArr = ['svc兑换钻石', '钻石兑换svc', '竞猜胜出获得', '竞猜失败损失', '创建房间冻结钻石', '返还押金钻石', '费率账户入账'];
                 switch(updateData.status){
                     case '2'://双方平：1.返还房主押金
-                        let calRes1 = await memberService.unfreezeDiamondService(global.newRoomData[msg.id]['uid'], diamondNum);
+                        let calRes1 = await memberService.unfreezeDiamondService(global.newRoomData[msg.id]['uid'], diamondNum, {transaction:t});
                         calDiamond = 0;
                         calTargetDiamond = 0;
                         calRes1.source = 5;
@@ -239,25 +255,25 @@ async function onConnect(socket){
                         break;
                     case '3'://房主胜：1.解冻房主押金，2.结算手续费，3.扣除我的钻石，3.给房主增加钻石
                         //1.返还房主押金
-                        let calRes2 = await memberService.unfreezeDiamondService(global.newRoomData[msg.id]['uid'], diamondNum);
+                        let calRes2 = await memberService.unfreezeDiamondService(global.newRoomData[msg.id]['uid'], diamondNum, {transaction:t});
                         calDiamond = diamondNum * 2 - diamondRate;
                         calTargetDiamond = - diamondNum;
                         calRes2.source = 5;
                         calRes2.content = msgArr[5];
                         logArr.push(calRes2);
                         //2.结算手续费到费率账户
-                        let calRes3 = await memberService.diamondIncrementService(global.exchangeUid, diamondRate);
+                        let calRes3 = await memberService.diamondIncrementService(global.exchangeUid, diamondRate, {transaction:t});
                         calRes3.source = 6;
                         calRes3.content = msgArr[6];
                         logArr.push(calRes3);
                         //3.扣除我的钻石
-                        let calRes4 = await memberService.diamondDecrementService(msg.uid, diamondNum);
+                        let calRes4 = await memberService.diamondDecrementService(msg.uid, diamondNum, {transaction:t});
                         calRes4.source = 3;
                         calRes4.content = msgArr[3];
                         targetResDiamond = calRes4.after_change;
                         logArr.push(calRes4);
                         //4.给房主增加钻石
-                        let calRes5 = await memberService.diamondIncrementService(global.newRoomData[msg.id]['uid'], (diamondNum - diamondRate));
+                        let calRes5 = await memberService.diamondIncrementService(global.newRoomData[msg.id]['uid'], (diamondNum - diamondRate), {transaction:t});
                         calRes5.source = 2;
                         calRes5.content = msgArr[2];
                         resDiamond = calRes5.after_change;
@@ -267,15 +283,15 @@ async function onConnect(socket){
                         calDiamond = - diamondNum;
                         calTargetDiamond = diamondNum * 2 - diamondRate;
                         //1.扣除房主押金
-                        await memberService.freezeDiamondDecrementService(global.newRoomData[msg.id]['uid'], diamondNum);
+                        await memberService.freezeDiamondDecrementService(global.newRoomData[msg.id]['uid'], diamondNum, {transaction:t});
                         resDiamond = -1;
                         //2.结算手续费到费率账户
-                        let calRes6 = await memberService.diamondIncrementService(global.exchangeUid, diamondRate);
+                        let calRes6 = await memberService.diamondIncrementService(global.exchangeUid, diamondRate, {transaction:t});
                         calRes6.source = 6;
                         calRes6.content = msgArr[6];
                         logArr.push(calRes6);
                         //3.给自己增加钻石
-                        let calRes7 = await memberService.diamondIncrementService(msg.uid, (diamondNum - diamondRate));
+                        let calRes7 = await memberService.diamondIncrementService(msg.uid, (diamondNum - diamondRate), {transaction:t});
                         calRes7.source = 2;
                         calRes7.content = msgArr[2];
                         resDiamond = calRes7.after_change;
@@ -284,12 +300,12 @@ async function onConnect(socket){
                 }
 
                 //插入双方资产变更
-                logArr.forEach( item =>{
-                    diamondLogService.baseCreate(item);
+                logArr.forEach(async item =>{
+                   await diamondLogService.baseCreate(item, {transaction:t});
                 });
 
                 //插入我的对战日志
-                recordLogService.baseCreate({
+                await recordLogService.baseCreate({
                     order_id:Number(msg.id),
                     room_owner_id:Number(global.newRoomData[msg.id]['uid']),
                     uid:Number(msg.uid),
@@ -300,9 +316,10 @@ async function onConnect(socket){
                     shape:Number(msg.shape),
                     target_shape:shape,
                     status:statusRes.targetStatus
-                });
+                }, {transaction:t});
+
                 //插入房主对战日志
-                recordLogService.baseCreate({
+                await  recordLogService.baseCreate({
                     order_id:Number(msg.id),
                     room_owner_id:Number(global.newRoomData[msg.id]['uid']),
                     uid:Number(global.newRoomData[msg.id]['uid']),
@@ -313,7 +330,7 @@ async function onConnect(socket){
                     shape:shape,
                     target_shape:Number(msg.shape),
                     status:statusRes.status
-                });
+                }, {transaction:t});
 
         }).then(()=>{
             //从 新游戏 列表删除
@@ -422,14 +439,14 @@ async function onConnect(socket){
 
         sequelize.transaction(async (t) => {
             //创建房间
-            let createRes = await orderMoraService.baseCreate(createRoom);
+            let createRes = await orderMoraService.baseCreate(createRoom, {transaction:t});
             //冻结钻石
-            let delRes = await memberService.freezeDiamond(createRes.uid, createRes.diamond_number);
+            let delRes = await memberService.freezeDiamond(createRes.uid, createRes.diamond_number, {transaction:t});
             //添加日志
             delRes.uid = msg.uid;
             delRes.source = 4;
             delRes.content = '创建房间冻结钻石';
-            await diamondLogService.baseCreate(delRes);
+            await diamondLogService.baseCreate(delRes, {transaction:t});
             return {uid:createRes.uid, shape:createRes.shape, id:createRes.id, status:createRes.status,diamond_number:createRes.diamond_number, grade: createRes.grade, diamond:delRes.after_change}
         }).then((res) => {
             addRoom(res.grade, res.id);
@@ -498,12 +515,12 @@ async function onConnect(socket){
             socket.emit('delGame', {code:4, msg:'room_not_exist'});
             return false;
         }
-        sequelize.transaction(async () => {
+        sequelize.transaction(async (t) => {
             await orderMoraService.baseDelete({id:msg.id});
-            let unfreezeRes = await memberService.unfreezeDiamondService(msg.uid, roomInfo.diamond_number);
+            let unfreezeRes = await memberService.unfreezeDiamondService(msg.uid, roomInfo.diamond_number, {transaction:t});
             unfreezeRes.source = 5;
             unfreezeRes.content = '取消对局返还钻石';
-            await diamondLogService.baseCreate(unfreezeRes);
+            await diamondLogService.baseCreate(unfreezeRes, {transaction:t});
             return unfreezeRes.after_change;
         }).then((diamond)=>{
             let grade = global.newRoomData[msg.id]['grade'];
@@ -511,7 +528,8 @@ async function onConnect(socket){
             delete global.newRoomData[msg.id];
             socket.emit('delGame', {code:0,data:{diamond:diamond}, msg:'canot_cancel_room'});
             return false;
-        }).catch(()=>{
+        }).catch((e)=>{
+            console.log(e);
            socket.emit('delGame', {code:5, msg:'cancel_faild'});
             return false;
         });

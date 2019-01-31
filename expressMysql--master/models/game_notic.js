@@ -12,13 +12,19 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false
 		},
+        content: {
+            type: DataTypes.STRING(255),
+            allowNull: false
+        },
 		type: {
 			type: DataTypes.INTEGER(3).UNSIGNED,
-			allowNull: true
+			allowNull: false,
+            defaultValue: 0
 		},
 		status: {
 			type: DataTypes.INTEGER(3).UNSIGNED,
-			allowNull: true
+            allowNull: false,
+            defaultValue: 0
 		}
 	}, {
 		tableName: 'game_notice',
