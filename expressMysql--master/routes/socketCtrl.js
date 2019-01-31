@@ -157,8 +157,6 @@ async function onConnect(socket){
         socket.emit('getAllRoom', {code:0, data:global.roomNumData});
     });
     socket.on('online', async (msg)=>{
-        socket.emit('getMsg', {code:0, data:[{msg_id:0, msg_content:'xiix'}]});
-
         await taskService.listenTaskService(msg.uid);
         let msgData = await noticService.baseFindByFilter({exclude: ['updated_at','created_at']}, {uid:msg.uid, status: 0});
         let memberInfo = await memberService.getMemberInfoByIdService(msg.uid);
