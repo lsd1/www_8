@@ -107,10 +107,10 @@ function getObjItem(obj, exclude){
 
 //判断比赛胜负
 function getStatus(combineShape){
-    let status = '4';
-    let targetStatus = '3';
-    let msg = 'lose';
-    let targetMsg = 'win';
+    let status;
+    let targetStatus;
+    let msg;
+    let targetMsg;
     switch(combineShape){
         case '0-0':
             status = '2';
@@ -148,6 +148,32 @@ function getStatus(combineShape){
             msg = 'win';
             targetMsg = 'lose';
             break;
+        case '0-2':
+            status = '4';
+            targetStatus = '3';
+            msg = 'lose';
+            targetMsg = 'win';
+            break;
+        case '1-0':
+            status = '4';
+            targetStatus = '3';
+            msg = 'lose';
+            targetMsg = 'win';
+            break;
+        case '1-2':
+            status = '4';
+            targetStatus = '3';
+            msg = 'lose';
+            targetMsg = 'win';
+            break;
+        case '2-1':
+            status = '4';
+            targetStatus = '3';
+            msg = 'lose';
+            targetMsg = 'win';
+            break;
+        default:
+        return {code:110, msg:'params_error'};
     }
     return {status:status,targetStatus:targetStatus, msg:msg, targetMsg:targetMsg};
 }
@@ -181,7 +207,7 @@ async function onConnect(socket){
 
     //监听：用户提交比赛结果，判断胜负
     socket.on('submitRes', async (msg) => {
-        if(msg.shape === undefined || msg.uid === undefined || msg.pwd === undefined || msg.shape === undefined || msg.id === undefined ){
+        if(msg.shape == undefined || msg.uid == undefined || msg.pwd == undefined || msg.shape == undefined || msg.id == undefined ){
             socket.emit('submitRes', {code:301, msg:'params_error'});
             return false;
         }
@@ -227,6 +253,8 @@ async function onConnect(socket){
         let calTargetDiamond;
         let resDiamond;
         let targetResDiamond;
+        console.log('typeof msg.shape:', typeof  msg.shape);
+        console.log(shape + '-' + msg.shape);
         let statusRes = getStatus(shape + '-' + msg.shape);
         let updateData = {
             target_uid:msg.uid,
@@ -248,13 +276,13 @@ async function onConnect(socket){
                         calRes1.source = 5;
                         calRes1.content = msgArr[5];
                         logArr.push(calRes1);
-                        resDiamond = -1;
+                        resDiamond = calRes1.after_change;
                         targetResDiamond = -1;
                         break;
                     case '3'://房主胜：1.解冻房主押金，2.结算手续费，3.扣除我的钻石，3.给房主增加钻石
                         //1.返还房主押金
                         let calRes2 = await memberService.unfreezeDiamondService(global.newRoomData[msg.id]['uid'], diamondNum, {transaction:t});
-                        calDiamond = diamondNum * 2 - diamondRate;
+                        calDiamond = diamondNum - diamondRate;
                         calTargetDiamond = - diamondNum;
                         calRes2.source = 5;
                         calRes2.content = msgArr[5];
@@ -279,7 +307,7 @@ async function onConnect(socket){
                         break;
                     case '4'://房主败：1.扣除房主押金，2.结算手续费，3.给自己增加钻石
                         calDiamond = - diamondNum;
-                        calTargetDiamond = diamondNum * 2 - diamondRate;
+                        calTargetDiamond = diamondNum - diamondRate;
                         //1.扣除房主押金
                         await memberService.freezeDiamondDecrementService(global.newRoomData[msg.id]['uid'], diamondNum, {transaction:t});
                         resDiamond = -1;
@@ -292,7 +320,7 @@ async function onConnect(socket){
                         let calRes7 = await memberService.diamondIncrementService(msg.uid, (diamondNum - diamondRate), {transaction:t});
                         calRes7.source = 2;
                         calRes7.content = msgArr[2];
-                        resDiamond = calRes7.after_change;
+                        targetResDiamond = calRes7.after_change;
                         logArr.push(calRes7);
                         break;
                 }

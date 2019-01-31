@@ -9,6 +9,8 @@ import TaskService from './taskService';
 import Moment from 'moment';
 import {AutoWritedMemberModel} from '../common/AutoWrite';
 import {sequelize} from "../config/db";
+import Sequelize from 'sequelize';
+import moment from 'moment';
 
 @AutoWritedMemberModel
 
@@ -227,10 +229,22 @@ class MemberService extends BaseService{
         if (!postData.num) {
             return {code:110, msg:'num_empty'}
         }
+
         //校验二级密码
         let checkRes = await ExternalService.postCheckSecondPwdService(postData);
         if (checkRes.code != 0) {
             return {code:checkRes.code, msg:checkRes.msg}
+        }
+
+        //校验是否超过最大提现次数。
+        let maxWithdrawTimes = await MoraConfigService.getMaxWithdrawTimesConfig();
+        let res = await DiamondExchangeOrderModel.findByFilter(['id'], {uid:postData.uid, orderType:2, datetime: {
+            [Sequelize.Op.gt]: moment().format('YYYY MM DD 00:00:00'),
+            [Sequelize.Op.lt]: moment().format('YYYY MM DD HH:mm:ss')
+        }});
+
+        if(res.length >= Number(maxWithdrawTimes[0]['value'])){
+            return {code:110, msg:'over_max_withdraw'};
         }
 
         let exchangeRate = await MoraConfigService.getExchangeRateConfig();
@@ -293,7 +307,8 @@ class MemberService extends BaseService{
     async exchangeVscStep2(orderId, uid){
         //5.查找订单状态为3的订单，
         let res = await DiamondExchangeOrderModel.model.findAll({attributes: ['id','diamond','uid', 'orderNO'], where: {id:orderId, status: 3}});
-        if(!res){
+        let memberInfo = await MemberService.model.getMemberInfoById(uid);
+        if(res.length == 0){
             //创建订单状态监听事务
             let taskData = {
                 uid:uid,
@@ -301,7 +316,7 @@ class MemberService extends BaseService{
                 type:2
             };
             await TaskService.baseCreate(taskData);
-            return {code:5, diamond:res[0]['diamond'], msg:'vsc_will_arrive_later'};
+            return {code:5, diamond:memberInfo.diamond, msg:'vsc_will_arrive_later'};
         }
         return await sequelize.transaction(async (t1)=>{
             //6.将他状态改为9
@@ -311,7 +326,7 @@ class MemberService extends BaseService{
             //8.自己变更日志状态改为2
             await DiamondLogModel.mode.update({status: 2}, {where: {id: res.logId, transaction: t1}});
         }).then(()=>{
-            return {code:0, diamond:res.diamond};
+            return {code:0, diamond:memberInfo.diamond};
         }).catch(async (e)=>{
             //创建订单状态监听事务
             let taskData = {
@@ -321,7 +336,7 @@ class MemberService extends BaseService{
             };
             await TaskService.baseCreate(taskData);
             console.log(e);
-            return {code:5, diamond:res.diamond, msg:'vsc_will_arrive_later'};
+            return {code:5, diamond:memberInfo.diamond, msg:'vsc_will_arrive_later'};
         });
     }
 }

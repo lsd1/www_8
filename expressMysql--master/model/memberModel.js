@@ -47,8 +47,10 @@ class MemberModel extends BaseModel{
         if(transaction){
             options.transaction = transaction.transaction;
         }
-        await member.decrement('diamond', transaction);
-        let newMember = await member.reload();
+        await member.decrement('diamond', options);
+        console.log("oldMember:",member);
+        let newMember = await member.reload(transaction);
+        console.log("newMember:",newMember);
         return {type:'0', uid: uid, before_change:before_change, change:num, after_change:newMember.diamond, vsc:0, freeze_diamond:0}
     }
 
@@ -64,7 +66,7 @@ class MemberModel extends BaseModel{
         if(transaction){
             options.transaction = transaction.transaction;
         }
-        await member.decrement('diamond', transaction);
+        await member.decrement('diamond', options);
         let newMember = await member.reload(transaction);
         return {type:'0', uid: uid, before_change:before_change, change:num, after_change:newMember.diamond, vsc:0, freeze_diamond:0}
     }

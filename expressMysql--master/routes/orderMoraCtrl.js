@@ -1,7 +1,6 @@
 import express from 'express';
 import  BaseCtroller from './baseCtroller'
 import orderMoraService from '../service/orderMoraService.js';
-
 const router = express.Router();
 
 class orderMoraCtroller{

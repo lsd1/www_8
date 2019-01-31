@@ -96,9 +96,32 @@
 //     console.log(res);
 // });
 
-import TaskSrevice from './service/taskService';
-async  function get(){
-    let res = await TaskSrevice.listenTaskService(7159444);
-    console.log(res);
+// import TaskSrevice from './service/taskService';
+// import DiamondExchangeOrderModel from "./model/diamondExchangeOrderModel";
+// DiamondExchangeOrderModel.model.findAll({attributes: ['id','diamond','uid', 'orderNO'], where: {id:26, status: 3}}).then(res=>{
+//     console.log(res.length);
+//     if(res.length == 0) {
+//         console.log(1);
+//     }   else{
+//         console.log(2);
+//     }
+// });
+import moment from 'moment';
+import MoraConfigService from "./service/moraConfigService";
+import DiamondExchangeOrderModel from "./model/diamondExchangeOrderModel";
+async function getTimes(){
+    let maxWithdrawTimes = await MoraConfigService.getMaxWithdrawTimesConfig();
+    let res = DiamondExchangeOrderModel.findByFilter(['id'], {uid:100000, orderType:1, datetime: {
+            [Sequelize.Op.gt]: moment().format('YYYY MM DD 00:00:00'),
+            [Sequelize.Op.lt]: moment().format('YYYY MM DD HH:mm:ss')
+        }});
+
+    if(res.length >= Number(maxWithdrawTimes[0]['value'])){
+        console.log(0);
+
+    }else{
+        console.log(1);
+    }
+
 }
-get();
+getTimes();

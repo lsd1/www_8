@@ -34,6 +34,11 @@ class MoraConfigService extends BaseService{
         return MoraConfigService.model.findByFilter(['value'],{name:'exchangeRate'});
     }
 
+    //获取提现次数
+    getMaxWithdrawTimesConfig(){
+        return MoraConfigService.model.findByFilter(['value'],{name:'maxWithdrawTimes'});
+    }
+
     //获取竞猜费率结算账号
     getExchangeUidConfig(){
         return MoraConfigService.model.findByFilter(['value'],{name:'exchangeUid'});

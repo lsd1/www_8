@@ -24,6 +24,14 @@ class BaseCtroller {
         return res;
     }
 
+    errorRes(err){
+        return {
+            code:110,
+            msg:err
+        };
+    }
+
+
     async verify(req, res, next){
         let params = req.query;
         if(JSON.stringify(req.body) !== '{}'){

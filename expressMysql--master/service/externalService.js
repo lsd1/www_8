@@ -82,10 +82,13 @@ class ExternalService {
     };
 
     async postExchangeVscService (postData) {
-        let action = 'v1.0/game/mora/diamond_to_assets',
+        let action = 'v1.0/game/mora/diamond_to_asset',
             data = {orderId:postData.orderId},
             url = config.unionApi;
+
         let params = await this.initParams(postData, action, data, url);
+        console.log('data:', params.data);
+        console.log('url:', params.postUrl);
         return await this.sendRequest(params.postUrl, params.data, 'POST');
 
     }
