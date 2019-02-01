@@ -31,33 +31,29 @@ class BaseCtroller {
         };
     }
 
-
     async verify(req, res, next){
-        let params = req.query;
-        if(JSON.stringify(req.body) !== '{}'){
-            params = req.body;
-        }
-        if(JSON.stringify(params) === '{}'){
-            next();
-        }else{
+        if(req.method == 'GET' || req.method == 'POST'){
+            let params = req.query;
+            if(JSON.stringify(req.body) !== '{}'){
+                params = req.body;
+            }
             console.log('params:', JSON.stringify(params));
             if(['/member/getMemberInfo'].indexOf(req.url.split('?')[0]) == -1){
-                let memberInfo;
                 if(!params.uid){
-                    res.json({code:110,msg:'uid_is_empty'});
+                    return res.json({code:110, msg:'uid_is_empty'});
                 }
-                memberInfo = await MemberModel.getMemberInfoById(params.uid);
+                let memberInfo = await MemberModel.getMemberInfoById(params.uid);
                 if(!memberInfo){
-                    res.json({code:110,msg:'user_not_exist'});
+                    return res.json({code:110,msg:'user_not_exist'});
                 }
                 let param = "clientType=" + params.clientType + "&lang=" + params.lang + "&network=" + params.network + "&timestamp=" + params.timestamp + "&uid=" + params.uid + "&version=" + params.version;
                 let sign = crypto.createHash('md5').update(param + "token=" + memberInfo.token + "uuid=" + params.uuid + "action=" + params.action).digest('hex');
                 if(sign !== params.sign){
-                    res.json({code:110,msg:'signature_verification_failed'});
+                    return res.json({code:110, msg:'signature_verification_failed'});
                 }
             }
-            next();
         }
+        next();
     }
 }
 
