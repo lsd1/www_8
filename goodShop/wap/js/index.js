@@ -15,7 +15,7 @@ $(function() {
             headerClone = $('#header').clone();
             $('#header').remove();
             headerClone.addClass('transparent').removeClass('');
-            headerClone.prependTo('.nctouch-home-top');
+            headerClone.prependTo('.nctouch-home-search');
         } else {
             headerClone = $('#header').clone();
             $('#header').remove();
@@ -31,12 +31,13 @@ $(function() {
         success: function(result) {
             var data = result.datas;
             var html = '';
-
+            console.log(data);
             $.each(data, function(k, v) {
                 $.each(v, function(kk, vv) {
                     switch (kk) {
                         case 'adv_list':
                         case 'home3':
+
                             $.each(vv.item, function(k3, v3) {
                                 vv.item[k3].url = buildUrl(v3.type, v3.data);
                             });
@@ -152,22 +153,31 @@ $(function() {
 		}
 	});
 });
-				//首页公告滚动
-				var rollText_k = 5; //循环公告总数
-				var rollText_i = 1; //循环公告默认值
-				rollText_tt = setInterval("rollText(1)", 8000);
-				function rollText(a) {
-					clearInterval(rollText_tt);
-					rollText_tt = setInterval("rollText(1)", 8000);
-					rollText_i += a;
-					if(rollText_i > rollText_k) {
-						rollText_i = 1;
-					}
-					if(rollText_i == 0) {
-						rollText_i = rollText_k;
-					}
-					for(var j = 1; j <= rollText_k; j++) {
-						document.getElementById("rollTextMenu" + j).style.display = "none";
-					}
-					document.getElementById("rollTextMenu" + rollText_i).style.display = "block";
-				}
+//首页公告滚动
+var rollText_k = 5; //循环公告总数
+var rollText_i = 1; //循环公告默认值
+rollText_tt = setInterval("rollText(1)", 8000);
+function rollText(a) {
+    clearInterval(rollText_tt);
+    rollText_tt = setInterval("rollText(1)", 8000);
+    rollText_i += a;
+    if(rollText_i > rollText_k) {
+        rollText_i = 1;
+    }
+
+    if(rollText_i == 0) {
+        rollText_i = rollText_k;
+    }
+
+    for(var j = 1; j <= rollText_k; j++) {
+        var roll = document.getElementById("rollTextMenu" + j);
+        if(roll){
+            roll.style.display = "none";
+        }
+    }
+    var roll_1 = document.getElementById("rollTextMenu" + rollText_i);
+
+    if(roll_1){
+        roll_1.style.display = "block";
+    }
+}

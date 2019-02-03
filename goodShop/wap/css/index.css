@@ -24,13 +24,13 @@ body { background-color: #F0F0F0;}
 #header.transparent .header-r a sup { width: 0.25rem; height: 0.25rem; right: 0.35rem; top: 0;}
 
 .nctouch-home-top { display: block; min-height: 2.2rem; position: relative;  z-index: 2; background-color: #DB4453; overflow: hidden;}
-.nctouch-home-top .cohesive { position: absolute; z-index: 2; top: 0; left: 0; right: 0; display: block; height: 1.5rem; 
+.nctouch-home-search { display: block; min-height: 2.2rem; position: relative;  z-index: 2; background-color: #DB4453; overflow: hidden;}
+.nctouch-home-top .cohesive { position: absolute; z-index: 2; top: 0; left: 0; right: 0; display: block; height: 1.5rem;
 background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5),  rgba(0,0,0,0.0));
 background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5),  rgba(0,0,0,0.0));
 background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5),  rgba(0,0,0,0.0));
 background-image: linear-gradient(top, rgba(0,0,0,0.5),  rgba(0,0,0,0.0));}
-/*.adv_list { position: relative; z-index: 1; overflow: hidden;}*/
-.adv_list { position: relative; z-index: 1; overflow: hidden;margin-top: 2rem;}
+.adv_list { position: relative; z-index: 1; overflow: hidden;}
 .swipe { position: relative; overflow: hidden; visibility: hidden; }
 .swipe-wrap { overflow: hidden; position: relative; }
 .swipe-wrap > div { float: left; width: 100%; position: relative; }

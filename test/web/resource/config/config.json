@@ -1,0 +1,5 @@
+{
+	"api_domain":"http://api.wutong.local/",
+	"ws_url":"ws://192.168.43.251:8888/",
+	"imgUrl":"http://img.wutong.local/"
+}

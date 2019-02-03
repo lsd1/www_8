@@ -134,7 +134,7 @@ class mb_specialControl extends SystemControl{
 
         $this->show_menu('index_edit');
         Tpl::setDirquna('mobile');
-Tpl::showpage('mb_special_item.list');
+        Tpl::showpage('mb_special_item.list');
     }
 
     /**
@@ -151,7 +151,7 @@ Tpl::showpage('mb_special_item.list');
         Tpl::output('special_id', $_GET['special_id']);
 
         Tpl::setDirquna('mobile');
-Tpl::showpage('mb_special_item.list');
+        Tpl::showpage('mb_special_item.list');
     }
 
     /**

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="viewport-fit=cover,width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script>
+        fnResize();
+        window.onresize = function () {
+            fnResize()
+        };
+        function fnResize() {
+            var deviceWidth = document.documentElement.clientWidth || window.innerWidth
+            if (deviceWidth >= 750) {
+                deviceWidth = 750
+            }
+            if (deviceWidth <= 320) {
+                deviceWidth = 320
+            }
+            document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px'
+        }
+        var cookies = document.cookie;
+        console.log(cookies)
+        var a = cookies.split(";");
+        console.log(a)
+        var b= new Object();
+        for(var i in a){
+            console.log(a[i].split("="))
+            var c= a[i].split("=")[0];
+            var d= a[i].split("=")[1];
+            // b[c] = d;
+            b[a[i].split("=")[0]] = a[i].split("=")[1];
+        }
+        alert(JSON.stringify(b))
+    </script>
+    <script src="http://192.168.1.238:666/socket.io/socket.io.js"></script>
+    <script>
+        // import storage from "./storage";
+
+        window.socket = io('http://192.168.1.238:666');
+        window.uid =  3;
+        window.user_avatar =  'http://img1.imgtn.bdimg.com/it/u=1110043345,2558849550&fm=11&gp=0.jpg';
+        // var cookies = document.cookie;
+        // console.log(cookies)
+        // var a = cookies.split(";");
+        // console.log(a)
+        // var b= new Object();
+        // for(var i in a){
+        //     console.log(a[i].split("="))
+        //     var c= a[i].split("=")[0];
+        //     var d= a[i].split("=")[1];
+        //     // b[c] = d;
+        //     b[a[i].split("=")[0]] = a[i].split("=")[1];
+        // }
+        // alert(JSON.stringify(b))
+    </script>
+    <title>脉果儿</title>
+    <style>
+        body{
+            padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left)
+            /*padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)*/
+        }
+        html,
+        body {
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            height: 1000px;
+            background-color: #ccc9ca !important;
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/javascript" src="bundle.js"></script></body>
+</html>

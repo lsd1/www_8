@@ -13,7 +13,6 @@ define('BASE_PATH',str_replace('\\','/',dirname(__FILE__)));
 
 require __DIR__ . '/../33hao.php';
 
-
 define('APP_SITE_URL',SHOP_SITE_URL);
 define('TPL_NAME',TPL_SHOP_NAME);
 define('SHOP_RESOURCE_SITE_URL',SHOP_SITE_URL.DS.'resource');

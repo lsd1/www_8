@@ -16,34 +16,40 @@
 <link rel="apple-touch-icon" href="images/touch-icon-iphone.png"/>
 </head>
 <body>
-<div class="nctouch-home-top fixed-Width">
-  <header id="header" class="transparent">
-    <div class="logo"></div>
-    <div class="header-wrap"> <a href="tmpl/search.html" class="header-inp"> <i class="icon"></i> <span class="search-input" id="keyword">请输入关键词</span> </a> </div>
-    <div class="header-r"><a id="header-nav" href="tmpl/member/chat_list.html"><i class="message"></i>
-      <p>消息</p>
-      <sup></sup></a></div>
-  </header>
-  <div class="cohesive"></div>
-  <div class="adv_list" id="main-container1"></div>
+
+<div class="nctouch-home-search fixed-Width">
+	<header id="header" class="transparent">
+		<div class="logo"></div>
+		<div class="header-wrap"> <a href="tmpl/search.html" class="header-inp"> <i class="icon"></i> <span class="search-input" id="keyword">请输入关键词</span> </a> </div>
+		<div class="header-r"><a id="header-nav" href="tmpl/member/chat_list.html"><i class="message"></i>
+			<p>消息</p>
+			<sup></sup></a></div>
+	</header>
 </div>
+
+
+<div class="nctouch-home-top fixed-Width">
+	<div class="cohesive"></div>
+	<div class="adv_list" id="main-container1"></div>
+</div>
+
 <div class="nctouch-home-nav fixed-Width">
   <ul>
     <li><a href="tmpl/product_first_categroy.html"><span><i></i></span>
       <p>分类</p>
       </a></li>
-    <!--<li><a href="tmpl/pointspro_list.html"><span><i></i></span>-->
-      <!--<p>积分兑换</p>-->
-      <!--</a></li>-->
-    <!--<li><a href="shop.html"><span><i></i></span>-->
-      <!--<p>店铺街</p>-->
-      <!--</a></li>-->
-    <!--<li><a href="tmpl/member/signin.html"><span><i></i></span>-->
-      <!--<p>每日签到</p>-->
-      <!--</a></li>-->
-     <!--<li><a href="tmpl/member/member.html"><span><i></i></span>-->
-      <!--<p>我的商城</p>-->
-      <!--</a></li>-->
+    <li><a href="tmpl/pointspro_list.html"><span><i></i></span>
+      <p>积分兑换</p>
+      </a></li>
+    <li><a href="shop.html"><span><i></i></span>
+      <p>店铺街</p>
+      </a></li>
+    <li><a href="tmpl/member/signin.html"><span><i></i></span>
+      <p>每日签到</p>
+      </a></li>
+     <li><a href="tmpl/member/member.html"><span><i></i></span>
+      <p>我的商城</p>
+      </a></li>
     <li><a href="tmpl/member/order_list.html"><span><i></i></span>
       <p>我的订单</p>
       </a></li>
@@ -55,15 +61,16 @@
       </a></li>
   </ul>
 </div>
-<!--<div class="hao-gd-body fixed-Width">-->
-	<!--<span><a href="tmpl/article_list.html?ac_id=1">更多...</a></span>-->
-	 <!--<div class="component-typehao-img-con">-->
-        <!--<img class="component-typehao-img" src="images/rd_w.png" height="100%" width="54px">-->
-    <!--</div>-->
-    <!--<img class="component-typehao-logo" src="images/gg_w.png" height="22px" width="22px">-->
-    <!--<div class="rollTextMenus" id="getgg"></div>-->
-<!--</div>-->
+<div class="hao-gd-body fixed-Width">
+	<span><a href="tmpl/article_list.html?ac_id=1">更多...</a></span>
+	 <div class="component-typehao-img-con">
+        <img class="component-typehao-img" src="images/rd_w.png" height="100%" width="54px">
+    </div>
+    <img class="component-typehao-logo" src="images/gg_w.png" height="22px" width="22px">
+    <div class="rollTextMenus" id="getgg"></div>
+</div>
 <div class="nctouch-home-layout" id="main-container2"></div>
+
 <div class="fix-block-r"> <a href="javascript:void(0);" class="gotop-btn gotop hide" id="goTopBtn"><i></i></a> </div>
 <footer id="footer"></footer>
 <script type="text/html" id="getgg_tpl">
@@ -81,7 +88,7 @@
 			</div>
 		<% } %>
 		</div>
-</script> 
+</script>
 <script type="text/html" id="home1">
 	<div class="nctouch-home-block">
 	<% if (title) { %>
@@ -93,7 +100,7 @@
 			</a>
 		</div>
 	</div>
-</script> 
+</script>
 <script type="text/html" id="home2">
 	<div class="nctouch-home-block">
 	<% if (title) { %>
@@ -111,7 +118,7 @@
 			</li>
 		</ul>
 	</div>
-</script> 
+</script>
 <script type="text/html" id="home3">
 	<div class="nctouch-home-block">
 	<% if (title) { %>
@@ -125,7 +132,7 @@
 		<% } %>
 		</ul>
 	</div>
-</script> 
+</script>
 <script type="text/html" id="home4">
 	<div class="nctouch-home-block">
 	<% if (title) { %>
@@ -143,7 +150,7 @@
 			</li>
 		</ul>
 	</div>
-</script> 
+</script>
 <script type="text/html" id="home5">
 	<div class="nctouch-home-block style_lc">
 	<% if (title) { %>
@@ -151,7 +158,7 @@
 		<img src="<%= lcurl %>" alt="">
 		<span><%= title %></span>
 		<span class="stit"><%= stitle %></span>
-		</div> 
+		</div>
 	<% } %>
 		<ul class="item-pic-l1-r2">
 			<li>
@@ -186,7 +193,7 @@
 		<% } %>
 		</ul>
 	</div>
-</script> 
+</script>
 <script type="text/html" id="goods1">
 	<div class="nctouch-home-block style_lc xianshi">
 	<% if (title) { %>
@@ -194,7 +201,7 @@
 		<img src="images/icon_time.png" alt="">
 		<span><%= title %></span>
 		<span class="stit">限时优惠抓紧</span>
-		</div> 
+		</div>
 	<% } %>
 <div class="xianshi-list">
 		<ul class="swipe-wrap">
@@ -213,7 +220,7 @@
 		<% } %>
 		</ul></div>
 	</div>
-</script> 
+</script>
 <script type="text/html" id="goods2">
 	<div class="nctouch-home-block item-goods">
 	<% if (title) { %>
@@ -231,7 +238,7 @@
 					</dl>
 			</a>
 				</li>
-			
+
 		<% } %>
 		</ul>
 	</div>

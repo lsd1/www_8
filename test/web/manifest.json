@@ -1,0 +1,17 @@
+{
+	"initial": [
+		"http://test.local/test/web/js/egret.min_3271047f.js",
+		"http://test.local/test/web/js/egret.web.min_8fd2b4de.js",
+		"http://test.local/test/web/js/eui.min_22447123.js",
+		"http://test.local/test/web/js/assetsmanager.min_74d9c0de.js",
+		"http://test.local/test/web/js/game.min_45aa06f6.js",
+		"http://test.local/test/web/js/promise.min_83a6a5d.js",
+		"http://test.local/test/web/js/dragonBones.min_6252b9c4.js",
+		"http://test.local/test/web/js/md5.min_cea845a1.js",
+		"http://test.local/test/web/js/picker.min_2d48f1e6.js"
+	],
+	"game": [
+		"http://test.local/test/web/js/default.thm_915f3e5.js",
+		"http://test.local/test/web/js/main.min_d4c35a65.js"
+	]
+}

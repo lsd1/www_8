@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="viewport-fit=cover,width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script>
+        fnResize();
+        window.onresize = function () {
+            fnResize();
+        };
+        function fnResize() {
+            var deviceWidth = document.documentElement.clientWidth || window.innerWidth
+            if (deviceWidth >= 750) {
+                deviceWidth = 750
+            }
+            if (deviceWidth <= 320) {
+                deviceWidth = 320
+            }
+            document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px'
+        }
+
+
+    </script>
+    <script src="http://192.168.1.238:666/socket.io/socket.io.js"></script>
+    <script>
+        window.socket = io('http://192.168.1.238:666');
+        //将cookies存入local
+        var cookies = document.cookie;
+        if(cookies){
+            var a = cookies.split(";");
+            var b= new Object();
+            console.log('a:', a);
+            for(var i in a){
+                console.log(a[i].split("="))
+                var c= a[i].split("=")[0].trim();
+                var d= a[i].split("=")[1].trim();
+                b[c] = d;
+                b[a[i].split("=")[0]] = a[i].split("=")[1];
+                // alert(c+"=" + d);
+                localStorage.setItem(c,d);
+            }
+        }
+
+    </script>
+    <title>脉果儿</title>
+    <style>
+        /*body{*/
+            /*padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left)*/
+        /*}*/
+        html,
+        body {
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            height: 1000px;
+            background-color: #ccc9ca !important;
+        }
+        /*弹窗样式*/
+        .mint-msgbox {
+            background-color: #8767f3f5!important;
+            border-radius: .2rem!important;
+        }
+        .mint-msgbox-title{
+            font-size:0.36rem;
+            font-family:PingFang-SC-Bold;
+            font-weight:bold;
+            color:rgba(255,255,255,1)!important;
+        }
+        .mint-msgbox-btn {
+            background-color: #714de2!important;
+        }
+        .mint-msgbox-content {
+            border-bottom: none!important;
+        }
+        .mint-msgbox-message{
+            margin: 0 auto!important;
+            text-align: center!important;
+            line-height: 1.5rem!important;
+            color: black!important;
+            background: #e7e4ff;
+            border-radius: 5px;
+            height: 1.5rem;
+            word-break: break-all;
+            padding: 0 .2rem;
+        }
+        .mint-msgbox-confirm {
+            color: #ddd!important;
+            width: 50%;
+            font-size: .3rem;
+        }
+    </style>
+</head>
+<body class="iphonex">
+<div id="app"></div>
+</body>
+</html>
