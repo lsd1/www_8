@@ -1,23 +1,23 @@
 <?php
 //by 33hao.com 好商城
 $config = array();
-$config['base_site_url'] 		= 'http://192.168.1.110';
-$config['shop_site_url']        = 'http://192.168.1.110/shop';
-$config['cms_site_url']         = 'http://192.168.1.110/cms';
-$config['microshop_site_url']   = 'http://192.168.1.110/microshop';
-$config['circle_site_url']      = 'http://192.168.1.110/circle';
-$config['admin_site_url']       = 'http://192.168.1.110/admin';
-$config['mobile_site_url']      = 'http://192.168.1.110/mobile';
-$config['wap_site_url']         = 'http://192.168.1.110/wap';
-$config['chat_site_url']        = 'http://192.168.1.110/chat';
-$config['node_site_url'] 		= 'http://192.168.1.110:33'; //如果要启用IM，把 http://192.168.1.110 修改为：http://您的服务器IP
-$config['delivery_site_url']    = 'http://192.168.1.110/delivery';
-$config['chain_site_url']       = 'http://192.168.1.110/chain';
-$config['member_site_url']      = 'http://192.168.1.110/member';
-$config['upload_site_url']      = 'http://192.168.1.110/data/upload';
-$config['resource_site_url']    = 'http://192.168.1.110/data/resource';
+$config['base_site_url'] 		= 'http://goodshop.com';
+$config['shop_site_url']        = 'http://goodshop.com/shop';
+$config['cms_site_url']         = 'http://goodshop.com/cms';
+$config['microshop_site_url']   = 'http://goodshop.com/microshop';
+$config['circle_site_url']      = 'http://goodshop.com/circle';
+$config['admin_site_url']       = 'http://goodshop.com/admin';
+$config['mobile_site_url']      = 'http://goodshop.com/mobile';
+$config['wap_site_url']         = 'http://goodshop.com/wap';
+$config['chat_site_url']        = 'http://goodshop.com/chat';
+$config['node_site_url'] 		= 'http://goodshop.com:33'; //如果要启用IM，把 http://goodshop.com 修改为：http://您的服务器IP
+$config['delivery_site_url']    = 'http://goodshop.com/delivery';
+$config['chain_site_url']       = 'http://goodshop.com/chain';
+$config['member_site_url']      = 'http://goodshop.com/member';
+$config['upload_site_url']      = 'http://goodshop.com/data/upload';
+$config['resource_site_url']    = 'http://goodshop.com/data/resource';
 $config['version']              = '201706150001';
-$config['setup_date']           = '2019-01-07 14:24:21';
+$config['setup_date']           = '2019-01-09 02:15:15';
 $config['gip']                  = 0;
 $config['dbdriver']             = 'mysqli';
 $config['tablepre']             = 'yyshop_';
@@ -30,7 +30,7 @@ $config['db']['1']['dbcharset'] = 'UTF-8';
 $config['db']['slave']          = $config['db']['master'];
 $config['session_expire']   = 3600;
 $config['lang_type']        = 'zh_cn';
-$config['cookie_pre']       = 'E401_';
+$config['cookie_pre']       = 'B12F_';
 $config['cache_open'] = false;
 //$config['redis']['prefix']        = 'hao_';
 //$config['redis']['master']['port']        = 6379;
@@ -56,10 +56,3 @@ $config['store_limit'] = 0;
 //发商品数量限制，0为不限
 $config['sg_goods_limit'] = 0;
 return $config;
-
-
-//这个是环信的  网址 和账号秘密啊
-//https://console.easemob.com/#/register?_k=xwjse4
-//yiyue@51yiyue.com 2Iyiyue2018
-//http://192.168.0.120:8090/user-api/swagger-ui.html
-
