@@ -1,7 +1,6 @@
 import BaseModel from './baseModel';
-
 import Member from '../models/game_member';
-
+import {trans} from '../translate/index';
 class MemberModel extends BaseModel{
     constructor(){
         super(Member);
@@ -41,16 +40,14 @@ class MemberModel extends BaseModel{
         let member = await this.model.findByPk(uid, transaction);
         let before_change = member.diamond;
         if(member.diamond < num){
-            throw Error('diamond_not_enough');
+            throw Error("{code:110, msg:'diamond_not_enough'}");
         }
         let options = {by: num};
         if(transaction){
             options.transaction = transaction.transaction;
         }
         await member.decrement('diamond', options);
-        console.log("oldMember:",member);
         let newMember = await member.reload(transaction);
-        console.log("newMember:",newMember);
         return {type:'0', uid: uid, before_change:before_change, change:num, after_change:newMember.diamond, vsc:0, freeze_diamond:0}
     }
 
@@ -60,7 +57,8 @@ class MemberModel extends BaseModel{
         let member = await this.model.findByPk(uid, transaction);
         let before_change = member.diamond;
         if(member.diamond < num){
-            throw Error('diamond_not_enough');
+            throw Error("{code:110, msg:'diamond_not_enough'}");
+
         }
         let options = {by: num};
         if(transaction){
@@ -77,7 +75,8 @@ class MemberModel extends BaseModel{
         let member = await this.model.findByPk(uid, transaction);
         let before_change = member.diamond;
         if(member.freeze_diamond < num){
-            throw Error('freeze_diamond_error');
+            throw Error("{code:110, msg:'error'}");
+
         }
         let options = {by: num};
         if(transaction){
@@ -93,7 +92,8 @@ class MemberModel extends BaseModel{
         let member = await this.model.findByPk(uid, transaction);
         let before_change = member.diamond;
         if(member.diamond < num){
-            throw Error('diamond_not_enough');
+            throw Error("{code:110, msg:'diamond_not_enough'}");
+
         }
         let options = {by: num};
         if(transaction){
@@ -111,7 +111,7 @@ class MemberModel extends BaseModel{
         let member = await this.model.findByPk(uid, transaction);
         let before_change = member.diamond;
         if(member.freeze_diamond < num){
-            throw Error('freeze_diamond_error');
+            throw Error("{code:110, msg:'error'}");
         }
          let options = {by: num};
          if(transaction){

@@ -51,6 +51,7 @@ class ExternalService {
             data = {},
             url = config.unionApi;
         let params = await this.initParams(postData, action, data, url);
+        console.log('getUrl:', params.getUrl);
         let res = await this.sendRequest(params.getUrl, {}, 'GET');
         if(res != -1 && res.code == 0){
             return res;
@@ -87,8 +88,7 @@ class ExternalService {
             url = config.unionApi;
 
         let params = await this.initParams(postData, action, data, url);
-        console.log('data:', params.data);
-        console.log('url:', params.postUrl);
+        console.log('getUrl:', params.getUrl);
         return await this.sendRequest(params.postUrl, params.data, 'POST');
 
     }
@@ -178,7 +178,6 @@ class ExternalService {
                     body: JSON.stringify(data)//post参数字符串
                 }, function(error, response, body) {
                     if(!error && response.statusCode == 200){
-                        console.log('response:', JSON.parse(body));
                         resolve(JSON.parse(body));
                     }else{
                         console.log(error);

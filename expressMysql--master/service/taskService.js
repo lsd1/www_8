@@ -19,7 +19,7 @@ class TaskService extends BaseService{
                         this.baseUpdate({status: 1}, {id: item.id});
                         let noticeData = {
                             uid:uid,
-                            content:'钻石充值已到账'
+                            content:'diamond_arrive'
                         };
                         await NoticService.baseCreate(noticeData);
                     }
@@ -30,7 +30,7 @@ class TaskService extends BaseService{
                         this.baseUpdate({status: 1}, {id: item.id});
                         let noticeData = {
                             uid:uid,
-                            content:'钻石兑换VSC成功'
+                            content:'vsc_arrive'
                         };
                         await NoticService.baseCreate(noticeData);
                     }

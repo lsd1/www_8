@@ -11,10 +11,14 @@ class recordLogCtroller{
         router.get('/getRecordListByUid', async (req, res, next) => {
             try{
                 res.json(BaseCtroller.successRes(
-                    await recordLogService.getRecordListByUidService(req.query.uid, req.query.lastId, req.query.limit)
+                    await recordLogService.getRecordListByUidService(req.query.uid, req.query.lastId, req.query.limit),
+                    req.query.lang || req.body.lang
                 ));
             } catch(err){
-                next(BaseCtroller.errorRes(err));
+                next(BaseCtroller.errorRes(
+                    err,
+                    req.query.lang || req.body.lang
+                ));
             }
         });
 		return router;

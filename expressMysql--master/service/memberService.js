@@ -11,7 +11,7 @@ import {AutoWritedMemberModel} from '../common/AutoWrite';
 import {sequelize} from "../config/db";
 import Sequelize from 'sequelize';
 import moment from 'moment';
-
+import {trans} from '../translate/index';
 @AutoWritedMemberModel
 
 class MemberService extends BaseService{
@@ -114,19 +114,18 @@ class MemberService extends BaseService{
 
     //svc兑换成钻石
     async exchangeDiamondService(postData){
-        console.log(postData);
         if(!postData.uid){
-            return {code:110, msg:'uid_empty'}
+            return {code:110, msg: 'uid_is_empty'}
         }
         if(!postData.pwd){
-            return {code:110, msg:'pwd_empty'}
+            return {code:110, msg: 'pwd_empty'}
         }
         if(!postData.num){
-            return {code:110, msg:'num_empty'}
+            return {code:110, msg: 'num_empty'}
         }
         let checkRes = await ExternalService.postCheckSecondPwdService(postData);
         if(checkRes.code != 0){
-            return {code:checkRes.code, msg:checkRes.msg}
+            return {code:checkRes.code, msg: checkRes.msg}
         }
         let num = Number(postData.num);
         let exchangeRate = await MoraConfigService.getExchangeRateConfig();
@@ -140,7 +139,7 @@ class MemberService extends BaseService{
             orderType: 1,
             payType:3,
             status:1,
-            content:'vsc兑换成钻石',
+            content:'vsc_to_diamond',
             datetime: Moment().format('YYYY-MM-DD HH:mm:ss'),
             payTime: Moment().format('YYYY-MM-DD HH:mm:ss'),
             finishTime: Moment().format('YYYY-MM-DD HH:mm:ss')
@@ -148,7 +147,7 @@ class MemberService extends BaseService{
         //1.创建订单
         let orderCreateRes = await DiamondExchangeOrderService.baseCreate(orderCreateData);
         if(!orderCreateRes){
-            return {code:110, msg:'create_order_faild'}
+            return {code:110, msg: 'exchange_faild'}
         }
         postData.orderId = orderCreateRes.id;
         //2.请求外部兑换接口
@@ -161,17 +160,19 @@ class MemberService extends BaseService{
         if(res.code == 0){
             return await this.exchangeDiamondStep2(orderCreateRes.id, postData.uid);
         } else {
-            //创建订单状态监听事务
-            let taskData = {
-                uid:postData.uid,
-                join_id:orderCreateRes.id,
-                type:1
-            };
-            await TaskService.baseCreate(taskData);
+            if(res.code != 3006){
+                //创建订单状态监听事务
+                let taskData = {
+                    uid:postData.uid,
+                    join_id:orderCreateRes.id,
+                    type:1
+                };
+                await TaskService.baseCreate(taskData);
+            }
             if(res.code > 0){
                 return res;
             }else{
-                return {code:5, msg:'diamond_will_arrive_later'};
+                return {code:5, msg: 'diamond_will_arrive_later'};
             }
         }
     }
@@ -180,7 +181,6 @@ class MemberService extends BaseService{
     async exchangeDiamondStep2(orderId, uid) {
         //3.确认订单状态为2
         let res = await DiamondExchangeOrderModel.model.findAll({attributes: ['id', 'uid', 'diamond', 'orderNO'], where: {id:orderId, status: 2}});
-        console.log('res:', res);
         if (!res) {
             //创建订单状态监听事务
             let taskData = {
@@ -192,11 +192,10 @@ class MemberService extends BaseService{
             return {code: 5, msg: 'diamond_will_arrive_later'};
         }
         return await sequelize.transaction(async (t) => {
-            console.log('res.diamond:', res[0]['diamond']);
             let incrementRes = await this.diamondIncrementService(uid, res[0]['diamond'], {transaction: t});
             //4.创建资产变更日志.
             incrementRes.source = 0;
-            incrementRes.content = 'vsc兑换成钻石';
+            incrementRes.content = 'vsc_to_diamond';
             incrementRes.status = 2;
             incrementRes.join_id = res[0]['orderNO'];
             await DiamondLogService.baseCreate(incrementRes, {transaction: t});
@@ -221,13 +220,13 @@ class MemberService extends BaseService{
     //diamond兑换成Vsc
     async exchangeVscService(postData) {
         if (!postData.uid) {
-            return {code:110, msg:'uid_empty'}
+            return {code:110, msg: 'uid_is_empty'}
         }
         if (!postData.pwd) {
-            return {code:110, msg:'pwd_empty'}
+            return {code:110, msg: 'pwd_empty'}
         }
         if (!postData.num) {
-            return {code:110, msg:'num_empty'}
+            return {code:110, msg: 'num_empty'}
         }
 
         //校验二级密码
@@ -244,7 +243,7 @@ class MemberService extends BaseService{
         }});
 
         if(res.length >= Number(maxWithdrawTimes[0]['value'])){
-            return {code:110, msg:'over_max_withdraw'};
+            return {code:110, msg: 'over_max_withdraw'};
         }
 
         let exchangeRate = await MoraConfigService.getExchangeRateConfig();
@@ -260,7 +259,7 @@ class MemberService extends BaseService{
                 orderType: 2,
                 payType: 3,
                 status: 1,
-                content: '钻石兑换成vsc',
+                content: 'diamond_to_vsc',
                 datetime: Moment().format('YYYY-MM-DD HH:mm:ss'),
                 payTime: Moment().format('YYYY-MM-DD HH:mm:ss'),
                 finishTime: Moment().format('YYYY-MM-DD HH:mm:ss')
@@ -271,7 +270,7 @@ class MemberService extends BaseService{
             let freeRes = await MemberService.model.freezeDiamond(postData.uid, Number(postData.num), {transaction:t});
             //3.添加资产变更日志
             freeRes.source = 1;
-            freeRes.content = '钻石兑换svc';
+            freeRes.content = 'diamond_to_vsc';
             freeRes.vsc = vsc;
             freeRes.status = 1;
             freeRes.join_id = orderCreateRes.id;
@@ -295,7 +294,7 @@ class MemberService extends BaseService{
                 if(res2.code > 0){
                     return res2;
                 }else{
-                    return {code:5, diamond:res.diamond, msg:'vsc_will_arrive_later'};
+                    return {code:5, diamond:res.diamond, msg: 'vsc_will_arrive_later'};
                 }
             }
         }).catch((err)=>{
@@ -316,7 +315,7 @@ class MemberService extends BaseService{
                 type:2
             };
             await TaskService.baseCreate(taskData);
-            return {code:5, diamond:memberInfo.diamond, msg:'vsc_will_arrive_later'};
+            return {code:5, diamond:memberInfo.diamond, msg: 'vsc_will_arrive_later'};
         }
         return await sequelize.transaction(async (t1)=>{
             //6.将他状态改为9
@@ -336,7 +335,7 @@ class MemberService extends BaseService{
             };
             await TaskService.baseCreate(taskData);
             console.log(e);
-            return {code:5, diamond:memberInfo.diamond, msg:'vsc_will_arrive_later'};
+            return {code:5, diamond:memberInfo.diamond, msg: 'vsc_will_arrive_later'};
         });
     }
 }

@@ -9,10 +9,14 @@ class orderMoraCtroller{
         //根据竞猜等级分组，获取待竞猜的房间数量
         router.get('/getRoomNum', async (req, res, next) => {
             try{res.json(BaseCtroller.successRes(
-                await orderMoraService.getRoomNumService()
+                await orderMoraService.getRoomNumService(),
+                req.query.lang || req.body.lang
             ));
             } catch(err){
-                next(BaseCtroller.errorRes(err));
+                next(BaseCtroller.errorRes(
+                    err,
+                    req.query.lang || req.body.lang
+                ));
             }
         });
 
@@ -20,10 +24,14 @@ class orderMoraCtroller{
         router.get('/getRoomInfoById', async (req, res, next) => {
             try{
                 res.json(BaseCtroller.successRes(
-                    await orderMoraService.getRoomInfoByIdService(req.query.id)
+                    await orderMoraService.getRoomInfoByIdService(req.query.id),
+                    req.query.lang || req.body.lang
                 ));
             } catch(err){
-                next(BaseCtroller.errorRes(err));
+                next(BaseCtroller.errorRes(
+                    err,
+                    req.query.lang || req.body.lang
+                ));
             }
         });
 
@@ -31,10 +39,14 @@ class orderMoraCtroller{
         router.get('/getRoomListByUid', async (req, res, next) => {
             try{
                 res.json(BaseCtroller.successRes(
-                    await orderMoraService.getRoomListByUidService(req.query.uid)
+                    await orderMoraService.getRoomListByUidService(req.query.uid),
+                    req.query.lang || req.body.lang
                 ));
             } catch(err){
-                next(BaseCtroller.errorRes(err));
+                next(BaseCtroller.errorRes(
+                    err,
+                    req.query.lang || req.body.lang
+                ));
             }
         });
 
@@ -42,10 +54,14 @@ class orderMoraCtroller{
         router.get('/getRecordListByUid', async (req, res, next) => {
             try{
                 res.json(BaseCtroller.successRes(
-                    await orderMoraService.getRecordListByUidService(req.query.uid, req.query.lastId, req.query.limit)
+                    await orderMoraService.getRecordListByUidService(req.query.uid, req.query.lastId, req.query.limit),
+                    req.query.lang || req.body.lang
                 ));
             } catch(err){
-                next(BaseCtroller.errorRes(err));
+                next(BaseCtroller.errorRes(
+                    err,
+                    req.query.lang || req.body.lang
+                ));
             }
         });
 

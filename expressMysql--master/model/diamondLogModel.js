@@ -1,7 +1,6 @@
 import BaseModel from './baseModel';
 import Sequelize from 'sequelize';
 import DiamondLog from '../models/game_diamond_log';
-
 class DiamondLogModel extends BaseModel{
     constructor(){
         super(DiamondLog);
@@ -18,12 +17,13 @@ class DiamondLogModel extends BaseModel{
         }else if(Number(lastId) > 0){
             where.id = {[Sequelize.Op.lt]: Number(lastId)};
         }
-        return await this.model.findAll({
+        let resData = await this.model.findAll({
             attributes:  { exclude: ['uid', 'traget_uid', 'created_at'] },
             where: where,
             limit: Number(limit),
             order:[['id','DESC']]
         });
+        return resData;
     }
 }
 

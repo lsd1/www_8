@@ -1,0 +1,37 @@
+module.exports =
+{
+    uid_is_empty: '用户id不能为空！',
+    user_not_exist: '该用户不存在！',
+    signature_verification_failed: '签名验证失败！',
+    succ: '请求成功',
+    faild: '请求失败',
+    error: '请求有误',
+    params_err: '参数有误',
+    game_cancel: '对局已经取消',
+    room_not_exist: '房间不存在',
+    diamond_not_enough: '钻石不足',
+    shape_is_err: '出拳有误',
+    game_over: '游戏已结束',
+    not_your_room: '无权操作',
+    canot_cancel_room: '游戏已开始，不能取消',
+    cancel_faild: '取消游戏失败',
+    pwd_empty: '密码不能为空',
+    num_empty: '数量不能为空',
+    exchange_faild: '兑换失败',
+    diamond_will_arrive_later: '提交成功，钻石将在稍后到账！',
+    vsc_will_arrive_later: '提交成功，VSC将在稍后到账！',
+    over_max_withdraw: '超过当天最大提现次数',
+    cannot_play_yourself: '不能和自己对局',
+    db:{
+        vsc_to_diamond: 'vsc兑换成钻石',
+        diamond_to_vsc: '钻石兑换成vsc',
+        diamond_arrive: '钻石已到账',
+        vsc_arrive: 'vsc已到账',
+        lose_from_fail: '竞猜失败损失钻石',
+        get_from_win: '竞猜胜利获得钻石',
+        make_room_freeze_diamond: '创建房间冻结钻石',
+        return_diamond: '返还押金钻石',
+        rate_account_credited: '费率账户入账',
+        cancel_game_return_diamond: '取消对局返还钻石'
+    }
+};

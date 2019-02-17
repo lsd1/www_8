@@ -11,6 +11,7 @@ import bodyParser from 'body-parser';
 import multipart from 'connect-multiparty';
 
 import compression from 'compression';
+
 import BaseCtroller from './routes/baseCtroller';
 
 //配置express中间件
@@ -52,6 +53,13 @@ app.all('*',function(req,res,next){
 });
 
 // 路由列表
+app.use('/', function (req, res, next) {
+    let params = req.query;
+    if(JSON.stringify(req.body) !== '{}'){
+        params = req.body;
+    }
+    next();
+});
 app.use('/', BaseCtroller.verify);
 app.use('/diamondLog', require('./routes/diamondLogCtrl'));
 app.use('/orderMora', require('./routes/orderMoraCtrl'));
@@ -69,7 +77,7 @@ app.use(errorHandler);
 
 function errorHandler(err, req, res, next) {
 	console.error(err);
-	res.json({code:111, msg: err});
+	res.json({code: 111, msg: err});
 }
 
 module.exports = app;
