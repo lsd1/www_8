@@ -298,7 +298,11 @@ class MemberService extends BaseService{
                 }
             }
         }).catch((err)=>{
-            return {code:110, msg:err.message};
+            try {
+                return JSON.parse(err.message);
+            }catch (e) {
+                return {code:110, msg:err.message};
+            }
         });
     }
 

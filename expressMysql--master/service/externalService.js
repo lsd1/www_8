@@ -180,8 +180,11 @@ class ExternalService {
                     if(!error && response.statusCode == 200){
                         resolve(JSON.parse(body));
                     }else{
-                        console.log(error);
-                        resolve({code:110,msg:error.message});
+                        if(error){
+                            resolve({code:110, msg:error.message});
+                        }else{
+                            resolve({code:110, msg:'error'});
+                        }
                     }
                 });
             }catch (e) {

@@ -8,24 +8,30 @@ class BaseCtroller {
             code:0,
             msg:trans('succ', lang)
         };
-        if(JSON.stringify(data) !== '{}'){
-            if(data.msg){
-                let transData = trans(data.msg, lang);
-                if(transData){
-                    res.msg = transData;
-                }else{
-                    res.msg = data.msg;
-                }
-                delete data.msg;
-            }
-            if(data.code){
-                res.code = data.code;
-                delete data.code;
-            }
+
+        try {
             if(JSON.stringify(data) !== '{}'){
-                res.data = data;
+                if(data.msg){
+                    let transData = trans(data.msg, lang);
+                    if(transData){
+                        res.msg = transData;
+                    }else{
+                        res.msg = data.msg;
+                    }
+                    delete data.msg;
+                }
+                if(data.code){
+                    res.code = data.code;
+                    delete data.code;
+                }
+                if(JSON.stringify(data) !== '{}'){
+                    res.data = data;
+                }
             }
+        }catch (e) {
+            console.log(e);
         }
+
         return res;
     }
 
@@ -33,6 +39,7 @@ class BaseCtroller {
         try {
             let errRes = JSON.parse(err.message);
             let errmsg = err;
+            let code = 110;
             if(errRes.hasOwnProperty('msg')){
                 let transData = trans(errRes.msg, lang);
                 if(transData){
@@ -40,8 +47,11 @@ class BaseCtroller {
                 }
 
             }
+            if(errRes.hasOwnProperty('code')){
+                code = errRes.code;
+            }
             return {
-                code:110,
+                code:code,
                 msg:errmsg
             };
         }catch (e) {

@@ -110,3 +110,11 @@
 // import i18n from './translate/index';
 // const trans = i18n.trans();
 // console.log(trans.welcome.great);
+
+try{
+    JSON.parse('123');
+    console.log(0);
+}catch (e) {
+    console.log(1);
+}
+console.log(2);

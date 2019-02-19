@@ -13,7 +13,7 @@ module.exports =
     shape_is_err: '出拳有誤',
     game_over: '遊戲已結束',
     not_your_room: '無權操作',
-    canot_cancel_room: '遊戲已開始，不能取消',
+    canot_cancel_room: '對方已經上桌，暫時不能取消',
     cancel_faild: '取消遊戲失敗',
     pwd_empty: '密碼不能為空',
     num_empty: '數量不能為空',

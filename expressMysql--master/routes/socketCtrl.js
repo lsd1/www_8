@@ -15,12 +15,23 @@ global.userSids = {};
 setInterval(()=>{
     let timeStamp = new Date().getTime();
     let newArr = [];
+    let oldData = {};
+    oldData.oldGlobalUserSids = global.userSids;
+    oldData.oldGlobalRoomData = global.roomData;
+    oldData.oldGlobalRoomNumData = global.roomNumData;
+    oldData.oldGlobalNewRoomData = global.newRoomData;
+    oldData.oldGlobalRoomDataOnGame = global.roomDataOnGame;
     global.roomDataOnGame.forEach((item, index) => {
         if((item[2] + 30000) < timeStamp){
             delete global.roomDataOnGame[index];
-            global.io.to(global.userSids[item[3]]['sid']).emit('cancelGame', {code:0, data:{id:item[1], uid:item[3]}});
-            global.io.to(global.userSids[global.newRoomData[item[1]]['uid']]['sid']).emit('cancelGame', {code: 0, data: {id: msg['id'], uid: msg['uid']}});
-            addRoom(item[0], item[1]);
+            try {
+                global.io.to(global.userSids[item[3]]['sid']).emit('cancelGame', {code:0, data:{id:item[1], uid:item[3]}});
+                global.io.to(global.userSids[global.newRoomData[item[1]]['uid']]['sid']).emit('cancelGame', {code: 0, data: {id: item[1], uid: item[3]}});
+                addRoom(item[0], item[1]);
+            }catch (e) {
+                oldData.item = item;
+                writeLog('autoCancel', 'no msg', e, oldData);
+            }
         }else{
             newArr.push(item);
         }
@@ -247,6 +258,29 @@ function transRerurn(data, lang){
     return data;
 }
 
+function writeLog(type, msg, e, oldData){
+    let log = {};
+    log.type = type;
+    log.msg = msg;
+    log.error = e.message;
+    log.time = new Date().toLocaleString();
+    for(let i in oldData) {
+        log[i] = oldData[i];
+    }
+    log.LastGlobalUserSids = global.userSids;
+    log.LastGlobalRoomData = global.RoomData;
+    log.LastGlobalRoomNumData = global.RoomNumData;
+    log.LastGlobalNewRoomData = global.NewRoomData;
+    log.LastGlobalRoomDataOnGame = global.RoomDataOnGame;
+    fs.appendFile('errorLog.html', JSON.stringify(log) + '<br />', function (err) {
+        if (err) {
+            console.log('写入日志失败');
+        } else {
+            console.log('写入日志成功');
+        }
+    });
+}
+
 //SOCKET链接建立
 async function onConnect(socket) {
     //监听：用户上线发送uid
@@ -288,6 +322,14 @@ async function onConnect(socket) {
             return false;
         }
         if(!checkSid(msg, socket)) return false;
+
+        let oldData = {};
+        oldData.oldGlobalUserSids = global.userSids;
+        oldData.oldGlobalRoomData = global.roomData;
+        oldData.oldGlobalRoomNumData = global.roomNumData;
+        oldData.oldGlobalNewRoomData = global.newRoomData;
+        oldData.oldGlobalRoomDataOnGame = global.roomDataOnGame;
+
         //判断游戏是在进行中
         let isOnGame = false;
         global.roomDataOnGame.forEach((item, index) => {
@@ -324,7 +366,7 @@ async function onConnect(socket) {
         let diamondData = await memberService.getMemberInfoByIdService(msg.uid, ['diamond']);
         let diamondNum = global.newRoomData[msg.id]['diamond'];
         if (diamondData['diamond'] < diamondNum) {
-            socket.emit('submitRes', transRerurn({code: 110, msg: 'diamond_not_enough'}, msg.lang));
+            socket.emit('submitRes', transRerurn({code: 113, msg: 'diamond_not_enough'}, msg.lang));
             return false;
         }
 
@@ -474,8 +516,17 @@ async function onConnect(socket) {
                 msg: statusRes.msg
             });
         }).catch(function (err) {
+            var errRes = JSON.parse(err.message);
+            let code = 110,msg = err.message;
+            if(errRes.hasOwnProperty('code')){
+                code = errRes.code;
+            }
+            if(errRes.hasOwnProperty('msg')){
+                msg = errRes.msg;
+            }
+            writeLog('submitRes', msg, err, oldData);
             console.log(err);
-            socket.emit('submitRes', {code: 110, msg: err.message});
+            socket.emit('submitRes', {code: code, msg: msg});
             return false;
         })
     });
@@ -486,9 +537,22 @@ async function onConnect(socket) {
             socket.emit('cancelGame', transRerurn({code: 301, msg: 'params_err'}, msg.lang));
             return false;
         }
+        let oldData = {};
+        oldData.oldGlobalUserSids = global.userSids;
+        oldData.oldGlobalRoomData = global.roomData;
+        oldData.oldGlobalRoomNumData = global.roomNumData;
+        oldData.oldGlobalNewRoomData = global.newRoomData;
+        oldData.oldGlobalRoomDataOnGame = global.roomDataOnGame;
+
         receiveRoom(msg['id']);
-        global.io.to(global.userSids[msg.uid]['sid']).emit('cancelGame', {code: 0, data: {id: msg['id'], uid: msg['uid']}});
-        global.io.to(global.userSids[global.newRoomData[msg.id]['uid']]['sid']).emit('cancelGame', {code: 0, data: {id: msg['id'], uid: msg['uid']}});
+        try {
+            global.io.to(global.userSids[msg.uid]['sid']).emit('cancelGame', {code: 0, data: {id: msg['id'], uid: msg['uid']}});
+            console.log('msg:',msg);
+            console.log('global.newRoomData:',global.newRoomData);
+            global.io.to(global.userSids[global.newRoomData[msg.id]['uid']]['sid']).emit('cancelGame', {code: 0, data: {id: msg['id'], uid: msg['uid']}});
+        }catch (e) {
+
+        }
     });
 
     //监听：获取一个房间,开始竞猜
@@ -499,6 +563,13 @@ async function onConnect(socket) {
         }
 
         if(!checkSid(msg, socket)) return false;
+
+        let oldData = {};
+        oldData.oldGlobalUserSids = global.userSids;
+        oldData.oldGlobalRoomData = global.roomData;
+        oldData.oldGlobalRoomNumData = global.roomNumData;
+        oldData.oldGlobalNewRoomData = global.newRoomData;
+        oldData.oldGlobalRoomDataOnGame = global.roomDataOnGame;
 
         let id = getObjItem(global.roomData[msg.grade], msg.uid);
         if (id) {
@@ -529,7 +600,16 @@ async function onConnect(socket) {
                     }, msg: 'succ'
                 }, msg.lang));
             } catch (e) {
-                socket.emit('enterRoom', {code: 110, msg: e.message});
+                var errRes = JSON.parse(e.message);
+                let code = 110,msg = e.message;
+                if(errRes.hasOwnProperty('code')){
+                    code = errRes.code;
+                }
+                if(errRes.hasOwnProperty('msg')){
+                    msg = errRes.msg;
+                }
+                socket.emit('enterRoom', {code: code, msg: msg});
+                writeLog('enterRoom', msg, e, oldData);
                 return false;
             }
         } else {
@@ -544,7 +624,12 @@ async function onConnect(socket) {
             socket.emit('createRoom', transRerurn({code: 301, msg: 'params_err'}, msg.lang));
             return false;
         }
-
+        let oldData = {};
+        oldData.oldGlobalUserSids = global.userSids;
+        oldData.oldGlobalRoomData = global.roomData;
+        oldData.oldGlobalRoomNumData = global.roomNumData;
+        oldData.oldGlobalNewRoomData = global.newRoomData;
+        oldData.oldGlobalRoomDataOnGame = global.roomDataOnGame;
         if(!checkSid(msg, socket)) return false;
 
         //TODO:校验竞猜等级是否正确。
@@ -564,7 +649,7 @@ async function onConnect(socket) {
         let diamondData = await memberService.getMemberInfoByIdService(msg.uid, ['diamond']);
         let diamondNum = global.gradeConfigData[msg.shape];
         if (diamondData['diamond'] < diamondNum) {
-            socket.emit('createRoom', transRerurn({code: 110, msg: 'diamond_not_enough'}, msg.lang));
+            socket.emit('createRoom', transRerurn({code: 113, msg: 'diamond_not_enough'}, msg.lang));
             return false;
         }
 
@@ -616,7 +701,17 @@ async function onConnect(socket) {
                 }
             });
         }).catch((err) => {
-            socket.emit('createRoom', {code: 110, msg: err.message});
+            console.log('err.message:',err.message);
+            var errRes = JSON.parse(err.message);
+            let code = 110,msg = err.message;
+            if(errRes.hasOwnProperty('code')){
+                code = errRes.code;
+            }
+            if(errRes.hasOwnProperty('msg')){
+                msg = errRes.msg;
+            }
+            writeLog('createRoom', msg, err, oldData);
+            socket.emit('createRoom', {code: code, msg: msg});
             return false;
         });
     });
@@ -627,6 +722,12 @@ async function onConnect(socket) {
             socket.emit('createRoom', transRerurn({code: 301, msg: 'params_err'}, msg.lang));
             return false;
         }
+        let oldData = {};
+        oldData.oldGlobalUserSids = global.userSids;
+        oldData.oldGlobalRoomData = global.roomData;
+        oldData.oldGlobalRoomNumData = global.roomNumData;
+        oldData.oldGlobalNewRoomData = global.newRoomData;
+        oldData.oldGlobalRoomDataOnGame = global.roomDataOnGame;
 
         if(!checkSid(msg, socket)) return false;
 
@@ -685,6 +786,7 @@ async function onConnect(socket) {
             }, msg.lang));
             return false;
         }).catch((e) => {
+            writeLog('delGame', msg, e, oldData);
             console.log(e);
             socket.emit('delGame', transRerurn({code: 5, msg: 'cancel_faild'}, msg.lang));
             return false;

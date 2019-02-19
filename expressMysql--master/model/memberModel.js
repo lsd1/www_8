@@ -40,7 +40,7 @@ class MemberModel extends BaseModel{
         let member = await this.model.findByPk(uid, transaction);
         let before_change = member.diamond;
         if(member.diamond < num){
-            throw Error("{code:110, msg:'diamond_not_enough'}");
+            throw Error('{"code":113, "msg":"diamond_not_enough"}');
         }
         let options = {by: num};
         if(transaction){
@@ -57,7 +57,7 @@ class MemberModel extends BaseModel{
         let member = await this.model.findByPk(uid, transaction);
         let before_change = member.diamond;
         if(member.diamond < num){
-            throw Error("{code:110, msg:'diamond_not_enough'}");
+            throw Error('{"code":113, "msg":"diamond_not_enough"}');
 
         }
         let options = {by: num};
@@ -92,7 +92,7 @@ class MemberModel extends BaseModel{
         let member = await this.model.findByPk(uid, transaction);
         let before_change = member.diamond;
         if(member.diamond < num){
-            throw Error("{code:110, msg:'diamond_not_enough'}");
+            throw Error('{"code":113, "msg":"diamond_not_enough"}');
 
         }
         let options = {by: num};

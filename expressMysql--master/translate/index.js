@@ -4,7 +4,7 @@ const langPath = './translate/lang/';
 const files = fs.readdirSync(langPath);
 const tran = {};
 
-var lang = 'tcn';
+var lang = {'0':'cn', '01':'en', '11':'tcn', '1':'en', '2':'tcn'};
 
 files.forEach(i => {
     let keyName = i.split('.')[0];
@@ -12,14 +12,14 @@ files.forEach(i => {
 });
 
 function trans(name, lan) {
-    if(lan !== undefined){
-        if(lan == 1){
-            lang = 'en';
-        }
+    try {
+        return tran[lang[String(lan)]][name];
+    }catch (e) {
+        console.log('name:', name);
+        console.log('lan:', String(lan));
+        console.log('lang:', lang);
+        console.log('tran:', tran);
     }
-
-    return tran[lang][name];
-
 }
 
 export {trans}
