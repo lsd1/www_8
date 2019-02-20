@@ -3,7 +3,6 @@
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
@@ -11,6 +10,7 @@ var url = require('url');
 var https = require('https');
 var fs = require('fs');
 var path = require('path');
+var config = require('../config/config.js');
 var io;
 global.roomDataOnGame = [];
 global.shapeArr = [];
@@ -39,10 +39,9 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-
-server.listen('666','192.168.1.238', ()=>{
-    const host = server.address().address;
-    const port = server.address().port;
+const host = config.serverIp;
+const port = config.serverPort;
+server.listen(port,host, ()=>{
     console.log("应用实例，访问地址为 http://%s:%s", host, port || 666);
 });
 server.on('error', onError);
@@ -125,8 +124,6 @@ getRoomData().then((data)=>{
     global.rate = parseFloat(data[3]);
     global.exchangeUid = data[4];
     global.gradeConfigData = data[5];
-    console.log('global.rate:', global.rate);
-    console.log('global.exchangeUid:', global.exchangeUid);
     io = require('socket.io').listen(server, opts);
     global.io = io;
     if ( typeof io.emit === "function" ) {

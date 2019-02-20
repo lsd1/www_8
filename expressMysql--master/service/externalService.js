@@ -51,7 +51,6 @@ class ExternalService {
             data = {},
             url = config.unionApi;
         let params = await this.initParams(postData, action, data, url);
-        console.log('getUrl:', params.getUrl);
         let res = await this.sendRequest(params.getUrl, {}, 'GET');
         if(res != -1 && res.code == 0){
             return res;
@@ -88,7 +87,6 @@ class ExternalService {
             url = config.unionApi;
 
         let params = await this.initParams(postData, action, data, url);
-        console.log('getUrl:', params.getUrl);
         return await this.sendRequest(params.postUrl, params.data, 'POST');
 
     }

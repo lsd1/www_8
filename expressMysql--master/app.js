@@ -53,13 +53,6 @@ app.all('*',function(req,res,next){
 });
 
 // 路由列表
-app.use('/', function (req, res, next) {
-    let params = req.query;
-    if(JSON.stringify(req.body) !== '{}'){
-        params = req.body;
-    }
-    next();
-});
 app.use('/', BaseCtroller.verify);
 app.use('/diamondLog', require('./routes/diamondLogCtrl'));
 app.use('/orderMora', require('./routes/orderMoraCtrl'));

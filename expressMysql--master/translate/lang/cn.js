@@ -22,6 +22,8 @@ module.exports =
     vsc_will_arrive_later: '提交成功，VSC将在稍后到账！',
     over_max_withdraw: '超过当天最大提现次数',
     cannot_play_yourself: '不能和自己对局',
+    diamond_arrive: '钻石已到账',
+    vsc_arrive: 'vsc已到账',
     db:{
         vsc_to_diamond: 'vsc兑换成钻石',
         diamond_to_vsc: '钻石兑换成vsc',

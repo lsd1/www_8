@@ -11,7 +11,7 @@ import {AutoWritedMemberModel} from '../common/AutoWrite';
 import {sequelize} from "../config/db";
 import Sequelize from 'sequelize';
 import moment from 'moment';
-import {trans} from '../translate/index';
+import empty from 'is-empty';
 @AutoWritedMemberModel
 
 class MemberService extends BaseService{
@@ -178,18 +178,22 @@ class MemberService extends BaseService{
     }
 
     //vsc兑换钻石第二步
-    async exchangeDiamondStep2(orderId, uid) {
+    async exchangeDiamondStep2(orderId, uid, isTask) {
         //3.确认订单状态为2
         let res = await DiamondExchangeOrderModel.model.findAll({attributes: ['id', 'uid', 'diamond', 'orderNO'], where: {id:orderId, status: 2}});
-        if (!res) {
-            //创建订单状态监听事务
-            let taskData = {
-                uid:uid,
-                join_id:orderId,
-                type:1
-            };
-            await TaskService.baseCreate(taskData);
-            return {code: 5, msg: 'diamond_will_arrive_later'};
+        if (empty(res)) {
+            if(isTask){
+                return {code: 4, msg: 'not done'}
+            }else{
+                //创建订单状态监听事务
+                let taskData = {
+                    uid:uid,
+                    join_id:orderId,
+                    type:1
+                };
+                await TaskService.baseCreate(taskData);
+                return {code: 5, msg: 'diamond_will_arrive_later'};
+            }
         }
         return await sequelize.transaction(async (t) => {
             let incrementRes = await this.diamondIncrementService(uid, res[0]['diamond'], {transaction: t});
@@ -197,7 +201,7 @@ class MemberService extends BaseService{
             incrementRes.source = 0;
             incrementRes.content = 'vsc_to_diamond';
             incrementRes.status = 2;
-            incrementRes.join_id = res[0]['orderNO'];
+            incrementRes.join_id = res[0]['id'];
             await DiamondLogService.baseCreate(incrementRes, {transaction: t});
             //5.修改兑换状态为成功.
             await DiamondExchangeOrderModel.model.update({status: 9}, {where: {id: orderId}, transaction: t});
@@ -205,14 +209,16 @@ class MemberService extends BaseService{
         }).then((number) => {
             return {code:0, diamond: number};
         }).catch(async (err) => {
-            //创建订单状态监听事务
-            let taskData = {
-                uid:uid,
-                join_id:orderId,
-                type:1
-            };
-            await TaskService.baseCreate(taskData);
-            console.log(err);
+            let taskRes = await TaskService.baseFindByFilter(['id'],{uid: uid, join_id: orderId});
+            if(empty(taskRes)){
+                //创建订单状态监听事务
+                let taskData = {
+                    uid:uid,
+                    join_id:orderId,
+                    type:1
+                };
+                await TaskService.baseCreate(taskData);
+            }
             return {code: 5, msg: 'diamond_will_arrive_later'};
         });
     }
@@ -307,38 +313,44 @@ class MemberService extends BaseService{
     }
 
     //钻石兑换vsc第二步
-    async exchangeVscStep2(orderId, uid){
+    async exchangeVscStep2(orderId, uid, isTask){
         //5.查找订单状态为3的订单，
         let res = await DiamondExchangeOrderModel.model.findAll({attributes: ['id','diamond','uid', 'orderNO'], where: {id:orderId, status: 3}});
         let memberInfo = await MemberService.model.getMemberInfoById(uid);
-        if(res.length == 0){
-            //创建订单状态监听事务
-            let taskData = {
-                uid:uid,
-                join_id:orderId,
-                type:2
-            };
-            await TaskService.baseCreate(taskData);
-            return {code:5, diamond:memberInfo.diamond, msg: 'vsc_will_arrive_later'};
+        if(empty(res)){
+            if(isTask){
+                return {code: 4, msg: 'not done'}
+            }else{
+                //创建订单状态监听事务
+                let taskData = {
+                    uid:uid,
+                    join_id:orderId,
+                    type:2
+                };
+                await TaskService.baseCreate(taskData);
+                return {code:5, diamond:memberInfo.diamond, msg: 'vsc_will_arrive_later'};
+            }
         }
         return await sequelize.transaction(async (t1)=>{
             //6.将他状态改为9
-            await DiamondExchangeOrderModel.model.update({status: 9}, {where: {id: res.orderId}, transaction: t1});
+            await DiamondExchangeOrderModel.model.update({status: 9}, {where: {id: res[0]['id']}, transaction: t1});
             //7.冻结的钻石删除掉
-            await MemberService.model.freezeDiamondDecrement(uid, res.change, {transaction: t1});
+            await MemberService.model.freezeDiamondDecrement(uid, res[0]['diamond'], {transaction: t1});
             //8.自己变更日志状态改为2
-            await DiamondLogModel.mode.update({status: 2}, {where: {id: res.logId, transaction: t1}});
+            await DiamondLogModel.model.update({status: 2}, {where: {uid: uid, join_id: res[0]['id']}, transaction: t1});
         }).then(()=>{
             return {code:0, diamond:memberInfo.diamond};
         }).catch(async (e)=>{
-            //创建订单状态监听事务
-            let taskData = {
-                uid:uid,
-                join_id:orderId,
-                type:2
-            };
-            await TaskService.baseCreate(taskData);
-            console.log(e);
+            let taskRes = await TaskService.baseFindByFilter(['id'],{uid:uid, join_id:orderId});
+            if(empty(taskRes)){
+                //创建订单状态监听事务
+                let taskData = {
+                    uid:uid,
+                    join_id:orderId,
+                    type:2
+                };
+                await TaskService.baseCreate(taskData);
+            }
             return {code:5, diamond:memberInfo.diamond, msg: 'vsc_will_arrive_later'};
         });
     }

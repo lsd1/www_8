@@ -22,6 +22,8 @@ module.exports =
     vsc_will_arrive_later: 'Successful submission, vsc will arrive later!',
     over_max_withdraw: 'More than the maximum withdrawal times of the day!',
     cannot_play_yourself: 'cannot play yourself',
+    diamond_arrive: 'Diamonds are on the books',
+    vsc_arrive: 'Vsc are on the books',
     db:{
         vsc_to_diamond: 'Vsc to diamond',
         diamond_to_vsc: 'Diamond to vsc',

@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import MemberModel from '../model/memberModel';
 import {trans} from '../translate/index';
+import empty from 'is-empty';
 class BaseCtroller {
     successRes(data, lang){
         data = data || {};
@@ -10,7 +11,7 @@ class BaseCtroller {
         };
 
         try {
-            if(JSON.stringify(data) !== '{}'){
+            if(!empty(data)){
                 if(data.msg){
                     let transData = trans(data.msg, lang);
                     if(transData){
@@ -24,14 +25,13 @@ class BaseCtroller {
                     res.code = data.code;
                     delete data.code;
                 }
-                if(JSON.stringify(data) !== '{}'){
+                if(!empty(data)){
                     res.data = data;
                 }
             }
         }catch (e) {
-            console.log(e);
+            console.log('successResErr:', e);
         }
-
         return res;
     }
 
@@ -45,7 +45,6 @@ class BaseCtroller {
                 if(transData){
                     errmsg = transData;
                 }
-
             }
             if(errRes.hasOwnProperty('code')){
                 code = errRes.code;
@@ -65,11 +64,10 @@ class BaseCtroller {
     async verify(req, res, next){
         if(req.method == 'GET' || req.method == 'POST'){
             let params = req.query;
-            if(JSON.stringify(req.body) !== '{}'){
+            if(!empty(req.body)){
                 params = req.body;
             }
-            console.log('params:', JSON.stringify(params));
-            if(['/member/getMemberInfo'].indexOf(req.url.split('?')[0]) == -1){
+            if(['/member/getMemberInfo'].indexOf(req.url.split('?')[0]) == -1 && req.url.split('/')[1] != 'socket.io'){
                 if(!params.uid){
                     return res.json({code:110, msg:trans('uid_is_empty', params.lang)});
                 }

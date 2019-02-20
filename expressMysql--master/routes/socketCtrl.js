@@ -9,7 +9,8 @@ import noticService from '../service/noticService';
 import taskService from '../service/taskService';
 import {trans} from '../translate/index';
 import {sequelize} from '../config/db.js';
-import fs from 'fs';
+import empty from 'is-empty';
+import {errLog} from '../config/log.js';
 global.userSids = {};
 //定时回收占坑却未开始游戏的房间到房间列表
 setInterval(()=>{
@@ -38,6 +39,46 @@ setInterval(()=>{
     });
     global.roomDataOnGame = newArr;
 }, 60000);
+
+//定时监听task
+setInterval(async ()=>{
+    let noticeUid = await taskService.autolistenTaskService(memberService, noticService);
+    if(!empty(noticeUid)){
+        setSystemNotice(noticeUid);
+    }
+}, 10000);
+
+//给用户发送系统消息
+async function setSystemNotice(noticeUid){
+    for (let i in noticeUid) {
+        let msgData = await noticService.baseFindByFilter({exclude: ['updated_at', 'created_at']}, {
+            uid: i,
+            status: 0
+        });
+        let memberInfo = await memberService.getMemberInfoByIdService(i);
+        let msgArr = [];
+
+        //5.如有消息则推送消息
+        if (msgData) {
+            msgData.forEach(item => {
+                switch (item.type) {
+                    case 0:
+                        msgArr.push({
+                            msg_id: item.id,
+                            msg_content: trans(item.content, 2),
+                            diamond: memberInfo.diamond
+                        });
+                        break;
+                    default:
+                        msgArr.push({msg_id: item.id, msg_content: trans(item.content, 2)});
+                }
+            });
+            if(global.userSids[i]){
+                global.io.to(global.userSids[i]['sid']).emit('getMsg', {code: 0, data: msgArr});
+            }
+        }
+    }
+}
 
 //初始化所有房间信息
 async function getRoomData(){
@@ -91,9 +132,8 @@ async function loginCheck(msg, socket) {
 
     //3.储存/更新 uid,sid
     global.userSids[msg.uid] = {uid:msg.uid, sid:socket.id};
-    console.log('userSids:', global.userSids);
     //4.查询是否存在未完成任务
-    await taskService.listenTaskService(msg.uid);
+    await taskService.listenTaskService(msg.uid, memberService, noticService);
     let msgData = await noticService.baseFindByFilter({exclude: ['updated_at', 'created_at']}, {
         uid: msg.uid,
         status: 0
@@ -272,13 +312,7 @@ function writeLog(type, msg, e, oldData){
     log.LastGlobalRoomNumData = global.RoomNumData;
     log.LastGlobalNewRoomData = global.NewRoomData;
     log.LastGlobalRoomDataOnGame = global.RoomDataOnGame;
-    fs.appendFile('errorLog.html', JSON.stringify(log) + '<br />', function (err) {
-        if (err) {
-            console.log('写入日志失败');
-        } else {
-            console.log('写入日志成功');
-        }
-    });
+    errLog(JSON.stringify(log));
 }
 
 //SOCKET链接建立
@@ -515,17 +549,20 @@ async function onConnect(socket) {
                 },
                 msg: statusRes.msg
             });
-        }).catch(function (err) {
-            var errRes = JSON.parse(err.message);
-            let code = 110,msg = err.message;
-            if(errRes.hasOwnProperty('code')){
-                code = errRes.code;
+        }).catch(function (e) {
+            let code = 110,msg = e.message;
+            try{
+                var errRes = JSON.parse(e.message);
+                if(errRes.hasOwnProperty('code')){
+                    code = errRes.code;
+                }
+                if(errRes.hasOwnProperty('msg')){
+                    msg = errRes.msg;
+                }
+            }catch (e) {
+                writeLog('submitRes', msg, e, oldData);
+                console.log('submitResErr', e);
             }
-            if(errRes.hasOwnProperty('msg')){
-                msg = errRes.msg;
-            }
-            writeLog('submitRes', msg, err, oldData);
-            console.log(err);
             socket.emit('submitRes', {code: code, msg: msg});
             return false;
         })
@@ -547,8 +584,6 @@ async function onConnect(socket) {
         receiveRoom(msg['id']);
         try {
             global.io.to(global.userSids[msg.uid]['sid']).emit('cancelGame', {code: 0, data: {id: msg['id'], uid: msg['uid']}});
-            console.log('msg:',msg);
-            console.log('global.newRoomData:',global.newRoomData);
             global.io.to(global.userSids[global.newRoomData[msg.id]['uid']]['sid']).emit('cancelGame', {code: 0, data: {id: msg['id'], uid: msg['uid']}});
         }catch (e) {
 
@@ -600,16 +635,20 @@ async function onConnect(socket) {
                     }, msg: 'succ'
                 }, msg.lang));
             } catch (e) {
-                var errRes = JSON.parse(e.message);
                 let code = 110,msg = e.message;
-                if(errRes.hasOwnProperty('code')){
-                    code = errRes.code;
-                }
-                if(errRes.hasOwnProperty('msg')){
-                    msg = errRes.msg;
+                try{
+                    var errRes = JSON.parse(e.message);
+                    if(errRes.hasOwnProperty('code')){
+                        code = errRes.code;
+                    }
+                    if(errRes.hasOwnProperty('msg')){
+                        msg = errRes.msg;
+                    }
+                }catch (e) {
+                    console.log('enterRoomErr:', e);
+                    writeLog('enterRoom', msg, e, oldData);
                 }
                 socket.emit('enterRoom', {code: code, msg: msg});
-                writeLog('enterRoom', msg, e, oldData);
                 return false;
             }
         } else {
@@ -701,16 +740,19 @@ async function onConnect(socket) {
                 }
             });
         }).catch((err) => {
-            console.log('err.message:',err.message);
-            var errRes = JSON.parse(err.message);
             let code = 110,msg = err.message;
-            if(errRes.hasOwnProperty('code')){
-                code = errRes.code;
+            try{
+                var errRes = JSON.parse(err.message);
+                if(errRes.hasOwnProperty('code')){
+                    code = errRes.code;
+                }
+                if(errRes.hasOwnProperty('msg')){
+                    msg = errRes.msg;
+                }
+            }catch (e) {
+                writeLog('createRoom', msg, e, oldData);
+                console.log('createRoomErr:', err);
             }
-            if(errRes.hasOwnProperty('msg')){
-                msg = errRes.msg;
-            }
-            writeLog('createRoom', msg, err, oldData);
             socket.emit('createRoom', {code: code, msg: msg});
             return false;
         });
@@ -787,7 +829,7 @@ async function onConnect(socket) {
             return false;
         }).catch((e) => {
             writeLog('delGame', msg, e, oldData);
-            console.log(e);
+            console.log('delGameErr:', e);
             socket.emit('delGame', transRerurn({code: 5, msg: 'cancel_faild'}, msg.lang));
             return false;
         });
@@ -833,24 +875,6 @@ async function onConnect(socket) {
         socket.emit('isPlaying', {code: 0, data: {status: status}});
         return false;
     });
-
-    //测试：记录玩家更新钻石
-    // socket.on('updateD', async (msg) => {
-    //     let userType = 'nimade';
-    //     if (msg.owner == 1) {
-    //         userType = ' 房主:';
-    //     } else if (msg.owner == 0) {
-    //         userType = ' 游客:';
-    //     }
-    //     let data = '房间号：' + msg.id + userType + msg.uid + ' 更新钻石：' + msg.num + ' 对战消息:' + msg.msg + ' 时间：' + new Date().toLocaleTimeString() + '<br />';
-    //     fs.appendFile('diamondLog.html', data, function (err) {
-    //         if (err) {
-    //             console.log('写入日志失败');
-    //         } else {
-    //             console.log('写入日志成功');
-    //         }
-    //     });
-    // });
 }
 
 export {onConnect, getRoomData}

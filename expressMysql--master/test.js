@@ -1,120 +1,23 @@
-// import {sequelize} from './config/db';
-// import orderMoraService from "./service/orderMoraService";
-// let createRoom2 = {uid:3,shape:1,grade:2,diamond_number:50};
-// sequelize.transaction( async  (t) => {
-//     let createRoom = {uid:8,shape:1,grade:2,diamond_number:50};
-//     orderMoraService.createData(createRoom);
-//     orderMoraService.createData(createRoom);
-//     throw Error('滚');
-// }).then((a)=>{
-// }).catch(function (err) {
-//     console.log(createRoom2);
-//     console.log(err);
-//     // 事务已被回滚
-//     // err 是拒绝 promise 链返回到事务回调的错误
-// });
+const log4js = require('log4js');
+/**
+ * appenders的简单说明，详情请参考官方文档
+ * stdout,out,err 都是自定义参数名
+ * type : 'dateFile' 记录日志文件的类型，一定要注意 大小写敏感，不然在linux系统将会报错
+ * pattern : 日志文件名的格式
+ *
+ * categories 作为getLogger方法的键名对你应
+ */
+log4js.configure({
+    appenders: {
+        stdout: { type: 'stdout' }, //声明此属性可在控制台上打印信息
+        sqlLog: { type: 'dateFile', filename: './logs/sqlLog' , pattern: 'yyyyMMdd-err.log', "alwaysIncludePattern": true}
+        errLog: { type: 'dateFile', filename: './logs/errLog' , pattern: 'yyyyMMdd-err.log', "alwaysIncludePattern": true}
+    },
+    categories: {
+        default: { appenders: ['stdout','sqlLog'], level: 'info' },
+        sqlLog: { appenders: ['stdout','sqlLog'], level: 'info' },
+    }
+});
 
-// import  crypto from 'crypto';
-//
-// var content = 'password';//加密的明文；
-// var token1 ='miyue';//加密的密钥；
-// var buf = crypto.randomBytes(16);
-// token1 = buf.toString('hex');//密钥加密；
-// console.log("生成的token(用于加密的密钥):"+token1);
-// var SecrectKey = token1;//秘钥；
-// var Signture = crypto.createHmac('sha256', SecrectKey);//定义加密方式
-// Signture.update(content);
-// var miwen = Signture.digest().toString('base64');//生成的密文后将再次作为明文再通过pbkdf2算法迭代加密；
-// console.log("加密的结果f：" + miwen);
-
-
-// var crypto = require('crypto');
-//
-// var baseString = 'BLBwY52t2OFaIgtLCFVWAvTM6LOGvilUGFcvLgKREV6JqWd6DOeY21AAwFq9sC3aprkBfULe9L+t73ZBpxtfOBIfTq0uhnrUbaLnoZV2eUUijgSPzVCnDWO2JLbx6l8kIeOBPLDEVy2dNzHICvzeM30bP0fLM2I2jzylqM9xul2/t6q1XhhWSO8RIFkPFHwXqWinFcWsEBeeqOIyWm+GrVkpQi1XmBBZ8Nfdx9WPPzcjk7XUQwGwWzehL3z3HbXA';
-//
-//
-// //解密
-// function decode(cryptkey, iv, secretdata) {
-//     var
-//         decipher = crypto.createDecipheriv('aes-256-cbc', cryptkey, iv),
-//         decoded  = decipher.update(secretdata, 'base64', 'utf8');
-//
-//     decoded += decipher.final( 'utf8' );
-//     return decoded;
-// }
-//
-// //解密
-// function encode(cryptkey, iv, cleardata) {
-//     var
-//         encipher = crypto.createCipheriv('aes-256-cbc', cryptkey, iv),
-//         encoded  = encipher.update(cleardata, 'utf8', 'base64');
-//
-//     encoded += encipher.final( 'base64' );
-//     return encoded;
-// }
-// function chr(codePt) {
-//     if (codePt > 0xFFFF) {
-//         codePt -= 0x10000
-//         return String.fromCharCode(0xD800 + (codePt >> 10), 0xDC00 + (codePt & 0x3FF))
-//     }
-//     return String.fromCharCode(codePt)
-// }
-// var
-//     cryptkey   = crypto.createHash('sha256').update('maiguoerueepcncecjz6833dbkdshy2cxbhsajzz0954gdjkwgarsgxjkdd3svghf').digest(),
-//     iv         = chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0),
-//     buf        = "Hello World";
-//     // enc        = encode( cryptkey, iv, buf );
-//
-// // var dec        = decode(cryptkey, iv, enc);
-//
-// var res = decode(cryptkey, iv, baseString).split('&');
-// let memberInfo = [];
-// res.forEach(item=>{
-//     let itemArr = item.split('=');
-//     memberInfo[itemArr[0]] = itemArr[1];
-// });
-// console.log(memberInfo);
-// function b64enc(data) {
-//     var b   = new Buffer(data, 'binary');
-//     return b.toString('base64');
-// }
-
-// console.warn("Encoded length: ", enc);
-// console.warn("Decoded all: " + dec);
-
-
-// import memberService from "./service/memberService";
-//
-//
-//  async  function getInfo (){
-//      let res = await memberService.getMemberInfoService({id:1696538},{id:1696538, user_name:'lsd', user_avatar:'我的头像', diamond:0, token:'123123123wadasdasdasdadasdasdsd', freeze_diamond:0});
-//      console.log(JSON.stringify());
-//  }
-// getInfo ();
-//
-// MemberService.getMemberInfoByIdService(16965038).then(res=>{
-//     console.log(res);
-// });
-
-// import TaskSrevice from './service/taskService';
-// import DiamondExchangeOrderModel from "./model/diamondExchangeOrderModel";
-// DiamondExchangeOrderModel.model.findAll({attributes: ['id','diamond','uid', 'orderNO'], where: {id:26, status: 3}}).then(res=>{
-//     console.log(res.length);
-//     if(res.length == 0) {
-//         console.log(1);
-//     }   else{
-//         console.log(2);
-//     }
-// });
-// const set = require('./set');
-// import i18n from './translate/index';
-// const trans = i18n.trans();
-// console.log(trans.welcome.great);
-
-try{
-    JSON.parse('123');
-    console.log(0);
-}catch (e) {
-    console.log(1);
-}
-console.log(2);
+let logger_out = log4js.getLogger('sqlLog'); // 这个app参数值先会在categories中找，找不到就会默认使用default对应的appenders,信息会输出到yyyyMMdd-out.log
+logger_out.info('this is a app out !!');
