@@ -13,7 +13,8 @@ export default {
     // pages 的首个页面会被编译成首页
     pages: [
       'pages/hello/index',
-      'pages/my/index'
+      'pages/my/index',
+      'pages/test/index'
     ],
     tabBar: {
       color: '#333',
