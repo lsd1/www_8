@@ -13,6 +13,7 @@
     "url": "https://github.com/igeligel/vuex-simple-structure/issues"
   },
   "dependencies": {
+    "npm": "^6.8.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"

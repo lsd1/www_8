@@ -35,8 +35,6 @@ module.exports = {
     my: true,
     getApp: true,
     getPage: true,
-    requirePlugin: true,
-    mpvue: true,
-    mpvuePlatform: true
+    requirePlugin: true
   }
 }

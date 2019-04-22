@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>如何申诉</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <script src="../share/js/common.js"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .body {
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-direction:column;
+        flex-wrap: wrap;
+        margin:3rem 1.5rem 1.5rem 1.5rem;
+        font-family: sans-serif;
+    }
+    .center {
+       text-align: center;
+    }
+    .left {
+        text-align: left;
+    }
+    .right {
+        text-align: right;
+    }
+    .first-title {
+        font-weight: bold;
+        font-size: larger;
+        color: #2D2E38;
+    }
+    .second-title{
+        font-weight: bold;
+        font-size: large;
+        color: #2D2E38;
+    }
+    .item{
+        margin-top: .5rem;
+    }
+    .item-title{
+        margin-top: .5rem;
+        font-weight: bold;
+        font-size: medium;
+        color: #2D2E38;
+    }
+    .item-content{
+        margin-top: .2rem;
+        text-indent: 2rem;
+        color: #999;
+    }
+    .item-li{
+        margin-top: .2rem;
+        text-indent: 2rem;
+    }
+    .head {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        border-bottom: 1px solid #e6e6e6;
+        height: 3rem;
+    }
+    .header {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .start {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex: 1
+    }
+    .start svg {
+        width: 25px;
+        height: 25px;
+    }
+    .center {
+        flex: 1
+    }
+    .end {
+        flex: 1
+    }
+</style>
+<body>
+<div class="head">
+    <div class="header">
+    <div class="start" onclick="goBack()">
+        <?xml version="1.0" standalone="no"?>
+        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+        <svg t="1552451696860" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2524" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M682.424996 911.667585c-8.490372 0-17.041118-2.841721-24.091698-8.685823L199.142038 522.585079c-8.662287-7.185656-13.682627-17.853623-13.682627-29.112038s5.02034-21.926382 13.682627-29.111015L658.333298 83.941807c16.068977-13.325493 39.902802-11.06194 53.228295 4.995781 13.313214 16.081257 11.073196 39.901779-4.995781 53.228295L282.502607 493.473041 706.565812 844.756663c16.068977 13.326517 18.308995 37.147038 4.995781 53.228295C704.080202 907.004379 693.301717 911.667585 682.424996 911.667585z" p-id="2525"></path>
+        </svg>
+        返回
+    </div>
+    <div class="center">如何申诉</div>
+    <div class="end"></div>
+    </div>
+</div>
+<div class="body">
+<div class="first-title center">
+    <!--标题一-->
+</div>
+    <div class="item">
+        <div class="item-title">
+            一、如何申诉
+        </div>
+        <div class="item-content">
+            在相应的订单处点击申诉，即可开始申诉。
+        </div>
+    </div>
+    <div class="item">
+        <div class="item-title">
+            二、申诉类型
+        </div>
+        <div class="item-content">
+            根据你的订单类型/状态，选择对应的申诉类型。<br />
+            1、买家长时间不付款
+            <div class="item-li">
+                在您的出货订单中有未付款订单，未付款订单会冻结您的库存，当对方长时间不付款时，您可申诉联系平台帮助取消订单，具体处理结果以平台为准。
+            </div>
+            2、待确认订单未收到款
+            <div class="item-li">
+                在您的出货订单中有待确认订单，您对相应的款项存在问题或未收到款，您可申诉联系平台寻求帮助处理，申诉时提供相关凭证图片，具体处理结果以平台为准。
+            </div>
+            3、卖家长时间不确认
+            <div class="item-li">
+                当您在进货过程中已经确认了付款，对方过长时间不确认时，您可选择申诉联系平台进行处理，申诉时提供相关凭证图片，具具体处理结果以平台为准。
+            </div>
+            4、自提货物存在损坏/缺失
+            <div class="item-li">
+                您的自提货物存在问题时可联系平台进行处理，申诉时提供相关凭证图片，具具体处理结果以平台为准。
+            </div>
+            5、其他类型
+            <div class="item-li">
+                若其他其他问题，请做相关描述并上传相关图片进行申诉。
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function goBack () {
+      console.log(1)
+      try{
+        window.maiguoer.goBack()
+      }catch (e) {
+        window.maiguoer.goApp()
+      }
+    }
+    // noWrap(['second-title', 'first-title']);
+    /**
+     * desc     防止标题换行
+     * params   className
+     * params type:string、object
+     */
+    function noWrap(ele) {
+        var eleArr = [],type = typeof ele;
+        if(type === "object"){
+            for (var i in ele){
+                eleArr.push(ele[i]);
+            }
+        }else if(type === "string"){
+            eleArr.push(ele);
+        }
+
+        for(var j = 0; j < eleArr.length; j++) {
+            var eleHandle = document.querySelector('.' + eleArr[j]),
+                eleStyle = window.getComputedStyle(eleHandle),
+                eleStyleFontSize = Number(eleStyle.fontSize.replace('px', '')),
+                eleContentLength= eleHandle.innerText.length,
+                eleRealWidth = eleStyleFontSize * eleContentLength,
+                eleWidth = eleStyle.width.replace('px', '');
+
+            if(eleRealWidth > eleWidth) {
+                eleHandle.style.fontSize = (eleWidth / (eleContentLength)) + 'px';
+            }
+        }
+    }
+</script>
+</html>
