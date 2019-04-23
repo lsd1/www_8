@@ -50,18 +50,15 @@ module.exports = {
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
-      {
-        test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader'
-        ],
-      },
-      {
-            test: /\.less$/,
-
-            loader: "style-loader!css-loader!less-loader",
-      },
+      // {
+      //       test: /\.less$/,
+      //
+      //       loader: "style-loader!css-loader!less-loader",
+      // },
+      // {
+      //   test: /\.css$/,
+      //   loader: 'style-loader!css-loader!less-loader?!postcss-loader'
+      // },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
@@ -84,6 +81,16 @@ module.exports = {
         options: {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[ext]?v=[hash:7]')
+        }
+      },
+      {
+        test: /\.(js|vue|scss|css)$/,
+        loader: 'webpack-replace-loader',
+        options: {
+          arr: [
+            { search: '//imgHost/', replace: 'http://192.168.1.238/images/', attr: 'g' }
+            // { search: '//imgHost/', replace: 'http://192.168.1.143/', attr: 'g' }
+          ]
         }
       }
     ]

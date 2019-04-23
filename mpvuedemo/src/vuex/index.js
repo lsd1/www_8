@@ -43,7 +43,7 @@ export default new Vuex.Store({
       commit('setCartCount', data)
     },
     async setCartCountFromApi ({ commit }, data) {
-      if (wx.getStorageSync('uid')) {
+      if (localStorage.getItem('uid')) {
         let [err, res] = await getCartCount()
         if (err || res.code !== 0) {
           return { type: 'err', msg: err || res.msg }

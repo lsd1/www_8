@@ -3,7 +3,8 @@ const path = require('path')
 const config = require('../configH5')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
-
+const autoprefixer = require('autoprefixer')
+const pxtorem = require('postcss-pxtorem')
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory

@@ -4,7 +4,7 @@ import md5 from 'js-md5'
 import Vue from 'vue'
 const app = new Vue()
 const fly = new Fly()
-
+// const wx = {}
 //  添加拦截器
 // fly.interceptors.request.use((config,promise)=>{
 //     //给所有请求添加自定义header
@@ -16,27 +16,27 @@ const fly = new Fly()
 fly.interceptors.response.use(
   (response) => {
     if (response.data.code === 110) {
-      wx.login({
-        success (res) {
-          if (res.code) {
-            app.$router.push({ path: '/pages/login/index', query: { code: res.code } })
-          }
-        }
-      })
+      // wx.login({
+      //   success (res) {
+      //     if (res.code) {
+      //       app.$router.push({ path: '/pages/login/index', query: { code: res.code } })
+      //     }
+      //   }
+      // })
       return response
     }
     return response
   })
 
 //  配置请求基地址
-// fly.config.baseURL = 'https://testshopapi.maiguoer.com/'
-fly.config.baseURL = 'http://192.168.1.238:85/'
+fly.config.baseURL = '/api/'
+// fly.config.baseURL = 'http://192.168.1.238:85/'
 
 export const signData = (action, data) => {
   let timestamp = Date.parse(new Date()) / 1000
   let uuid = timestamp.toString() + parseInt(Math.random() * 1000)
-  let uid = wx.getStorageSync('uid') || ''
-  let token = wx.getStorageSync('token') || ''
+  let uid = localStorage.getItem('uid') || '100248'
+  let token = localStorage.getItem('token') || '0dd3e22c055d97d9ce5b62607fbd6cda'
   let md5Str = ''
   let params = {
     clientType: 4,

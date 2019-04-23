@@ -1,15 +1,15 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Vuex from 'vuex'
 import App from './AppH5'
 import router from './router'
-import wxService from './api/wxService'
 import httpService from './api/httpService'
 import vuex from './vuex'
-
-Vue.config.productionTip = false
-Vue.use(Vuex)
+import 'lib-flexible/flexible'
+import Lazyload from 'vue-lazyload'
+import store from './vuex/index'
+Vue.prototype.$store = store
+Vue.use(Lazyload)
 Vue.mixin({
   data () {
     return {

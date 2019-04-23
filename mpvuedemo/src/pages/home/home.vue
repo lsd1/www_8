@@ -1,54 +1,56 @@
 <template>
   <div class="home">
-    <!--<scroll-view scroll-y='true' :style="'height:' + scrollH + 'px'" @scrolltoupper="refresh"  @scrolltolower='LoadMoreData'>-->
-      <!--轮播图-->
-      <div class="banner">
-        <banner :banners="banners" />
-      </div>
+    <van-pull-refresh v-model="isRefresh" @refresh="refresh">
+      <!--<scroll-view scroll-y='true' :style="'height:' + scrollH + 'px'" @scrolltoupper="refresh"  @scrolltolower='LoadMoreData'>-->
+        <!--轮播图-->
+        <div class="banner">
+          <banner :banners="banners" />
+        </div>
 
-      <!--导航栏-->
-      <div class="category">
-        <wux-grids col="4" :bordered="false">
-          <wux-grid :thumb="item.icon" :label="item.cateName" @click="toCategoryDetail(item, index)" v-for="(item, index) in categories" :key="index" />
-        </wux-grids>
-      </div>
+        <!--导航栏-->
+        <div class="category">
+          <div class="cate-cell"  @click="toCategoryDetail(item, index)" v-for="(item, index) in categories" :key="index">
+            <img :src="item.icon" />
+            <div>{{ item.cateName }}</div>
+          </div>
+        </div>
 
-      <!--今日推荐-->
-      <div class="ad">
-        <van-row>
-          <van-col span="24">
-            <BlockTitle :title="'今日推荐'" ></BlockTitle>
-          </van-col>
-          <van-col span="12" >
-            <img lazy-load="true" @click="toOtherPage(todayRecommends[0])" class="ad-0" :src="todayRecommends[0]['cover']" />
-          </van-col>
-          <van-col span="12" >
-            <img lazy-load="true" @click="toOtherPage(todayRecommends[1])" class="ad-1" :src="todayRecommends[1]['cover']" />
-          </van-col>
-          <van-col span="24" >
-            <img lazy-load="true" @click="toOtherPage(todayRecommends[2])" class="ad-2" :src="todayRecommends[2]['cover']" />
-          </van-col>
-        </van-row>
-      </div>
+        <!--今日推荐-->
+        <div class="ad">
+          <van-row>
+            <van-col span="24">
+              <BlockTitle :title="'今日推荐'" ></BlockTitle>
+            </van-col>
+            <van-col span="12" >
+              <img v-lazy="todayRecommends[0]['cover']" @click="toOtherPage(todayRecommends[0])" class="ad-0" />
+            </van-col>
+            <van-col span="12" >
+              <img v-lazy="todayRecommends[1]['cover']" @click="toOtherPage(todayRecommends[1])" class="ad-1" />
+            </van-col>
+            <van-col span="24" >
+              <img v-lazy="todayRecommends[2]['cover']" @click="toOtherPage(todayRecommends[2])" class="ad-2"  />
+            </van-col>
+          </van-row>
+        </div>
+    </van-pull-refresh>
 
-      <!--推荐商品列表-->
-      <div class="goods">
-          <goods-card v-for="(item, index) in recommendGoods" :goodsIndex="index" :key="index" :goodsData="item"/>
-      </div>
-      <loadMore :isloading="loadingRecommendGoods" />
-    <!--</scroll-view>-->
-    <van-toast id="van-toast" />
+        <!--推荐商品列表-->
+        <div class="goods">
+            <goods-card v-for="(item, index) in recommendGoods" :goodsIndex="index" :key="index" :goodsData="item"/>
+        </div>
+        <loadMore :isloading="loadingRecommendGoods" />
+    <!--<van-toast id="van-toast" />-->
     <Loading :showPopup="isRefresh"/>
   </div>
 </template>
 
 <script>
+import { Row, Col, PullRefresh, Icon, Toast } from 'vant'
 import { createNamespacedHelpers } from 'vuex'
-import Toast from '@/static/vant-weapp/toast/toast'
-import GoodsCard from '@/components/GoodsCard'
-import Banner from '@/components/Banner'
+import GoodsCard from '@/componentsWeb/GoodsCard'
+import Banner from '@/componentsWeb/Banner'
 import BlockTitle from '@/components/BlockTitle'
-import LoadMore from '@/components/LoadMore'
+import LoadMore from '@/componentsWeb/LoadMore'
 import Loading from '@/components/Loading'
 const { mapState } = createNamespacedHelpers('home')
 
@@ -58,7 +60,11 @@ export default {
     GoodsCard,
     Banner,
     LoadMore,
-    Loading
+    Loading,
+    [Row.name]: Row,
+    [PullRefresh.name]: PullRefresh,
+    [Icon.name]: Icon,
+    [Col.name]: Col
   },
   data () {
     return {
@@ -90,67 +96,75 @@ export default {
   beforeMount () {
     console.log('Page [home] Vue beforeMount')
   },
-  mounted () {
+  async mounted () {
     console.log('Page [home] Vue mounted')
-  },
-  onLoad: function (options) {
-    var self = this
-    wx.setNavigationBarTitle({
-      title: '商城'
-    })
-    wx.getSystemInfo({
-      success: function (res) {
-        let height = res.windowHeight
-        self.scrollH = height
-      }
-    })
-  },
-  onReady: function () {
-    // Do something when page ready.
-    console.log('Page [home] onReady')
-  },
-  onShow: async function () {
-    // // 获取首页相关数据
-    let _this = this
-    const token = wx.getStorageSync('token') || false
-    if (!token) {
-      _this.$router.push('/pages/login/index')
-    } else {
-      this.wait = false
-    }
-    // Do something when page show.
-    console.log('Page [home] onShow')
-    if (!this.done && this.wait === false) {
-      this.shopPopup = true
-      let res1 = await this.$store.dispatch('home/getIndexData')
-      this.checkRes(res1)
-      this.shopPopup = false
-      let res2 = await this.$store.dispatch('home/getRecommendGoods', { lastIds: this.lastIds })
-      this.checkRes(res2)
-    }
-
+    // this.shopPopup = true
+    let res1 = await this.$store.dispatch('home/getIndexData')
+    this.checkRes(res1)
+    // this.shopPopup = false
+    let res2 = await this.$store.dispatch('home/getRecommendGoods', { lastIds: this.lastIds })
+    this.checkRes(res2)
     // 获取购物车数量
     this.$store.dispatch('setCartCountFromApi')
   },
-  onHide: async function () {
-    console.log('Page [home] onHide')
-  },
-  onUnload: function () {
-    // Do something when page close.
-    console.log('Page [home] onUnload')
-  },
-  onReachBottom () {
-    this.LoadMoreData()
-  },
-  async onPullDownRefresh () {
-    let _this = this
-    if (_this.isRefresh) {
-      return false
-    } else {
-      _this.refresh()
-      wx.stopPullDownRefresh()
-    }
-  },
+  // onLoad: function (options) {
+  //   var self = this
+  //   wx.setNavigationBarTitle({
+  //     title: '商城'
+  //   })
+  //   wx.getSystemInfo({
+  //     success: function (res) {
+  //       let height = res.windowHeight
+  //       self.scrollH = height
+  //     }
+  //   })
+  // },
+  // onReady: function () {
+  //   // Do something when page ready.
+  //   console.log('Page [home] onReady')
+  // },
+  // onShow: async function () {
+  //   // // 获取首页相关数据
+  //   let _this = this
+  //   const token = wx.getStorageSync('token') || false
+  //   if (!token) {
+  //     _this.$router.push('/pages/login/index')
+  //   } else {
+  //     this.wait = false
+  //   }
+  //   // Do something when page show.
+  //   console.log('Page [home] onShow')
+  //   if (!this.done && this.wait === false) {
+  //     this.shopPopup = true
+  //     let res1 = await this.$store.dispatch('home/getIndexData')
+  //     this.checkRes(res1)
+  //     this.shopPopup = false
+  //     let res2 = await this.$store.dispatch('home/getRecommendGoods', { lastIds: this.lastIds })
+  //     this.checkRes(res2)
+  //   }
+  //
+  //   // 获取购物车数量
+  //   this.$store.dispatch('setCartCountFromApi')
+  // },
+  // onHide: async function () {
+  //   console.log('Page [home] onHide')
+  // },
+  // onUnload: function () {
+  //   // Do something when page close.
+  //   console.log('Page [home] onUnload')
+  // },
+  // onReachBottom () {
+  //   this.LoadMoreData()
+  // },
+  // async onPullDownRefresh () {
+  //   let _this = this
+  //   if (_this.isRefresh) {
+  //     return false
+  //   } else {
+  //     _this.refresh()
+  //     wx.stopPullDownRefresh()
+  //   }
+  // },
   /**
    * for other event handlers, please check https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html
    */
@@ -218,9 +232,26 @@ export default {
     }
     .category {
       padding-top: 10px;
+      padding-bottom: 47px;
       background-color: white;
-      .wux-grid__inner {
-        padding:25px 15px!important;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      .cate-cell {
+        margin-top: 47px;
+        display: flex;
+        flex: 1;
+        flex-basis: 25%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 62px;
+          height: 62px;
+          border-radius: 50%;
+          margin-bottom: 23px;
+        }
       }
     }
     .ad{
@@ -260,9 +291,6 @@ export default {
 .home{
   .category {
     background-color: white;
-    .wux-grid__inner {
-      padding:30px 20px!important;
-    }
   }
 }
 </style>

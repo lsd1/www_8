@@ -8,8 +8,8 @@ const getPage = name => {
 }
 let routerArr = [{
   path: '/',
-  name: 'test',
-  component: getPage('test'),
+  name: 'home',
+  component: getPage('home'),
 }]
 pages.forEach(item => {
   let path = item === 'index' ? '' : item
