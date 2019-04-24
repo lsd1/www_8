@@ -22,7 +22,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .mask {
     display: flex;
     align-items: center;
@@ -36,6 +36,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(51, 51, 51, 0.51);
+    z-index: 1;
 }
 .loadingImg {
     height: 150px;

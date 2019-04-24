@@ -1,6 +1,6 @@
 <template>
     <div :class="bottomBorder ? 'title' : 'title hbb' ">
-        <img v-lazy="//imgHost/icon_branch.png" class="title-icon" src=""/>
+        <img v-lazy="'//imgHost/icon_branch.png'" class="title-icon" />
         <span class="title-text">{{ title }}</span>
     </div>
 </template>

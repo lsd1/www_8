@@ -2,35 +2,44 @@
   <div class="pay">
     <div class="balance"><div>￥</div><div class="num">{{ orderPrice }}</div></div>
     <div class="title">请选择支付方式</div>
-    <PayItem v-for="(item, index) in payList"
-      :key="index"
-      :payIcon="iconList[item.id]"
-      :payDesc="item.desc"
-      :payTip="item.remark"
-      :payId="item.id"
-      :payType="payType"
-    />
+    <van-radio-group v-model="payType">
+      <PayItem v-for="(item, index) in payList"
+        :key="index"
+        :payIcon="iconList[item.id]"
+        :payDesc="item.desc"
+        :payTip="item.remark"
+        :payId="item.id"
+        :payType="payType"
+      />
+    </van-radio-group>
     <div class="pay-bottom">
       <div class="tips">该笔订单可获积分{{ integral }}</div>
       <van-button @click="checkSecondPwd"> 支付（{{ orderPrice }}） </van-button>
     </div>
-    <wux-keyboard id="wux-keyboard" />
-    <van-toast id="van-toast" />
+    <van-number-keyboard id="van-number-keyboard" />
+    <!--<van-toast id="van-toast" />-->
   </div>
 </template>
 
 <script>
+import { Button, NumberKeyboard, RadioGroup, Toast } from 'vant'
+
 // import md5 from 'js-md5'
 import { createNamespacedHelpers } from 'vuex'
 // import { getPayList, payOrder, continuePay, checkSecondPwd } from '@/service/getData'
 import { getPayList, payOrder, continuePay } from '@/service/getData'
-import Toast from '@/static/vant-weapp/toast/toast'
-import PayItem from '@/components/PayItem'
-// import { $wuxKeyBoard } from '@/static/wux-weapp/index'
+// import Toast from '@/static/vant-weapp/toast/toast'
+import PayItem from '@/componentsWeb/PayItem'
+// import { $vanKeyBoard } from '@/static/van-weapp/index'
 const { mapState } = createNamespacedHelpers('pay')
 
 export default {
-  components: { PayItem },
+  components: {
+    [Button.name]: Button,
+    [NumberKeyboard.name]: NumberKeyboard,
+    [RadioGroup.name]: RadioGroup,
+    PayItem
+  },
   data () {
     return {
       type: null,
@@ -61,18 +70,8 @@ export default {
   beforeMount () {
     console.log('Page [pay] Vue beforeMount')
   },
-  mounted () {
+  async mounted () {
     console.log('Page [pay] Vue mounted')
-  },
-  onLoad: function (options) {
-    // Do some initialize when page load.
-    console.log('Page [pay] onLoad')
-  },
-  onReady: function () {
-    // Do something when page ready.
-    console.log('Page [pay] onReady')
-  },
-  async onShow () {
     this.type = this.$router.currentRoute.query.type
     switch (this.type) {
       case '1':
@@ -112,20 +111,69 @@ export default {
         }
         break
     }
-    // Do something when page show.
-    console.log('Page [pay] onShow')
   },
-  onHide: function () {
-    // Do something when page hide.
-    console.log('Page [pay] onHide')
-  },
-  onUnload: function () {
-    wx.setNavigationBarTitle({
-      title: '订单支付'
-    })
-    // Do something when page close.
-    console.log('Page [pay] onUnload')
-  },
+  // onLoad: function (options) {
+  //   // Do some initialize when page load.
+  //   console.log('Page [pay] onLoad')
+  // },
+  // onReady: function () {
+  //   // Do something when page ready.
+  //   console.log('Page [pay] onReady')
+  // },
+  // async onShow () {
+  //   this.type = this.$router.currentRoute.query.type
+  //   switch (this.type) {
+  //     case '1':
+  //       let data = JSON.parse(this.$router.currentRoute.query.data)
+  //       this.payList = data.payList
+  //       this.integral = data.integral
+  //       this.orderPrice = data.orderPrice
+  //       this.orderSn = data.orderSn
+  //       this.orderId = data.orderId
+  //       this.payList.forEach(item => {
+  //         if (item.isDefault) {
+  //           this.payType = item.id
+  //           return false
+  //         }
+  //       })
+  //       break
+  //     case '2':
+  //       this.orderStoreId = JSON.parse(this.$router.currentRoute.query.orderStoreId)
+  //       let [err, res] = await getPayList({ orderStoreId: this.orderStoreId })
+  //       if (err) {
+  //         Toast(err)
+  //         return false
+  //       }
+  //       if (res.code === 0) {
+  //         this.payList = res.data.payList
+  //         this.integral = res.data.integral
+  //         this.orderPrice = res.data.orderPrice
+  //         this.payList.forEach(item => {
+  //           if (item.isDefault) {
+  //             this.payType = item.id
+  //             return false
+  //           }
+  //         })
+  //         // todo 调起wx支付
+  //       } else {
+  //         Toast(res.msg)
+  //       }
+  //       break
+  //   }
+  //   // Do something when page show.
+  //   console.log('Page [pay] onShow')
+  // },
+  // onHide: function () {
+  //   // Do something when page hide.
+  //   console.log('Page [pay] onHide')
+  // },
+  // onUnload: function () {
+  //   wx.setNavigationBarTitle({
+  //     title: '订单支付'
+  //   })
+  //   // Do something when page close.
+  //   console.log('Page [pay] onUnload')
+  // },
   /**
    * for other event handlers, please check https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html
    */
@@ -192,7 +240,7 @@ export default {
     checkSecondPwd () {
       this.toPay()
       // let _this = this
-      // $wuxKeyBoard().show({
+      // $vanKeyBoard().show({
       //   async callback (value) {
       //     let secpwd = md5(value)
       //     let [err, res] = await checkSecondPwd({ secpwd })

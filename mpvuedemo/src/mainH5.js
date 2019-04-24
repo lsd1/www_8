@@ -3,12 +3,12 @@
 import Vue from 'vue'
 import App from './AppH5'
 import router from './router'
-import httpService from './api/httpService'
 import vuex from './vuex'
 import 'lib-flexible/flexible'
 import Lazyload from 'vue-lazyload'
 import store from './vuex/index'
 Vue.prototype.$store = store
+// Vue.prototype.$router = router
 Vue.use(Lazyload)
 Vue.mixin({
   data () {
@@ -35,10 +35,7 @@ Vue.mixin({
           return JSON.parse(sessionStorage.getItem(name))
       }
   },
-  created () {
-      console.log('chrome')
-      this.service = httpService
-  }
+  created () {}
 })
 /* eslint-disable no-new */
 new Vue({
