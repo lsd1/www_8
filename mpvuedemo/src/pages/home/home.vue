@@ -47,10 +47,10 @@
 <script>
 import { Row, Col, PullRefresh, Icon, Toast } from 'vant'
 import { createNamespacedHelpers } from 'vuex'
-import GoodsCard from '@/componentsWeb/GoodsCard'
-import Banner from '@/componentsWeb/Banner'
+import GoodsCard from '@/components/GoodsCard'
+import Banner from '@/components/Banner'
 import BlockTitle from '@/components/BlockTitle'
-import LoadMore from '@/componentsWeb/LoadMore'
+import LoadMore from '@/components/LoadMore'
 import Loading from '@/components/Loading'
 const { mapState } = createNamespacedHelpers('home')
 
