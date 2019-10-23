@@ -19,12 +19,15 @@
 </template>
 
 <script>
+import { Button, Toast } from 'vant'
 import { createNamespacedHelpers } from 'vuex'
 // import Toast from '../../../dist-wechat/static/vant-weapp/toast/toast'
 const { mapState } = createNamespacedHelpers('payRes')
 
 export default {
-  components: {},
+  components: {
+    [Button.name]: Button
+  },
   data () {
     return {
       orderType: 0,

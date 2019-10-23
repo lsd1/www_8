@@ -1,8 +1,8 @@
 <template>
   <div class="goodsDetail">
-    <TabOrSlide :tabs="tabs" :current="current" :blockClass="blockClass" :offset="offset" :needLoadMore="true" >
+    <!--<TabOrSlide :tabs="tabs" :current="current" :blockClass="blockClass" :offset="offset" :needLoadMore="true" >-->
       <div id="tab1" class="goods-swiper slide-block">
-        <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+        <swiper class="swiper" indicator-color="#000" :show-indicators="true" :autoplay="5000" :loop="true" :duration="1000">
           <template v-for="(item, index) in goodsInfo.images" >
             <swiper-item :key="index">
               <img lazy-load="true"  :src="item" class="slide-image" mode="aspectFill"/>
@@ -14,7 +14,7 @@
         <van-row>
           <van-col span="24">
             <span class="yun">￥</span><span class="price">{{  + goodsInfo.goodsPrice }}</span>
-            <van-icon size="16px" @click="onShareApp" class="desc-icon desc-icon1" name="//imgHost/smallprogram_share@3x.png"/>
+            <van-icon size="16px" class="desc-icon desc-icon1" name="//imgHost/smallprogram_share@3x.png"/>
             <van-icon size="16px" @click="onCollect" class="desc-icon" v-if="isCollect === 0" name='//imgHost/smallprogram_focuson_nopoint@3x.png'/>
             <van-icon size="16px" @click="onCollect" class="desc-icon" v-if="isCollect === 1" name='//imgHost/smallprogram_clickonthefocus@3x.png'/>
           </van-col>
@@ -68,7 +68,7 @@
             <template v-if="commentList.length === 0">
               <EmptyPage content="暂无评价" :imgUrl="'//imgHost/noevaluation.png'" />
             </template>
-            <LoadMore :isloading="loadingGoodsDetail" />
+            <!--<LoadMore :isloading="loadingGoodsDetail" />-->
           </van-col>
         </van-row>
       </div>
@@ -86,13 +86,15 @@
         </van-tabbar>
       </div>
       <!--<BlankBottom/>-->
-    </TabOrSlide>
+    <!--</TabOrSlide>-->
     <div class="goods-sku">
-      <wux-popup position="bottom" :visible="isShowSku" @touchmove.stop="touchmoveHandler">
+
+
+      <van-popup position="bottom" v-model="isShowSku" @touchmove.stop="touchmoveHandler">
         <div class="top">
           <van-row>
             <van-col span="8">
-              <img lazy-load="true"  class="img" :src="skuImg" />
+              <img v-lazy="skuImg"  class="img" />
             </van-col>
             <van-col span="16" class="desc">
               <div class="price">
@@ -113,53 +115,78 @@
             <van-col span="24" class="title">
                 {{ item1.name }}
               </van-col>
-              <van-col span="24" class="item" @click.stop="selectSku">
-                <van-tag :color="Object.values(selectedSkuIds).find(v => v === item2.id) ? '#F39D21' : '#CECECE'" :data-type="item1.name"  :data-tag="item2.id" :data-img="item2.img" v-for="(item2, index2) in item1.value" :key="index2">{{ item2.desc }}</van-tag>
+              <van-col span="24" class="item" >
+                <van-tag :color="Object.values(selectedSkuIds).find(v => v === item2.id) ? '#F39D21' : '#CECECE'"
+                         :data-type="item1.name"
+                         :data-tag="item2.id"
+                         :key="index2"
+                         :data-img="item2.img" v-for="(item2, index2) in item1.value"
+                         @click.stop="selectSku"
+                >
+                  {{ item2.desc }}
+                </van-tag>
               </van-col>
             </van-row>
           </template>
           <van-row>
             <van-col span="24" class="title">
-              <wux-cell title="购买数量" hover-class="none">
-                <wux-input-number min="1" :longpress="true" @change="buyNumChange" :disabled="flase" shape="circle" color="assertive" slot="footer"/>
-              </wux-cell>
+              <van-cell title="购买数量" hover-class="none">
+                <!--<van-input-number min="1" :longpress="true" @change="buyNumChange" :disabled="flase" shape="circle" color="assertive" slot="footer"/>-->
+                <van-stepper v-model="buyNum"
+                             integer
+                             :min="1"
+                             :max="40"
+                             :step="1"
+                             @change="buyNumChange"
+                />
+              </van-cell>
             </van-col>
           </van-row>
         </div>
         <div class="bottom">
           <van-button size="large" color="#FF5139" :disabled="notRight" @click.stop="addShoppingCart">{{ buyText }}</van-button>
         </div>
-      </wux-popup>
+      </van-popup>
+
+
+
     </div>
-    <van-toast id="van-toast" />
-    <SharePages v-if="imgShareArr" ref="sharePage" :from="'goodsDetail'" :shareInfo="shareInfo" :imgShareArr="imgShareArr"></SharePages>
     <Loading :showPopup="isRefresh"/>
   </div>
 </template>
 <script>
-import Toast from '@/static/vant-weapp/toast/toast'
-import BlockTitle from '@/components/BlockTitle'
-import SharePages from '@/components/SharePages'
-import LoadMore from '@/components/LoadMore'
-import EmptyPage from '@/components/EmptyPage'
-import CommentCard from '@/components/CommentCard'
-import BlankBottom from '@/components/BlankBottom'
-import Loading from '@/components/Loading'
+import { Row, Col, Icon, Tag, Swipe, SwipeItem, Popup, Tabbar, TabbarItem, Cell, Stepper, Button, Toast } from 'vant';
+// import Toast from '@/static/vant-weapp/toast/toast'
+import BlockTitle from '@/componentsWeb/BlockTitle'
+import EmptyPage from '@/componentsWeb/EmptyPage'
+import CommentCard from '@/componentsWeb/CommentCard'
+import BlankBottom from '@/componentsWeb/BlankBottom'
+import Loading from '@/componentsWeb/Loading'
 import empty from 'is-empty'
 import { mapState } from 'vuex'
 import { getGoodsDetail, getGoodsComments, addGoods, collectGoods } from '@/service/getData'
-import TabOrSlide from '@/components/TabOrSlide'
+import TabOrSlide from '@/componentsWeb/TabOrSlide'
 
 export default {
   components: {
+    [Row.name]: Row,
+    [Icon.name]: Icon,
+    [Tag.name]: Tag,
+    [Col.name]: Col,
+    [Popup.name]: Popup,
+    [Tabbar.name]: Tabbar,
+    [TabbarItem.name]: TabbarItem,
+    [Cell.name]: Cell,
+    [Stepper.name]: Stepper,
+    [Button.name]: Button,
+    Swiper: Swipe,
+    SwiperItem:SwipeItem,
     TabOrSlide,
     EmptyPage,
     BlockTitle,
     CommentCard,
     BlankBottom,
-    LoadMore,
-    Loading,
-    SharePages
+    Loading
   },
   data () {
     return {
@@ -184,6 +211,7 @@ export default {
       blockClass: '.slide-block',
       offset: 50,
       skuImg: '',
+      skuPrice: null,
       skuToPrice: {},
       tabs: [
         {
@@ -228,47 +256,52 @@ export default {
   },
   mounted () {
     console.log('Page [goodsDetail] Vue mounted')
-  },
-  onLoad (options) {
-    // Do some initialize when page load.
-    console.log('Page [goodsDetail] onLoad')
-    wx.setNavigationBarTitle({
-      title: '商品详情'
-    })
-  },
-  onReady () {
-    // Do something when page ready.
-    console.log('Page [goodsDetail] onReady')
-  },
-  async onShow () {
-    // Do something when page show.
     if (this.goodsId !== this.$router.currentRoute.query.goodsId) {
       this.goodsId = this.$router.currentRoute.query.goodsId
       this.refresh()
       console.log('Page [goodsDetail] onShow')
     }
   },
-  onShareAppMessage (options) {
-    return {
-      title: '脉果儿好货',
-      path: '/pages/goodsDetail/index?goodsId=' + this.goodsId,
-      imageUrl: this.goodsInfo.images[0],
-      success: (res) => {
-        Toast('转发成功', res)
-      },
-      fail: (res) => {
-        Toast('转发失败', res)
-      }
-    }
-  },
-  onHide () {
-    // Do something when page hide.
-    console.log('Page [goodsDetail] onHide')
-  },
-  onUnload () {
-    // Do something when page close.
-    console.log('Page [goodsDetail] onUnload')
-  },
+  // onLoad (options) {
+  //   // Do some initialize when page load.
+  //   console.log('Page [goodsDetail] onLoad')
+  //   wx.setNavigationBarTitle({
+  //     title: '商品详情'
+  //   })
+  // },
+  // onReady () {
+  //   // Do something when page ready.
+  //   console.log('Page [goodsDetail] onReady')
+  // },
+  // async onShow () {
+  //   // Do something when page show.
+  //   if (this.goodsId !== this.$router.currentRoute.query.goodsId) {
+  //     this.goodsId = this.$router.currentRoute.query.goodsId
+  //     this.refresh()
+  //     console.log('Page [goodsDetail] onShow')
+  //   }
+  // },
+  // onShareAppMessage (options) {
+  //   return {
+  //     title: '脉果儿好货',
+  //     path: '/pages/goodsDetail/index?goodsId=' + this.goodsId,
+  //     imageUrl: this.goodsInfo.images[0],
+  //     success: (res) => {
+  //       Toast('转发成功', res)
+  //     },
+  //     fail: (res) => {
+  //       Toast('转发失败', res)
+  //     }
+  //   }
+  // },
+  // onHide () {
+  //   // Do something when page hide.
+  //   console.log('Page [goodsDetail] onHide')
+  // },
+  // onUnload () {
+  //   // Do something when page close.
+  //   console.log('Page [goodsDetail] onUnload')
+  // },
   /**
    * for other event handlers, please check https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html
    */
@@ -323,6 +356,7 @@ export default {
       this.isShowSku = false
     },
     selectSku (e) {
+      console.log('select Tag')
       // 规格选择
       const tag = e.target.dataset.tag
       const img = e.target.dataset.img
@@ -378,7 +412,6 @@ export default {
     },
     buyNumChange (e) {
       // 加减商品数量
-      this.buyNum = e.detail.value
       this.calBuy()
     },
     calBuy () {
@@ -465,112 +498,7 @@ export default {
       } else {
         Toast(res.msg)
       }
-    },
-    onShareApp () {
-      console.log(this.$refs.sharePage)
-      this.$refs.sharePage.onShareApp()
-      // this.onShare()
     }
-    // closeShareApp () {
-    //   this.onShare()
-    // },
-    // onShare () {
-    //   this.showShareApp = !this.showShareApp
-    // },
-    // async onShareWechat () {
-    //   this.onShare()
-    // },
-    // onShowCircle () {
-    //   this.showCanvas = !this.showCanvas
-    // },
-    // wxPromisify (fn) {
-    //   return function (obj = {}) {
-    //     return new Promise((resolve, reject) => {
-    //       obj.success = function (res) {
-    //         resolve(res)
-    //       }
-    //       obj.fail = function (res) {
-    //         reject(res)
-    //       }
-    //       fn(obj)
-    //     })
-    //   }
-    // },
-    // async onShareCircle () {
-    //   this.onShare()
-    //   const wxGetImageInfo = this.wxPromisify(wx.getImageInfo)
-    //   const __x = this.deviceWidth / 750
-    //   wx.showLoading({
-    //     title: '生成中...'
-    //   })
-    //   let [err, res] = await getWxCode({ page: '/pages/goodsDetail/index', width: '280px' })
-    //   console.log(err, res) // 请求商品图片等图片信息
-    //   Promise.all([
-    //     wxGetImageInfo({
-    //       src: '//imgHost/largeNature1.jpg' // 商品图片
-    //     }),
-    //     wxGetImageInfo({
-    //       src: '//imgHost/smallprogram_focuson_nopoint@3x.png' // 用户头像
-    //     }),
-    //     wxGetImageInfo({
-    //       src: '//imgHost/largeNature2.jpg' // 二维码图片 // TODO:这里需要拿到后台返回的二维码图片
-    //     })
-    //   ]).then(res => {
-    //     const ctx = wx.createCanvasContext('shareCanvas')
-    //     ctx.setFillStyle('white')
-    //     ctx.fillRect(0, 0, 617 * __x, 792 * __x)
-    //     // 底图
-    //     ctx.drawImage(res[0].path, 0, 173 * __x, 617 * __x, 392 * __x)
-    //     // 用户头像
-    //     ctx.save()
-    //     ctx.beginPath() // 开始绘制
-    //     ctx.setStrokeStyle('red')
-    //     ctx.arc(85 * __x, 85 * __x, 50 * __x, 0, Math.PI * 2, false)
-    //     ctx.clip()
-    //     ctx.drawImage(res[1].path, 35 * __x, 35 * __x)
-    //     // ctx.scale(1.2, 1.2)
-    //     ctx.restore()
-    //     ctx.setFillStyle('#000000') // 文字颜色：黑色
-    //     ctx.setFontSize(30 * __x) // 文字字号：22px
-    //     ctx.fillText('你好', 166 * __x, 75 * __x)
-    //     ctx.setFillStyle('#A5A4A4') // 文字颜色：黑色
-    //     ctx.setFontSize(24 * __x) // 文字字号：22px
-    //     ctx.fillText('ID:123123', 166 * __x, 120 * __x)
-    //     ctx.setFillStyle('#000000') // 文字颜色：黑色
-    //     ctx.setFontSize(24 * __x) // 文字字号：22px
-    //     ctx.fillText('商品名称商品名称商品名称商品名称...', 30 * __x, 628 * __x)
-    //     ctx.setFillStyle('#FF4D46') // 文字颜色：黑色
-    //     ctx.setFontSize(20 * __x) // 文字字号：22px
-    //     ctx.fillText('￥465.00', 30 * __x, 684 * __x)
-    //     ctx.drawImage(res[0].path, 456 * __x, 577 * __x, 127 * __x, 127 * __x)
-    //     ctx.setFillStyle('#A5A4A4') // 文字颜色：黑色
-    //     ctx.setFontSize(20 * __x) // 文字字号：22px
-    //     ctx.fillText('长按识别查看商品', 442 * __x, 733 * __x)
-    //     ctx.stroke()
-    //     ctx.draw()
-    //     wx.hideLoading()
-    //   })
-    //   this.onShowCircle()
-    // },
-    // savePhoto () {
-    //   const wxCanvasToTempFilePath = this.wxPromisify(wx.canvasToTempFilePath)
-    //   const wxSaveImageToPhotosAlbum = this.wxPromisify(wx.saveImageToPhotosAlbum)
-    //
-    //   wxCanvasToTempFilePath({
-    //     canvasId: 'shareCanvas'
-    //   }, this).then(res => {
-    //     return wxSaveImageToPhotosAlbum({
-    //       filePath: res.tempFilePath
-    //     })
-    //   }).then(res => {
-    //     wx.showToast({
-    //       title: '已保存到相册'
-    //     })
-    //   })
-    // },
-    // onCloseCanvas () {
-    //   this.onShowCircle()
-    // }
   }
 }
 </script>
@@ -764,16 +692,16 @@ export default {
         min-width: 40px !important;
         text-align: center !important;
       }
-      .wux-cell {
+      .van-cell {
         position: inherit;
         padding: 0;
       }
-      .wux-input-number__selector {
+      .van-input-number__selector {
         color: #A5A4A4 !important;
         border-color: #A5A4A4 !important;
         line-height: 0 !important;
       }
-      .wux-input-number__input {
+      .van-input-number__input {
         padding: 0 !important;
         border: 1px solid #A5A4A4 !important;
         border-radius: 30px !important;
@@ -824,7 +752,7 @@ export default {
   }
   .goods-appraisal {
     .appraisal-item {
-      .wux-avatar{
+      .van-avatar{
         width: 78px;
         height: 78px;
         line-height: 78px;
@@ -832,96 +760,8 @@ export default {
       }
     }
   }
-  .wux-divider--text {
+  .van-divider--text {
     margin-bottom: 105px;
-  }
-  ._van-action-sheet {
-    .share-box {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-start;
-      .share-title, .cancel, .share-list {
-        height: 90px;
-        font-size:30px;/*px*/
-        font-family:PingFang-SC-Medium;
-        font-weight:500;
-        background-color: #fff;
-        color:rgba(51,51,51,1);
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-      }
-      .share-title {
-        padding-left: 30px;
-      }
-      .cancel {
-        justify-content: center;
-        border-top: 1px solid #F3F4F5;
-      }
-      .share-list {
-        height: 200px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        font-size:24px;/*px*/
-        padding: 0 40px;
-        .wechat, .circle {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          button::after {
-            border: none!important;
-          }
-          button {
-            padding-left: 0;
-            padding-right: 0;
-            font-size: 24px;/*px*/
-            background-color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            img {
-              width: 88px;
-              height: 88px;
-            }
-          }
-        }
-      }
-    }
-  }
-  .showCanvasClass {
-    .van-popup {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background-color: rgba(0,0,0,0);
-      .saveToPhoto {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width:340px;
-        height:64px;
-        margin-top: 60px;
-        background:linear-gradient(90deg,rgba(255,104,83,1),rgba(255,81,57,1));
-        border-radius:32px;
-        font-size:30px;/*px*/
-        font-family:PingFang-SC-Medium;
-        font-weight:500;
-        color:rgba(255,255,255,1);
-      }
-      .close {
-        margin-top: 40px;
-        width: 44px;
-        height: 44px;
-        background-image: url(//imgHost/asmallvideo_delete_button@2x.png);
-        background-size: cover;
-      }
-    }
   }
 }
 .van-tabbar {
@@ -931,20 +771,20 @@ export default {
   position:relative;
   bottom: 30px!important;
 }
-.wux-tabs__tab--balanced .wux-tabs__tab-bar {
+.van-tabs__tab--balanced .van-tabs__tab-bar {
   background:#FF6853!important;
   width:48px;
   height:6px;
   left:50%;
   margin-left:-24rpx;
 }
-.wux-tabs__tab {
+.van-tabs__tab {
   font-size:30px!important;/*px*/
   font-family:PingFang-SC-Medium!important;
   font-weight:500!important;
   color:#A5A4A4!important;
 }
-.wux-tabs__tab--balanced.wux-tabs__tab--current{
+.van-tabs__tab--balanced.van-tabs__tab--current{
   color:#333!important;
   font-family:PingFang-SC-Heavy!important;
   font-weight:800!important;

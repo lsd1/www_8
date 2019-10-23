@@ -1,6 +1,6 @@
 <template>
   <div class="shoppingCart">
-      <checkbox-group name="a" @change="onChange">
+      <van-checkbox-group  :value="checks" >
           <ShopItem v-for="(item1, index1) in shoppingCart"
                        :key="index1"
                        :checks="checks"
@@ -8,6 +8,7 @@
                        :shopImg="item1.storeInfo.shopImg"
                        :shopKey="item1.storeInfo.shopKey"
                        :storeId="item1.storeInfo.storeId"
+                       :checkChange="onChange"
           >
              <GoodsItem v-for="(item2, index2) in item1.goodsList"
                         :key="index2"
@@ -27,6 +28,7 @@
                         :index="index2"
                         :indexes="index1 + '-' + index2"
                         :actions="actions"
+                        :checkChange="onChange"
              />
            </ShopItem>
           <template v-if="shoppingCart.length === 0">
@@ -35,7 +37,7 @@
           </template>
           <div class="bottom1">
               <div class="select">
-                  <checkbox value="all" :checked="checks.includes('all')" >全选</checkbox>
+                  <van-checkbox name="all" @click="onChange('all')">全选</van-checkbox>
               </div>
               <div class="amount">
                   <div class="all-txt">合计</div><div>￥：</div><div>{{ selectedGoodsAmount }}</div>
@@ -44,25 +46,28 @@
                   <van-button round type="danger" @click="toMakeOrder" ><div >结算({{ selectedGoodsNum }})</div></van-button>
               </div>
           </div>
-      </checkbox-group>
-      <van-toast id="van-toast" />
-      <van-dialog id="van-dialog" />
+      </van-checkbox-group>
+      <!--<van-toast id="van-toast" />-->
+      <!--<van-dialog id="van-dialog" />-->
   </div>
 </template>
 
 <script>
+import { Stepper, Button, Checkbox, CheckboxGroup, Toast, Dialog } from 'vant'
 import { createNamespacedHelpers } from 'vuex'
-import GoodsItem from '@/components/GoodsItem'
-import ShopItem from '@/components/ShopItem'
-import EmptyPage from '@/components/EmptyPage'
-import Toast from '@/static/vant-weapp/toast/toast'
+import GoodsItem from '@/componentsWeb/GoodsItem'
+import ShopItem from '@/componentsWeb/ShopItem'
+import EmptyPage from '@/componentsWeb/EmptyPage'
 import empty from 'is-empty'
-import Dialog from '@/static/vant-weapp/dialog/dialog'
 import { delGoods, changeGoodsNum, collectGoods } from '@/service/getData'
 const { mapState } = createNamespacedHelpers('shoppingCart')
 
 export default {
   components: {
+    [Stepper.name]: Stepper,
+    [Button.name]: Button,
+    [Checkbox.name]: Checkbox,
+    [CheckboxGroup.name]: CheckboxGroup,
     ShopItem,
     GoodsItem,
     EmptyPage
@@ -110,7 +115,7 @@ export default {
     console.log('Page [shoppingCart] Vue beforeCreate')
   },
   async created () {
-    const token = wx.getStorageSync('token')
+    const token = localStorage.getItem('token')
     if (empty(token)) {
       this.onNoLogin()
     } else {
@@ -121,40 +126,48 @@ export default {
   beforeMount () {
     console.log('Page [shoppingCart] Vue beforeMount')
   },
-  mounted () {
+  async mounted () {
     console.log('Page [shoppingCart] Vue mounted')
-  },
-  onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: '购物车'
-    })
-    // Do some initialize when page load.
-    console.log('Page [shoppingCart] onLoad')
-  },
-  onReady: function () {
-    // Do something when page ready.
-    console.log('Page [shoppingCart] onReady')
-  },
-  onShow: async function () {
-    // Do something when page show.
-    console.log('Page [shoppingCart] onShow')
     if (!this.isLogin) return false
-    let res = await this.$store.dispatch('shoppingCart/getShoppingCart')
-    if (res.type === 'err') {
-      Toast(res.msg)
-      return false
-    } else {
-      this.$store.dispatch('setCartCount', { cartCount: this.cartCount })
-    }
+      let res = await this.$store.dispatch('shoppingCart/getShoppingCart')
+      if (res.type === 'err') {
+        Toast(res.msg)
+        return false
+      } else {
+        this.$store.dispatch('setCartCount', { cartCount: this.cartCount })
+      }
   },
-  async onHide () {
-    // Do something when page hide.
-    console.log('Page [shoppingCart] onHide')
-  },
-  onUnload: function () {
-    // Do something when page close.
-    console.log('Page [shoppingCart] onUnload')
-  },
+  // onLoad: function (options) {
+  //   wx.setNavigationBarTitle({
+  //     title: '购物车'
+  //   })
+  //   // Do some initialize when page load.
+  //   console.log('Page [shoppingCart] onLoad')
+  // },
+  // onReady: function () {
+  //   // Do something when page ready.
+  //   console.log('Page [shoppingCart] onReady')
+  // },
+  // onShow: async function () {
+  //   // Do something when page show.
+  //   console.log('Page [shoppingCart] onShow')
+  //   if (!this.isLogin) return false
+  //   let res = await this.$store.dispatch('shoppingCart/getShoppingCart')
+  //   if (res.type === 'err') {
+  //     Toast(res.msg)
+  //     return false
+  //   } else {
+  //     this.$store.dispatch('setCartCount', { cartCount: this.cartCount })
+  //   }
+  // },
+  // async onHide () {
+  //   // Do something when page hide.
+  //   console.log('Page [shoppingCart] onHide')
+  // },
+  // onUnload: function () {
+  //   // Do something when page close.
+  //   console.log('Page [shoppingCart] onUnload')
+  // },
   /**
    * for other event handlers, please check https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html
    */
@@ -177,41 +190,31 @@ export default {
         }
       })
     },
-    buyNumChange (e) {
-      console.log(e)
-    },
-    async onChange (e) {
-      let value = e.detail.value.filter(x => { return x !== '' })
-
+    async onChange (value) {
+      console.log('value:', value)
       if (empty(this.checkTree)) {
         return false
       }
-
-      let a, b, type
-      if (value.length > this.checks.length) {
-        type = 'add-'
-        a = value
-        b = this.checks
-      } else {
+      let type
+      if(this.checks.includes(value)) {
         type = 'del-'
-        a = this.checks
-        b = value
+      } else {
+        type = 'add-'
       }
-      let differenceABSet = Array.from(new Set([...a].filter(x => !b.includes(x))))[0]
-      console.log('differenceABSet:', differenceABSet)
-      let keyArr = differenceABSet.split('-')
+
+      let keyArr = value.split('-')
       let shopKey = null
       let jointKey = null
-      if (differenceABSet === 'all') {
+      if (value === 'all') {
         type += 'all'
       } else if (keyArr.length === 2) {
         type += 'shop'
-        shopKey = differenceABSet
+        shopKey = value
       } else {
         type += 'goods'
         keyArr.pop()
         shopKey = keyArr.join('-')
-        jointKey = differenceABSet
+        jointKey = value
       }
       let res = await this.$store.dispatch('shoppingCart/checkChange', { type: type, shopKey: shopKey, jointKey: jointKey })
       if (res.type === 'err') {
@@ -219,6 +222,7 @@ export default {
       }
     },
     async updateNum (data) {
+      console.log('cart num change')
       let [err, res] = await changeGoodsNum(data)
       if (err) {
         Toast(err)
@@ -288,7 +292,7 @@ export default {
 
 <style lang="scss" scoped>
 .shoppingCart {
-    checkbox-group {
+    van-checkbox-group {
         margin-bottom: 100px;
     }
     background-color: #f3f4f5;
@@ -308,7 +312,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         .select {
-            checkbox {
+            van-checkbox {
                 transform: scale(0.8,0.8);
             }
             display: flex;
@@ -378,7 +382,7 @@ page {
     }
 }
 .select {
-    checkbox {
+    van-checkbox {
         width: 120px;
         height: 42px;
     }

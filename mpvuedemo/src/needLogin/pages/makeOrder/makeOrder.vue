@@ -46,22 +46,24 @@
         <van-button round type="danger" @click="makeOrder"><div>提交订单({{ calDetail.goodsNum }})</div></van-button>
       </div>
     </div>
-    <van-toast id="van-toast" />
     <BlankBottom />
   </div>
 </template>
 
 <script>
-import OrderGoodsItem from '@/components/OrderGoodsItem'
-import OrderShopItem from '@/components/OrderShopItem'
+import { Col, Button, Icon, Toast } from 'vant'
+import OrderGoodsItem from '@/componentsWeb/OrderGoodsItem'
+import OrderShopItem from '@/componentsWeb/OrderShopItem'
 import empty from 'is-empty'
-import BlankBottom from '@/components/BlankBottom'
+import BlankBottom from '@/componentsWeb/BlankBottom'
 import { makeOrderInfo, createOrder, buyNow, buyNowCreateOrder } from '@/service/getData'
-import Toast from '@/static/vant-weapp/toast/toast'
 import { mapState } from 'vuex'
 
 export default {
   components: {
+    [Button.name]: Button,
+    [Icon.name]: Icon,
+    [Col.name]: Col,
     OrderGoodsItem,
     OrderShopItem,
     BlankBottom
@@ -112,24 +114,8 @@ export default {
   beforeMount () {
     console.log('Page [makeOrder] Vue beforeMount')
   },
-  mounted () {
+  async mounted () {
     console.log('Page [makeOrder] Vue mounted')
-  },
-  onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: '订单确认'
-    })
-    // Do some initialize when page load.
-    console.log('Page [makeOrder] onLoad')
-  },
-  onReady: function () {
-    // Do something when page ready.
-    console.log('Page [makeOrder] onReady')
-  },
-  async onShow () {
-    // Do something when page show.
-    console.log('Page [makeOrder] onShow')
-
     // 判断是否来自立即购买
     if (this.$router.currentRoute.query.cartIds) {
       if (this.cartIds !== this.$router.currentRoute.query.cartIds) {
@@ -168,14 +154,29 @@ export default {
       }
     }
   },
-  onHide: function () {
-    // Do something when page hide.
-    console.log('Page [makeOrder] onHide')
-  },
-  onUnload: function () {
-    // Do something when page close.
-    console.log('Page [makeOrder] onUnload')
-  },
+  // onLoad: function (options) {
+  //   wx.setNavigationBarTitle({
+  //     title: '订单确认'
+  //   })
+  //   // Do some initialize when page load.
+  //   console.log('Page [makeOrder] onLoad')
+  // },
+  // onReady: function () {
+  //   // Do something when page ready.
+  //   console.log('Page [makeOrder] onReady')
+  // },
+  // async onShow () {
+  //   // Do something when page show.
+  //   console.log('Page [makeOrder] onShow')
+  // },
+  // onHide: function () {
+  //   // Do something when page hide.
+  //   console.log('Page [makeOrder] onHide')
+  // },
+  // onUnload: function () {
+  //   // Do something when page close.
+  //   console.log('Page [makeOrder] onUnload')
+  // },
   /**
    * for other event handlers, please check https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html
    */
